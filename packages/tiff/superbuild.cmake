@@ -5,8 +5,8 @@ set(proj tiff)
 set(tiff-head OFF CACHE BOOL "Force building libtiff from current CVS head")
 
 # Current stable release.
-set(RELEASE_URL "ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.4.tar.gz")
-set(RELEASE_HASH "SHA512=4c83f8d7c10224c481c58721044813056b6fbc44c94b1b94a35d2f829bf4a89d35edd878e40e4d8579fd04b889edab946c95b0dc04b090794d1bd9120a79882b")
+set(RELEASE_URL "ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.6.tar.gz")
+set(RELEASE_HASH "SHA512=2c8dbaaaab9f82a7722bfe8cb6fcfcf67472beb692f1b7dafaf322759e7016dad1bc58457c0f03db50aa5bd088fef2b37358fcbc1524e20e9e14a9620373fdf8")
 
 # Current development branch (defaults for head option).
 set(CVS_REPOSITORY ":pserver:cvsanon@cvs.maptools.org:/cvs/maptools/cvsroot")
@@ -33,11 +33,6 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
     set(EP_SOURCE_DOWNLOAD
       URL "${RELEASE_URL}"
       URL_HASH "${RELEASE_HASH}")
-    set(PATCH_COMMAND
-        PATCH_COMMAND ${CMAKE_COMMAND} -E copy_directory
-          "${CMAKE_CURRENT_LIST_DIR}/files"
-          "${EP_SOURCE_DIR}")
-    message(STATUS "Building libtiff from source release (${RELEASE_URL})")
   endif()
 
   # Notes: Using custom CMake build for tiff; this has been submitted
@@ -50,7 +45,6 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
     SOURCE_DIR "${EP_SOURCE_DIR}"
     BINARY_DIR "${EP_BINARY_DIR}"
     INSTALL_DIR ""
-    ${PATCH_COMMAND}
     INSTALL_COMMAND ${CMAKE_COMMAND}
       "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
       "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
