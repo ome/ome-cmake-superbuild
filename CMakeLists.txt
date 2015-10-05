@@ -60,7 +60,21 @@ include(ExternalProject)
 include("${CMAKE_CURRENT_LIST_DIR}/ExternalProjectHelpers.cmake")
 
 # External projects.
-set(PREREQUISITES zlib bzip2 png tiff icu boost xerces)
+set(PREREQUISITES
+    zlib
+    bzip2
+    png
+    tiff
+    icu
+    boost
+    xerces
+    py-setuptools
+    py-genshi
+    py-markupsafe
+    py-jinja2
+    py-docutils
+    py-pygments
+    py-sphinx)
 add_package(${PREREQUISITES} bioformats)
 
 # Single target to build all prerequisites
