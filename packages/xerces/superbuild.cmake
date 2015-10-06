@@ -1,17 +1,14 @@
 # xerces superbuild
-set(proj xerces)
 
 # Set dependency list
 ome_add_dependencies(xerces icu)
 
-if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
+if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
   unset(xerces_DIR CACHE)
   find_package(XERCES REQUIRED)
 endif()
 
-if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
-  set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)
-  set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
+if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
   set(EP_CXXFLAGS ${CMAKE_CXX_FLAGS})
   set(EP_LDFLAGS ${CMAKE_SHARED_LINKER_FLAGS})
   if(WIN32)
@@ -24,7 +21,7 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   # Notes:
   # Builds xerces without Xerces.Python (not currently used by Bio-Formats)
 
-  ExternalProject_Add(${proj}
+  ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
     URL "http://www.apache.org/dist/xerces/c/3/sources/xerces-c-3.1.2.tar.xz"
     URL_HASH "SHA512=d4517d80f6f0ec462982a0327f10bbd96206c0f24adc6d32e4482ad07b48be7404d8923fc6c8172ebdfa8ae0c5f403eea9db4b62f8263aa017e67889b1869cd8"
@@ -58,5 +55,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
       ${xerces_DEPENDENCIES}
     )
 else()
-  ExternalProject_Add_Empty(${proj} DEPENDS ${xerces_DEPENDENCIES})
+  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${xerces_DEPENDENCIES})
 endif()

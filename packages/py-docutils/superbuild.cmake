@@ -1,14 +1,11 @@
 # py-docutils superbuild
-set(proj py-docutils)
 
 # Set dependency list
 ome_add_dependencies(py-docutils py-setuptools)
 
-if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
-  set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)
-  set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
+if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
-  ExternalProject_Add(${proj}
+  ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
     URL "https://pypi.python.org/packages/source/d/docutils/docutils-0.12.tar.gz"
     URL_HASH "SHA512=0087433f8b76e1d0302d2fab77fdbda941132d16ac1fcecb26ca66119687eefd9e2f6901e05d705f857fa31e2526136c9827dfd57c44cd295bd10dcce3faebf9"
@@ -28,5 +25,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
       ${py-docutils_DEPENDENCIES}
     )
 else()
-  ExternalProject_Add_Empty(${proj} DEPENDS ${py-docutils_DEPENDENCIES})
+  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${py-docutils_DEPENDENCIES})
 endif()

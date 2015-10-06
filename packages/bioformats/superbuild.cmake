@@ -1,5 +1,4 @@
 # bioformats superbuild
-set(proj bioformats)
 
 # Options to build from git (defaults to source zip if unset)
 set(head OFF CACHE BOOL "Force building from current git develop branch")
@@ -41,15 +40,12 @@ endif()
 ome_add_dependencies(bioformats ${EP_DEPENDENCIES} png tiff xerces py-genshi py-sphinx)
 set(bioformats_ARGS)
 
-set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)
-set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
-
 list(APPEND CONFIGURE_OPTIONS
      ${bioformats_ARGS}
      ${SUPERBUILD_OPTIONS})
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
-ExternalProject_Add(${proj}
+ExternalProject_Add(${EP_PROJECT}
   ${BIOFORMATS_EP_COMMON_ARGS}
   ${EP_SOURCE_DOWNLOAD}
   SOURCE_DIR ${EP_SOURCE_DIR}

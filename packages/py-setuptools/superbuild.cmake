@@ -1,14 +1,11 @@
 # py-setuptools superbuild
-set(proj py-setuptools)
 
 # Set dependency list
 ome_add_dependencies(py-setuptools)
 
-if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
-  set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)
-  set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
+if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
-  ExternalProject_Add(${proj}
+  ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
     URL "https://pypi.python.org/packages/source/s/setuptools/setuptools-18.3.2.tar.gz"
     URL_HASH "SHA512=0af522af1dc783e4d6b84c44d3cf4205aed75815bfc050ea89c4976434f08edd662501c4063b1618c0ce7a7120bcbd5331818d3f06912aa9136736018ec4b6a1"
@@ -28,5 +25,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
       ${py-setuptools_DEPENDENCIES}
     )
 else()
-  ExternalProject_Add_Empty(${proj} DEPENDS ${py-setuptools_DEPENDENCIES})
+  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${py-setuptools_DEPENDENCIES})
 endif()

@@ -1,16 +1,14 @@
 # boost superbuild
-set(proj boost-1.59)
 
 # Set dependency list
 ome_add_dependencies(boost-1.59 zlib bzip2 icu)
 
-if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
+if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
   unset(boost_DIR CACHE)
   find_package(BOOST REQUIRED)
 endif()
 
-if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
-  set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)
+if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
   if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     # VS 10.0
@@ -39,7 +37,7 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   # Notes:
   # Builds boost without Boost.Python (not currently used by Bio-Formats)
 
-  ExternalProject_Add(${proj}
+  ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
     URL "http://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.bz2"
     URL_HASH "SHA512=8139e1ae997a86974071c5714ad3307e3d8fd15ef702b81a953410dd4d424b932135f53a0ef4891d9b9b747a38e539e66d6a803388fe0cc98e5166be872d682a"
@@ -68,5 +66,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
       ${boost-1.59_DEPENDENCIES}
     )
 else()
-  ExternalProject_Add_Empty(${proj} DEPENDS ${boost_DEPENDENCIES})
+  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${boost_DEPENDENCIES})
 endif()

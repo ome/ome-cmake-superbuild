@@ -1,23 +1,20 @@
 # png superbuild
-set(proj png)
 
 # Set dependency list
 ome_add_dependencies(png zlib)
 
-if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
+if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
   unset(png_DIR CACHE)
   find_package(PNG REQUIRED)
 endif()
 
-if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
-  set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)
-  set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
+if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
   # Notes:
   # INSTALL_LIB_DIR overridden to use GNUInstallDirs setting
   # Installs cmake settings into lib/libpng; could be deleted
 
-  ExternalProject_Add(${proj}
+  ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
     URL "ftp://ftp.heanet.ie/mirrors/download.sourceforge.net/pub/sourceforge/l/li/libpng/libpng16/1.6.17/libpng-1.6.17.tar.xz"
     URL_HASH "SHA512=f22a48b355adea197a2d79f90ccc6b3edef2b5e8f6fb17319bd38652959126bbecb9442fd95e5147a894484446e87e535667fbfcf3b1e901b8375e5bb00a3bf3"
@@ -43,5 +40,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
       ${png_DEPENDENCIES}
     )
 else()
-  ExternalProject_Add_Empty(${proj} DEPENDS ${png_DEPENDENCIES})
+  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${png_DEPENDENCIES})
 endif()

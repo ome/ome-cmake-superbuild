@@ -1,14 +1,11 @@
 # py-genshi superbuild
-set(proj py-genshi)
 
 # Set dependency list
 ome_add_dependencies(py-genshi py-setuptools)
 
-if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
-  set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)
-  set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
+if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
-  ExternalProject_Add(${proj}
+  ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
     URL "https://pypi.python.org/packages/source/G/Genshi/Genshi-0.7.tar.gz"
     URL_HASH "SHA512=2d0042d4da4566725ddd80b73c5b7be09f479f5529e4aa69903edc2a98905ff6de42a0d5a6f02986d7962deb7740c4a3acf6955a8b77fdb42d3cf4ca037de6bf"
@@ -28,5 +25,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
       ${py-genshi_DEPENDENCIES}
     )
 else()
-  ExternalProject_Add_Empty(${proj} DEPENDS ${py-genshi_DEPENDENCIES})
+  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${py-genshi_DEPENDENCIES})
 endif()

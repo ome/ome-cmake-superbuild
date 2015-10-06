@@ -1,14 +1,11 @@
 # py-pygments superbuild
-set(proj py-pygments)
 
 # Set dependency list
 ome_add_dependencies(py-pygments py-setuptools)
 
-if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
-  set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)
-  set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
+if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
-  ExternalProject_Add(${proj}
+  ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
     URL "https://pypi.python.org/packages/source/P/Pygments/Pygments-2.0.2.tar.gz"
     URL_HASH "SHA512=b58e2cc535ba3f1fda7cb147e12af128bc2755de56cf465f8f1d642730eaef50c06551cc4cc44f25f726b00f3f1c9c2078977233b11c0b6a7e1add6a4069c27e"
@@ -28,5 +25,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
       ${py-pygments_DEPENDENCIES}
     )
 else()
-  ExternalProject_Add_Empty(${proj} DEPENDS ${py-pygments_DEPENDENCIES})
+  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${py-pygments_DEPENDENCIES})
 endif()

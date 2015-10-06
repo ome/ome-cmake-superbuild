@@ -1,14 +1,11 @@
 # py-jinja2 superbuild
-set(proj py-jinja2)
 
 # Set dependency list
 ome_add_dependencies(py-jinja2 py-setuptools py-markupsafe)
 
-if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
-  set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)
-  set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
+if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
-  ExternalProject_Add(${proj}
+  ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
     URL "https://pypi.python.org/packages/source/J/Jinja2/Jinja2-2.7.3.tar.gz"
     URL_HASH "SHA512=2810db2b52fe800e2a4a47ea41a07f997b1647a2b7ad05fe564f9d554d6a402283c84c4e2491e5dad8d22acd83d3ca420f0983ed2effc732f6d79600a846071b"
@@ -28,5 +25,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
       ${py-jinja2_DEPENDENCIES}
     )
 else()
-  ExternalProject_Add_Empty(${proj} DEPENDS ${py-jinja2_DEPENDENCIES})
+  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${py-jinja2_DEPENDENCIES})
 endif()
