@@ -2,7 +2,7 @@
 set(proj py-genshi)
 
 # Set dependency list
-set(py-genshi_DEPENDENCIES py-setuptools)
+ome_add_dependencies(py-genshi py-setuptools)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)

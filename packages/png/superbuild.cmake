@@ -2,7 +2,7 @@
 set(proj png)
 
 # Set dependency list
-set(png_DEPENDENCIES zlib)
+ome_add_dependencies(png zlib)
 
 if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   unset(png_DIR CACHE)

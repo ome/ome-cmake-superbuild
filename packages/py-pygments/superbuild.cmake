@@ -2,7 +2,7 @@
 set(proj py-pygments)
 
 # Set dependency list
-set(py-pygments_DEPENDENCIES py-setuptools)
+ome_add_dependencies(py-pygments py-setuptools)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)

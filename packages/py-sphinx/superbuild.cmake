@@ -2,7 +2,7 @@
 set(proj py-sphinx)
 
 # Set dependency list
-set(py-sphinx_DEPENDENCIES py-setuptools py-pygments py-docutils py-jinja2)
+ome_add_dependencies(py-sphinx py-setuptools py-pygments py-docutils py-jinja2)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)

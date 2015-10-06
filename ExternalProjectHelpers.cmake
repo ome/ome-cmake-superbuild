@@ -35,10 +35,36 @@
 # #L%
 
 # Include superbuild logic for the given package(s)
-function(add_package)
+# Each package is only included once, using the ${name}_INCLUDED guard
+function(ome_add_package)
   foreach(name ${ARGV})
-    include("${PROJECT_SOURCE_DIR}/packages/${name}/superbuild.cmake")
+    get_property(included GLOBAL PROPERTY ${name}_INCLUDED SET)
+    if(NOT included)
+      set_property(GLOBAL PROPERTY ${name}_INCLUDED ON)
+    get_property(included GLOBAL PROPERTY ${name}_INCLUDED SET)
+      include("${PROJECT_SOURCE_DIR}/packages/${name}/superbuild.cmake")
+    endif()
   endforeach()
+endfunction()
+
+# Allow recursive addition of dependencies; store them in the specified
+# variable and recursively add them.  Dependencies are stored in
+# target_DEPENDENCIES
+function(ome_add_dependencies target)
+  get_property(dependencies_added GLOBAL PROPERTY ${target}_DEPENDENCIES_ADDED SET)
+  if(NOT dependencies_added)
+    set_property(GLOBAL PROPERTY ${target}_DEPENDENCIES_ADDED ON)
+    foreach(name ${ARGN})
+      ome_add_package("${name}")
+      list(APPEND ${target}_DEPENDENCIES "${name}")
+    endforeach()
+    if (${target}_DEPENDENCIES)
+      list(REMOVE_DUPLICATES ${target}_DEPENDENCIES)
+    endif()
+    set(${target}_DEPENDENCIES "${${target}_DEPENDENCIES}" PARENT_SCOPE)
+    add_custom_target(${target}-prerequisites
+                      DEPENDS ${target}_DEPENDENCIES)
+  endif()
 endfunction()
 
 set(GENERIC_CMAKE_CONFIGURE "${PROJECT_SOURCE_DIR}/helpers/cmake_configure.cmake")

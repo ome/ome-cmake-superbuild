@@ -13,7 +13,7 @@ set(CVS_REPOSITORY ":pserver:cvsanon@cvs.maptools.org:/cvs/maptools/cvsroot")
 set(CVS_MODULE "libtiff")
 
 # Set dependency list
-set(tiff_DEPENDENCIES zlib)
+ome_add_dependencies(tiff zlib)
 
 if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   unset(tiff_DIR CACHE)

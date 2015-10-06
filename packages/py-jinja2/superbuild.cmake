@@ -2,7 +2,7 @@
 set(proj py-jinja2)
 
 # Set dependency list
-set(py-jinja2_DEPENDENCIES py-setuptools py-markupsafe)
+ome_add_dependencies(py-jinja2 py-setuptools py-markupsafe)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)

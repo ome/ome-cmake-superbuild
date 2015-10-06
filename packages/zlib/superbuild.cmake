@@ -2,7 +2,7 @@
 set(proj zlib)
 
 # Set dependency list
-set(zlib_DEPENDENCIES)
+ome_add_dependencies(zlib)
 
 if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   unset(zlib_DIR CACHE)

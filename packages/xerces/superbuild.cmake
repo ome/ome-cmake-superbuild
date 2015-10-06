@@ -2,7 +2,7 @@
 set(proj xerces)
 
 # Set dependency list
-set(xerces_DEPENDENCIES icu)
+ome_add_dependencies(xerces icu)
 
 if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   unset(xerces_DIR CACHE)

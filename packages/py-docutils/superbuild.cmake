@@ -2,7 +2,7 @@
 set(proj py-docutils)
 
 # Set dependency list
-set(py-docutils_DEPENDENCIES py-setuptools)
+ome_add_dependencies(py-docutils py-setuptools)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)

@@ -2,7 +2,7 @@
 set(proj boost)
 
 # Set dependency list
-set(boost_DEPENDENCIES zlib bzip2 icu)
+ome_add_dependencies(boost zlib bzip2 icu)
 
 if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   unset(boost_DIR CACHE)

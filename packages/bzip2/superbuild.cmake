@@ -2,7 +2,7 @@
 set(proj bzip2)
 
 # Set dependency list
-set(bzip2_DEPENDENCIES)
+ome_add_dependencies(bzip2)
 
 if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   unset(bzip2_DIR CACHE)

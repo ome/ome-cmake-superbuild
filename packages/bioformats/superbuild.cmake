@@ -36,7 +36,7 @@ else()
 endif()
 
 # Set dependency list
-set(bioformats_DEPENDENCIES zlib bzip2 png tiff icu boost xerces py-genshi py-sphinx)
+ome_add_dependencies(bioformats png tiff boost xerces py-genshi py-sphinx)
 set(bioformats_ARGS)
 
 set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)

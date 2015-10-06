@@ -2,7 +2,7 @@
 set(proj icu)
 
 # Set dependency list
-set(icu_DEPENDENCIES)
+ome_add_dependencies(icu)
 
 if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   unset(icu_DIR CACHE)
