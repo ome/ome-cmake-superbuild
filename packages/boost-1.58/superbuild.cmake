@@ -1,8 +1,8 @@
 # boost superbuild
-set(proj boost)
+set(proj boost-1.58)
 
 # Set dependency list
-ome_add_dependencies(boost zlib bzip2 icu)
+ome_add_dependencies(boost-1.58 zlib bzip2 icu)
 
 if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   unset(boost_DIR CACHE)
@@ -65,7 +65,7 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
     INSTALL_COMMAND ""
     ${cmakeversion_external_update} "${cmakeversion_external_update_value}"
     DEPENDS
-      ${boost_DEPENDENCIES}
+      ${boost-1.58_DEPENDENCIES}
     )
 else()
   ExternalProject_Add_Empty(${proj} DEPENDS ${boost_DEPENDENCIES})
