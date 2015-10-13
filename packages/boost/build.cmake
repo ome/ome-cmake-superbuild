@@ -2,12 +2,6 @@
 include("${EP_SCRIPT_CONFIG}")
 include("${GENERIC_CMAKE_ENVIRONMENT}")
 
-include(ProcessorCount)
-ProcessorCount(N)
-if(NOT N EQUAL 0)
-  set(BOOST_PARALLEL "-j${N}")
-endif()
-
 if (CONFIG MATCHES Rel)
   set(BOOST_VARIANT release)
 else()
@@ -15,20 +9,6 @@ else()
 endif()
 
 if(WIN32)
-
-  message(STATUS "Running ./b2 install
---prefix=${BIOFORMATS_EP_INSTALL_DIR}
---without-python
-cxxflags=${CMAKE_CXX_FLAGS}
-linkflags=${CMAKE_SHARED_LINKER_FLAGS}
-toolset=${BOOST_TOOLSET}
-variant=${BOOST_VARIANT}
-address-model=${EP_PLATFORM_BITS}
-link=shared
-runtime-link=shared
-threading=multi
-${BOOST_PARALLEL}"
-"-d+2")
 
   execute_process(COMMAND ./b2 install
                                --prefix=${BIOFORMATS_EP_INSTALL_DIR}
@@ -41,7 +21,6 @@ ${BOOST_PARALLEL}"
                                "link=shared"
                                "runtime-link=shared"
                                "threading=multi"
-                               "${BOOST_PARALLEL}"
                                "-d+2"
                   WORKING_DIRECTORY "${SOURCE_DIR}"
                   RESULT_VARIABLE build_result)
@@ -61,7 +40,6 @@ else(WIN32)
                                "cxxflags=${CMAKE_CXX_FLAGS}"
                                "linkflags=${CMAKE_SHARED_LINKER_FLAGS}"
                                "toolset=${BOOST_TOOLSET}"
-                               "${BOOST_PARALLEL}"
                                "-d+2"
                   WORKING_DIRECTORY "${SOURCE_DIR}"
                   RESULT_VARIABLE build_result)
