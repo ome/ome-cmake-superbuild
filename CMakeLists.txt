@@ -60,12 +60,11 @@ include(ExternalProject)
 include("${CMAKE_CURRENT_LIST_DIR}/ExternalProjectHelpers.cmake")
 
 # External projects.
-set(PREREQUISITES zlib bzip2 png tiff icu boost xerces)
-add_package(${PREREQUISITES} bioformats)
+ome_add_package(bioformats)
 
 # Single target to build all prerequisites
 add_custom_target(prerequisites
-                  DEPENDS ${PREREQUISITES})
+                  DEPENDS bioformats-prerequisites)
 
 install(DIRECTORY ${BIOFORMATS_EP_INSTALL_DIR}/
         DESTINATION ${CMAKE_INSTALL_PREFIX}

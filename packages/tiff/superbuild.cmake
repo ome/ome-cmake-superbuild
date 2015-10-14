@@ -1,5 +1,4 @@
 # tiff superbuild
-set(proj tiff)
 
 # Options to build from git (defaults to source zip if unset)
 set(tiff-head OFF CACHE BOOL "Force building libtiff from current CVS head")
@@ -13,16 +12,14 @@ set(CVS_REPOSITORY ":pserver:cvsanon@cvs.maptools.org:/cvs/maptools/cvsroot")
 set(CVS_MODULE "libtiff")
 
 # Set dependency list
-set(tiff_DEPENDENCIES zlib)
+ome_add_dependencies(tiff zlib)
 
-if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
+if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
   unset(tiff_DIR CACHE)
   find_package(TIFF REQUIRED)
 endif()
 
-if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
-  set(EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj}-source)
-  set(EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build)
+if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
   if(tiff-head)
     set(EP_SOURCE_DOWNLOAD
@@ -39,7 +36,7 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
   # upstream and may be included in a future release.  If so, the
   # files copied in the patch step may be dropped.
 
-  ExternalProject_Add(${proj}
+  ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
     ${EP_SOURCE_DOWNLOAD}
     SOURCE_DIR "${EP_SOURCE_DIR}"
@@ -66,6 +63,6 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
       ${tiff_DEPENDENCIES}
     )
 else()
-  ExternalProject_Add_Empty(${proj} DEPENDS ${tiff_DEPENDENCIES})
+  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${tiff_DEPENDENCIES})
 endif()
 

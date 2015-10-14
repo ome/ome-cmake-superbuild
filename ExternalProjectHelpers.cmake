@@ -35,10 +35,38 @@
 # #L%
 
 # Include superbuild logic for the given package(s)
-function(add_package)
+# Each package is only included once, using the ${name}_INCLUDED guard
+function(ome_add_package)
   foreach(name ${ARGV})
-    include("${PROJECT_SOURCE_DIR}/packages/${name}/superbuild.cmake")
+    get_property(included GLOBAL PROPERTY ${name}_INCLUDED SET)
+    if(NOT included)
+      set_property(GLOBAL PROPERTY ${name}_INCLUDED ON)
+      set(EP_PROJECT "${name}")
+      set(EP_SOURCE_DIR "${CMAKE_BINARY_DIR}/${name}-source")
+      set(EP_BINARY_DIR "${CMAKE_BINARY_DIR}/${name}-build")
+      include("${PROJECT_SOURCE_DIR}/packages/${name}/superbuild.cmake")
+    endif()
   endforeach()
+endfunction()
+
+# Allow recursive addition of dependencies; store them in the specified
+# variable and recursively add them.  Dependencies are stored in
+# target_DEPENDENCIES
+function(ome_add_dependencies target)
+  get_property(dependencies_added GLOBAL PROPERTY ${target}_DEPENDENCIES_ADDED SET)
+  if(NOT dependencies_added)
+    set_property(GLOBAL PROPERTY ${target}_DEPENDENCIES_ADDED ON)
+    foreach(name ${ARGN})
+      ome_add_package("${name}")
+      list(APPEND ${target}_DEPENDENCIES "${name}")
+    endforeach()
+    if (${target}_DEPENDENCIES)
+      list(REMOVE_DUPLICATES ${target}_DEPENDENCIES)
+    endif()
+    set(${target}_DEPENDENCIES "${${target}_DEPENDENCIES}" PARENT_SCOPE)
+    add_custom_target(${target}-prerequisites
+                      DEPENDS ${target}_DEPENDENCIES)
+  endif()
 endfunction()
 
 set(GENERIC_CMAKE_CONFIGURE "${PROJECT_SOURCE_DIR}/helpers/cmake_configure.cmake")
@@ -46,6 +74,8 @@ set(GENERIC_CMAKE_BUILD "${PROJECT_SOURCE_DIR}/helpers/cmake_build.cmake")
 set(GENERIC_CMAKE_INSTALL "${PROJECT_SOURCE_DIR}/helpers/cmake_install.cmake")
 set(GENERIC_CMAKE_TEST "${PROJECT_SOURCE_DIR}/helpers/cmake_test.cmake")
 set(GENERIC_CMAKE_ENVIRONMENT "${PROJECT_SOURCE_DIR}/helpers/cmake_environment.cmake")
+
+set(GENERIC_PYTHON_INSTALL "${PROJECT_SOURCE_DIR}/helpers/python_install.cmake")
 
 # Compute -G arg for configuring external projects with the same CMake generator:
 if(CMAKE_EXTRA_GENERATOR)
@@ -61,6 +91,7 @@ set(BIOFORMATS_EP_INSTALL_DIR ${CMAKE_BINARY_DIR}/superbuild-install)
 set(BIOFORMATS_EP_INCLUDE_DIR ${CMAKE_BINARY_DIR}/superbuild-install/${CMAKE_INSTALL_INCLUDEDIR})
 set(BIOFORMATS_EP_LIB_DIR ${CMAKE_BINARY_DIR}/superbuild-install/${CMAKE_INSTALL_LIBDIR})
 set(BIOFORMATS_EP_BIN_DIR ${CMAKE_BINARY_DIR}/superbuild-install/${CMAKE_INSTALL_BINDIR})
+set(BIOFORMATS_EP_PYTHON_DIR ${CMAKE_BINARY_DIR}/python)
 
 list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_INSTALL_DIR}")
 
@@ -194,6 +225,7 @@ set(BIOFORMATS_EP_SCRIPT_ARGS
   "-DCMAKE_C_COMPILER_ID:STRING=${CMAKE_C_COMPILER_ID}"
   "-DCMAKE_CXX_COMPILER_ID:STRING=${CMAKE_CXX_COMPILER_ID}"
   "-DBIOFORMATS_EP_INSTALL_DIR:PATH=${BIOFORMATS_EP_INSTALL_DIR}"
+  "-DBIOFORMATS_EP_PYTHON_DIR:PATH=${BIOFORMATS_EP_PYTHON_DIR}"
   "-DBIOFORMATS_EP_BIN_DIR:PATH=${BIOFORMATS_EP_BIN_DIR}"
   "-DBIOFORMATS_EP_INCLUDE_DIR:PATH=${BIOFORMATS_EP_INCLUDE_DIR}"
   "-DBIOFORMATS_EP_LIB_DIR:PATH=${BIOFORMATS_EP_LIB_DIR}"
