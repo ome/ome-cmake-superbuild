@@ -37,7 +37,7 @@ else()
 endif()
 
 # Set dependency list
-ome_add_dependencies(bioformats ${EP_DEPENDENCIES} png tiff xerces py-genshi py-sphinx)
+ome_add_dependencies(bioformats ${EP_DEPENDENCIES} png tiff xerces py-genshi py-sphinx glm)
 set(bioformats_ARGS)
 
 list(APPEND CONFIGURE_OPTIONS
