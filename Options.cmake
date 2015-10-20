@@ -16,6 +16,11 @@ option(test "Enable unit tests (requires gtest)" ON)
 option(extended-tests "Enable extended tests (more comprehensive, longer run time)" ON)
 option(embedded-gtest "Use embedded gtest rather than an external build" OFF)
 
+# Note that unlike in bioformats, the default here is ON since we
+# require it to be relocatable to move it out of the
+# superbuild-install directory in the build tree.
+option(relocatable-install "Install tree will be relocatable" ON)
+
 # Doxygen documentation
 find_package(Doxygen)
 set(DOXYGEN_DEFAULT OFF)
@@ -70,6 +75,7 @@ set(SUPERBUILD_OPTIONS
     "-Dcxxstd-autodetect:BOOL=${cxxstd-autodetect}"
     "-Dextra-warnings:BOOL=${extra-warnings}"
     "-Dfatal-warnings:BOOL=${fatal-warnings}"
+    "-Drelocatable-install:BOOL=${relocatable-install}"
     "-Dtest:BOOL=${test}"
     "-Dextended-tests:BOOL=${extended-tests}"
     "-Dembedded-gtest:BOOL=${embedded-gtest}"
