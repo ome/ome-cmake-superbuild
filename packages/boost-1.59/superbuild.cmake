@@ -62,7 +62,7 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       -P "${CMAKE_CURRENT_LIST_DIR}/build.cmake"
     INSTALL_COMMAND ""
     DEPENDS
-      ${boost-1.59_DEPENDENCIES}
+      ${EP_PROJECT}-prerequisites
     )
 else()
   ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${boost_DEPENDENCIES})

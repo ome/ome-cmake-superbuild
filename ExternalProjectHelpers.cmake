@@ -65,7 +65,7 @@ function(ome_add_dependencies target)
     endif()
     set(${target}_DEPENDENCIES "${${target}_DEPENDENCIES}" PARENT_SCOPE)
     add_custom_target(${target}-prerequisites
-                      DEPENDS ${target}_DEPENDENCIES)
+                      DEPENDS ${${target}_DEPENDENCIES})
   endif()
 endfunction()
 

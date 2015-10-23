@@ -46,7 +46,7 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
       -P "${GENERIC_CMAKE_TEST}"
     DEPENDS
-      ${zlib_DEPENDENCIES}
+      ${EP_PROJECT}-prerequisites
     )
 else()
   ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${zlib_DEPENDENCIES})

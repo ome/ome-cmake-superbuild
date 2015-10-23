@@ -77,5 +77,5 @@ ExternalProject_Add(${EP_PROJECT}
     "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
     -P "${GENERIC_CMAKE_TEST}"
   DEPENDS
-    ${bioformats_DEPENDENCIES}
+    ${EP_PROJECT}-prerequisites
   )

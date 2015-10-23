@@ -71,7 +71,7 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
       -P "${CMAKE_CURRENT_LIST_DIR}/install.cmake"
     DEPENDS
-      ${icu_DEPENDENCIES}
+      ${EP_PROJECT}-prerequisites
     )
 else()
   ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${icu_DEPENDENCIES})
