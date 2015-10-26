@@ -14,6 +14,9 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
   # upstream and may be included in a future release.  If so, the
   # files copied in the patch step may be dropped.
 
+  set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
+  string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
+
   ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
     URL "http://bzip.org/1.0.6/bzip2-1.0.6.tar.gz"
@@ -24,6 +27,19 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
     PATCH_COMMAND ${CMAKE_COMMAND} -E copy_directory
       "${CMAKE_CURRENT_LIST_DIR}/files"
       "${EP_SOURCE_DIR}"
+    CONFIGURE_COMMAND ${CMAKE_COMMAND}
+      "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
+      "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
+      "-DCONFIG:INTERNAL=$<CONFIG>"
+      "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
+      "-DCONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}"
+      -P "${GENERIC_CMAKE_CONFIGURE}"
+    BUILD_COMMAND ${CMAKE_COMMAND}
+      "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
+      "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
+      "-DCONFIG:INTERNAL=$<CONFIG>"
+      "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
+      -P "${GENERIC_CMAKE_BUILD}"
     INSTALL_COMMAND ${CMAKE_COMMAND}
       "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
       "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
@@ -36,11 +52,6 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       "-DCONFIG:INTERNAL=$<CONFIG>"
       "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
       -P "${GENERIC_CMAKE_INSTALL}"
-    ${cmakeversion_external_update} "${cmakeversion_external_update_value}"
-    CMAKE_ARGS
-      -Wno-dev --no-warn-unused-cli
-      "-DINSTALL_LIB_DIR=/${CMAKE_INSTALL_LIBDIR}"
-    CMAKE_CACHE_ARGS
     DEPENDS
       ${bzip2_DEPENDENCIES}
     )

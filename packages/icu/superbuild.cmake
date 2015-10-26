@@ -70,7 +70,6 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       "-DCONFIG:INTERNAL=$<CONFIG>"
       "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
       -P "${CMAKE_CURRENT_LIST_DIR}/install.cmake"
-    ${cmakeversion_external_update} "${cmakeversion_external_update_value}"
     DEPENDS
       ${icu_DEPENDENCIES}
     )
