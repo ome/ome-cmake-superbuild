@@ -13,7 +13,7 @@ option(fatal-warnings "Compiler warnings are errors" OFF)
 
 # Unit tests.
 option(test "Enable unit tests (requires gtest)" ON)
-option(extended-tests "Enable extended tests (more comprehensive, longer run time)" ON)
+option(extended-tests "Enable extended tests (more comprehensive, longer run time)" OFF)
 option(embedded-gtest "Use embedded gtest rather than an external build" OFF)
 
 # Note that unlike in bioformats, the default here is ON since we
