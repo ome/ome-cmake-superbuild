@@ -13,8 +13,13 @@ option(fatal-warnings "Compiler warnings are errors" OFF)
 
 # Unit tests.
 option(test "Enable unit tests (requires gtest)" ON)
-option(extended-tests "Enable extended tests (more comprehensive, longer run time)" ON)
+option(extended-tests "Enable extended tests (more comprehensive, longer run time)" OFF)
 option(embedded-gtest "Use embedded gtest rather than an external build" OFF)
+
+# Note that unlike in bioformats, the default here is ON since we
+# require it to be relocatable to move it out of the
+# superbuild-install directory in the build tree.
+option(relocatable-install "Install tree will be relocatable" ON)
 
 # Doxygen documentation
 find_package(Doxygen)
@@ -67,10 +72,10 @@ endif()
 option(sphinx-pdf "Enable sphinx PDF documentation" ${SPHINX_PDF_DEFAULT})
 
 set(SUPERBUILD_OPTIONS
-    "-Dbioformats-superbuild:BOOL=OFF"
     "-Dcxxstd-autodetect:BOOL=${cxxstd-autodetect}"
     "-Dextra-warnings:BOOL=${extra-warnings}"
     "-Dfatal-warnings:BOOL=${fatal-warnings}"
+    "-Drelocatable-install:BOOL=${relocatable-install}"
     "-Dtest:BOOL=${test}"
     "-Dextended-tests:BOOL=${extended-tests}"
     "-Dembedded-gtest:BOOL=${embedded-gtest}"

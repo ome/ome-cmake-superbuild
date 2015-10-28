@@ -1,50 +1,36 @@
-# tiff superbuild
-
-# Options to build from git (defaults to source zip if unset)
-set(tiff-head OFF CACHE BOOL "Force building libtiff from current CVS head")
-
-# Current stable release.
-set(RELEASE_URL "ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.6.tar.gz")
-set(RELEASE_HASH "SHA512=2c8dbaaaab9f82a7722bfe8cb6fcfcf67472beb692f1b7dafaf322759e7016dad1bc58457c0f03db50aa5bd088fef2b37358fcbc1524e20e9e14a9620373fdf8")
-
-# Current development branch (defaults for head option).
-set(CVS_REPOSITORY ":pserver:cvsanon@cvs.maptools.org:/cvs/maptools/cvsroot")
-set(CVS_MODULE "libtiff")
+# glm superbuild
 
 # Set dependency list
-ome_add_dependencies(tiff zlib)
+ome_add_dependencies(glm)
 
 if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
-  unset(tiff_DIR CACHE)
-  find_package(TIFF REQUIRED)
+  unset(glm_DIR CACHE)
+  find_package(GLM REQUIRED)
 endif()
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
-
-  if(tiff-head)
-    set(EP_SOURCE_DOWNLOAD
-      CVS_REPOSITORY "${CVS_REPOSITORY}"
-      CVS_MODULE "${CVS_MODULE}")
-    message(STATUS "Building libtiff from CVS (URL ${CVS_REPOSITORY}, module ${CVS_MODULE})")
+  set(EP_CXXFLAGS ${CMAKE_CXX_FLAGS})
+  set(EP_LDFLAGS ${CMAKE_SHARED_LINKER_FLAGS})
+  if(WIN32)
+    # Windows compiler flags
   else()
-    set(EP_SOURCE_DOWNLOAD
-      URL "${RELEASE_URL}"
-      URL_HASH "${RELEASE_HASH}")
+    set(EP_CXXFLAGS ${EP_CXXFLAGS} \"-I${BIOFORMATS_EP_INCLUDE_DIR}\")
+    set(EP_LDFLAGS ${EP_LDFLAGS} \"-L${BIOFORMATS_EP_LIB_DIR}\")
   endif()
 
-  # Notes: Using custom CMake build for tiff; this has been submitted
-  # upstream and may be included in a future release.  If so, the
-  # files copied in the patch step may be dropped.
-
-  set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
+  set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli -DGLM_TEST_ENABLE:BOOL=ON)
   string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
   ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
-    ${EP_SOURCE_DOWNLOAD}
+    URL "https://github.com/g-truc/glm/archive/0.9.7.1.tar.gz"
+    URL_HASH "SHA512=380d3611b5867a4680c213bfec00e974d29c9aa92ed374adc9ca2ae04d6c4d29f20b88ccf3359df5faabf5050f9e6dc6e417ee9f5f4b484a3ef5aefecd3827a2"
     SOURCE_DIR "${EP_SOURCE_DIR}"
     BINARY_DIR "${EP_BINARY_DIR}"
     INSTALL_DIR ""
+    PATCH_COMMAND ${CMAKE_COMMAND} -E copy_directory
+      "${CMAKE_CURRENT_LIST_DIR}/files"
+      "${EP_SOURCE_DIR}"
     CONFIGURE_COMMAND ${CMAKE_COMMAND}
       "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
       "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
@@ -74,6 +60,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       ${EP_PROJECT}-prerequisites
     )
 else()
-  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${tiff_DEPENDENCIES})
+  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${glm_DEPENDENCIES})
 endif()
-

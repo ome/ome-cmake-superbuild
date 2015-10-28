@@ -33,7 +33,7 @@ else(WIN32)
 
   message(STATUS "Installing icu (Unix)")
 
-  execute_process(COMMAND ${CMAKE_MAKE_PROGRAM} install "DESTDIR=${BIOFORMATS_EP_INSTALL_DIR}"
+  execute_process(COMMAND ${CMAKE_MAKE_PROGRAM} install
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE install_result)
 

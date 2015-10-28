@@ -65,7 +65,7 @@ function(ome_add_dependencies target)
     endif()
     set(${target}_DEPENDENCIES "${${target}_DEPENDENCIES}" PARENT_SCOPE)
     add_custom_target(${target}-prerequisites
-                      DEPENDS ${target}_DEPENDENCIES)
+                      DEPENDS ${${target}_DEPENDENCIES})
   endif()
 endfunction()
 
@@ -88,9 +88,9 @@ set(source-cache "${CMAKE_BINARY_DIR}/sourcecache" CACHE FILEPATH "Directory for
 file(MAKE_DIRECTORY ${source-cache})
 
 set(BIOFORMATS_EP_INSTALL_DIR ${CMAKE_BINARY_DIR}/superbuild-install)
-set(BIOFORMATS_EP_INCLUDE_DIR ${CMAKE_BINARY_DIR}/superbuild-install/${CMAKE_INSTALL_INCLUDEDIR})
-set(BIOFORMATS_EP_LIB_DIR ${CMAKE_BINARY_DIR}/superbuild-install/${CMAKE_INSTALL_LIBDIR})
-set(BIOFORMATS_EP_BIN_DIR ${CMAKE_BINARY_DIR}/superbuild-install/${CMAKE_INSTALL_BINDIR})
+set(BIOFORMATS_EP_INCLUDE_DIR ${CMAKE_BINARY_DIR}/superbuild-install/include)
+set(BIOFORMATS_EP_LIB_DIR ${CMAKE_BINARY_DIR}/superbuild-install/lib)
+set(BIOFORMATS_EP_BIN_DIR ${CMAKE_BINARY_DIR}/superbuild-install/bin)
 set(BIOFORMATS_EP_PYTHON_DIR ${CMAKE_BINARY_DIR}/python)
 
 list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_INSTALL_DIR}")
@@ -179,7 +179,7 @@ set(BIOFORMATS_EP_CMAKE_CACHE_ARGS
   "-DCMAKE_INSTALL_DATADIR:PATH=${CMAKE_INSTALL_DATADIR}"
   "-DCMAKE_INSTALL_DATAROOTDIR:PATH=${CMAKE_INSTALL_DATAROOTDIR}"
   "-DCMAKE_INSTALL_INCLUDEDIR:PATH=${CMAKE_INSTALL_INCLUDEDIR}"
-  "-DCMAKE_INSTALL_LIBDIR:PATH=${CMAKE_INSTALL_LIBDIR}"
+  "-DCMAKE_INSTALL_LIBDIR:PATH=lib"
   "-DCMAKE_INSTALL_LIBEXECDIR:PATH=${CMAKE_INSTALL_LIBEXECDIR}"
   "-DCMAKE_INSTALL_LOCALSTATEDIR:PATH=${CMAKE_INSTALL_LOCALSTATEDIR}"
   "-DCMAKE_INSTALL_OLDINCLUDEDIR:PATH=${CMAKE_INSTALL_OLDINCLUDEDIR}"
@@ -197,14 +197,7 @@ set(BIOFORMATS_EP_CMAKE_CACHE_ARGS
   ${SUPERBUILD_OPTIONS}
 )
 
-# With make, we can do a DESTDIR staging install, otherwise we have to
-# make the staging directory the installation prefix (which might
-# cause problems when the contents are relocated).
-if (CMAKE_GENERATOR MATCHES "Unix Makefiles")
-  list(APPEND BIOFORMATS_EP_CMAKE_CACHE_ARGS "-DCMAKE_INSTALL_PREFIX:PATH=")
-else()
-  list(APPEND BIOFORMATS_EP_CMAKE_CACHE_ARGS "-DCMAKE_INSTALL_PREFIX:PATH=${BIOFORMATS_EP_INSTALL_DIR}")
-endif()
+list(APPEND BIOFORMATS_EP_CMAKE_CACHE_ARGS "-DCMAKE_INSTALL_PREFIX:PATH=${BIOFORMATS_EP_INSTALL_DIR}")
 
 # Primarily for Windows; will need extending for non-x86 platforms if required.
 if(MSVC)
