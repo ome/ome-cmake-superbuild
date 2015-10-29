@@ -3,11 +3,6 @@
 # Set dependency list
 ome_add_dependencies(boost-1.59 zlib bzip2 icu)
 
-if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
-  unset(boost_DIR CACHE)
-  find_package(BOOST REQUIRED)
-endif()
-
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
   if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
@@ -65,5 +60,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       ${EP_PROJECT}-prerequisites
     )
 else()
-  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${boost_DEPENDENCIES})
+  ome_add_empty_project(${EP_PROJECT})
 endif()

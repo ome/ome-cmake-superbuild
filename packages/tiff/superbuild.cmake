@@ -14,11 +14,6 @@ set(CVS_MODULE "libtiff")
 # Set dependency list
 ome_add_dependencies(tiff zlib)
 
-if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
-  unset(tiff_DIR CACHE)
-  find_package(TIFF REQUIRED)
-endif()
-
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
   if(tiff-head)
@@ -74,6 +69,6 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       ${EP_PROJECT}-prerequisites
     )
 else()
-  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${tiff_DEPENDENCIES})
+  ome_add_empty_project(${EP_PROJECT})
 endif()
 

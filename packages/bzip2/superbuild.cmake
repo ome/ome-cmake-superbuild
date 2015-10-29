@@ -3,11 +3,6 @@
 # Set dependency list
 ome_add_dependencies(bzip2)
 
-if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
-  unset(bzip2_DIR CACHE)
-  find_package(BZIP2 REQUIRED)
-endif()
-
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
   # Notes: Using custom CMake build for bzip2; this has been submitted
@@ -56,6 +51,6 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       ${EP_PROJECT}-prerequisites
     )
 else()
-  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${bzip2_DEPENDENCIES})
+  ome_add_empty_project(${EP_PROJECT})
 endif()
 
