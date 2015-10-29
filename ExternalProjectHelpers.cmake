@@ -69,6 +69,17 @@ function(ome_add_dependencies target)
   endif()
 endfunction()
 
+macro(ome_add_empty_project project)
+  ExternalProject_Add(${project}
+    SOURCE_DIR "${EP_SOURCE_DIR}"
+    BINARY_DIR "${EP_BINARY_DIR}"
+    DOWNLOAD_COMMAND ""
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+    DEPENDS ${project}-prerequisites)
+endmacro()
+
 set(GENERIC_CMAKE_CONFIGURE "${PROJECT_SOURCE_DIR}/helpers/cmake_configure.cmake")
 set(GENERIC_CMAKE_BUILD "${PROJECT_SOURCE_DIR}/helpers/cmake_build.cmake")
 set(GENERIC_CMAKE_INSTALL "${PROJECT_SOURCE_DIR}/helpers/cmake_install.cmake")

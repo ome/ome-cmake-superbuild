@@ -24,5 +24,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       ${EP_PROJECT}-prerequisites
     )
 else()
-  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${py-genshi_DEPENDENCIES})
+  ome_add_empty_project(${EP_PROJECT})
 endif()
