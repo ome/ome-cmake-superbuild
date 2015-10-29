@@ -87,6 +87,9 @@ endif()
 set(source-cache "${CMAKE_BINARY_DIR}/sourcecache" CACHE FILEPATH "Directory for cached source downloads")
 file(MAKE_DIRECTORY ${source-cache})
 
+set(build-cache "" CACHE FILEPATH "Directory for cached builds (to avoid rebuilding already built components)")
+set(BIOFORMATS_EP_BUILD_CACHE "${build-cache}")
+
 set(BIOFORMATS_EP_INSTALL_DIR ${CMAKE_BINARY_DIR}/superbuild-install)
 set(BIOFORMATS_EP_INCLUDE_DIR ${CMAKE_BINARY_DIR}/superbuild-install/include)
 set(BIOFORMATS_EP_LIB_DIR ${CMAKE_BINARY_DIR}/superbuild-install/lib)
@@ -94,6 +97,10 @@ set(BIOFORMATS_EP_BIN_DIR ${CMAKE_BINARY_DIR}/superbuild-install/bin)
 set(BIOFORMATS_EP_PYTHON_DIR ${CMAKE_BINARY_DIR}/python)
 
 list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_INSTALL_DIR}")
+
+if(BIOFORMATS_EP_BUILD_CACHE)
+  list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_BUILD_CACHE}")
+endif()
 
 # Look in superbuild staging tree when building
 if(WIN32)
@@ -222,6 +229,7 @@ set(BIOFORMATS_EP_SCRIPT_ARGS
   "-DBIOFORMATS_EP_BIN_DIR:PATH=${BIOFORMATS_EP_BIN_DIR}"
   "-DBIOFORMATS_EP_INCLUDE_DIR:PATH=${BIOFORMATS_EP_INCLUDE_DIR}"
   "-DBIOFORMATS_EP_LIB_DIR:PATH=${BIOFORMATS_EP_LIB_DIR}"
+  "-DBIOFORMATS_EP_BUILD_CACHE:PATH=${BIOFORMATS_EP_BUILD_CACHE}"
   "-DGENERIC_CMAKE_ENVIRONMENT:PATH=${GENERIC_CMAKE_ENVIRONMENT}"
   "-DCMAKE_GENERATOR:PATH=${CMAKE_GENERATOR}"
 )
