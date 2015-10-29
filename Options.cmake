@@ -21,6 +21,8 @@ option(embedded-gtest "Use embedded gtest rather than an external build" OFF)
 # superbuild-install directory in the build tree.
 option(relocatable-install "Install tree will be relocatable" ON)
 
+option(build-prerequisites "Build third-party prerequisites" ON)
+
 # Doxygen documentation
 find_package(Doxygen)
 set(DOXYGEN_DEFAULT OFF)
