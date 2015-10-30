@@ -41,7 +41,7 @@ endif()
 ome_add_dependencies(bioformats
                      DEPENDENCIES ome-common
                      THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} png tiff xerces
-                                              py-genshi py-sphinx gtest)
+                                              xalan py-genshi py-sphinx gtest)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
