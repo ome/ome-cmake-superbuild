@@ -11,7 +11,9 @@ if(WIN32)
   set(ENV{PATH} "${WINDOWS_BIN_DIR};${WINDOWS_PYTHON_DIR}\\bin;$ENV{PATH}")
   file(GLOB python_dirs LIST_DIRECTORIES true
        "${BIOFORMATS_EP_PYTHON_CACHE}/*/site-packages"
-       "${BIOFORMATS_EP_PYTHON_DIR}/*/site-packages")
+       "${BIOFORMATS_EP_PYTHON_CACHE}/*/*/site-packages"
+       "${BIOFORMATS_EP_PYTHON_DIR}/*/site-packages"
+       "${BIOFORMATS_EP_PYTHON_DIR}/*/*/site-packages")
   foreach(dir ${python_dirs})
     file(TO_NATIVE_PATH "${dir}" dir)
     if(PYTHONPATH)
@@ -43,6 +45,8 @@ else()
   endif()
   file(GLOB python_dirs LIST_DIRECTORIES true
        "${BIOFORMATS_EP_PYTHON_CACHE}/*/site-packages"
+       "${BIOFORMATS_EP_PYTHON_CACHE}/*/*/site-packages"
+       "${BIOFORMATS_EP_PYTHON_DIR}/*/site-packages"
        "${BIOFORMATS_EP_PYTHON_DIR}/*/*/site-packages")
   foreach(dir ${python_dirs})
     if(PYTHONPATH)
