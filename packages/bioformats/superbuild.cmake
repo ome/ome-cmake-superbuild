@@ -38,7 +38,10 @@ else()
 endif()
 
 # Set dependency list
-ome_add_dependencies(bioformats boost-${BOOST_VERSION} png tiff xerces py-genshi py-sphinx glm)
+if(build-prerequisites)
+  set(EP_DEPS boost-${BOOST_VERSION} png tiff xerces py-genshi py-sphinx glm)
+endif()
+ome_add_dependencies(bioformats ${EP_DEPS})
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS "-DBoost_ADDITIONAL_VERSIONS=${BOOST_VERSION}"

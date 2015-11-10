@@ -69,6 +69,17 @@ function(ome_add_dependencies target)
   endif()
 endfunction()
 
+macro(ome_add_empty_project project)
+  ExternalProject_Add(${project}
+    SOURCE_DIR "${EP_SOURCE_DIR}"
+    BINARY_DIR "${EP_BINARY_DIR}"
+    DOWNLOAD_COMMAND ""
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+    DEPENDS ${project}-prerequisites)
+endmacro()
+
 set(GENERIC_CMAKE_CONFIGURE "${PROJECT_SOURCE_DIR}/helpers/cmake_configure.cmake")
 set(GENERIC_CMAKE_BUILD "${PROJECT_SOURCE_DIR}/helpers/cmake_build.cmake")
 set(GENERIC_CMAKE_INSTALL "${PROJECT_SOURCE_DIR}/helpers/cmake_install.cmake")
@@ -87,6 +98,12 @@ endif()
 set(source-cache "${CMAKE_BINARY_DIR}/sourcecache" CACHE FILEPATH "Directory for cached source downloads")
 file(MAKE_DIRECTORY ${source-cache})
 
+set(build-cache "" CACHE FILEPATH "Directory for cached builds (to avoid rebuilding already built dependencies)")
+set(BIOFORMATS_EP_BUILD_CACHE "${build-cache}")
+
+set(python-cache "" CACHE FILEPATH "Directory for cached python builds (to avoid rebuilding already built build dependencies)")
+set(BIOFORMATS_EP_PYTHON_CACHE "${python-cache}")
+
 set(BIOFORMATS_EP_INSTALL_DIR ${CMAKE_BINARY_DIR}/superbuild-install)
 set(BIOFORMATS_EP_INCLUDE_DIR ${CMAKE_BINARY_DIR}/superbuild-install/include)
 set(BIOFORMATS_EP_LIB_DIR ${CMAKE_BINARY_DIR}/superbuild-install/lib)
@@ -94,6 +111,13 @@ set(BIOFORMATS_EP_BIN_DIR ${CMAKE_BINARY_DIR}/superbuild-install/bin)
 set(BIOFORMATS_EP_PYTHON_DIR ${CMAKE_BINARY_DIR}/python)
 
 list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_INSTALL_DIR}")
+
+if(BIOFORMATS_EP_BUILD_CACHE)
+  list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_BUILD_CACHE}")
+endif()
+if(BIOFORMATS_EP_PYTHON_CACHE)
+  list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_PYTHON_CACHE}")
+endif()
 
 # Look in superbuild staging tree when building
 if(WIN32)
@@ -222,6 +246,8 @@ set(BIOFORMATS_EP_SCRIPT_ARGS
   "-DBIOFORMATS_EP_BIN_DIR:PATH=${BIOFORMATS_EP_BIN_DIR}"
   "-DBIOFORMATS_EP_INCLUDE_DIR:PATH=${BIOFORMATS_EP_INCLUDE_DIR}"
   "-DBIOFORMATS_EP_LIB_DIR:PATH=${BIOFORMATS_EP_LIB_DIR}"
+  "-DBIOFORMATS_EP_BUILD_CACHE:PATH=${BIOFORMATS_EP_BUILD_CACHE}"
+  "-DBIOFORMATS_EP_PYTHON_CACHE:PATH=${BIOFORMATS_EP_PYTHON_CACHE}"
   "-DGENERIC_CMAKE_ENVIRONMENT:PATH=${GENERIC_CMAKE_ENVIRONMENT}"
   "-DCMAKE_GENERATOR:PATH=${CMAKE_GENERATOR}"
 )

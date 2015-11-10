@@ -21,6 +21,8 @@ option(embedded-gtest "Use embedded gtest rather than an external build" OFF)
 # superbuild-install directory in the build tree.
 option(relocatable-install "Install tree will be relocatable" ON)
 
+option(build-prerequisites "Build third-party prerequisites" ON)
+
 # Doxygen documentation
 find_package(Doxygen)
 set(DOXYGEN_DEFAULT OFF)
@@ -33,9 +35,8 @@ set(BUILD_DOXYGEN ${doxygen})
 # Qt GUI
 find_package(Qt5 5.2.0 COMPONENTS Core Gui Widgets Svg)
 find_package(OpenGL)
-find_package(GLM)
 set(OME_QTOPENGL_DEFAULT OFF)
-if (Qt5Core_FOUND AND Qt5Gui_FOUND AND Qt5Widgets_FOUND AND Qt5Svg_FOUND AND OPENGL_FOUND AND GLM_FOUND)
+if (Qt5Core_FOUND AND Qt5Gui_FOUND AND Qt5Widgets_FOUND AND Qt5Svg_FOUND AND OPENGL_FOUND)
   set(OME_QTOPENGL_DEFAULT ON)
 endif()
 option(qtgui "Build Qt GUI widgets and image viewer" ${OME_QTOPENGL_DEFAULT})
