@@ -13,9 +13,9 @@ else(WIN32)
   set(ENV{CXX} "${XERCES_CXX}")
 
   execute_process(COMMAND "${SOURCE_DIR}/configure"
-                          "--prefix=${BIOFORMATS_EP_INSTALL_DIR}"
-                          "--libdir=${BIOFORMATS_EP_LIB_DIR}"
-                          "--with-pkgconfigdir=${BIOFORMATS_EP_LIB_DIR}/pkgconfig"
+                          "--prefix=/"
+                          "--libdir=/${CMAKE_INSTALL_LIBDIR}"
+                          "--with-pkgconfigdir=${BIOFORMATS_EP_INSTALL_DIR}/${CMAKE_INSTALL_LIBDIR}/pkgconfig"
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE configure_result)
 

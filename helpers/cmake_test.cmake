@@ -8,6 +8,4 @@ execute_process(COMMAND "${CMAKE_CTEST_COMMAND}" -C "${CONFIG}" -V
 
 if(test_result)
   message(FATAL_ERROR "cmake: Testing failed")
-else()
-  message(STATUS "cmake: Testing passed")
 endif()
