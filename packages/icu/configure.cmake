@@ -14,8 +14,8 @@ else(WIN32)
   set(ENV{CXX} "${ICU_CXX}")
 
   execute_process(COMMAND "${SOURCE_DIR}/source/configure"
-                          "--prefix=/"
-                          "--libdir=/${CMAKE_INSTALL_LIBDIR}"
+                          "--prefix=${BIOFORMATS_EP_INSTALL_DIR}"
+                          "--libdir=${BIOFORMATS_EP_LIB_DIR}"
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE configure_result)
 

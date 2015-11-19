@@ -2,22 +2,21 @@
 include("${EP_SCRIPT_CONFIG}")
 include("${GENERIC_CMAKE_ENVIRONMENT}")
 
-include(ProcessorCount)
-ProcessorCount(N)
-if(NOT N EQUAL 0)
-  set(BOOST_PARALLEL "-j${N}")
-endif()
-
 if (CONFIG MATCHES Rel)
   set(BOOST_VARIANT release)
+  set(BZIP2_BINARY bz2)
+  set(ZLIB_BINARY zlib)
 else()
   set(BOOST_VARIANT debug)
+  set(BZIP2_BINARY bz2d)
+  set(ZLIB_BINARY zlibd)
 endif()
 
 if(WIN32)
 
   message(STATUS "Running ./b2 install
 --prefix=${BIOFORMATS_EP_INSTALL_DIR}
+--lib=${WINDOWS_LIB_DIR}
 --without-python
 cxxflags=${CMAKE_CXX_FLAGS}
 linkflags=${CMAKE_SHARED_LINKER_FLAGS}
@@ -27,11 +26,17 @@ address-model=${EP_PLATFORM_BITS}
 link=shared
 runtime-link=shared
 threading=multi
-${BOOST_PARALLEL}"
-"-d+2")
+-d+2
+-sBZIP2_BINARY=${BZIP2_BINARY}
+-sBZIP2_INCLUDE=${WINDOWS_INCLUDE_DIR}
+-sBZIP2_LIBPATH=${WINDOWS_LIB_DIR}
+-sZLIB_BINARY=${ZLIB_BINARY}
+-sZLIB_INCLUDE=${WINDOWS_INCLUDE_DIR}
+-sZLIB_LIBPATH=${WINDOWS_LIB_DIR}")
 
   execute_process(COMMAND ./b2 install
-                               --prefix=${BIOFORMATS_EP_INSTALL_DIR}
+                               "--prefix=${WINDOWS_INSTALL_DIR}"
+                               "--lib=${WINDOWS_LIB_DIR}"
                                --without-python
                                "cxxflags=${CMAKE_CXX_FLAGS}"
                                "linkflags=${CMAKE_SHARED_LINKER_FLAGS}"
@@ -41,13 +46,18 @@ ${BOOST_PARALLEL}"
                                "link=shared"
                                "runtime-link=shared"
                                "threading=multi"
-                               "${BOOST_PARALLEL}"
                                "-d+2"
+                               "-sBZIP2_BINARY=${BZIP2_BINARY}"
+                               "-sBZIP2_INCLUDE=${WINDOWS_INCLUDE_DIR}"
+                               "-sBZIP2_LIBPATH=${WINDOWS_LIB_DIR}"
+                               "-sZLIB_BINARY=${ZLIB_BINARY}"
+                               "-sZLIB_INCLUDE=${WINDOWS_INCLUDE_DIR}"
+                               "-sZLIB_LIBPATH=${WINDOWS_LIB_DIR}"
                   WORKING_DIRECTORY "${SOURCE_DIR}"
                   RESULT_VARIABLE build_result)
 
   # Boost installs the DLLs into lib; move to bin for consistency.
-  file(GLOB BOOST_DLLS "${BIOFORMATS_EP_LIB_DIR}/boost*.dll")
+  file(GLOB BOOST_DLLS "${BIOFORMATS_EP_LIB_DIR}/*boost*.dll")
   foreach(dll ${BOOST_DLLS})
     get_filename_component(dllbase "${dll}" NAME)
     file(RENAME "${dll}" "${BIOFORMATS_EP_BIN_DIR}/${dllbase}")
@@ -61,7 +71,6 @@ else(WIN32)
                                "cxxflags=${CMAKE_CXX_FLAGS}"
                                "linkflags=${CMAKE_SHARED_LINKER_FLAGS}"
                                "toolset=${BOOST_TOOLSET}"
-                               "${BOOST_PARALLEL}"
                                "-d+2"
                   WORKING_DIRECTORY "${SOURCE_DIR}"
                   RESULT_VARIABLE build_result)

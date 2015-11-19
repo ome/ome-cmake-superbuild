@@ -25,23 +25,23 @@ endif()
 if(head OR bf-git-url OR bf-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
-    GIT_TAG "${GIT_BRANCH}")
-  set(EP_DEPENDENCIES boost-1.59)
+    GIT_TAG "${GIT_BRANCH}"
+    UPDATE_DISCONNECTED 1)
+  set(BOOST_VERSION 1.59)
   message(STATUS "Building Bio-Formats from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
-  set(EP_DEPENDENCIES boost-1.58)
+  set(BOOST_VERSION 1.58)
   message(STATUS "Building Bio-Formats from source release (${RELEASE_URL})")
 endif()
 
 # Set dependency list
-ome_add_dependencies(bioformats ${EP_DEPENDENCIES} png tiff xerces py-genshi py-sphinx)
-set(bioformats_ARGS)
+ome_add_dependencies(bioformats boost-${BOOST_VERSION} png tiff xerces py-genshi py-sphinx glm)
 
-list(APPEND CONFIGURE_OPTIONS
-     ${bioformats_ARGS}
+unset(CONFIGURE_OPTIONS)
+list(APPEND CONFIGURE_OPTIONS "-DBoost_ADDITIONAL_VERSIONS=${BOOST_VERSION}"
      ${SUPERBUILD_OPTIONS})
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
@@ -50,6 +50,7 @@ ExternalProject_Add(${EP_PROJECT}
   ${EP_SOURCE_DOWNLOAD}
   SOURCE_DIR ${EP_SOURCE_DIR}
   BINARY_DIR ${EP_BINARY_DIR}
+  INSTALL_DIR ""
   CONFIGURE_COMMAND ${CMAKE_COMMAND}
     "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
     "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
@@ -63,7 +64,6 @@ ExternalProject_Add(${EP_PROJECT}
     "-DCONFIG:INTERNAL=$<CONFIG>"
     "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
     -P "${GENERIC_CMAKE_BUILD}"
-  INSTALL_DIR ""
   INSTALL_COMMAND ${CMAKE_COMMAND}
     "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
     "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
@@ -77,5 +77,5 @@ ExternalProject_Add(${EP_PROJECT}
     "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
     -P "${GENERIC_CMAKE_TEST}"
   DEPENDS
-    ${bioformats_DEPENDENCIES}
+    ${EP_PROJECT}-prerequisites
   )
