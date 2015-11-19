@@ -40,7 +40,7 @@ else()
 
   message(STATUS "Installing xerces (Unix)")
 
-  execute_process(COMMAND ${CMAKE_MAKE_PROGRAM} install
+  execute_process(COMMAND ${CMAKE_MAKE_PROGRAM} install "DESTDIR=${BIOFORMATS_EP_INSTALL_DIR}"
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE install_result)
 

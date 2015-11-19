@@ -56,6 +56,7 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       "-DEP_SCRIPT_CONFIG=${EP_SCRIPT_CONFIG}"
       -P "${CMAKE_CURRENT_LIST_DIR}/build.cmake"
     INSTALL_COMMAND ""
+    ${cmakeversion_external_update} "${cmakeversion_external_update_value}"
     DEPENDS
       ${EP_PROJECT}-prerequisites
     )
