@@ -38,7 +38,7 @@ endif()
 
 # Set dependency list
 if(build-prerequisites)
-  set(EP_DEPS boost-${BOOST_VERSION} png tiff xerces py-genshi py-sphinx glm)
+  set(EP_DEPS boost-${BOOST_VERSION} png tiff xerces py-genshi py-sphinx)
 endif()
 ome_add_dependencies(bioformats ${EP_DEPS})
 
