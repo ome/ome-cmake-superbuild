@@ -3,11 +3,6 @@
 # Set dependency list
 ome_add_dependencies(glm)
 
-if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
-  unset(glm_DIR CACHE)
-  find_package(GLM REQUIRED)
-endif()
-
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
   set(EP_CXXFLAGS ${CMAKE_CXX_FLAGS})
   set(EP_LDFLAGS ${CMAKE_SHARED_LINKER_FLAGS})
@@ -60,5 +55,5 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       ${EP_PROJECT}-prerequisites
     )
 else()
-  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${glm_DEPENDENCIES})
+  ome_add_empty_project(${EP_PROJECT})
 endif()

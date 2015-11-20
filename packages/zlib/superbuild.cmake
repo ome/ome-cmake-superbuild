@@ -3,11 +3,6 @@
 # Set dependency list
 ome_add_dependencies(zlib)
 
-if(${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
-  unset(zlib_DIR CACHE)
-  find_package(ZLIB REQUIRED)
-endif()
-
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
   set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
@@ -49,6 +44,6 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
       ${EP_PROJECT}-prerequisites
     )
 else()
-  ExternalProject_Add_Empty(${EP_PROJECT} DEPENDS ${zlib_DEPENDENCIES})
+  ome_add_empty_project(${EP_PROJECT})
 endif()
 

@@ -1,29 +1,53 @@
 if(WIN32)
 
+  file(TO_NATIVE_PATH "${BIOFORMATS_EP_BUILD_CACHE}" WINDOWS_BUILD_CACHE)
+  file(TO_NATIVE_PATH "${BIOFORMATS_EP_PYTHON_CACHE}" WINDOWS_PYTHON_CACHE)
+
   file(TO_NATIVE_PATH "${BIOFORMATS_EP_BIN_DIR}" WINDOWS_BIN_DIR)
   file(TO_NATIVE_PATH "${BIOFORMATS_EP_PYTHON_DIR}" WINDOWS_PYTHON_DIR)
-  set(ENV{PATH} "${WINDOWS_BIN_DIR};${BIOFORMATS_WINDOWS_DIR};$ENV{PATH}")
-  set(ENV{CMAKE_PROGRAM_PATH} "${WINDOWS_PYTHON_DIR}\\scripts;$ENV{CMAKE_PROGRAM_PATH}")
-  file(GLOB python_dirs LIST_DIRECTORIES true "${BIOFORMATS_EP_PYTHON_DIR}/*/site-packages")
+  if(WINDOWS_BUILD_CACHE)
+    set(ENV{PATH} "${WINDOWS_BUILD_CACHE}\\bin;$ENV{PATH}")
+  endif()
+  set(ENV{PATH} "${WINDOWS_BIN_DIR};${WINDOWS_PYTHON_DIR}\\bin;$ENV{PATH}")
+  file(GLOB python_dirs LIST_DIRECTORIES true
+       "${BIOFORMATS_EP_PYTHON_CACHE}/*/site-packages"
+       "${BIOFORMATS_EP_PYTHON_CACHE}/*/*/site-packages"
+       "${BIOFORMATS_EP_PYTHON_DIR}/*/site-packages"
+       "${BIOFORMATS_EP_PYTHON_DIR}/*/*/site-packages")
   foreach(dir ${python_dirs})
+    file(TO_NATIVE_PATH "${dir}" dir)
     if(PYTHONPATH)
       set(PYTHONPATH "${dir};${PYTHONPATH}")
     else()
       set(PYTHONPATH "${dir}")
     endif()
   endforeach()
-  set(ENV{PYTHONPATH} "${PYTHONPATH}")
+  set(ENV{PYTHONPATH} "${PYTHONPATH};$ENV{PYTHONPATH}")
 
 else()
 
-  set(ENV{PATH} "${BIOFORMATS_EP_BIN_DIR}:${BIOFORMATS_EP_PYTHON_DIR}:$ENV{PATH}")
-  set(ENV{CMAKE_PROGRAM_PATH} "${BIOFORMATS_EP_PYTHON_DIR}/bin:$ENV{CMAKE_PROGRAM_PATH}")
+  if(BIOFORMATS_EP_BUILD_CACHE)
+    set(ENV{PATH} "${BIOFORMATS_EP_BUILD_CACHE}/bin:$ENV{PATH}")
+    if(APPLE)
+      set(ENV{DYLD_FALLBACK_LIBRARY_PATH} "${BIOFORMATS_EP_BUILD_CACHE}/lib:$ENV{DYLD_FALLBACK_LIBRARY_PATH}")
+    else()
+      set(ENV{LD_LIBRARY_PATH} "${BIOFORMATS_EP_BUILD_CACHE}/lib:$ENV{LD_LIBRARY_PATH}")
+    endif()
+  endif()
+  if(BIOFORMATS_EP_PYTHON_CACHE)
+    set(ENV{PATH} "${BIOFORMATS_EP_PYTHON_CACHE}/bin:$ENV{PATH}")
+  endif()
+  set(ENV{PATH} "${BIOFORMATS_EP_BIN_DIR}:${BIOFORMATS_EP_PYTHON_DIR}/bin:$ENV{PATH}")
   if(APPLE)
     set(ENV{DYLD_FALLBACK_LIBRARY_PATH} "${BIOFORMATS_EP_LIB_DIR}:$ENV{DYLD_FALLBACK_LIBRARY_PATH}")
   else()
     set(ENV{LD_LIBRARY_PATH} "${BIOFORMATS_EP_LIB_DIR}:$ENV{LD_LIBRARY_PATH}")
   endif()
-  file(GLOB python_dirs LIST_DIRECTORIES true "${BIOFORMATS_EP_PYTHON_DIR}/*/*/site-packages")
+  file(GLOB python_dirs LIST_DIRECTORIES true
+       "${BIOFORMATS_EP_PYTHON_CACHE}/*/site-packages"
+       "${BIOFORMATS_EP_PYTHON_CACHE}/*/*/site-packages"
+       "${BIOFORMATS_EP_PYTHON_DIR}/*/site-packages"
+       "${BIOFORMATS_EP_PYTHON_DIR}/*/*/site-packages")
   foreach(dir ${python_dirs})
     if(PYTHONPATH)
       set(PYTHONPATH "${dir}:${PYTHONPATH}")
@@ -31,7 +55,7 @@ else()
       set(PYTHONPATH "${dir}")
     endif()
   endforeach()
-  set(ENV{PYTHONPATH} "${PYTHONPATH}")
+  set(ENV{PYTHONPATH} "${PYTHONPATH}:$ENV{PYTHONPATH}")
 
 endif()
 
@@ -63,6 +87,7 @@ else()
 endif()
 
 string(REPLACE "^^" ";" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
+string(REPLACE "^^" ";" CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}")
 
 if (CMAKE_VERBOSE_MAKEFILE AND CMAKE_GENERATOR MATCHES "Ninja")
   set(MAKE_VERBOSE -v)
