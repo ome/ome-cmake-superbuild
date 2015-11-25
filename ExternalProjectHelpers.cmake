@@ -227,7 +227,14 @@ set(BIOFORMATS_EP_CMAKE_CACHE_ARGS
   ${SUPERBUILD_OPTIONS}
 )
 
-list(APPEND BIOFORMATS_EP_CMAKE_CACHE_ARGS "-DCMAKE_INSTALL_PREFIX:PATH=${BIOFORMATS_EP_INSTALL_DIR}")
+# With make, we can do a DESTDIR staging install, otherwise we have to
+# make the staging directory the installation prefix (which might
+# cause problems when the contents are relocated).
+if (CMAKE_GENERATOR MATCHES "Unix Makefiles")
+  list(APPEND BIOFORMATS_EP_CMAKE_CACHE_ARGS "-DCMAKE_INSTALL_PREFIX:PATH=")
+else()
+  list(APPEND BIOFORMATS_EP_CMAKE_CACHE_ARGS "-DCMAKE_INSTALL_PREFIX:PATH=${BIOFORMATS_EP_INSTALL_DIR}")
+endif()
 
 # Primarily for Windows; will need extending for non-x86 platforms if required.
 if(MSVC)
