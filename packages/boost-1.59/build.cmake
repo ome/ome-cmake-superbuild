@@ -70,6 +70,9 @@ else(WIN32)
   execute_process(COMMAND ./b2 install
                                "cxxflags=${CMAKE_CXX_FLAGS}"
                                "linkflags=${CMAKE_SHARED_LINKER_FLAGS}"
+                               "link=shared"
+                               "runtime-link=shared"
+                               "threading=multi"
                                "toolset=${BOOST_TOOLSET}"
                                "-d+2"
                   WORKING_DIRECTORY "${SOURCE_DIR}"
