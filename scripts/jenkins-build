@@ -116,8 +116,8 @@ build() {
         GIT_OPTIONS="-Dbf-git-url=${workspace}/bioformats -Dbf-git-branch=HEAD"
     fi
 
-    rm -rf build install
-    mkdir build install
+    rm -rf "$builddir" "$installdir"
+    mkdir -p "$builddir" "$installdir"
 
     (
         cd "$builddir"
