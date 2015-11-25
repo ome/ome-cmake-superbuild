@@ -1,0 +1,341 @@
+#!/bin/sh
+#
+# Build with Jenkins CI.  This script is intended for use with the OME
+# Jenkins CI infrastructure, though it may be useful as an example for
+# how one might use various cmake options.
+#
+################################################################################
+
+set -e
+
+# Get OS name and version
+os_version() {
+  system="$(uname -s)"
+  machine="$(uname -m)"
+
+  case "$system" in
+      Linux*)
+          echo "$(lsb_release -sir | sed -e 's;[[:space:]]*;;g')-$machine"
+          ;;
+      FreeBSD*)
+          echo "$(freebsd-version | sed -e 's;\([^-]*\)-.*;FreeBSD\1;')-$machine"
+          ;;
+      Darwin*)
+          echo "$(sw_vers | grep ^ProductVersion: | sed -e 's;^ProductVersion:[[:space:]]*\(.*\)\.\(.*\)\.\(.*\);MacOSX\1.\2;')-$machine"
+          ;;
+      *)
+          echo "$(uname -sr | sed -e 's;[[:space:]]*;;g')-$machine"
+          ;;
+      esac
+}
+
+# Make source release
+# $1=version
+# $2=git branch
+make_source_release() {
+    (
+        cd "${sourcedir}"
+        mkdir -p "$artefactdir"
+        git archive "--prefix=ome-cmake-superbuild-$1/" "$2" | xz > "${artefactdir}/ome-cmake-superbuild-$1.tar.xz"
+    )
+}
+
+current_tree() {
+    (
+        cd "${sourcedir}"
+        git log -1 --pretty=%T "$git_branch" --
+    )
+}
+
+cached_tree() {
+    [ -f "${cachedir}/tree" ] && cat "${cachedir}/tree"
+}
+
+save_tree() {
+  echo "$(current_tree)" > "${cachedir}/tree"
+}
+
+make_cache() {
+    rm -rf "${cachedir}/build"
+    rm -rf "${cachedir}/python"
+    cp -a "superbuild-install" "${cachedir}/build"
+    cp -a "python" "${cachedir}/python"
+    save_tree
+}
+
+# Purge cache if required
+# Create cache dir, including source cache
+check_cache_validity() {
+
+    echo "Current tree: $(current_tree)"
+    echo "Cached tree: $(cached_tree)"
+
+    PURGE_SOURCE=false
+    PURGE_BUILD=true
+    if [ "$purge" = "all" ] || [ "$purge" = "source" ]; then
+        echo "Requested purging of source cache"
+        PURGE_SOURCE=true
+    fi
+
+    if [ -n "$(cached_tree)" ]; then
+        if [ "$purge" = "all" ] || [ "$purge" = "build" ]; then
+            echo "Requested purging of build cache"
+        elif [ "$(current_tree)" != "$(cached_tree)" ]; then
+            echo "Changes made; purging build cache"
+        else
+            echo "No changes; retaining build cache"
+            PURGE_BUILD=false
+        fi
+    else
+        echo "Build cache not present or incomplete"
+    fi
+
+    if [ "$PURGE_SOURCE" = "true" ]; then
+        rm -rf "${cachedir}/source"
+    fi
+
+    if [ "$PURGE_BUILD" = "true" ]; then
+        rm -rf "${cachedir}/build"
+        rm -rf "${cachedir}/python"
+        rm -rf "${cachedir}/tree"
+    fi
+
+    mkdir -p "${cachedir}/source"
+}
+
+# Run build
+build() {
+    # Use build cache if present; set environment so it's detected by cmake and exclude cached prerequisites from build
+    CMAKE_PREREQS="build-prerequisites:BOOL=ON"
+    if [ -n "$(cached_tree)" ]; then
+        CMAKE_PREREQS="-Dbuild-cache:PATH=${cachedir}/build -Dpython-cache:PATH=${cachedir}/python -Dbuild-prerequisites:BOOL=OFF"
+    fi
+
+    GIT_OPTIONS=
+    if [ "$build_git" = "ON" ];then
+        GIT_OPTIONS="-Dbf-git-url=${workspace}/bioformats -Dbf-git-branch=HEAD"
+    fi
+
+    rm -rf build install
+    mkdir build install
+
+    (
+        cd "$builddir"
+        # Note that due to using a local git mirror, the bf-git-branch
+        # is HEAD since it's already at the correct commit
+        cmake \
+            -DCMAKE_VERBOSE_MAKEFILE:BOOL="$verbose" \
+            -DCMAKE_BUILD_TYPE="$type" \
+            -DCMAKE_INSTALL_PREFIX:PATH=${installdir}/stage \
+            ${GIT_OPTIONS} \
+            -Dcxxstd-autodetect="$cxxdetect" \
+            "-Ddoxygen:BOOL=$doxygen" \
+            "-Dextended-tests:BOOL=$extended_tests" \
+            -Dqtgui:BOOL=OFF \
+            -Dsphinx:BOOL=ON \
+            -Dsphinx-pdf:BOOL=OFF \
+            -Dsource-cache:PATH=${cachedir}/source \
+            ${CMAKE_PREREQS} \
+            ${sourcedir}
+
+        # Make and cache prerequisites if missing
+        if [ -z "$(cached_tree)" ]; then
+            echo "Building prerequisites"
+            make $parallel bioformats-prerequisites
+            make_cache
+        fi
+
+        # Build superbuild (and run tests)
+        echo "Building everything"
+        make $parallel
+
+        # Install
+        echo "Installing"
+        make install
+    )
+
+    # Release version
+    eval $(cat "${builddir}/bioformats-build/config")
+    version_tag="${OME_VERSION}-${type}-$(os_version)"
+    echo "Built and installed version ${version_tag}"
+
+    echo "Renaming staged install to bioformats-cpp-${version_tag}"
+    rm -rf "${installdir}/bioformats-cpp-${version_tag}"
+    mv "${installdir}/stage" "${installdir}/bioformats-cpp-${version_tag}"
+
+    if [ -d "${builddir}/bioformats-build/docs/doxygen/bioformats" ]; then
+        echo "Installing doxygen documentation"
+        cp -r "${builddir}/bioformats-build/docs/doxygen/bioformats" "${installdir}/bioformats-cpp-apidoc-${OME_VERSION}"
+    fi
+
+    # Source release
+    echo "Making source release"
+    make_source_release "$OME_VERSION" "$git_branch"
+
+    # Archive builds
+    (
+        cd "${installdir}"
+        if [ "$(uname -s)" == "Linux" ]; then
+            ROOTCMD=
+            TAR_OPTIONS="--owner=root --group=root"
+        else
+            ROOTCMD=fakeroot
+            TAR_OPTIONS="--format pax"
+        fi
+        mkdir -p "$artefactdir"
+
+        echo "Archiving bioformats-cpp-${version_tag}.tar.xz"
+        $ROOTCMD tar -cf - $TAR_OPTIONS "bioformats-cpp-${version_tag}" | xz > "${artefactdir}/bioformats-cpp-${version_tag}.tar.xz"
+
+        if [ -d "bioformats-cpp-apidoc-${OME_VERSION}" ]; then
+            echo "Archiving bioformats-cpp-apidoc-${OME_VERSION}.tar.xz"
+            $ROOTCMD tar -cf - $TAR_OPTIONS "bioformats-cpp-apidoc-${OME_VERSION}" | xz > "${artefactdir}/bioformats-cpp-apidoc-${OME_VERSION}.tar.xz"
+        fi
+    )
+
+    # Test archive
+    (
+        echo "Test archive functionality"
+        rm -rf test
+        mkdir test
+        cd test
+
+        tar -xvf "${artefactdir}/bioformats-cpp-${version_tag}.tar.xz"
+        cd bioformats-cpp-${version_tag}
+
+        echo "Test bf-test version"
+        bin/bf-test --version
+        echo "Test bf-test usage"
+        bin/bf-test --usage
+        echo "Test bf-test help"
+        bin/bf-test --help | cat
+
+        echo "Test bf-test info version"
+        bin/bf-test info --version
+        echo "Test bf-test info usage"
+        bin/bf-test info --usage
+        echo "Test bf-test info help"
+        bin/bf-test info --help | cat
+
+    )
+    echo "Complete"
+}
+
+usage() {
+    cat <<EOF
+Usage: $(basename $0) [options]"
+
+Actions:
+  -h         Display this help text
+  -B         Build and install (default action)
+
+Options:
+  -w dir     Set workspace directory (sets defaults for all directory paths below)
+  -s dir     Set source directory
+  -b dir     Set build directory
+  -i dir     Set installation directory
+  -a dir     Set artefact directory
+  -c dir     Set cache directory
+
+  -g branch  Set git branch or tag to release from
+  -G         Build from git (rather than the default source release archive)
+  -p mode    Purge cache (none|both|build|python)
+  -t type    Build type (Debug|Release)
+  -d         Build doxygen API reference
+  -e         Run extended tests
+  -j n       Build in parallel
+  -v         Verbose build
+  -x         Use C++11/C++14 rather than C++98
+
+EOF
+}
+
+workspace="$(/bin/pwd)"
+sourcedir="${workspace}/source"
+builddir="${workspace}/build"
+installdir="${workspace}/install"
+artefactdir="${workspace}/artefacts"
+cachedir="${workspace}/cache"
+
+git_branch=HEAD
+purge=none
+type=Debug
+doxygen=OFF
+extended_tests=OFF
+verbose=OFF
+cxxdetect=OFF
+parallel=
+build_git=OFF
+
+# Parse command line options.
+while getopts hBGexvi:b:c:a:g:p:t:w:s:j: OPT; do
+    case "$OPT" in
+        h)
+            usage
+            exit 0
+            ;;
+        e)
+            extended_tests=ON
+            ;;
+        G)
+            build_git=ON
+            ;;
+        d)
+            doxygen=ON
+            ;;
+        x)
+            cxxdetect=ON
+            ;;
+        v)
+            verbose=ON
+            ;;
+        w)
+            workspace="$OPTARG"
+            sourcedir="${workspace}/source"
+            builddir="${workspace}/build"
+            installdir="${workspace}/install"
+            artefactdir="${workspace}/artefacts"
+            cachedir="${workspace}/cache"
+            ;;
+        s)
+            sourcedir="$OPTARG"
+            ;;
+        i)
+            installdir="$OPTARG"
+            ;;
+        b)
+            builddir="$OPTARG"
+            ;;
+        c)
+            cachedir="$OPTARG"
+            ;;
+        a)
+            artefactdir="$OPTARG"
+            ;;
+        g)
+            git_branch="$OPTARG"
+            ;;
+        p)
+            purge="$OPTARG"
+            ;;
+        t)
+            type="$OPTARG"
+            ;;
+        j)
+            parallel="-j $OPTARG"
+            ;;
+        B)
+            :
+            ;;
+        \?)
+            usage >&2
+            exit 1
+            ;;
+    esac
+done
+
+# Remove the switches parsed above.
+shift `expr $OPTIND - 1`
+
+check_cache_validity
+build
