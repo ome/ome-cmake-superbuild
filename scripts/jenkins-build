@@ -15,7 +15,7 @@ os_version() {
 
   case "$system" in
       Linux*)
-          echo "$(lsb_release -sir | sed -e 's;[[:space:]]*;;g')-$machine"
+          echo "$(lsb_release -si | sed -e 's;[[:space:]]*;;g')$(lsb_release -sr | sed -e 's;[[:space:]]*;;g')-$machine"
           ;;
       FreeBSD*)
           echo "$(freebsd-version | sed -e 's;\([^-]*\)-.*;FreeBSD\1;')-$machine"
