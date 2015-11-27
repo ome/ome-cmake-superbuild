@@ -66,6 +66,14 @@ ome_add_package(bioformats)
 add_custom_target(prerequisites
                   DEPENDS bioformats-prerequisites)
 
+# Install cached build if needed
+if(BIOFORMATS_EP_BUILD_CACHE)
+  install(DIRECTORY ${BIOFORMATS_EP_BUILD_CACHE}/
+          DESTINATION ${CMAKE_INSTALL_PREFIX}
+          USE_SOURCE_PERMISSIONS)
+endif()
+
+# Install superbuild
 install(DIRECTORY ${BIOFORMATS_EP_INSTALL_DIR}/
         DESTINATION ${CMAKE_INSTALL_PREFIX}
         USE_SOURCE_PERMISSIONS)

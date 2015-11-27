@@ -11,6 +11,9 @@ message(STATUS "Configuring with \"${CMAKE_COMMAND}\"
   \"-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}\"
   \"-DCMAKE_INSTALL_LIBDIR=${CMAKE_INSTALL_LIBDIR}\"
   \"-DCMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}\"
+  \"-DCMAKE_PROGRAM_PATH=${CMAKE_PROGRAM_PATH}\"
+  \"-DCMAKE_LIBRARY_PATH=${CMAKE_LIBRARY_PATH}\"
+
   ${CONFIGURE_OPTIONS}
   \"${SOURCE_DIR}\"")
 
@@ -19,6 +22,8 @@ execute_process(COMMAND "${CMAKE_COMMAND}"
                         "-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}"
                         "-DCMAKE_INSTALL_LIBDIR=${CMAKE_INSTALL_LIBDIR}"
                         "-DCMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}"
+                        "-DCMAKE_PROGRAM_PATH=${CMAKE_PROGRAM_PATH}"
+                        "-DCMAKE_LIBRARY_PATH=${CMAKE_LIBRARY_PATH}"
                         ${CONFIGURE_OPTIONS}
                         "${SOURCE_DIR}"
                 WORKING_DIRECTORY "${BUILD_DIR}"

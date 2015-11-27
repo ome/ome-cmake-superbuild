@@ -39,12 +39,15 @@ endif()
 
 # Set dependency list
 if(build-prerequisites)
-  set(EP_DEPS boost-${BOOST_VERSION} png tiff xerces py-genshi py-sphinx glm)
+  set(EP_DEPS boost-${BOOST_VERSION} png tiff xerces py-genshi py-sphinx)
 endif()
 ome_add_dependencies(bioformats ${EP_DEPS})
 
 unset(CONFIGURE_OPTIONS)
-list(APPEND CONFIGURE_OPTIONS "-DBoost_ADDITIONAL_VERSIONS=${BOOST_VERSION}"
+list(APPEND CONFIGURE_OPTIONS
+     "-DBOOST_ROOT=${CMAKE_INSTALL_PREFIX}"
+     -DBoost_NO_BOOST_CMAKE:BOOL=true
+     "-DBoost_ADDITIONAL_VERSIONS=${BOOST_VERSION}"
      ${SUPERBUILD_OPTIONS})
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
