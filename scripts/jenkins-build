@@ -268,14 +268,14 @@ parallel=
 build_git=OFF
 
 # Parse command line options.
-while getopts hBGexvi:b:c:a:g:p:t:w:s:j: OPT; do
+while getopts hBGdexvi:b:c:a:g:p:t:w:s:j: OPT; do
     case "$OPT" in
         h)
             usage
             exit 0
             ;;
-        e)
-            extended_tests=ON
+        B)
+            :
             ;;
         G)
             build_git=ON
@@ -283,22 +283,14 @@ while getopts hBGexvi:b:c:a:g:p:t:w:s:j: OPT; do
         d)
             doxygen=ON
             ;;
+        e)
+            extended_tests=ON
+            ;;
         x)
             cxxdetect=ON
             ;;
         v)
             verbose=ON
-            ;;
-        w)
-            workspace="$OPTARG"
-            sourcedir="${workspace}/source"
-            builddir="${workspace}/build"
-            installdir="${workspace}/install"
-            artefactdir="${workspace}/artefacts"
-            cachedir="${workspace}/cache"
-            ;;
-        s)
-            sourcedir="$OPTARG"
             ;;
         i)
             installdir="$OPTARG"
@@ -319,13 +311,21 @@ while getopts hBGexvi:b:c:a:g:p:t:w:s:j: OPT; do
             purge="$OPTARG"
             ;;
         t)
-            type="$OPTARG"
+            build_type="$OPTARG"
+            ;;
+        w)
+            workspace="$OPTARG"
+            sourcedir="${workspace}/source"
+            builddir="${workspace}/build"
+            installdir="${workspace}/install"
+            artefactdir="${workspace}/artefacts"
+            cachedir="${workspace}/cache"
+            ;;
+        s)
+            sourcedir="$OPTARG"
             ;;
         j)
             parallel="-j $OPTARG"
-            ;;
-        B)
-            :
             ;;
         \?)
             usage >&2
