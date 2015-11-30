@@ -193,6 +193,9 @@ build() {
         fi
     )
 
+    # Archive sources
+    cp -a ${cachedir}/source "${artefactdir}/sources"
+
     # Test archive
     (
         echo "Test archive functionality"
