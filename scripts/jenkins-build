@@ -182,10 +182,10 @@ build() {
             ROOTCMD=fakeroot
             TAR_OPTIONS="--format pax"
         fi
-        mkdir -p "$artefactdir"
+        mkdir -p "${artefactdir}/superbuild"
 
         echo "Archiving bioformats-cpp-${version_tag}.tar.xz"
-        $ROOTCMD tar -cf - $TAR_OPTIONS "bioformats-cpp-${version_tag}" | xz > "${artefactdir}/bioformats-cpp-${version_tag}.tar.xz"
+        $ROOTCMD tar -cf - $TAR_OPTIONS "bioformats-cpp-${version_tag}" | xz > "${artefactdir}/superbuild/bioformats-cpp-${version_tag}.tar.xz"
 
         if [ -d "bioformats-cpp-apidoc-${OME_VERSION}" ]; then
             echo "Archiving bioformats-cpp-apidoc-${OME_VERSION}.tar.xz"
@@ -203,7 +203,7 @@ build() {
         mkdir test
         cd test
 
-        tar -xvf "${artefactdir}/bioformats-cpp-${version_tag}.tar.xz"
+        tar -xvf "${artefactdir}/superbuild/bioformats-cpp-${version_tag}.tar.xz"
         cd bioformats-cpp-${version_tag}
 
         echo "Test bf-test version"
