@@ -125,7 +125,7 @@ build() {
         # is HEAD since it's already at the correct commit
         cmake \
             -DCMAKE_VERBOSE_MAKEFILE:BOOL="$verbose" \
-            -DCMAKE_BUILD_TYPE="$type" \
+            -DCMAKE_BUILD_TYPE="$build_type" \
             -DCMAKE_INSTALL_PREFIX:PATH=${installdir}/stage \
             ${GIT_OPTIONS} \
             -Dcxxstd-autodetect="$cxxdetect" \
@@ -156,7 +156,7 @@ build() {
 
     # Release version
     eval $(cat "${builddir}/bioformats-build/config")
-    version_tag="${OME_VERSION}-${type}-$(os_version)"
+    version_tag="${OME_VERSION}-${build_type}-$(os_version)"
     echo "Built and installed version ${version_tag}"
 
     echo "Renaming staged install to bioformats-cpp-${version_tag}"
@@ -262,7 +262,7 @@ cachedir="${workspace}/cache"
 
 git_branch=HEAD
 purge=none
-type=Debug
+build_type=Debug
 doxygen=OFF
 extended_tests=OFF
 verbose=OFF
