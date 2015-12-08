@@ -81,4 +81,4 @@ ExternalProject_Add(${EP_PROJECT}
     -P "${GENERIC_CMAKE_TEST}"
   DEPENDS
     ${EP_PROJECT}-prerequisites
-  )
+)
