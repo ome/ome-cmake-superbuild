@@ -141,7 +141,7 @@ build() {
         # Make and cache prerequisites if missing
         if [ -z "$(cached_tree)" ]; then
             echo "Building prerequisites"
-            make $parallel bioformats-prerequisites
+            make $parallel third-party-prerequisites
             make_cache
         fi
 

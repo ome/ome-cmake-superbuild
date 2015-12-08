@@ -36,6 +36,9 @@
 
 include(CMakeParseArguments)
 
+# Single target to build all prerequisites
+add_custom_target(third-party-prerequisites)
+
 # Include superbuild logic for the given package(s)
 # Each package is only included once, using the ${name}_INCLUDED guard
 function(ome_add_package name)
@@ -63,6 +66,7 @@ function(ome_add_package name)
       set(EP_SOURCE_DIR "${CMAKE_BINARY_DIR}/${name}-source")
       set(EP_BINARY_DIR "${CMAKE_BINARY_DIR}/${name}-build")
       if(OAP_THIRD_PARTY)
+        add_dependencies(third-party-prerequisites "${name}")
         message(STATUS "Adding third-party dependency - ${name}")
       else()
         message(STATUS "Adding dependency - ${name}")
