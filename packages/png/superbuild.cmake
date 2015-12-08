@@ -1,7 +1,7 @@
 # png superbuild
 
 # Set dependency list
-ome_add_dependencies(png zlib)
+ome_add_dependencies(png THIRD_PARTY_DEPENDENCIES zlib)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 

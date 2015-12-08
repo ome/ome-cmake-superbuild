@@ -34,6 +34,8 @@
 # policies, either expressed or implied, of any organization.
 # #L%
 
+include(CMakeParseArguments)
+
 # Include superbuild logic for the given package(s)
 # Each package is only included once, using the ${name}_INCLUDED guard
 function(ome_add_package)
@@ -53,10 +55,27 @@ endfunction()
 # variable and recursively add them.  Dependencies are stored in
 # target_DEPENDENCIES
 function(ome_add_dependencies target)
+  set(options)
+  set(oneValueArgs)
+  set(multiValueArgs DEPENDENCIES THIRD_PARTY_DEPENDENCIES)
+
+  cmake_parse_arguments(OAD "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+  if(OAD_UNPARSED_ARGUMENTS)
+    message(FATAL_ERROR "Unknown keywords given to OME_ADD_DEPENDENCIES(): \"${OAD_UNPARSED_ARGUMENTS}\"")
+  endif()
+
   get_property(dependencies_added GLOBAL PROPERTY ${target}_DEPENDENCIES_ADDED SET)
   if(NOT dependencies_added)
     set_property(GLOBAL PROPERTY ${target}_DEPENDENCIES_ADDED ON)
-    foreach(name ${ARGN})
+    set(DEPENDS ${OAD_DEPENDENCIES})
+    foreach(TP_DEP ${OAD_THIRD_PARTY_DEPENDENCIES})
+      if((build-prerequisites AND NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${TP_DEP}) OR
+         (NOT build-prerequisites AND ${CMAKE_PROJECT_NAME}_BUILD_${TP_DEP}))
+        list(APPEND DEPENDS ${TP_DEP})
+      endif()
+    endforeach()
+    foreach(name ${DEPENDS})
       ome_add_package("${name}")
       list(APPEND ${target}_DEPENDENCIES "${name}")
     endforeach()
@@ -65,7 +84,7 @@ function(ome_add_dependencies target)
     endif()
     set(${target}_DEPENDENCIES "${${target}_DEPENDENCIES}" PARENT_SCOPE)
     add_custom_target(${target}-prerequisites
-                      DEPENDS ${${target}_DEPENDENCIES})
+      DEPENDS ${${target}_DEPENDENCIES})
   endif()
 endfunction()
 

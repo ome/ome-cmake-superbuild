@@ -1,7 +1,7 @@
 # xerces superbuild
 
 # Set dependency list
-ome_add_dependencies(xerces icu)
+ome_add_dependencies(xerces THIRD_PARTY_DEPENDENCIES icu)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
   set(EP_CXXFLAGS ${CMAKE_CXX_FLAGS})

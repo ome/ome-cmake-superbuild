@@ -1,7 +1,8 @@
 # py-sphinx superbuild
 
 # Set dependency list
-ome_add_dependencies(py-sphinx py-setuptools py-pygments py-docutils py-jinja2)
+ome_add_dependencies(py-sphinx THIRD_PARTY_DEPENDENCIES py-setuptools py-pygments
+                                                        py-docutils py-jinja2)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 

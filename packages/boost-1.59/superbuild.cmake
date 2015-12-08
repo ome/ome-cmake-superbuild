@@ -1,7 +1,7 @@
 # boost superbuild
 
 # Set dependency list
-ome_add_dependencies(boost-1.59 zlib bzip2 icu)
+ome_add_dependencies(boost-1.59 THIRD_PARTY_DEPENDENCIES zlib bzip2 icu)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 

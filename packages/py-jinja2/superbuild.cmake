@@ -1,7 +1,7 @@
 # py-jinja2 superbuild
 
 # Set dependency list
-ome_add_dependencies(py-jinja2 py-setuptools py-markupsafe)
+ome_add_dependencies(py-jinja2 THIRD_PARTY_DEPENDENCIES py-setuptools py-markupsafe)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 

@@ -1,7 +1,7 @@
 # py-genshi superbuild
 
 # Set dependency list
-ome_add_dependencies(py-genshi py-setuptools)
+ome_add_dependencies(py-genshi THIRD_PARTY_DEPENDENCIES py-setuptools)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 

@@ -38,10 +38,7 @@ else()
 endif()
 
 # Set dependency list
-if(build-prerequisites)
-  set(EP_DEPS boost-${BOOST_VERSION} xerces)
-endif()
-ome_add_dependencies(ome-common ${EP_DEPS})
+ome_add_dependencies(ome-common THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} xerces)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
