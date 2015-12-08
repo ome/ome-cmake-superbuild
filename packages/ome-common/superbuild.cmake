@@ -38,7 +38,7 @@ else()
 endif()
 
 # Set dependency list
-ome_add_dependencies(ome-common THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} xerces)
+ome_add_dependencies(ome-common THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} gtest xerces)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
@@ -46,6 +46,9 @@ list(APPEND CONFIGURE_OPTIONS
      -DBoost_NO_BOOST_CMAKE:BOOL=true
      "-DBoost_ADDITIONAL_VERSIONS=${BOOST_VERSION}"
      ${SUPERBUILD_OPTIONS})
+if(TARGET gtest)
+  list(APPEND CONFIGURE_OPTIONS "-DGTEST_ROOT=${CMAKE_BINARY_DIR}/gtest-source")
+endif()
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}

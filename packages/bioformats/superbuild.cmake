@@ -41,7 +41,7 @@ endif()
 ome_add_dependencies(bioformats
                      DEPENDENCIES ome-common
                      THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} png tiff xerces
-                                              py-genshi py-sphinx)
+                                              py-genshi py-sphinx gtest)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
@@ -49,6 +49,9 @@ list(APPEND CONFIGURE_OPTIONS
      -DBoost_NO_BOOST_CMAKE:BOOL=true
      "-DBoost_ADDITIONAL_VERSIONS=${BOOST_VERSION}"
      ${SUPERBUILD_OPTIONS})
+if(TARGET gtest)
+  list(APPEND CONFIGURE_OPTIONS "-DGTEST_ROOT=${CMAKE_BINARY_DIR}/gtest-source")
+endif()
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
