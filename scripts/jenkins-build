@@ -113,7 +113,7 @@ build() {
 
     GIT_OPTIONS=
     if [ "$build_git" = "ON" ];then
-        GIT_OPTIONS="-Dbf-git-url=${workspace}/bioformats -Dbf-git-branch=HEAD"
+        GIT_OPTIONS="-Dbf-git-url=${workspace}/bioformats -Dbf-git-branch=HEAD -Dome-common-git-url=${workspace}/ome-common-cpp -Dome-common-git-branch=HEAD"
     fi
 
     rm -rf "$builddir" "$installdir"

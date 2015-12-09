@@ -10,7 +10,7 @@ set(RELEASE_URL "")
 set(RELEASE_HASH "SHA512=")
 
 # Current development branch (defaults for head option).
-set(GIT_URL "https://github.com/rleigh-dundee/ome-common-cpp.git")
+set(GIT_URL "https://github.com/ome/ome-common-cpp.git")
 set(GIT_BRANCH "develop")
 
 if(NOT ome-common-head)
