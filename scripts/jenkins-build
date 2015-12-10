@@ -105,10 +105,13 @@ check_cache_validity() {
 
 # Run build
 build() {
-    # Use build cache if present; set environment so it's detected by cmake and exclude cached prerequisites from build
+    # Use build cache if present; set environment so it's detected by
+    # cmake and exclude cached prerequisites from build.  Note that
+    # since gtest isn't installed and cached, so we still need to
+    # build it.
     CMAKE_PREREQS="build-prerequisites:BOOL=ON"
     if [ -n "$(cached_tree)" ]; then
-        CMAKE_PREREQS="-Dbuild-cache:PATH=${cachedir}/build -Dpython-cache:PATH=${cachedir}/python -Dbuild-prerequisites:BOOL=OFF"
+        CMAKE_PREREQS="-Dbuild-cache:PATH=${cachedir}/build -Dpython-cache:PATH=${cachedir}/python -Dbuild-prerequisites:BOOL=OFF -Dbioformats-superbuild_BUILD_gtest:BOOL=ON"
     fi
 
     GIT_OPTIONS=
