@@ -1,7 +1,7 @@
 # ome-common superbuild
 
 # Options to build from git (defaults to source zip if unset)
-set(ome-common-head ON CACHE BOOL "Force building from current git develop branch")
+set(ome-common-head OFF CACHE BOOL "Force building from current git develop branch")
 set(ome-common-git-url "" CACHE STRING "URL of OME Common C++ git repository")
 set(ome-common-git-branch "" CACHE STRING "URL of OME Common C++ git repository")
 
