@@ -6,7 +6,7 @@ ome_add_dependencies(gtest)
 # Notes:
 # Installs cmake settings into lib/libgtest; could be deleted
 
-set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli -Dgtest_build_tests:BOOL=ON -Dgtest_build_samples:BOOL=ON)
+set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
