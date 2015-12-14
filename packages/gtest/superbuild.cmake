@@ -4,7 +4,9 @@
 ome_add_dependencies(gtest)
 
 # Notes:
-# Installs cmake settings into lib/libgtest; could be deleted
+# Does not build or install anything since FindGTest won't
+# work properly on Windows; each project using it will need
+# to build it.  This downloads it, and nothing more.
 
 set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
@@ -16,19 +18,8 @@ ExternalProject_Add(${EP_PROJECT}
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_SOURCE_DIR}"
   INSTALL_DIR ""
-  CONFIGURE_COMMAND ${CMAKE_COMMAND}
-    "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
-    "-DBUILD_DIR:PATH=${EP_SOURCE_DIR}"
-    "-DCONFIG:INTERNAL=$<CONFIG>"
-    "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
-    "-DCONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}"
-    -P "${GENERIC_CMAKE_CONFIGURE}"
-  BUILD_COMMAND ${CMAKE_COMMAND}
-    "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
-    "-DBUILD_DIR:PATH=${EP_SOURCE_DIR}"
-    "-DCONFIG:INTERNAL=$<CONFIG>"
-    "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
-    -P "${GENERIC_CMAKE_BUILD}"
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND ""
   INSTALL_COMMAND ""
   TEST_COMMAND ""
   DEPENDS
