@@ -34,38 +34,88 @@
 # policies, either expressed or implied, of any organization.
 # #L%
 
+include(CMakeParseArguments)
+
+# Single target to build all prerequisites
+add_custom_target(third-party-prerequisites)
+
 # Include superbuild logic for the given package(s)
 # Each package is only included once, using the ${name}_INCLUDED guard
-function(ome_add_package)
-  foreach(name ${ARGV})
+function(ome_add_package name)
+  set(options THIRD_PARTY)
+  set(oneValueArgs TARGETVAR)
+  set(multiValueArgs)
+
+  cmake_parse_arguments(OAP "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+  if(OAP_UNPARSED_ARGUMENTS)
+    message(FATAL_ERROR "Unknown keywords given to OME_ADD_PACKAGES(): \"${OAP_UNPARSED_ARGUMENTS}\"")
+  endif()
+
+  if(OAP_TARGETVAR)
+    set(${OAP_TARGETVAR} "${name}-NOTFOUND" PARENT_SCOPE)
+  endif()
+
+  if(NOT OAP_THIRD_PARTY OR
+      (OAP_THIRD_PARTY AND build-prerequisites AND NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${name}) OR
+      (OAP_THIRD_PARTY AND NOT build-prerequisites AND ${CMAKE_PROJECT_NAME}_BUILD_${name}))
     get_property(included GLOBAL PROPERTY ${name}_INCLUDED SET)
     if(NOT included)
       set_property(GLOBAL PROPERTY ${name}_INCLUDED ON)
       set(EP_PROJECT "${name}")
       set(EP_SOURCE_DIR "${CMAKE_BINARY_DIR}/${name}-source")
       set(EP_BINARY_DIR "${CMAKE_BINARY_DIR}/${name}-build")
+      if(OAP_THIRD_PARTY)
+        add_dependencies(third-party-prerequisites "${name}")
+        message(STATUS "Adding third-party dependency - ${name}")
+      else()
+        message(STATUS "Adding dependency - ${name}")
+      endif()
       include("${PROJECT_SOURCE_DIR}/packages/${name}/superbuild.cmake")
     endif()
-  endforeach()
+    if(OAP_TARGETVAR)
+      set(${OAP_TARGETVAR} "${name}" PARENT_SCOPE)
+    endif()
+  else()
+    message(STATUS "Ignoring dependency - ${name}")
+  endif()
 endfunction()
 
 # Allow recursive addition of dependencies; store them in the specified
 # variable and recursively add them.  Dependencies are stored in
 # target_DEPENDENCIES
 function(ome_add_dependencies target)
+  set(options)
+  set(oneValueArgs)
+  set(multiValueArgs DEPENDENCIES THIRD_PARTY_DEPENDENCIES)
+
+  cmake_parse_arguments(OAD "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+  if(OAD_UNPARSED_ARGUMENTS)
+    message(FATAL_ERROR "Unknown keywords given to OME_ADD_DEPENDENCIES(): \"${OAD_UNPARSED_ARGUMENTS}\"")
+  endif()
+
   get_property(dependencies_added GLOBAL PROPERTY ${target}_DEPENDENCIES_ADDED SET)
   if(NOT dependencies_added)
     set_property(GLOBAL PROPERTY ${target}_DEPENDENCIES_ADDED ON)
-    foreach(name ${ARGN})
-      ome_add_package("${name}")
-      list(APPEND ${target}_DEPENDENCIES "${name}")
+    foreach(name ${OAD_DEPENDENCIES})
+      ome_add_package("${name}" TARGETVAR targetname)
+      if(targetname)
+        list(APPEND ${target}_DEPENDENCIES "${targetname}")
+      endif()
+    endforeach()
+    foreach(name ${OAD_THIRD_PARTY_DEPENDENCIES})
+      ome_add_package("${name}" THIRD_PARTY TARGETVAR targetname)
+      if(targetname)
+        list(APPEND ${target}_DEPENDENCIES "${targetname}")
+      endif()
     endforeach()
     if (${target}_DEPENDENCIES)
       list(REMOVE_DUPLICATES ${target}_DEPENDENCIES)
     endif()
     set(${target}_DEPENDENCIES "${${target}_DEPENDENCIES}" PARENT_SCOPE)
     add_custom_target(${target}-prerequisites
-                      DEPENDS ${${target}_DEPENDENCIES})
+      DEPENDS ${${target}_DEPENDENCIES})
   endif()
 endfunction()
 
@@ -114,6 +164,8 @@ list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_INSTALL_DIR}")
 
 if(BIOFORMATS_EP_BUILD_CACHE)
   list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_BUILD_CACHE}")
+  list(APPEND CMAKE_LIBRARY_PATH "${BIOFORMATS_EP_BUILD_CACHE}/lib")
+  list(APPEND CMAKE_PROGRAM_PATH "${BIOFORMATS_EP_BUILD_CACHE}/bin")
 endif()
 if(BIOFORMATS_EP_PYTHON_CACHE)
   list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_PYTHON_CACHE}")
@@ -133,9 +185,13 @@ endif()
 set(EP_SCRIPT_CONFIG "${PROJECT_BINARY_DIR}/project-config.cmake")
 
 string(REPLACE ";" "^^" BIOFORMATS_EP_ESCAPED_CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}")
+string(REPLACE ";" "^^" BIOFORMATS_EP_ESCAPED_CMAKE_LIBRARY_PATH "${CMAKE_LIBRARY_PATH}")
+string(REPLACE ";" "^^" BIOFORMATS_EP_ESCAPED_CMAKE_PROGRAM_PATH "${CMAKE_PROGRAM_PATH}")
 
 set(BIOFORMATS_EP_CMAKE_ARGS
   "-DCMAKE_PREFIX_PATH:INTERNAL=${BIOFORMATS_EP_ESCAPED_CMAKE_PREFIX_PATH}"
+  "-DCMAKE_LIBRARY_PATH:INTERNAL=${BIOFORMATS_EP_ESCAPED_CMAKE_LIBRARY_PATH}"
+  "-DCMAKE_PROGRAM_PATH:INTERNAL=${BIOFORMATS_EP_ESCAPED_CMAKE_PROGRAM_PATH}"
   "-DCMAKE_BUILD_TYPE:INTERNAL=${CMAKE_BUILD_TYPE}"
 )
 

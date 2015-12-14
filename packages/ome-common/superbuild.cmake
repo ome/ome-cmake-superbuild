@@ -1,47 +1,44 @@
-# bioformats superbuild
+# ome-common superbuild
 
 # Options to build from git (defaults to source zip if unset)
-set(head OFF CACHE BOOL "Force building from current git develop branch")
-set(bf-git-url "" CACHE STRING "URL of Bio-Formats git repository")
-set(bf-git-branch "" CACHE STRING "URL of Bio-Formats git repository")
+set(ome-common-head OFF CACHE BOOL "Force building from current git develop branch")
+set(ome-common-git-url "" CACHE STRING "URL of OME Common C++ git repository")
+set(ome-common-git-branch "" CACHE STRING "URL of OME Common C++ git repository")
 
 # Current stable release.
-set(RELEASE_URL "http://downloads.openmicroscopy.org/bio-formats/5.1.7/artifacts/bioformats-dfsg-5.1.7.tar.xz")
-set(RELEASE_HASH "SHA512=d6e23abdfe7a13c7b151ecf779cec5a29b147592f65671f8547670adc88a5fe447171cc6eed801a7843b020984cc82331ff9d24634450b4c5bc0f3fe7677bf03")
+set(RELEASE_URL "")
+set(RELEASE_HASH "SHA512=")
 
 # Current development branch (defaults for head option).
-set(GIT_URL "https://github.com/openmicroscopy/bioformats.git")
+set(GIT_URL "https://github.com/ome/ome-common-cpp.git")
 set(GIT_BRANCH "develop")
 
-if(NOT head)
-  if(bf-git-url)
-    set(GIT_URL ${bf-git-url})
+if(NOT ome-common-head)
+  if(ome-common-git-url)
+    set(GIT_URL ${ome-common-git-url})
   endif()
-  if(bf-git-branch)
-    set(GIT_BRANCH ${bf-git-branch})
+  if(ome-common-git-branch)
+    set(GIT_BRANCH ${ome-common-git-branch})
   endif()
 endif()
 
-if(head OR bf-git-url OR bf-git-branch)
+if(ome-common-head OR ome-common-git-url OR ome-common-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
   set(BOOST_VERSION 1.59)
-  message(STATUS "Building Bio-Formats from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
+  message(STATUS "Building OME Common C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
   set(BOOST_VERSION 1.59)
-  message(STATUS "Building Bio-Formats from source release (${RELEASE_URL})")
+  message(STATUS "Building OME Common C++ from source release (${RELEASE_URL})")
 endif()
 
 # Set dependency list
-ome_add_dependencies(bioformats
-                     DEPENDENCIES ome-common
-                     THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} png tiff xerces
-                                              py-genshi py-sphinx gtest)
+ome_add_dependencies(ome-common THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} gtest xerces)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
@@ -87,4 +84,4 @@ ExternalProject_Add(${EP_PROJECT}
     -P "${GENERIC_CMAKE_TEST}"
   DEPENDS
     ${EP_PROJECT}-prerequisites
-  )
+)
