@@ -27,13 +27,13 @@ if(ome-common-head OR ome-common-git-url OR ome-common-git-branch)
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
-  set(BOOST_VERSION 1.59)
+  set(BOOST_VERSION 1.60)
   message(STATUS "Building OME Common C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
-  set(BOOST_VERSION 1.59)
+  set(BOOST_VERSION 1.60)
   message(STATUS "Building OME Common C++ from source release (${RELEASE_URL})")
 endif()
 
