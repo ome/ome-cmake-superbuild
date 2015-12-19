@@ -2,6 +2,7 @@
 
 # Options to build from git (defaults to source zip if unset)
 set(head OFF CACHE BOOL "Force building from current git develop branch")
+set(bf-git-dir "" CACHE PATH "Local path of Bio-Formats git repository")
 set(bf-git-url "" CACHE STRING "URL of Bio-Formats git repository")
 set(bf-git-branch "" CACHE STRING "URL of Bio-Formats git repository")
 
@@ -17,12 +18,15 @@ if(NOT head)
   if(bf-git-url)
     set(GIT_URL ${bf-git-url})
   endif()
+  if(bf-git-dir)
+    set(GIT_URL ${bf-git-dir})
+  endif()
   if(bf-git-branch)
     set(GIT_BRANCH ${bf-git-branch})
   endif()
 endif()
 
-if(head OR bf-git-url OR bf-git-branch)
+if(head OR bf-git-url OR bf-git-dir OR bf-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
