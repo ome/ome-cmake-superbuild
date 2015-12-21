@@ -32,7 +32,8 @@ threading=multi
 -sBZIP2_LIBPATH=${WINDOWS_LIB_DIR}
 -sZLIB_BINARY=${ZLIB_BINARY}
 -sZLIB_INCLUDE=${WINDOWS_INCLUDE_DIR}
--sZLIB_LIBPATH=${WINDOWS_LIB_DIR}")
+-sZLIB_LIBPATH=${WINDOWS_LIB_DIR}
+-sICU_PATH=${WINDOWS_INSTALL_DIR}")
 
   execute_process(COMMAND ./b2 install
                                "--prefix=${WINDOWS_INSTALL_DIR}"
@@ -53,6 +54,7 @@ threading=multi
                                "-sZLIB_BINARY=${ZLIB_BINARY}"
                                "-sZLIB_INCLUDE=${WINDOWS_INCLUDE_DIR}"
                                "-sZLIB_LIBPATH=${WINDOWS_LIB_DIR}"
+                               "-sICU_PATH=${WINDOWS_INSTALL_DIR}"
                   WORKING_DIRECTORY "${SOURCE_DIR}"
                   RESULT_VARIABLE build_result)
 
