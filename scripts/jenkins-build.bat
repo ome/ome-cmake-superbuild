@@ -164,7 +164,7 @@ Options:
 
   -g branch  Set git branch or tag to release from
   -G         Build from git (rather than the default source release archive)
-  -p mode    Purge cache (none|both|build|python)
+  -p mode    Purge cache (none|all|build|python)
   -t type    Build type (Debug|Release)
   -A arch    Build architecture (x86|x64)
   -V VCver   Build with VisualC version
@@ -182,10 +182,12 @@ exit /b
 :: Purge cache if required
 
 set PURGE_SOURCE=false
-set PURGE_BUILD=true
+set PURGE_BUILD=false
 
 if [%purge%] == [all] set PURGE_SOURCE=true
+if [%purge%] == [all] set PURGE_BUILD=true
 if [%purge%] == [source] set PURGE_SOURCE=true
+if [%purge%] == [build] set PURGE_BUILD=true
 
 :: Get current tree hashes
 cd "%sourcedir%"
@@ -197,14 +199,14 @@ if exist "%cachedir%\tree" (
 echo Cached tree: %CACHED_TREE%
 
 if exist "%cachedir%\tree" (
-    if [%purge%] == [true] (
+    if [%PURGE_BUILD%] == [true] (
         echo "Requested purging of build cache"
     ) else (
         if NOT [%CURRENT_TREE%] == [%CACHED_TREE%] (
             echo "Changes made; purging build cache"
+            set PURGE_BUILD=true
         ) else (
             echo "No changes; retaining build cache"
-            set PURGE_BUILD=false
         )
     )
 ) else (

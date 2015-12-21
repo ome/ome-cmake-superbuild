@@ -250,7 +250,7 @@ Options:
   -g branch  Set git branch or tag to release from
   -G         Build from git (rather than the default source release archive)
   -n         Do not build third-party prerequisites
-  -p mode    Purge cache (none|both|build|python)
+  -p mode    Purge cache (none|all|build|python)
   -t type    Build type (Debug|Release)
   -S system  Build system (Unix Makefiles|Ninja)
   -d         Build doxygen API reference
