@@ -82,10 +82,6 @@ include("${CMAKE_CURRENT_LIST_DIR}/ExternalProjectHelpers.cmake")
 # External projects.
 ome_add_package(bioformats)
 
-# Single target to build all prerequisites
-add_custom_target(prerequisites
-                  DEPENDS bioformats-prerequisites)
-
 # Install cached build if needed
 if(BIOFORMATS_EP_BUILD_CACHE)
   install(DIRECTORY ${BIOFORMATS_EP_BUILD_CACHE}/
