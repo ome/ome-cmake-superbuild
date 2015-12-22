@@ -69,9 +69,9 @@ endif()
 # Options to pass through to main Bio-Formats build.
 include("${CMAKE_CURRENT_LIST_DIR}/Options.cmake")
 
-project(bioformats-superbuild)
+project(ome-superbuild)
 
-message(STATUS "Configuring Bio-Formats Super-Build")
+message(STATUS "Configuring OME Super-Build")
 
 include(GNUInstallDirs)
 include(ExternalProject)
