@@ -14,8 +14,8 @@ else(WIN32)
   set(ENV{CXX} "${ICU_CXX}")
 
   execute_process(COMMAND "${SOURCE_DIR}/source/configure"
-                          "--prefix=${BIOFORMATS_EP_INSTALL_DIR}"
-                          "--libdir=${BIOFORMATS_EP_LIB_DIR}"
+                          "--prefix=${OME_EP_INSTALL_DIR}"
+                          "--libdir=${OME_EP_LIB_DIR}"
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE configure_result)
 

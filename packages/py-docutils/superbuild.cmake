@@ -4,7 +4,7 @@
 ome_add_dependencies(py-docutils THIRD_PARTY_DEPENDENCIES py-setuptools)
 
 ExternalProject_Add(${EP_PROJECT}
-  ${BIOFORMATS_EP_COMMON_ARGS}
+  ${OME_EP_COMMON_ARGS}
   URL "https://pypi.python.org/packages/source/d/docutils/docutils-0.12.tar.gz"
   URL_HASH "SHA512=0087433f8b76e1d0302d2fab77fdbda941132d16ac1fcecb26ca66119687eefd9e2f6901e05d705f857fa31e2526136c9827dfd57c44cd295bd10dcce3faebf9"
   SOURCE_DIR "${EP_SOURCE_DIR}"

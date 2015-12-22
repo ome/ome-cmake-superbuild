@@ -83,13 +83,13 @@ include("${CMAKE_CURRENT_LIST_DIR}/ExternalProjectHelpers.cmake")
 ome_add_package(bioformats)
 
 # Install cached build if needed
-if(BIOFORMATS_EP_BUILD_CACHE)
-  install(DIRECTORY ${BIOFORMATS_EP_BUILD_CACHE}/
+if(OME_EP_BUILD_CACHE)
+  install(DIRECTORY ${OME_EP_BUILD_CACHE}/
           DESTINATION ${CMAKE_INSTALL_PREFIX}
           USE_SOURCE_PERMISSIONS)
 endif()
 
 # Install superbuild
-install(DIRECTORY ${BIOFORMATS_EP_INSTALL_DIR}/
+install(DIRECTORY ${OME_EP_INSTALL_DIR}/
         DESTINATION ${CMAKE_INSTALL_PREFIX}
         USE_SOURCE_PERMISSIONS)
