@@ -49,7 +49,7 @@ else()
 
   message(STATUS "Installing xalan (Unix)")
 
-  execute_process(COMMAND ${CMAKE_MAKE_PROGRAM} install
+  execute_process(COMMAND ${OME_MAKE_PROGRAM} install
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE install_result)
 
