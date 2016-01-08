@@ -79,8 +79,10 @@ include(ExternalProject)
 # Helper functions and variables used by the following external projects.
 include("${CMAKE_CURRENT_LIST_DIR}/ExternalProjectHelpers.cmake")
 
-# External projects.
-ome_add_package(bioformats)
+# External projects to build (will resolve dependencies recursively).
+foreach(package ${build-packages})
+  ome_add_package("${package}")
+endforeach()
 
 # Install cached build if needed
 if(OME_EP_BUILD_CACHE)
