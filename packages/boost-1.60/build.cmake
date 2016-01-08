@@ -15,7 +15,7 @@ endif()
 if(WIN32)
 
   message(STATUS "Running ./b2 install
---prefix=${BIOFORMATS_EP_INSTALL_DIR}
+--prefix=${OME_EP_INSTALL_DIR}
 --lib=${WINDOWS_LIB_DIR}
 --without-python
 cxxflags=${CMAKE_CXX_FLAGS}
@@ -59,10 +59,10 @@ threading=multi
                   RESULT_VARIABLE build_result)
 
   # Boost installs the DLLs into lib; move to bin for consistency.
-  file(GLOB BOOST_DLLS "${BIOFORMATS_EP_LIB_DIR}/*boost*.dll")
+  file(GLOB BOOST_DLLS "${OME_EP_LIB_DIR}/*boost*.dll")
   foreach(dll ${BOOST_DLLS})
     get_filename_component(dllbase "${dll}" NAME)
-    file(RENAME "${dll}" "${BIOFORMATS_EP_BIN_DIR}/${dllbase}")
+    file(RENAME "${dll}" "${OME_EP_BIN_DIR}/${dllbase}")
   endforeach()
 
 else(WIN32)

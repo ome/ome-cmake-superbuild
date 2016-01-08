@@ -31,7 +31,7 @@ endif()
 # Builds boost without Boost.Python (not currently used by Bio-Formats)
 
 ExternalProject_Add(${EP_PROJECT}
-  ${BIOFORMATS_EP_COMMON_ARGS}
+  ${OME_EP_COMMON_ARGS}
   URL "http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.bz2"
   URL_HASH "SHA512=7c851b3fc2b322ff05d642d9cf03e7c30c5f04d5cf0579c99046b1ec708901c58a3d349031dfe24591f5b88c1e664b6a0d40abea6cce89abb52080c02eb725df"
   SOURCE_DIR "${EP_SOURCE_DIR}"
@@ -55,7 +55,7 @@ ExternalProject_Add(${EP_PROJECT}
   BUILD_IN_SOURCE 1
   BUILD_COMMAND ${CMAKE_COMMAND}
     "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
-    "-DEP_INSTALL_DIR:PATH=${BIOFORMATS_EP_INSTALL_DIR}"
+    "-DEP_INSTALL_DIR:PATH=${OME_EP_INSTALL_DIR}"
     "-DBOOST_TOOLSET=${BOOST_TOOLSET}"
     "-DBOOST_BITS=${BOOST_BITS}"
     "-DCONFIG:INTERNAL=$<CONFIG>"
