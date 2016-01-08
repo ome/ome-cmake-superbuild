@@ -12,8 +12,8 @@ else(WIN32)
   message(STATUS "Bootstrapping xalan (Unix)")
 
   execute_process(COMMAND "./configure"
-                          "--prefix=${BIOFORMATS_EP_INSTALL_DIR}"
-                          "--libdir=${BIOFORMATS_EP_LIB_DIR}"
+                          "--prefix=${OME_EP_INSTALL_DIR}"
+                          "--libdir=${OME_EP_LIB_DIR}"
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE configure_result)
 

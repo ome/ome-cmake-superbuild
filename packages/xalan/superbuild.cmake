@@ -9,14 +9,14 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
   if(WIN32)
     # Windows compiler flags
   else()
-    set(EP_CXXFLAGS ${EP_CXXFLAGS} \"-I${BIOFORMATS_EP_INCLUDE_DIR}\")
-    set(EP_LDFLAGS ${EP_LDFLAGS} \"-L${BIOFORMATS_EP_LIB_DIR}\")
+    set(EP_CXXFLAGS ${EP_CXXFLAGS} \"-I${OME_EP_INCLUDE_DIR}\")
+    set(EP_LDFLAGS ${EP_LDFLAGS} \"-L${OME_EP_LIB_DIR}\")
   endif()
 
   set(EP_BINARY_DIR "${EP_SOURCE_DIR}/c")
 
   ExternalProject_Add(${EP_PROJECT}
-    ${BIOFORMATS_EP_COMMON_ARGS}
+    ${OME_EP_COMMON_ARGS}
     URL "http://www.apache.org/dist/xalan/xalan-c/sources/xalan_c-1.11-src.tar.gz"
     URL_HASH "SHA512=7e45559119d88ab95fc97d8c83b0ea92c4f61540afeee18a84f2ef529c7de3be52156ddf8966288ccc16e9a635b5a7f49eb7095f79c95793ddbd0974983d1f83"
     SOURCE_DIR "${EP_SOURCE_DIR}"

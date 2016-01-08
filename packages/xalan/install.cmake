@@ -22,27 +22,27 @@ if(WIN32)
        "${XALAN_BINARY_DIR}/Nls/Include/*.h")
 
   file(INSTALL ${XALAN_EXES}
-       DESTINATION "${BIOFORMATS_EP_BIN_DIR}")
+       DESTINATION "${OME_EP_BIN_DIR}")
   file(INSTALL ${XALAN_DLLS}
-       DESTINATION "${BIOFORMATS_EP_BIN_DIR}")
+       DESTINATION "${OME_EP_BIN_DIR}")
   file(INSTALL ${XALAN_ILKS}
-       DESTINATION "${BIOFORMATS_EP_BIN_DIR}")
+       DESTINATION "${OME_EP_BIN_DIR}")
   file(INSTALL ${XALAN_EXPS}
-       DESTINATION "${BIOFORMATS_EP_LIB_DIR}")
+       DESTINATION "${OME_EP_LIB_DIR}")
   file(INSTALL ${XALAN_LIBS}
-       DESTINATION "${BIOFORMATS_EP_LIB_DIR}")
+       DESTINATION "${OME_EP_LIB_DIR}")
   file(INSTALL ${XALAN_PDBS}
-       DESTINATION "${BIOFORMATS_EP_LIB_DIR}")
+       DESTINATION "${OME_EP_LIB_DIR}")
   foreach(hdr ${XALAN_HDRS})
     get_filename_component(hdir "${hdr}" DIRECTORY)
-    file(MAKE_DIRECTORY "${BIOFORMATS_EP_INCLUDE_DIR}/xalanc/${hdir}")
+    file(MAKE_DIRECTORY "${OME_EP_INCLUDE_DIR}/xalanc/${hdir}")
     file(INSTALL "${SOURCE_DIR}/c/src/xalanc/${hdr}"
-         DESTINATION "${BIOFORMATS_EP_INCLUDE_DIR}/xalanc/${hdir}")
+         DESTINATION "${OME_EP_INCLUDE_DIR}/xalanc/${hdir}")
   endforeach()
   foreach(hdr ${XALAN_NLS_HDRS})
-    file(MAKE_DIRECTORY "${BIOFORMATS_EP_INCLUDE_DIR}/xalanc/PlatformSupport")
+    file(MAKE_DIRECTORY "${OME_EP_INCLUDE_DIR}/xalanc/PlatformSupport")
     file(INSTALL "${XALAN_BINARY_DIR}/Nls/Include/${hdr}"
-         DESTINATION "${BIOFORMATS_EP_INCLUDE_DIR}/xalanc/PlatformSupport")
+         DESTINATION "${OME_EP_INCLUDE_DIR}/xalanc/PlatformSupport")
   endforeach()
 
 else()
