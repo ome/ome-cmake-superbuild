@@ -16,6 +16,8 @@ else(WIN32)
                           "--prefix=${OME_EP_INSTALL_DIR}"
                           "--libdir=${OME_EP_LIB_DIR}"
                           "--with-pkgconfigdir=${OME_EP_LIB_DIR}/pkgconfig"
+                          "CXXFLAGS=${EP_CXXFLAGS}"
+                          "LDFLAGS=${EP_LDFLAGS}"
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE configure_result)
 

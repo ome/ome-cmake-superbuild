@@ -3,15 +3,6 @@
 # Set dependency list
 ome_add_dependencies(icu)
 
-set(EP_CXXFLAGS ${CMAKE_CXX_FLAGS})
-set(EP_LDFLAGS ${CMAKE_SHARED_LINKER_FLAGS})
-if(WIN32)
-  # Windows compiler flags
-else()
-  set(EP_CXXFLAGS ${EP_CXXFLAGS} \"-I${OME_EP_INCLUDE_DIR}\")
-  set(EP_LDFLAGS ${EP_LDFLAGS} \"-L${OME_EP_LIB_DIR}\")
-endif()
-
 if(NOT MSVC)
   set(ICU_PATCH)
 # VS 10.0
