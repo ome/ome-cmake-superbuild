@@ -4,15 +4,6 @@
 ome_add_dependencies(xalan THIRD_PARTY_DEPENDENCIES xerces icu)
 
 if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
-  set(EP_CXXFLAGS ${CMAKE_CXX_FLAGS})
-  set(EP_LDFLAGS ${CMAKE_SHARED_LINKER_FLAGS})
-  if(WIN32)
-    # Windows compiler flags
-  else()
-    set(EP_CXXFLAGS ${EP_CXXFLAGS} \"-I${OME_EP_INCLUDE_DIR}\")
-    set(EP_LDFLAGS ${EP_LDFLAGS} \"-L${OME_EP_LIB_DIR}\")
-  endif()
-
   set(EP_BINARY_DIR "${EP_SOURCE_DIR}/c")
 
   ExternalProject_Add(${EP_PROJECT}
