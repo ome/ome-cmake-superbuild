@@ -32,6 +32,9 @@ if(WIN32)
 
   set(XALAN_BINARY_DIR "${SOURCE_DIR}/c/Build/${XALAN_PLATFORM_PATH}/${XALAN_SOLUTION}/${XALAN_CONFIG}")
 else()
+  # XERCESCROOT is required since the Xalan build uses it to overwrite DYLD_LIBRARY_PATH,
+  # which breaks the build (we already set it ourselves).
+  set(ENV{XERCESCROOT} "${OME_EP_INSTALL_DIR}")
   set(ENV{XALANCROOT} "${BUILD_DIR}")
   set(ENV{XALAN_LOCALE_SYSTEM} "inmem")
   set(ENV{XALAN_LOCALE} "en_US")
