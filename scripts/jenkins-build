@@ -109,14 +109,17 @@ build() {
     # cmake and exclude cached prerequisites from build.  Note that
     # since gtest isn't installed and cached, so we still need to
     # build it.
-    CMAKE_PREREQS="build-prerequisites:BOOL=ON"
-    if [ -n "$(cached_tree)" ]; then
-        CMAKE_PREREQS="-Dbuild-cache:PATH=${cachedir}/build -Dpython-cache:PATH=${cachedir}/python -Dbuild-prerequisites:BOOL=OFF -Dbioformats-superbuild_BUILD_gtest:BOOL=ON"
+    CMAKE_PREREQS="-Dbuild-prerequisites:BOOL=ON"
+    if [ "$build_tp_prereqs" = "OFF" ] || [ -n "$(cached_tree)" ]; then
+        CMAKE_PREREQS="-Dbuild-prerequisites:BOOL=OFF -Dbioformats-superbuild_BUILD_gtest:BOOL=ON"
+        if [ -n "$(cached_tree)" ]; then
+            CMAKE_PREREQS="${CMAKE_PREREQS} -Dbuild-cache:PATH=${cachedir}/build -Dpython-cache:PATH=${cachedir}/python"
+        fi
     fi
 
     GIT_OPTIONS=
     if [ "$build_git" = "ON" ];then
-        GIT_OPTIONS="-Dbf-git-url=${workspace}/bioformats -Dbf-git-branch=HEAD -Dome-common-git-url=${workspace}/ome-common-cpp -Dome-common-git-branch=HEAD"
+        GIT_OPTIONS="-Dbf-git-dir=${workspace}/bioformats -Dbf-git-branch=HEAD -Dome-common-git-dir=${workspace}/ome-common-cpp -Dome-common-git-branch=HEAD"
     fi
 
     rm -rf "$builddir" "$installdir"
@@ -127,6 +130,7 @@ build() {
         # Note that due to using a local git mirror, the bf-git-branch
         # is HEAD since it's already at the correct commit
         cmake \
+            -G "$build_system" \
             -DCMAKE_VERBOSE_MAKEFILE:BOOL="$verbose" \
             -DCMAKE_BUILD_TYPE="$build_type" \
             -DCMAKE_INSTALL_PREFIX:PATH=${installdir}/stage \
@@ -142,19 +146,19 @@ build() {
             ${sourcedir}
 
         # Make and cache prerequisites if missing
-        if [ -z "$(cached_tree)" ]; then
+        if [ "$build_tp_prereqs" = "ON" ] && [ -z "$(cached_tree)" ]; then
             echo "Building prerequisites"
-            make $parallel third-party-prerequisites
+            cmake --build . --target third-party-prerequisites -- $parallel
             make_cache
         fi
 
         # Build superbuild (and run tests)
         echo "Building everything"
-        make $parallel
+        cmake --build . -- $parallel
 
         # Install
         echo "Installing"
-        make install
+        cmake --build . --target install -- $parallel
     )
 
     # Release version
@@ -245,8 +249,10 @@ Options:
 
   -g branch  Set git branch or tag to release from
   -G         Build from git (rather than the default source release archive)
-  -p mode    Purge cache (none|both|build|python)
+  -n         Do not build third-party prerequisites
+  -p mode    Purge cache (none|all|build|python)
   -t type    Build type (Debug|Release)
+  -S system  Build system (Unix Makefiles|Ninja)
   -d         Build doxygen API reference
   -e         Run extended tests
   -j n       Build in parallel
@@ -266,15 +272,17 @@ cachedir="${workspace}/cache"
 git_branch=HEAD
 purge=none
 build_type=Debug
+build_system="Unix Makefiles"
 doxygen=OFF
 extended_tests=OFF
 verbose=OFF
 cxxdetect=OFF
 parallel=
 build_git=OFF
+build_tp_prereqs=ON
 
 # Parse command line options.
-while getopts hBGdexvi:b:c:a:g:p:t:w:s:j: OPT; do
+while getopts hBGndexvi:b:c:a:g:p:t:S:w:s:j: OPT; do
     case "$OPT" in
         h)
             usage
@@ -285,6 +293,9 @@ while getopts hBGdexvi:b:c:a:g:p:t:w:s:j: OPT; do
             ;;
         G)
             build_git=ON
+            ;;
+        n)
+            build_tp_prereqs=OFF
             ;;
         d)
             doxygen=ON
@@ -318,6 +329,9 @@ while getopts hBGdexvi:b:c:a:g:p:t:w:s:j: OPT; do
             ;;
         t)
             build_type="$OPTARG"
+            ;;
+        S)
+            build_system="$OPTARG"
             ;;
         w)
             workspace="$OPTARG"

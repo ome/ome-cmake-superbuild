@@ -43,8 +43,28 @@ cmake_policy(VERSION 3.2.0)
 enable_language(CXX)
 enable_language(C)
 
+# Add our own modules to the include path
 list(APPEND CMAKE_MODULE_PATH
      "${CMAKE_CURRENT_LIST_DIR}/cmake")
+
+if(NOT MSVC)
+  # Get the path for the "make" command; note it's set to the
+  # native build tool by default so this overrides it.  The
+  # native tools is also set in CMAKE_BUILD_TOOL.  Note: this
+  # duplicates CMakeUnixFindMake using a different variable.
+  find_program(OME_MAKE_PROGRAM NAMES gmake make smake)
+  mark_as_advanced(OME_MAKE_PROGRAM)
+
+  # Look for a make tool provided by Xcode
+  if(NOT OME_MAKE_PROGRAM AND CMAKE_HOST_APPLE)
+    execute_process(COMMAND xcrun --find make
+      OUTPUT_VARIABLE _xcrun_out OUTPUT_STRIP_TRAILING_WHITESPACE
+      ERROR_VARIABLE _xcrun_err)
+    if(_xcrun_out)
+      set_property(CACHE OME_MAKE_PROGRAM PROPERTY VALUE "${_xcrun_out}")
+    endif()
+  endif()
+endif()
 
 # Options to pass through to main Bio-Formats build.
 include("${CMAKE_CURRENT_LIST_DIR}/Options.cmake")

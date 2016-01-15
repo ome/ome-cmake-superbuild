@@ -9,6 +9,7 @@ if(WIN32)
     set(ENV{PATH} "${WINDOWS_BUILD_CACHE}\\bin;$ENV{PATH}")
   endif()
   set(ENV{PATH} "${WINDOWS_BIN_DIR};${WINDOWS_PYTHON_DIR}\\bin;$ENV{PATH}")
+  set(ENV{PATH} "${WINDOWS_BIN_DIR};${WINDOWS_PYTHON_DIR}\\scripts;$ENV{PATH}")
   file(GLOB python_dirs LIST_DIRECTORIES true
        "${BIOFORMATS_EP_PYTHON_CACHE}/*/site-packages"
        "${BIOFORMATS_EP_PYTHON_CACHE}/*/*/site-packages"
