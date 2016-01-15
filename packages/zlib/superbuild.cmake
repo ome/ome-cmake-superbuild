@@ -7,7 +7,7 @@ set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
-  ${BIOFORMATS_EP_COMMON_ARGS}
+  ${OME_EP_COMMON_ARGS}
   URL "ftp://ftp.heanet.ie/mirrors/download.sourceforge.net/pub/sourceforge/l/li/libpng/zlib/1.2.8/zlib-1.2.8.tar.xz"
   URL_HASH "SHA512=405fbb4fc9ca8a59f34488205f403e77d4f184b08d344efbec6a8f558cac0512ee6cda1dc01b7913d61d9bed04cc710e61db1081bb8782c139fcb727f586fa54"
   SOURCE_DIR "${EP_SOURCE_DIR}"

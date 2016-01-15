@@ -69,9 +69,9 @@ endif()
 # Options to pass through to main Bio-Formats build.
 include("${CMAKE_CURRENT_LIST_DIR}/Options.cmake")
 
-project(bioformats-superbuild)
+project(ome-superbuild)
 
-message(STATUS "Configuring Bio-Formats Super-Build")
+message(STATUS "Configuring OME Super-Build")
 
 include(GNUInstallDirs)
 include(ExternalProject)
@@ -79,21 +79,19 @@ include(ExternalProject)
 # Helper functions and variables used by the following external projects.
 include("${CMAKE_CURRENT_LIST_DIR}/ExternalProjectHelpers.cmake")
 
-# External projects.
-ome_add_package(bioformats)
-
-# Single target to build all prerequisites
-add_custom_target(prerequisites
-                  DEPENDS bioformats-prerequisites)
+# External projects to build (will resolve dependencies recursively).
+foreach(package ${build-packages})
+  ome_add_package("${package}")
+endforeach()
 
 # Install cached build if needed
-if(BIOFORMATS_EP_BUILD_CACHE)
-  install(DIRECTORY ${BIOFORMATS_EP_BUILD_CACHE}/
+if(OME_EP_BUILD_CACHE)
+  install(DIRECTORY ${OME_EP_BUILD_CACHE}/
           DESTINATION ${CMAKE_INSTALL_PREFIX}
           USE_SOURCE_PERMISSIONS)
 endif()
 
 # Install superbuild
-install(DIRECTORY ${BIOFORMATS_EP_INSTALL_DIR}/
+install(DIRECTORY ${OME_EP_INSTALL_DIR}/
         DESTINATION ${CMAKE_INSTALL_PREFIX}
         USE_SOURCE_PERMISSIONS)

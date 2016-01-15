@@ -253,7 +253,7 @@ mkdir install\stage
 cd build
 
 if exist "%cachedir%\tree" (
-    set "CMAKE_PREREQS=-Dbuild-cache:PATH=%cachedir%\build -Dpython-cache:PATH=%cachedir%\python -Dbuild-prerequisites:BOOL=OFF -Dbioformats-superbuild_BUILD_gtest:BOOL=ON"
+    set "CMAKE_PREREQS=-Dbuild-cache:PATH=%cachedir%\build -Dpython-cache:PATH=%cachedir%\python -Dbuild-prerequisites:BOOL=OFF -Dome-superbuild_BUILD_gtest:BOOL=ON"
 ) else (
     set "CMAKE_PREREQS=-Dbuild-prerequisites:BOOL=ON"
 )

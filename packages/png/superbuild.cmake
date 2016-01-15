@@ -10,7 +10,7 @@ set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
-  ${BIOFORMATS_EP_COMMON_ARGS}
+  ${OME_EP_COMMON_ARGS}
   URL "ftp://ftp.heanet.ie/mirrors/download.sourceforge.net/pub/sourceforge/l/li/libpng/libpng16/1.6.19/libpng-1.6.19.tar.xz"
   URL_HASH "SHA512=166377ce4f8abfcae0e76bafbdbe94aebef60b9a12c1820eda392e63a8ba7a9e8d7ef4840d8d4853cd487418edd2c4515a889cd9f830d4223a13315e1db4c3b8"
   SOURCE_DIR "${EP_SOURCE_DIR}"
