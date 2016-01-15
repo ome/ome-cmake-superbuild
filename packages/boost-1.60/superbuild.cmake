@@ -1,7 +1,7 @@
 # boost superbuild
 
 # Set dependency list
-ome_add_dependencies(boost-1.59 THIRD_PARTY_DEPENDENCIES zlib bzip2 icu)
+ome_add_dependencies(boost-1.60 THIRD_PARTY_DEPENDENCIES zlib bzip2 icu)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   # VS 10.0
@@ -31,11 +31,19 @@ endif()
 # Builds boost without Boost.Python (not currently used by Bio-Formats)
 
 ExternalProject_Add(${EP_PROJECT}
-  ${BIOFORMATS_EP_COMMON_ARGS}
-  URL "http://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.bz2"
-  URL_HASH "SHA512=8139e1ae997a86974071c5714ad3307e3d8fd15ef702b81a953410dd4d424b932135f53a0ef4891d9b9b747a38e539e66d6a803388fe0cc98e5166be872d682a"
+  ${OME_EP_COMMON_ARGS}
+  URL "http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.bz2"
+  URL_HASH "SHA512=7c851b3fc2b322ff05d642d9cf03e7c30c5f04d5cf0579c99046b1ec708901c58a3d349031dfe24591f5b88c1e664b6a0d40abea6cce89abb52080c02eb725df"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   INSTALL_DIR ""
+  PATCH_COMMAND
+    ${CMAKE_COMMAND}
+    ${boost_CLANG_ARG}
+    "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
+    "-DBOOST_TOOLSET=${BOOST_TOOLSET}"
+    "-DCONFIG:INTERNAL=$<CONFIG>"
+    "-DEP_SCRIPT_CONFIG=${EP_SCRIPT_CONFIG}"
+    -P ${CMAKE_CURRENT_LIST_DIR}/patch.cmake
   CONFIGURE_COMMAND
     ${CMAKE_COMMAND}
     ${boost_CLANG_ARG}
@@ -47,7 +55,7 @@ ExternalProject_Add(${EP_PROJECT}
   BUILD_IN_SOURCE 1
   BUILD_COMMAND ${CMAKE_COMMAND}
     "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
-    "-DEP_INSTALL_DIR:PATH=${BIOFORMATS_EP_INSTALL_DIR}"
+    "-DEP_INSTALL_DIR:PATH=${OME_EP_INSTALL_DIR}"
     "-DBOOST_TOOLSET=${BOOST_TOOLSET}"
     "-DBOOST_BITS=${BOOST_BITS}"
     "-DCONFIG:INTERNAL=$<CONFIG>"

@@ -27,13 +27,13 @@ if(head OR bf-git-url OR bf-git-branch)
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
-  set(BOOST_VERSION 1.59)
+  set(BOOST_VERSION 1.60)
   message(STATUS "Building Bio-Formats from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
-  set(BOOST_VERSION 1.59)
+  set(BOOST_VERSION 1.60)
   message(STATUS "Building Bio-Formats from source release (${RELEASE_URL})")
 endif()
 
@@ -45,7 +45,7 @@ ome_add_dependencies(bioformats
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
-     "-DBOOST_ROOT=${CMAKE_INSTALL_PREFIX}"
+     "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
      -DBoost_NO_BOOST_CMAKE:BOOL=true
      "-DBoost_ADDITIONAL_VERSIONS=${BOOST_VERSION}"
      ${SUPERBUILD_OPTIONS})
