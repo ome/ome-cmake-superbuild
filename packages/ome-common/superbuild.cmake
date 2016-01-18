@@ -2,7 +2,7 @@
 
 # Options to build from git (defaults to source zip if unset)
 set(ome-common-head OFF CACHE BOOL "Force building from current git develop branch")
-set(ome-common-git-dir "" CACHE PATH "Local path of OME Common C++ git repository")
+set(ome-common-dir "" CACHE PATH "Local directory containing the OME Common C++ source code")
 set(ome-common-git-url "" CACHE STRING "URL of OME Common C++ git repository")
 set(ome-common-git-branch "" CACHE STRING "URL of OME Common C++ git repository")
 
@@ -18,15 +18,18 @@ if(NOT ome-common-head)
   if(ome-common-git-url)
     set(GIT_URL ${ome-common-git-url})
   endif()
-  if(ome-common-git-dir)
-    set(GIT_URL ${ome-common-git-dir})
-  endif()
   if(ome-common-git-branch)
     set(GIT_BRANCH ${ome-common-git-branch})
   endif()
 endif()
 
-if(ome-common-head OR ome-common-git-url OR ome-common-git-dir OR ome-common-git-branch)
+if(ome-common-dir)
+  set(EP_SOURCE_DOWNLOAD
+    DOWNLOAD_COMMAND "")
+  set(EP_SOURCE_DIR "${ome-common-dir}")
+  set(BOOST_VERSION 1.60)
+  message(STATUS "Building OME Common C++ from local directory (${ome-common-dir})")
+elseif(ome-common-head OR ome-common-git-url OR ome-common-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
