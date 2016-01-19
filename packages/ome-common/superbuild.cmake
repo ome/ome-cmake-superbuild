@@ -45,7 +45,7 @@ else()
 endif()
 
 # Set dependency list
-ome_add_dependencies(ome-common THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} gtest xerces)
+ome_add_dependencies(ome-common THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} gtest xerces xalan)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
