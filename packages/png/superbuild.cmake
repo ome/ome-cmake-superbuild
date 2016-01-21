@@ -13,8 +13,8 @@ if(NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${EP_PROJECT})
 
   ExternalProject_Add(${EP_PROJECT}
     ${BIOFORMATS_EP_COMMON_ARGS}
-    URL "ftp://ftp.heanet.ie/mirrors/download.sourceforge.net/pub/sourceforge/l/li/libpng/libpng16/1.6.19/libpng-1.6.19.tar.xz"
-    URL_HASH "SHA512=166377ce4f8abfcae0e76bafbdbe94aebef60b9a12c1820eda392e63a8ba7a9e8d7ef4840d8d4853cd487418edd2c4515a889cd9f830d4223a13315e1db4c3b8"
+    URL "ftp://ftp.heanet.ie/mirrors/download.sourceforge.net/pub/sourceforge/l/li/libpng/libpng16/1.6.21/libpng-1.6.21.tar.xz"
+    URL_HASH "SHA512=84f644d455cf90ad721a098fa9e0fcfa6df22a12625faad1c36bf2353ab2315040c7cbd05522c05937c3a31b1c9dd7821cbe29c4a5ba27dec3de92c81ef9ed32"
     SOURCE_DIR "${EP_SOURCE_DIR}"
     BINARY_DIR "${EP_BINARY_DIR}"
     INSTALL_DIR ""
