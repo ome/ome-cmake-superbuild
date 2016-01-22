@@ -2,6 +2,7 @@
 
 # Options to build from git (defaults to source zip if unset)
 set(head OFF CACHE BOOL "Force building from current git develop branch")
+set(bf-dir "" CACHE PATH "Local directory containing the Bio-Formats source code")
 set(bf-git-url "" CACHE STRING "URL of Bio-Formats git repository")
 set(bf-git-branch "" CACHE STRING "URL of Bio-Formats git repository")
 
@@ -9,9 +10,9 @@ set(bf-git-branch "" CACHE STRING "URL of Bio-Formats git repository")
 set(RELEASE_URL "http://downloads.openmicroscopy.org/bio-formats/5.1.7/artifacts/bioformats-dfsg-5.1.7.tar.xz")
 set(RELEASE_HASH "SHA512=d6e23abdfe7a13c7b151ecf779cec5a29b147592f65671f8547670adc88a5fe447171cc6eed801a7843b020984cc82331ff9d24634450b4c5bc0f3fe7677bf03")
 
-# Current development branch (defaults for head option).
+# Current 5.1 development branch (defaults for head option).
 set(GIT_URL "https://github.com/openmicroscopy/bioformats.git")
-set(GIT_BRANCH "develop")
+set(GIT_BRANCH "dev_5_1")
 
 if(NOT head)
   if(bf-git-url)
@@ -22,37 +23,45 @@ if(NOT head)
   endif()
 endif()
 
-if(head OR bf-git-url OR bf-git-branch)
+if(bf-dir)
+  set(EP_SOURCE_DOWNLOAD
+    DOWNLOAD_COMMAND "")
+  set(EP_SOURCE_DIR "${bf-dir}")
+  set(BOOST_VERSION 1.60)
+  message(STATUS "Building Bio-Formats from local directory (${bf-dir})")
+elseif(head OR bf-git-url OR bf-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
-  set(BOOST_VERSION 1.59)
+  set(BOOST_VERSION 1.60)
   message(STATUS "Building Bio-Formats from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
-  set(BOOST_VERSION 1.59)
+  set(BOOST_VERSION 1.60)
   message(STATUS "Building Bio-Formats from source release (${RELEASE_URL})")
 endif()
 
 # Set dependency list
-if(build-prerequisites)
-  set(EP_DEPS boost-${BOOST_VERSION} png tiff xerces py-genshi py-sphinx)
-endif()
-ome_add_dependencies(bioformats ${EP_DEPS})
+ome_add_dependencies(bioformats
+                     THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} png tiff xerces
+                                              py-genshi py-sphinx)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
-     "-DBOOST_ROOT=${CMAKE_INSTALL_PREFIX}"
+     "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
      -DBoost_NO_BOOST_CMAKE:BOOL=true
      "-DBoost_ADDITIONAL_VERSIONS=${BOOST_VERSION}"
      ${SUPERBUILD_OPTIONS})
+if(TARGET gtest)
+  list(APPEND CONFIGURE_OPTIONS "-DGTEST_SOURCE=${CMAKE_BINARY_DIR}/gtest-source")
+endif()
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
-  ${BIOFORMATS_EP_COMMON_ARGS}
+  ${OME_EP_COMMON_ARGS}
   ${EP_SOURCE_DOWNLOAD}
   SOURCE_DIR ${EP_SOURCE_DIR}
   BINARY_DIR ${EP_BINARY_DIR}

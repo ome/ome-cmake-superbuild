@@ -22,7 +22,7 @@ else()
 
   message(STATUS "Building icu (Unix)")
 
-  execute_process(COMMAND ${CMAKE_MAKE_PROGRAM}
+  execute_process(COMMAND ${OME_MAKE_PROGRAM}
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE build_result)
 

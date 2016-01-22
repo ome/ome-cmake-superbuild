@@ -1,4 +1,4 @@
-# boost 1.59 build
+# boost 1.60 build
 
 Changes made locally
 --------------------

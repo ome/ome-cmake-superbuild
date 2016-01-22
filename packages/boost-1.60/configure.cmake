@@ -15,8 +15,8 @@ else()
   message(STATUS "Bootstrapping boost (Unix)")
 
   execute_process(COMMAND ./bootstrap.sh
-                          "--prefix=${BIOFORMATS_EP_INSTALL_DIR}"
-                          "--libdir=${BIOFORMATS_EP_LIB_DIR}"
+                          "--prefix=${OME_EP_INSTALL_DIR}"
+                          "--libdir=${OME_EP_LIB_DIR}"
                           "--without-libraries=python"
                           "--with-toolset=${BOOST_TOOLSET}"
                   WORKING_DIRECTORY ${SOURCE_DIR}
