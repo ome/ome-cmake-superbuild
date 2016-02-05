@@ -20,27 +20,27 @@ if(WIN32)
        "${SOURCE_DIR}/src/xercesc/*.c")
 
   file(INSTALL ${XERCES_DLLS}
-       DESTINATION "${BIOFORMATS_EP_BIN_DIR}")
+       DESTINATION "${OME_EP_BIN_DIR}")
   file(INSTALL ${XERCES_ILKS}
-       DESTINATION "${BIOFORMATS_EP_BIN_DIR}")
+       DESTINATION "${OME_EP_BIN_DIR}")
   file(INSTALL ${XERCES_EXPS}
-       DESTINATION "${BIOFORMATS_EP_LIB_DIR}")
+       DESTINATION "${OME_EP_LIB_DIR}")
   file(INSTALL ${XERCES_LIBS}
-       DESTINATION "${BIOFORMATS_EP_LIB_DIR}")
+       DESTINATION "${OME_EP_LIB_DIR}")
   file(INSTALL ${XERCES_PDBS}
-       DESTINATION "${BIOFORMATS_EP_LIB_DIR}")
+       DESTINATION "${OME_EP_LIB_DIR}")
   foreach(hdr ${XERCES_HDRS})
     get_filename_component(hdir "${hdr}" DIRECTORY)
-    file(MAKE_DIRECTORY "${BIOFORMATS_EP_INCLUDE_DIR}/xercesc/${hdir}")
+    file(MAKE_DIRECTORY "${OME_EP_INCLUDE_DIR}/xercesc/${hdir}")
     file(INSTALL "${SOURCE_DIR}/src/xercesc/${hdr}"
-         DESTINATION "${BIOFORMATS_EP_INCLUDE_DIR}/xercesc/${hdir}")
+         DESTINATION "${OME_EP_INCLUDE_DIR}/xercesc/${hdir}")
   endforeach()
 
 else()
 
   message(STATUS "Installing xerces (Unix)")
 
-  execute_process(COMMAND ${CMAKE_MAKE_PROGRAM} install
+  execute_process(COMMAND ${OME_MAKE_PROGRAM} install
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE install_result)
 

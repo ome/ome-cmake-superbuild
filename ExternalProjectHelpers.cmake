@@ -34,38 +34,88 @@
 # policies, either expressed or implied, of any organization.
 # #L%
 
+include(CMakeParseArguments)
+
+# Single target to build all prerequisites
+add_custom_target(third-party-prerequisites)
+
 # Include superbuild logic for the given package(s)
 # Each package is only included once, using the ${name}_INCLUDED guard
-function(ome_add_package)
-  foreach(name ${ARGV})
+function(ome_add_package name)
+  set(options THIRD_PARTY)
+  set(oneValueArgs TARGETVAR)
+  set(multiValueArgs)
+
+  cmake_parse_arguments(OAP "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+  if(OAP_UNPARSED_ARGUMENTS)
+    message(FATAL_ERROR "Unknown keywords given to OME_ADD_PACKAGES(): \"${OAP_UNPARSED_ARGUMENTS}\"")
+  endif()
+
+  if(OAP_TARGETVAR)
+    set(${OAP_TARGETVAR} "${name}-NOTFOUND" PARENT_SCOPE)
+  endif()
+
+  if(NOT OAP_THIRD_PARTY OR
+      (OAP_THIRD_PARTY AND build-prerequisites AND NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${name}) OR
+      (OAP_THIRD_PARTY AND NOT build-prerequisites AND ${CMAKE_PROJECT_NAME}_BUILD_${name}))
     get_property(included GLOBAL PROPERTY ${name}_INCLUDED SET)
     if(NOT included)
       set_property(GLOBAL PROPERTY ${name}_INCLUDED ON)
       set(EP_PROJECT "${name}")
       set(EP_SOURCE_DIR "${CMAKE_BINARY_DIR}/${name}-source")
       set(EP_BINARY_DIR "${CMAKE_BINARY_DIR}/${name}-build")
+      if(OAP_THIRD_PARTY)
+        add_dependencies(third-party-prerequisites "${name}")
+        message(STATUS "Adding third-party dependency - ${name}")
+      else()
+        message(STATUS "Adding dependency - ${name}")
+      endif()
       include("${PROJECT_SOURCE_DIR}/packages/${name}/superbuild.cmake")
     endif()
-  endforeach()
+    if(OAP_TARGETVAR)
+      set(${OAP_TARGETVAR} "${name}" PARENT_SCOPE)
+    endif()
+  else()
+    message(STATUS "Ignoring dependency - ${name}")
+  endif()
 endfunction()
 
 # Allow recursive addition of dependencies; store them in the specified
 # variable and recursively add them.  Dependencies are stored in
 # target_DEPENDENCIES
 function(ome_add_dependencies target)
+  set(options)
+  set(oneValueArgs)
+  set(multiValueArgs DEPENDENCIES THIRD_PARTY_DEPENDENCIES)
+
+  cmake_parse_arguments(OAD "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+  if(OAD_UNPARSED_ARGUMENTS)
+    message(FATAL_ERROR "Unknown keywords given to OME_ADD_DEPENDENCIES(): \"${OAD_UNPARSED_ARGUMENTS}\"")
+  endif()
+
   get_property(dependencies_added GLOBAL PROPERTY ${target}_DEPENDENCIES_ADDED SET)
   if(NOT dependencies_added)
     set_property(GLOBAL PROPERTY ${target}_DEPENDENCIES_ADDED ON)
-    foreach(name ${ARGN})
-      ome_add_package("${name}")
-      list(APPEND ${target}_DEPENDENCIES "${name}")
+    foreach(name ${OAD_DEPENDENCIES})
+      ome_add_package("${name}" TARGETVAR targetname)
+      if(targetname)
+        list(APPEND ${target}_DEPENDENCIES "${targetname}")
+      endif()
+    endforeach()
+    foreach(name ${OAD_THIRD_PARTY_DEPENDENCIES})
+      ome_add_package("${name}" THIRD_PARTY TARGETVAR targetname)
+      if(targetname)
+        list(APPEND ${target}_DEPENDENCIES "${targetname}")
+      endif()
     endforeach()
     if (${target}_DEPENDENCIES)
       list(REMOVE_DUPLICATES ${target}_DEPENDENCIES)
     endif()
     set(${target}_DEPENDENCIES "${${target}_DEPENDENCIES}" PARENT_SCOPE)
     add_custom_target(${target}-prerequisites
-                      DEPENDS ${${target}_DEPENDENCIES})
+      DEPENDS ${${target}_DEPENDENCIES})
   endif()
 endfunction()
 
@@ -90,82 +140,83 @@ set(GENERIC_PYTHON_INSTALL "${PROJECT_SOURCE_DIR}/helpers/python_install.cmake")
 
 # Compute -G arg for configuring external projects with the same CMake generator:
 if(CMAKE_EXTRA_GENERATOR)
-  set(BIOFORMATS_EP_GENERATOR "${CMAKE_EXTRA_GENERATOR} - ${CMAKE_GENERATOR}")
+  set(OME_EP_GENERATOR "${CMAKE_EXTRA_GENERATOR} - ${CMAKE_GENERATOR}")
 else()
-  set(BIOFORMATS_EP_GENERATOR "${CMAKE_GENERATOR}")
+  set(OME_EP_GENERATOR "${CMAKE_GENERATOR}")
 endif()
 
 set(source-cache "${CMAKE_BINARY_DIR}/sourcecache" CACHE FILEPATH "Directory for cached source downloads")
 file(MAKE_DIRECTORY ${source-cache})
 
 set(build-cache "" CACHE FILEPATH "Directory for cached builds (to avoid rebuilding already built dependencies)")
-set(BIOFORMATS_EP_BUILD_CACHE "${build-cache}")
+set(OME_EP_BUILD_CACHE "${build-cache}")
 
 set(python-cache "" CACHE FILEPATH "Directory for cached python builds (to avoid rebuilding already built build dependencies)")
-set(BIOFORMATS_EP_PYTHON_CACHE "${python-cache}")
+set(OME_EP_PYTHON_CACHE "${python-cache}")
 
-set(BIOFORMATS_EP_INSTALL_DIR ${CMAKE_BINARY_DIR}/superbuild-install)
-set(BIOFORMATS_EP_INCLUDE_DIR ${CMAKE_BINARY_DIR}/superbuild-install/include)
-set(BIOFORMATS_EP_LIB_DIR ${CMAKE_BINARY_DIR}/superbuild-install/lib)
-set(BIOFORMATS_EP_BIN_DIR ${CMAKE_BINARY_DIR}/superbuild-install/bin)
-set(BIOFORMATS_EP_PYTHON_DIR ${CMAKE_BINARY_DIR}/python)
+set(OME_EP_INSTALL_DIR ${CMAKE_BINARY_DIR}/superbuild-install)
+set(OME_EP_INCLUDE_DIR ${CMAKE_BINARY_DIR}/superbuild-install/include)
+set(OME_EP_LIB_DIR ${CMAKE_BINARY_DIR}/superbuild-install/lib)
+set(OME_EP_BIN_DIR ${CMAKE_BINARY_DIR}/superbuild-install/bin)
+set(OME_EP_PYTHON_DIR ${CMAKE_BINARY_DIR}/python)
 
-list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_INSTALL_DIR}")
+list(APPEND CMAKE_PREFIX_PATH "${OME_EP_INSTALL_DIR}")
 
-if(BIOFORMATS_EP_BUILD_CACHE)
-  list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_BUILD_CACHE}")
-  list(APPEND CMAKE_LIBRARY_PATH "${BIOFORMATS_EP_BUILD_CACHE}/lib")
-  list(APPEND CMAKE_PROGRAM_PATH "${BIOFORMATS_EP_BUILD_CACHE}/bin")
+if(OME_EP_BUILD_CACHE)
+  list(APPEND CMAKE_PREFIX_PATH "${OME_EP_BUILD_CACHE}")
+  list(APPEND CMAKE_LIBRARY_PATH "${OME_EP_BUILD_CACHE}/lib")
+  list(APPEND CMAKE_PROGRAM_PATH "${OME_EP_BUILD_CACHE}/bin")
 endif()
-if(BIOFORMATS_EP_PYTHON_CACHE)
-  list(APPEND CMAKE_PREFIX_PATH "${BIOFORMATS_EP_PYTHON_CACHE}")
+if(OME_EP_PYTHON_CACHE)
+  list(APPEND CMAKE_PREFIX_PATH "${OME_EP_PYTHON_CACHE}")
 endif()
 
 # Look in superbuild staging tree when building
 if(WIN32)
   # Windows compiler flags
 else()
-  set(CMAKE_CXX_FLAGS           "${CMAKE_CXX_FLAGS} -I${BIOFORMATS_EP_INCLUDE_DIR}")
-  set(CMAKE_EXE_LINKER_FLAGS    "${CMAKE_EXE_LINKER_FLAGS} -L${BIOFORMATS_EP_LIB_DIR}")
-  set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -L${BIOFORMATS_EP_LIB_DIR}")
-  set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -L${BIOFORMATS_EP_LIB_DIR}")
+  set(CMAKE_CXX_FLAGS           "${CMAKE_CXX_FLAGS} -I${OME_EP_INCLUDE_DIR}")
+  set(CMAKE_EXE_LINKER_FLAGS    "${CMAKE_EXE_LINKER_FLAGS} -L${OME_EP_LIB_DIR}")
+  set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -L${OME_EP_LIB_DIR}")
+  set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -L${OME_EP_LIB_DIR}")
 endif()
 
 
 set(EP_SCRIPT_CONFIG "${PROJECT_BINARY_DIR}/project-config.cmake")
 
-string(REPLACE ";" "^^" BIOFORMATS_EP_ESCAPED_CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}")
-string(REPLACE ";" "^^" BIOFORMATS_EP_ESCAPED_CMAKE_LIBRARY_PATH "${CMAKE_LIBRARY_PATH}")
-string(REPLACE ";" "^^" BIOFORMATS_EP_ESCAPED_CMAKE_PROGRAM_PATH "${CMAKE_PROGRAM_PATH}")
+string(REPLACE ";" "^^" OME_EP_ESCAPED_CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}")
+string(REPLACE ";" "^^" OME_EP_ESCAPED_CMAKE_LIBRARY_PATH "${CMAKE_LIBRARY_PATH}")
+string(REPLACE ";" "^^" OME_EP_ESCAPED_CMAKE_PROGRAM_PATH "${CMAKE_PROGRAM_PATH}")
 
-set(BIOFORMATS_EP_CMAKE_ARGS
-  "-DCMAKE_PREFIX_PATH:INTERNAL=${BIOFORMATS_EP_ESCAPED_CMAKE_PREFIX_PATH}"
-  "-DCMAKE_LIBRARY_PATH:INTERNAL=${BIOFORMATS_EP_ESCAPED_CMAKE_LIBRARY_PATH}"
-  "-DCMAKE_PROGRAM_PATH:INTERNAL=${BIOFORMATS_EP_ESCAPED_CMAKE_PROGRAM_PATH}"
+set(OME_EP_CMAKE_ARGS
+  "-DCMAKE_PREFIX_PATH:INTERNAL=${OME_EP_ESCAPED_CMAKE_PREFIX_PATH}"
+  "-DCMAKE_LIBRARY_PATH:INTERNAL=${OME_EP_ESCAPED_CMAKE_LIBRARY_PATH}"
+  "-DCMAKE_PROGRAM_PATH:INTERNAL=${OME_EP_ESCAPED_CMAKE_PROGRAM_PATH}"
   "-DCMAKE_BUILD_TYPE:INTERNAL=${CMAKE_BUILD_TYPE}"
 )
 
 # Set CMake OSX variables needed to be passed to external projects
 if(APPLE)
-  list(APPEND BIOFORMATS_EP_CMAKE_ARGS
+  list(APPEND OME_EP_CMAKE_ARGS
     -DCMAKE_OSX_ARCHITECTURES:STRING=${CMAKE_OSX_ARCHITECTURES}
     -DCMAKE_OSX_SYSROOT:PATH=${CMAKE_OSX_SYSROOT}
     -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=${CMAKE_OSX_DEPLOYMENT_TARGET})
 endif()
 
-set(BIOFORMATS_EP_CMAKE_CACHE_ARGS
+set(OME_EP_CMAKE_CACHE_ARGS
   "-DCMAKE_AR:FILEPATH=${CMAKE_AR}"
   "-DCMAKE_C_COMPILER:FILEPATH=${CMAKE_C_COMPILER}"
   "-DCMAKE_CXX_COMPILER:FILEPATH=${CMAKE_CXX_COMPILER}"
   "-DCMAKE_LINKER:FILEPATH=${CMAKE_LINKER}"
-  "-DCMAKE_MAKE_PROGRAM:FILEPATH=${CMAKE_MAKE_PROGRAM}"
   "-DCMAKE_NM:FILEPATH=${CMAKE_NM}"
   "-DCMAKE_OBJCOPY:FILEPATH=${CMAKE_OBJCOPY}"
   "-DCMAKE_OBJDUMP:FILEPATH=${CMAKE_OBJDUMP}"
   "-DCMAKE_RANLIB:FILEPATH=${CMAKE_RANLIB}"
   "-DCMAKE_STRIP:FILEPATH=${CMAKE_STRIP}"
 
+  "-DCMAKE_BUILD_TOOL:FILEPATH=${CMAKE_BUILD_TOOL}"
   "-DCMAKE_MAKE_PROGRAM:FILEPATH=${CMAKE_MAKE_PROGRAM}"
+  "-DOME_MAKE_PROGRAM:FILEPATH=${OME_MAKE_PROGRAM}"
 
   "-DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}"
   "-DCMAKE_CXX_FLAGS_DEBUG:STRING=${CMAKE_CXX_FLAGS_DEBUG}"
@@ -227,57 +278,50 @@ set(BIOFORMATS_EP_CMAKE_CACHE_ARGS
   ${SUPERBUILD_OPTIONS}
 )
 
-# With make, we can do a DESTDIR staging install, otherwise we have to
-# make the staging directory the installation prefix (which might
-# cause problems when the contents are relocated).
-if (CMAKE_GENERATOR MATCHES "Unix Makefiles")
-  list(APPEND BIOFORMATS_EP_CMAKE_CACHE_ARGS "-DCMAKE_INSTALL_PREFIX:PATH=")
-else()
-  list(APPEND BIOFORMATS_EP_CMAKE_CACHE_ARGS "-DCMAKE_INSTALL_PREFIX:PATH=${BIOFORMATS_EP_INSTALL_DIR}")
-endif()
+list(APPEND OME_EP_CMAKE_CACHE_ARGS "-DCMAKE_INSTALL_PREFIX:PATH=${OME_EP_INSTALL_DIR}")
 
 # Primarily for Windows; will need extending for non-x86 platforms if required.
 if(MSVC)
-  list(APPEND BIOFORMATS_EP_CMAKE_CACHE_ARGS
+  list(APPEND OME_EP_CMAKE_CACHE_ARGS
        "-DMSVC:INTERNAL=${MSVC}"
        "-DMSVC_VERSION:INTERNAL=${MSVC_VERSION}")
 endif()
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-  list(APPEND BIOFORMATS_EP_CMAKE_CACHE_ARGS
+  list(APPEND OME_EP_CMAKE_CACHE_ARGS
        "-DEP_PLATFORM_BITS:INTERNAL=64")
 else()
-  list(APPEND BIOFORMATS_EP_CMAKE_CACHE_ARGS
+  list(APPEND OME_EP_CMAKE_CACHE_ARGS
        "-DEP_PLATFORM_BITS:INTERNAL=32")
 endif()
 
-set(BIOFORMATS_EP_SCRIPT_ARGS
+set(OME_EP_SCRIPT_ARGS
   "-DCMAKE_C_COMPILER_ID:STRING=${CMAKE_C_COMPILER_ID}"
   "-DCMAKE_CXX_COMPILER_ID:STRING=${CMAKE_CXX_COMPILER_ID}"
-  "-DBIOFORMATS_EP_INSTALL_DIR:PATH=${BIOFORMATS_EP_INSTALL_DIR}"
-  "-DBIOFORMATS_EP_PYTHON_DIR:PATH=${BIOFORMATS_EP_PYTHON_DIR}"
-  "-DBIOFORMATS_EP_BIN_DIR:PATH=${BIOFORMATS_EP_BIN_DIR}"
-  "-DBIOFORMATS_EP_INCLUDE_DIR:PATH=${BIOFORMATS_EP_INCLUDE_DIR}"
-  "-DBIOFORMATS_EP_LIB_DIR:PATH=${BIOFORMATS_EP_LIB_DIR}"
-  "-DBIOFORMATS_EP_BUILD_CACHE:PATH=${BIOFORMATS_EP_BUILD_CACHE}"
-  "-DBIOFORMATS_EP_PYTHON_CACHE:PATH=${BIOFORMATS_EP_PYTHON_CACHE}"
+  "-DOME_EP_INSTALL_DIR:PATH=${OME_EP_INSTALL_DIR}"
+  "-DOME_EP_PYTHON_DIR:PATH=${OME_EP_PYTHON_DIR}"
+  "-DOME_EP_BIN_DIR:PATH=${OME_EP_BIN_DIR}"
+  "-DOME_EP_INCLUDE_DIR:PATH=${OME_EP_INCLUDE_DIR}"
+  "-DOME_EP_LIB_DIR:PATH=${OME_EP_LIB_DIR}"
+  "-DOME_EP_BUILD_CACHE:PATH=${OME_EP_BUILD_CACHE}"
+  "-DOME_EP_PYTHON_CACHE:PATH=${OME_EP_PYTHON_CACHE}"
   "-DGENERIC_CMAKE_ENVIRONMENT:PATH=${GENERIC_CMAKE_ENVIRONMENT}"
   "-DCMAKE_GENERATOR:PATH=${CMAKE_GENERATOR}"
 )
 
-  set(BIOFORMATS_EP_COMMON_ARGS
+  set(OME_EP_COMMON_ARGS
   LIST_SEPARATOR "^^"
   DOWNLOAD_DIR ${source-cache}
-  CMAKE_GENERATOR ${BIOFORMATS_EP_GENERATOR}
-  CMAKE_ARGS ${BIOFORMATS_EP_CMAKE_ARGS}
-  CMAKE_CACHE_ARGS ${BIOFORMATS_EP_CMAKE_CACHE_ARGS}
+  CMAKE_GENERATOR ${OME_EP_GENERATOR}
+  CMAKE_ARGS ${OME_EP_CMAKE_ARGS}
+  CMAKE_CACHE_ARGS ${OME_EP_CMAKE_CACHE_ARGS}
 )
 
 # Create script file for use by external project scripts, where the
 # command-line and cache args won't be used.
-foreach(arg ${BIOFORMATS_EP_CMAKE_ARGS}
-            ${BIOFORMATS_EP_CMAKE_CACHE_ARGS}
-            ${BIOFORMATS_EP_SCRIPT_ARGS})
+foreach(arg ${OME_EP_CMAKE_ARGS}
+            ${OME_EP_CMAKE_CACHE_ARGS}
+            ${OME_EP_SCRIPT_ARGS})
   if("${arg}" MATCHES "^-D(.*)")
     set(arg "${CMAKE_MATCH_1}")
     if("${arg}" MATCHES "^([^:]+):([^=]+)=(.*)$")

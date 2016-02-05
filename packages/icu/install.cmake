@@ -15,13 +15,13 @@ if(WIN32)
     set(ICU_LIB_DIR ${SOURCE_DIR}/lib)
   endif()
 
-  execute_process(COMMAND ${CMAKE_COMMAND} -E copy_directory "${ICU_BIN_DIR}" "${BIOFORMATS_EP_BIN_DIR}"
+  execute_process(COMMAND ${CMAKE_COMMAND} -E copy_directory "${ICU_BIN_DIR}" "${OME_EP_BIN_DIR}"
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE install_bin_result)
-  execute_process(COMMAND ${CMAKE_COMMAND} -E copy_directory "${ICU_LIB_DIR}" "${BIOFORMATS_EP_LIB_DIR}"
+  execute_process(COMMAND ${CMAKE_COMMAND} -E copy_directory "${ICU_LIB_DIR}" "${OME_EP_LIB_DIR}"
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE install_lib_result)
-  execute_process(COMMAND ${CMAKE_COMMAND} -E copy_directory "${ICU_INCLUDE_DIR}" "${BIOFORMATS_EP_INCLUDE_DIR}"
+  execute_process(COMMAND ${CMAKE_COMMAND} -E copy_directory "${ICU_INCLUDE_DIR}" "${OME_EP_INCLUDE_DIR}"
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE install_include_result)
 
@@ -33,7 +33,7 @@ else(WIN32)
 
   message(STATUS "Installing icu (Unix)")
 
-  execute_process(COMMAND ${CMAKE_MAKE_PROGRAM} install
+  execute_process(COMMAND ${OME_MAKE_PROGRAM} install
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE install_result)
 
