@@ -27,20 +27,20 @@ if(bf-dir)
   set(EP_SOURCE_DOWNLOAD
     DOWNLOAD_COMMAND "")
   set(EP_SOURCE_DIR "${bf-dir}")
-  set(BOOST_VERSION 1.60)
+  set(BOOST_VERSION 1.59)
   message(STATUS "Building Bio-Formats from local directory (${bf-dir})")
 elseif(head OR bf-git-url OR bf-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
-  set(BOOST_VERSION 1.60)
+  set(BOOST_VERSION 1.59)
   message(STATUS "Building Bio-Formats from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
-  set(BOOST_VERSION 1.60)
+  set(BOOST_VERSION 1.59)
   message(STATUS "Building Bio-Formats from source release (${RELEASE_URL})")
 endif()
 
