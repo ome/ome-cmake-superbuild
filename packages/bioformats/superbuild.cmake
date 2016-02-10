@@ -29,7 +29,7 @@ if(bf-dir)
   set(EP_SOURCE_DIR "${bf-dir}")
   set(BOOST_VERSION 1.60)
   message(STATUS "Building Bio-Formats from local directory (${bf-dir})")
-elseif(head OR bf-git-url OR  OR bf-git-branch)
+elseif(head OR bf-git-url OR bf-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
