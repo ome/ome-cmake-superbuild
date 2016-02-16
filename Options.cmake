@@ -17,7 +17,7 @@ option(embedded-gtest "Use embedded gtest rather than an external build" OFF)
 option(relocatable-install "Install tree will be relocatable" ON)
 
 # List of packages to build
-set(build-packages "bioformats" CACHE STRING "Package(s) to build")
+set(build-packages "bioformats-cpp" CACHE STRING "Packages to build")
 
 option(build-prerequisites "Build third-party prerequisites" ON)
 

@@ -1,54 +1,54 @@
-# bioformats superbuild
+# bioformats-cpp superbuild
 
 # Options to build from git (defaults to source zip if unset)
 set(head OFF CACHE BOOL "Force building from current git develop branch")
-set(bf-dir "" CACHE PATH "Local directory containing the Bio-Formats source code")
-set(bf-git-url "" CACHE STRING "URL of Bio-Formats git repository")
-set(bf-git-branch "" CACHE STRING "URL of Bio-Formats git repository")
+set(bf-cpp-dir "" CACHE PATH "Local directory containing the Bio-Formats source code")
+set(bf-cpp-git-url "" CACHE STRING "URL of Bio-Formats git repository")
+set(bf-cpp-git-branch "" CACHE STRING "URL of Bio-Formats git repository")
 
 # Current stable release.
-set(RELEASE_URL "http://downloads.openmicroscopy.org/bio-formats/5.1.7/artifacts/bioformats-dfsg-5.1.7.tar.xz")
-set(RELEASE_HASH "SHA512=d6e23abdfe7a13c7b151ecf779cec5a29b147592f65671f8547670adc88a5fe447171cc6eed801a7843b020984cc82331ff9d24634450b4c5bc0f3fe7677bf03")
+set(RELEASE_URL "")
+set(RELEASE_HASH "")
 
 # Current development branch (defaults for head option).
-set(GIT_URL "https://github.com/openmicroscopy/bioformats.git")
+set(GIT_URL "https://github.com/rleigh-dundee/bioformats-cpp.git")
 set(GIT_BRANCH "develop")
 
 if(NOT head)
-  if(bf-git-url)
-    set(GIT_URL ${bf-git-url})
+  if(bf-cpp-git-url)
+    set(GIT_URL ${bf-cpp-git-url})
   endif()
-  if(bf-git-branch)
-    set(GIT_BRANCH ${bf-git-branch})
+  if(bf-cpp-git-branch)
+    set(GIT_BRANCH ${bf-cpp-git-branch})
   endif()
 endif()
 
-if(bf-dir)
+if(bf-cpp-dir)
   set(EP_SOURCE_DOWNLOAD
     DOWNLOAD_COMMAND "")
-  set(EP_SOURCE_DIR "${bf-dir}")
+  set(EP_SOURCE_DIR "${bf-cpp-dir}")
   set(BOOST_VERSION 1.60)
-  message(STATUS "Building OME XML C++ from local directory (${bf-dir})")
-elseif(head OR bf-git-url OR bf-git-branch)
+  message(STATUS "Building Bio-Formats C++ from local directory (${bf-cpp-dir})")
+elseif(head OR bf-cpp-git-url OR bf-cpp-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
   set(BOOST_VERSION 1.60)
-  message(STATUS "Building OME XML C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
+  message(STATUS "Building Bio-Formats C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
   set(BOOST_VERSION 1.60)
-  message(STATUS "Building OME XML C++ from source release (${RELEASE_URL})")
+  message(STATUS "Building Bio-Formats C++ from source release (${RELEASE_URL})")
 endif()
 
 # Set dependency list
-ome_add_dependencies(bioformats
-                     DEPENDENCIES ome-common
-                     THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} png tiff xerces
-                                              xalan py-genshi py-sphinx gtest)
+ome_add_dependencies(bioformats-cpp
+                     DEPENDENCIES bioformats
+                     THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} png tiff
+                                              py-sphinx gtest)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS

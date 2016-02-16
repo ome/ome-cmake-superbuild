@@ -259,7 +259,7 @@ if exist "%cachedir%\tree" (
 )
 
 if [%build_git%] == [ON] (
-    set "GIT_OPTIONS=-Dbf-dir=%workspace%\bioformats -Dome-common-dir=%workspace%\ome-common-cpp"
+    set "GIT_OPTIONS=-Dbf-dir=%workspace%\bioformats -Dbf-cpp-dir=%workspace%\bioformats-cpp -Dome-common-dir=%workspace%\ome-common-cpp"
 )
 
 if [%build_system%] == [MSBuild] (

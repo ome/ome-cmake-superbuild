@@ -119,7 +119,7 @@ build() {
 
     GIT_OPTIONS=
     if [ "$build_git" = "ON" ];then
-        GIT_OPTIONS="-Dbf-dir=${workspace}/bioformats -Dome-common-dir=${workspace}/ome-common-cpp"
+        GIT_OPTIONS="-Dbf-dir=${workspace}/bioformats -Dbf-cpp-dir=${workspace}/bioformats-cpp -Dome-common-dir=${workspace}/ome-common-cpp"
     fi
 
     rm -rf "$builddir" "$installdir"
