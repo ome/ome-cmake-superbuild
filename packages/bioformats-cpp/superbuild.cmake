@@ -11,7 +11,7 @@ set(RELEASE_URL "")
 set(RELEASE_HASH "")
 
 # Current development branch (defaults for head option).
-set(GIT_URL "https://github.com/rleigh-dundee/bioformats-cpp.git")
+set(GIT_URL "https://github.com/ome/ome-files.git")
 set(GIT_BRANCH "develop")
 
 if(NOT head)
