@@ -259,7 +259,7 @@ if exist "%cachedir%\tree" (
 )
 
 if [%build_git%] == [ON] (
-    set "GIT_OPTIONS=-Dome-xml-dir=%workspace%\ome-xml -Dbf-cpp-dir=%workspace%\bioformats-cpp -Dome-common-dir=%workspace%\ome-common-cpp"
+    set "GIT_OPTIONS=-Dome-xml-dir=%workspace%\ome-xml -Dbf-cpp-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common-cpp"
 )
 
 if [%build_system%] == [MSBuild] (
@@ -300,7 +300,7 @@ if [%build_system%] == [MSBuild] (
     cmake --build . --config %build_type% -- %parallel% || exit /b
     cmake --build . --config %build_type% --target install || exit /b
 
-    call bioformats-cpp-build\config.bat
+    call ome-files-build\config.bat
 )
 if [%build_system%] == [Ninja] (
     set "PATH=C:\Tools\ninja;%PATH%"
@@ -337,11 +337,11 @@ if [%build_system%] == [Ninja] (
     cmake --build . || exit /b
     cmake --build . --target install || exit /b
 
-    call bioformats-cpp-build\config.bat
+    call ome-files-build\config.bat
 )
 
 :: Release version
-set "version_tag=bioformats-cpp-%OME_VERSION%-VC%build_version%-%build_arch%-%build_type%"
+set "version_tag=ome-files-%OME_VERSION%-VC%build_version%-%build_arch%-%build_type%"
 
 echo Built and installed version %version_tag%
 
@@ -356,7 +356,7 @@ rename stage %version_tag%
 
 if exist "%builddir%\ome-xml-build\docs\doxygen\ome-xml" (
     echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-xml-build\docs\doxygen\ome-xml" "%installdir%\bioformats-cpp-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+    (robocopy "%builddir%\ome-xml-build\docs\doxygen\ome-xml" "%installdir%\ome-files-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 
 :: Archive builds
@@ -364,18 +364,18 @@ cd %installdir%
 if not exist "%artefactdir%" mkdir -p "%artefactdir%"
 if not exist "%artefactdir%\superbuild" mkdir -p "%artefactdir%\superbuild"
 
-echo Archiving bioformats-cpp-%version_tag%.zip
+echo Archiving ome-files-%version_tag%.zip
 if exist "%artefactdir%\superbuild\%version_tag%.zip" (
   del "%artefactdir%\superbuild\%version_tag%.zip"
 )
 zip -r "%artefactdir%\superbuild\%version_tag%.zip" "%version_tag%" || exit /b
 
-if exist "%installdir%\bioformats-cpp-apidoc-%OME_VERSION%" (
-    echo Archiving bioformats-cpp-apidoc-%OME_VERSION%.zip
-    if exist "%artefactdir%\bioformats-cpp-apidoc-%OME_VERSION%.zip" (
-        del "%artefactdir%\bioformats-cpp-apidoc-%OME_VERSION%.zip"
+if exist "%installdir%\ome-files-apidoc-%OME_VERSION%" (
+    echo Archiving ome-files-apidoc-%OME_VERSION%.zip
+    if exist "%artefactdir%\ome-files-apidoc-%OME_VERSION%.zip" (
+        del "%artefactdir%\ome-files-apidoc-%OME_VERSION%.zip"
     )
-    zip -r "%artefactdir%\bioformats-cpp-apidoc-%OME_VERSION%.zip" "%installdir%\bioformats-cpp-apidoc-%OME_VERSION%" || exit /b
+    zip -r "%artefactdir%\ome-files-apidoc-%OME_VERSION%.zip" "%installdir%\ome-files-apidoc-%OME_VERSION%" || exit /b
 )
 
 :: Test archive

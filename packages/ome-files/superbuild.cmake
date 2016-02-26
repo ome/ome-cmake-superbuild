@@ -1,10 +1,10 @@
-# bioformats-cpp superbuild
+# ome-files superbuild
 
 # Options to build from git (defaults to source zip if unset)
 set(head OFF CACHE BOOL "Force building from current git develop branch")
-set(bf-cpp-dir "" CACHE PATH "Local directory containing the Bio-Formats source code")
-set(bf-cpp-git-url "" CACHE STRING "URL of Bio-Formats git repository")
-set(bf-cpp-git-branch "" CACHE STRING "URL of Bio-Formats git repository")
+set(ome-files-dir "" CACHE PATH "Local directory containing the OME Files source code")
+set(ome-files-git-url "" CACHE STRING "URL of OME Files git repository")
+set(ome-files-git-branch "" CACHE STRING "URL of OME Files git repository")
 
 # Current stable release.
 set(RELEASE_URL "")
@@ -15,37 +15,37 @@ set(GIT_URL "https://github.com/ome/ome-files.git")
 set(GIT_BRANCH "develop")
 
 if(NOT head)
-  if(bf-cpp-git-url)
-    set(GIT_URL ${bf-cpp-git-url})
+  if(ome-files-git-url)
+    set(GIT_URL ${ome-files-git-url})
   endif()
-  if(bf-cpp-git-branch)
-    set(GIT_BRANCH ${bf-cpp-git-branch})
+  if(ome-files-git-branch)
+    set(GIT_BRANCH ${ome-files-git-branch})
   endif()
 endif()
 
-if(bf-cpp-dir)
+if(ome-files-dir)
   set(EP_SOURCE_DOWNLOAD
     DOWNLOAD_COMMAND "")
-  set(EP_SOURCE_DIR "${bf-cpp-dir}")
+  set(EP_SOURCE_DIR "${ome-files-dir}")
   set(BOOST_VERSION 1.60)
-  message(STATUS "Building Bio-Formats C++ from local directory (${bf-cpp-dir})")
-elseif(head OR bf-cpp-git-url OR bf-cpp-git-branch)
+  message(STATUS "Building OME Files C++ from local directory (${ome-files-dir})")
+elseif(head OR ome-files-git-url OR ome-files-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
   set(BOOST_VERSION 1.60)
-  message(STATUS "Building Bio-Formats C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
+  message(STATUS "Building OME Files C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
   set(BOOST_VERSION 1.60)
-  message(STATUS "Building Bio-Formats C++ from source release (${RELEASE_URL})")
+  message(STATUS "Building OME Files C++ from source release (${RELEASE_URL})")
 endif()
 
 # Set dependency list
-ome_add_dependencies(bioformats-cpp
+ome_add_dependencies(ome-files
                      DEPENDENCIES ome-xml
                      THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} png tiff
                                               py-sphinx gtest)

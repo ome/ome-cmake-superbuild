@@ -1,4 +1,4 @@
-# bioformats-cpp build
+# ome-files build
 
 Changes made locally
 --------------------
