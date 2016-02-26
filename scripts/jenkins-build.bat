@@ -259,7 +259,7 @@ if exist "%cachedir%\tree" (
 )
 
 if [%build_git%] == [ON] (
-    set "GIT_OPTIONS=-Dome-xml-dir=%workspace%\ome-xml -Dbf-cpp-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common-cpp"
+    set "GIT_OPTIONS=-Dome-xml-dir=%workspace%\ome-xml -Dome-files-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common"
 )
 
 if [%build_system%] == [MSBuild] (
@@ -354,9 +354,17 @@ echo Renaming staged install to %version_tag%
 rmdir /s /q "%version_tag%"
 rename stage %version_tag%
 
+if exist "%builddir%\ome-common-build\docs\doxygen\ome-common" (
+    echo Installing doxygen documentation
+    (robocopy "%builddir%\ome-common-build\docs\doxygen\ome-common" "%installdir%\ome-files-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+)
 if exist "%builddir%\ome-xml-build\docs\doxygen\ome-xml" (
     echo Installing doxygen documentation
     (robocopy "%builddir%\ome-xml-build\docs\doxygen\ome-xml" "%installdir%\ome-files-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+)
+if exist "%builddir%\ome-files-build\docs\doxygen\ome-files" (
+    echo Installing doxygen documentation
+    (robocopy "%builddir%\ome-files-build\docs\doxygen\ome-files" "%installdir%\ome-files-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 
 :: Archive builds
