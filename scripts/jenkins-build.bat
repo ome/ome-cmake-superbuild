@@ -259,7 +259,7 @@ if exist "%cachedir%\tree" (
 )
 
 if [%build_git%] == [ON] (
-    set "GIT_OPTIONS=-Dbf-dir=%workspace%\bioformats -Dbf-cpp-dir=%workspace%\bioformats-cpp -Dome-common-dir=%workspace%\ome-common-cpp"
+    set "GIT_OPTIONS=-Dome-xml-dir=%workspace%\ome-xml -Dbf-cpp-dir=%workspace%\bioformats-cpp -Dome-common-dir=%workspace%\ome-common-cpp"
 )
 
 if [%build_system%] == [MSBuild] (
@@ -300,7 +300,7 @@ if [%build_system%] == [MSBuild] (
     cmake --build . --config %build_type% -- %parallel% || exit /b
     cmake --build . --config %build_type% --target install || exit /b
 
-    call bioformats-build\config.bat
+    call bioformats-cpp-build\config.bat
 )
 if [%build_system%] == [Ninja] (
     set "PATH=C:\Tools\ninja;%PATH%"
@@ -337,7 +337,7 @@ if [%build_system%] == [Ninja] (
     cmake --build . || exit /b
     cmake --build . --target install || exit /b
 
-    call bioformats-build\config.bat
+    call bioformats-cpp-build\config.bat
 )
 
 :: Release version
@@ -354,9 +354,9 @@ echo Renaming staged install to %version_tag%
 rmdir /s /q "%version_tag%"
 rename stage %version_tag%
 
-if exist "%builddir%\bioformats-build\docs\doxygen\bioformats" (
+if exist "%builddir%\ome-xml-build\docs\doxygen\ome-xml" (
     echo Installing doxygen documentation
-    (robocopy "%builddir%\bioformats-build\docs\doxygen\bioformats" "%installdir%\bioformats-cpp-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+    (robocopy "%builddir%\ome-xml-build\docs\doxygen\ome-xml" "%installdir%\bioformats-cpp-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 
 :: Archive builds

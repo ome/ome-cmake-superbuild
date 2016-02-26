@@ -46,7 +46,7 @@ endif()
 
 # Set dependency list
 ome_add_dependencies(bioformats-cpp
-                     DEPENDENCIES bioformats
+                     DEPENDENCIES ome-xml
                      THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} png tiff
                                               py-sphinx gtest)
 

@@ -119,7 +119,7 @@ build() {
 
     GIT_OPTIONS=
     if [ "$build_git" = "ON" ];then
-        GIT_OPTIONS="-Dbf-dir=${workspace}/bioformats -Dbf-cpp-dir=${workspace}/bioformats-cpp -Dome-common-dir=${workspace}/ome-common-cpp"
+        GIT_OPTIONS="-Dome-xml-dir=${workspace}/ome-xml -Dbf-cpp-dir=${workspace}/bioformats-cpp -Dome-common-dir=${workspace}/ome-common-cpp"
     fi
 
     rm -rf "$builddir" "$installdir"
@@ -127,7 +127,7 @@ build() {
 
     (
         cd "$builddir"
-        # Note that due to using a local git mirror, the bf-git-branch
+        # Note that due to using a local git mirror, the ome-xml-git-branch
         # is HEAD since it's already at the correct commit
         cmake \
             -G "$build_system" \
@@ -162,7 +162,7 @@ build() {
     )
 
     # Release version
-    eval $(cat "${builddir}/bioformats-build/config")
+    eval $(cat "${builddir}/bioformats-cpp-build/config")
     version_tag="${OME_VERSION}-${build_type}-$(os_version)"
     echo "Built and installed version ${version_tag}"
 
@@ -170,9 +170,9 @@ build() {
     rm -rf "${installdir}/bioformats-cpp-${version_tag}"
     mv "${installdir}/stage" "${installdir}/bioformats-cpp-${version_tag}"
 
-    if [ -d "${builddir}/bioformats-build/docs/doxygen/bioformats" ]; then
+    if [ -d "${builddir}/ome-xml-build/docs/doxygen/ome-xml" ]; then
         echo "Installing doxygen documentation"
-        cp -r "${builddir}/bioformats-build/docs/doxygen/bioformats" "${installdir}/bioformats-cpp-apidoc-${OME_VERSION}"
+        cp -r "${builddir}/ome-xml-build/docs/doxygen/ome-xml" "${installdir}/bioformats-cpp-apidoc-${OME_VERSION}"
     fi
 
     # Source release
