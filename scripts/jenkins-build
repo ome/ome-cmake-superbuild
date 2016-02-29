@@ -119,7 +119,7 @@ build() {
 
     GIT_OPTIONS=
     if [ "$build_git" = "ON" ];then
-        GIT_OPTIONS="-Dbf-dir=${workspace}/bioformats -Dome-common-dir=${workspace}/ome-common-cpp"
+        GIT_OPTIONS="-Dome-xml-dir=${workspace}/ome-xml -Dome-files-dir=${workspace}/ome-files -Dome-common-dir=${workspace}/ome-common"
     fi
 
     rm -rf "$builddir" "$installdir"
@@ -127,7 +127,7 @@ build() {
 
     (
         cd "$builddir"
-        # Note that due to using a local git mirror, the bf-git-branch
+        # Note that due to using a local git mirror, the ome-xml-git-branch
         # is HEAD since it's already at the correct commit
         cmake \
             -G "$build_system" \
@@ -162,18 +162,20 @@ build() {
     )
 
     # Release version
-    eval $(cat "${builddir}/bioformats-build/config")
+    eval $(cat "${builddir}/ome-files-build/config")
     version_tag="${OME_VERSION}-${build_type}-$(os_version)"
     echo "Built and installed version ${version_tag}"
 
-    echo "Renaming staged install to bioformats-cpp-${version_tag}"
-    rm -rf "${installdir}/bioformats-cpp-${version_tag}"
-    mv "${installdir}/stage" "${installdir}/bioformats-cpp-${version_tag}"
+    echo "Renaming staged install to ome-files-${version_tag}"
+    rm -rf "${installdir}/ome-files-${version_tag}"
+    mv "${installdir}/stage" "${installdir}/ome-files-${version_tag}"
 
-    if [ -d "${builddir}/bioformats-build/docs/doxygen/bioformats" ]; then
-        echo "Installing doxygen documentation"
-        cp -r "${builddir}/bioformats-build/docs/doxygen/bioformats" "${installdir}/bioformats-cpp-apidoc-${OME_VERSION}"
-    fi
+    for component in ome-common ome-xml ome-files; do
+        if [ -d "${builddir}/${component}-build/docs/doxygen/${component}" ]; then
+            echo "Installing doxygen documentation for ${component}"
+            cp -r "${builddir}/${component}-build/docs/doxygen/${component}" "${installdir}/ome-files-apidoc-${OME_VERSION}"
+        fi
+    done
 
     # Source release
     echo "Making source release"
@@ -191,12 +193,12 @@ build() {
         fi
         mkdir -p "${artefactdir}/superbuild"
 
-        echo "Archiving bioformats-cpp-${version_tag}.tar.xz"
-        $ROOTCMD tar -cf - $TAR_OPTIONS "bioformats-cpp-${version_tag}" | xz > "${artefactdir}/superbuild/bioformats-cpp-${version_tag}.tar.xz"
+        echo "Archiving ome-files-${version_tag}.tar.xz"
+        $ROOTCMD tar -cf - $TAR_OPTIONS "ome-files-${version_tag}" | xz > "${artefactdir}/superbuild/ome-files-${version_tag}.tar.xz"
 
-        if [ -d "bioformats-cpp-apidoc-${OME_VERSION}" ]; then
-            echo "Archiving bioformats-cpp-apidoc-${OME_VERSION}.tar.xz"
-            $ROOTCMD tar -cf - $TAR_OPTIONS "bioformats-cpp-apidoc-${OME_VERSION}" | xz > "${artefactdir}/bioformats-cpp-apidoc-${OME_VERSION}.tar.xz"
+        if [ -d "ome-files-apidoc-${OME_VERSION}" ]; then
+            echo "Archiving ome-files-apidoc-${OME_VERSION}.tar.xz"
+            $ROOTCMD tar -cf - $TAR_OPTIONS "ome-files-apidoc-${OME_VERSION}" | xz > "${artefactdir}/ome-files-apidoc-${OME_VERSION}.tar.xz"
         fi
     )
 
@@ -210,8 +212,8 @@ build() {
         mkdir test
         cd test
 
-        tar -xvf "${artefactdir}/superbuild/bioformats-cpp-${version_tag}.tar.xz"
-        cd bioformats-cpp-${version_tag}
+        tar -xvf "${artefactdir}/superbuild/ome-files-${version_tag}.tar.xz"
+        cd ome-files-${version_tag}
 
         echo "Test bf-test version"
         bin/bf-test --version

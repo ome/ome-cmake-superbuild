@@ -9,15 +9,14 @@ option(fatal-warnings "Compiler warnings are errors" OFF)
 # Unit tests.
 option(test "Enable unit tests (requires gtest)" ON)
 option(extended-tests "Enable extended tests (more comprehensive, longer run time)" OFF)
-option(embedded-gtest "Use embedded gtest rather than an external build" OFF)
 
-# Note that unlike in bioformats, the default here is ON since we
-# require it to be relocatable to move it out of the
+# Note that unlike in individual components, the default here is ON
+# since we require it to be relocatable to move it out of the
 # superbuild-install directory in the build tree.
 option(relocatable-install "Install tree will be relocatable" ON)
 
 # List of packages to build
-set(build-packages "bioformats" CACHE STRING "Package(s) to build")
+set(build-packages "ome-files" CACHE STRING "Packages to build")
 
 option(build-prerequisites "Build third-party prerequisites" ON)
 
@@ -76,7 +75,6 @@ set(SUPERBUILD_OPTIONS
     "-Drelocatable-install:BOOL=${relocatable-install}"
     "-Dtest:BOOL=${test}"
     "-Dextended-tests:BOOL=${extended-tests}"
-    "-Dembedded-gtest:BOOL=${embedded-gtest}"
     "-Dqtgui:BOOL=${qtgui}"
     "-Ddoxygen:BOOL=${doxygen}"
     "-Dsphinx:BOOL=${sphinx}"

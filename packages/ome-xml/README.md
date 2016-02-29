@@ -1,4 +1,4 @@
-# bioformats build
+# ome-xml build
 
 Changes made locally
 --------------------

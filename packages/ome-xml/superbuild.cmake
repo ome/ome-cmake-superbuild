@@ -1,10 +1,10 @@
-# bioformats superbuild
+# ome-xml superbuild
 
 # Options to build from git (defaults to source zip if unset)
 set(head OFF CACHE BOOL "Force building from current git develop branch")
-set(bf-dir "" CACHE PATH "Local directory containing the Bio-Formats source code")
-set(bf-git-url "" CACHE STRING "URL of Bio-Formats git repository")
-set(bf-git-branch "" CACHE STRING "URL of Bio-Formats git repository")
+set(ome-xml-dir "" CACHE PATH "Local directory containing the OME-XML [Bio-Formats] source code")
+set(ome-xml-git-url "" CACHE STRING "URL of OME-XML [Bio-Formats] git repository")
+set(ome-xml-git-branch "" CACHE STRING "URL of OME-XML [Bio-Formats] git repository")
 
 # Current stable release.
 set(RELEASE_URL "http://downloads.openmicroscopy.org/bio-formats/5.1.7/artifacts/bioformats-dfsg-5.1.7.tar.xz")
@@ -15,37 +15,37 @@ set(GIT_URL "https://github.com/openmicroscopy/bioformats.git")
 set(GIT_BRANCH "develop")
 
 if(NOT head)
-  if(bf-git-url)
-    set(GIT_URL ${bf-git-url})
+  if(ome-xml-git-url)
+    set(GIT_URL ${ome-xml-git-url})
   endif()
-  if(bf-git-branch)
-    set(GIT_BRANCH ${bf-git-branch})
+  if(ome-xml-git-branch)
+    set(GIT_BRANCH ${ome-xml-git-branch})
   endif()
 endif()
 
-if(bf-dir)
+if(ome-xml-dir)
   set(EP_SOURCE_DOWNLOAD
     DOWNLOAD_COMMAND "")
-  set(EP_SOURCE_DIR "${bf-dir}")
+  set(EP_SOURCE_DIR "${ome-xml-dir}")
   set(BOOST_VERSION 1.60)
-  message(STATUS "Building Bio-Formats from local directory (${bf-dir})")
-elseif(head OR bf-git-url OR bf-git-branch)
+  message(STATUS "Building OME XML C++ from local directory (${ome-xml-dir})")
+elseif(head OR ome-xml-git-url OR ome-xml-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
   set(BOOST_VERSION 1.60)
-  message(STATUS "Building Bio-Formats from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
+  message(STATUS "Building OME XML C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
   set(BOOST_VERSION 1.60)
-  message(STATUS "Building Bio-Formats from source release (${RELEASE_URL})")
+  message(STATUS "Building OME XML C++ from source release (${RELEASE_URL})")
 endif()
 
 # Set dependency list
-ome_add_dependencies(bioformats
+ome_add_dependencies(ome-xml
                      DEPENDENCIES ome-common
                      THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} png tiff xerces
                                               xalan py-genshi py-sphinx gtest)
