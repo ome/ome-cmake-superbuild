@@ -420,9 +420,9 @@ set "PATH=%workspace%\test\%version_tag%\bin;%PATH%"
 :: to display the help page
 
 echo Test ome-files info version
-call bin\ome-files libexec\ome\bioformats\info --version || exit /b
+call bin\ome-files libexec\ome\files\info --version || exit /b
 echo Test ome-files info usage
-call bin\ome-files libexec\ome\bioformats\info --usage || exit /b
+call bin\ome-files libexec\ome\files\info --usage || exit /b
 ::echo Test ome-files info help
 ::call bin\ome-files info --help || exit /b
 
