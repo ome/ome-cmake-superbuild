@@ -1,5 +1,5 @@
 # #%L
-# Bio-Formats C++ libraries (cmake super-build infrastructure)
+# OME C++ libraries (cmake super-build infrastructure)
 # %%
 # Copyright © 2013 - 2015 Open Microscopy Environment:
 #   - Massachusetts Institute of Technology
@@ -66,7 +66,7 @@ if(NOT MSVC)
   endif()
 endif()
 
-# Options to pass through to main Bio-Formats build.
+# Options to pass through to subsidiary builds.
 include("${CMAKE_CURRENT_LIST_DIR}/Options.cmake")
 
 project(ome-superbuild)
