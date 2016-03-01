@@ -215,19 +215,19 @@ build() {
         tar -xvf "${artefactdir}/superbuild/ome-files-${version_tag}.tar.xz"
         cd ome-files-${version_tag}
 
-        echo "Test bf-test version"
-        bin/bf-test --version
-        echo "Test bf-test usage"
-        bin/bf-test --usage
-        echo "Test bf-test help"
-        bin/bf-test --help | cat
+        echo "Test ome-files version"
+        bin/ome-files --version
+        echo "Test ome-files usage"
+        bin/ome-files --usage
+        echo "Test ome-files help"
+        bin/ome-files --help | cat
 
-        echo "Test bf-test info version"
-        bin/bf-test info --version
-        echo "Test bf-test info usage"
-        bin/bf-test info --usage
-        echo "Test bf-test info help"
-        bin/bf-test info --help | cat
+        echo "Test ome-files info version"
+        bin/ome-files info --version
+        echo "Test ome-files info usage"
+        bin/ome-files info --usage
+        echo "Test ome-files info help"
+        bin/ome-files info --help | cat
 
     )
     echo "Complete"
