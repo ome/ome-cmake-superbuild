@@ -405,26 +405,26 @@ cd %version_tag% || exit /b
 
 set "PATH=%workspace%\test\%version_tag%\bin;%PATH%"
 
-:: The bf-test batch file currently doesn't handle these options:
+:: The ome-files batch file currently doesn't handle these options:
 
-::echo Test bf-test version
-::call bin\bf-test --version || exit /b
-::echo Test bf-test usage
-::call bin\bf-test --usage || exit /b
-::echo Test bf-test help
-::call bin\bf-test --help || exit /b
+::echo Test ome-files version
+::call bin\ome-files --version || exit /b
+::echo Test ome-files usage
+::call bin\ome-files --usage || exit /b
+::echo Test ome-files help
+::call bin\ome-files --help || exit /b
 
-:: The bf-test "info" command doesn't automatically redirect to
+:: The ome-files "info" command doesn't automatically redirect to
 :: libexec, so invoke by hand with the full path
 :: info --help can not yet automatically discover the doc directory
 :: to display the help page
 
-echo Test bf-test info version
-call bin\bf-test libexec\ome\bioformats\info --version || exit /b
-echo Test bf-test info usage
-call bin\bf-test libexec\ome\bioformats\info --usage || exit /b
-::echo Test bf-test info help
-::call bin\bf-test info --help || exit /b
+echo Test ome-files info version
+call bin\ome-files libexec\ome\files\info --version || exit /b
+echo Test ome-files info usage
+call bin\ome-files libexec\ome\files\info --usage || exit /b
+::echo Test ome-files info help
+::call bin\ome-files info --help || exit /b
 
 echo Complete
 

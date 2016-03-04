@@ -3,9 +3,6 @@
 # Set dependency list
 ome_add_dependencies(xerces THIRD_PARTY_DEPENDENCIES icu)
 
-# Notes:
-# Builds xerces without Xerces.Python (not currently used by Bio-Formats)
-
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
   URL "http://www.apache.org/dist/xerces/c/3/sources/xerces-c-3.1.3.tar.xz"

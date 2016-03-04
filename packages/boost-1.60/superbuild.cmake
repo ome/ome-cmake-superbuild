@@ -28,7 +28,7 @@ else()
 endif()
 
 # Notes:
-# Builds boost without Boost.Python (not currently used by Bio-Formats)
+# Builds boost without Boost.Python (not currently used)
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
