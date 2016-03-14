@@ -4,7 +4,7 @@ include("${GENERIC_CMAKE_ENVIRONMENT}")
 
 if(WIN32)
   # Install path introspection doesn't work on Windows with static libraries.
-  set(ENV{OME_FILES_HOME} "${CMAKE_INSTALL_PREFIX}")
+  set(ENV{OME_HOME} "${CMAKE_INSTALL_PREFIX}")
 endif()
 
 execute_process(COMMAND "${CMAKE_CTEST_COMMAND}" -C "${CONFIG}" -V
