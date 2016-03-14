@@ -341,7 +341,7 @@ if [%build_system%] == [Ninja] (
 )
 
 :: Release version
-set "version_tag=ome-files-%OME_VERSION%-VC%build_version%-%build_arch%-%build_type%"
+set "version_tag=ome-files-bundle-%OME_VERSION%-VC%build_version%-%build_arch%-%build_type%"
 
 echo Built and installed version %version_tag%
 
@@ -356,15 +356,15 @@ rename stage %version_tag%
 
 if exist "%builddir%\ome-common-build\docs\doxygen\ome-common" (
     echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-common-build\docs\doxygen\ome-common" "%installdir%\ome-files-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+    (robocopy "%builddir%\ome-common-build\docs\doxygen\ome-common" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 if exist "%builddir%\ome-xml-build\docs\doxygen\ome-xml" (
     echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-xml-build\docs\doxygen\ome-xml" "%installdir%\ome-files-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+    (robocopy "%builddir%\ome-xml-build\docs\doxygen\ome-xml" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 if exist "%builddir%\ome-files-build\docs\doxygen\ome-files" (
     echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-files-build\docs\doxygen\ome-files" "%installdir%\ome-files-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+    (robocopy "%builddir%\ome-files-build\docs\doxygen\ome-files" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 
 :: Archive builds
@@ -372,18 +372,18 @@ cd %installdir%
 if not exist "%artefactdir%" mkdir -p "%artefactdir%"
 if not exist "%artefactdir%\superbuild" mkdir -p "%artefactdir%\superbuild"
 
-echo Archiving ome-files-%version_tag%.zip
+echo Archiving ome-files-bundle-%version_tag%.zip
 if exist "%artefactdir%\superbuild\%version_tag%.zip" (
   del "%artefactdir%\superbuild\%version_tag%.zip"
 )
 zip -r "%artefactdir%\superbuild\%version_tag%.zip" "%version_tag%" || exit /b
 
-if exist "%installdir%\ome-files-apidoc-%OME_VERSION%" (
-    echo Archiving ome-files-apidoc-%OME_VERSION%.zip
-    if exist "%artefactdir%\ome-files-apidoc-%OME_VERSION%.zip" (
-        del "%artefactdir%\ome-files-apidoc-%OME_VERSION%.zip"
+if exist "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" (
+    echo Archiving ome-files-bundle-apidoc-%OME_VERSION%.zip
+    if exist "%artefactdir%\ome-files-bundle-apidoc-%OME_VERSION%.zip" (
+        del "%artefactdir%\ome-files-bundle-apidoc-%OME_VERSION%.zip"
     )
-    zip -r "%artefactdir%\ome-files-apidoc-%OME_VERSION%.zip" "%installdir%\ome-files-apidoc-%OME_VERSION%" || exit /b
+    zip -r "%artefactdir%\ome-files-bundle-apidoc-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" || exit /b
 )
 
 :: Test archive
