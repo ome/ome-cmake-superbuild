@@ -166,14 +166,14 @@ build() {
     version_tag="${OME_VERSION}-${build_type}-$(os_version)"
     echo "Built and installed version ${version_tag}"
 
-    echo "Renaming staged install to ome-files-${version_tag}"
-    rm -rf "${installdir}/ome-files-${version_tag}"
-    mv "${installdir}/stage" "${installdir}/ome-files-${version_tag}"
+    echo "Renaming staged install to ome-files-bundle-${version_tag}"
+    rm -rf "${installdir}/ome-files-bundle-${version_tag}"
+    mv "${installdir}/stage" "${installdir}/ome-files-bundle-${version_tag}"
 
     for component in ome-common ome-xml ome-files; do
         if [ -d "${builddir}/${component}-build/docs/doxygen/${component}" ]; then
             echo "Installing doxygen documentation for ${component}"
-            cp -r "${builddir}/${component}-build/docs/doxygen/${component}" "${installdir}/ome-files-apidoc-${OME_VERSION}"
+            cp -r "${builddir}/${component}-build/docs/doxygen/${component}" "${installdir}/ome-files-bundle-apidoc-${OME_VERSION}"
         fi
     done
 
@@ -193,12 +193,12 @@ build() {
         fi
         mkdir -p "${artefactdir}/superbuild"
 
-        echo "Archiving ome-files-${version_tag}.tar.xz"
-        $ROOTCMD tar -cf - $TAR_OPTIONS "ome-files-${version_tag}" | xz > "${artefactdir}/superbuild/ome-files-${version_tag}.tar.xz"
+        echo "Archiving ome-files-bundle-${version_tag}.tar.xz"
+        $ROOTCMD tar -cf - $TAR_OPTIONS "ome-files-bundle-${version_tag}" | xz > "${artefactdir}/superbuild/ome-files-bundle-${version_tag}.tar.xz"
 
-        if [ -d "ome-files-apidoc-${OME_VERSION}" ]; then
-            echo "Archiving ome-files-apidoc-${OME_VERSION}.tar.xz"
-            $ROOTCMD tar -cf - $TAR_OPTIONS "ome-files-apidoc-${OME_VERSION}" | xz > "${artefactdir}/ome-files-apidoc-${OME_VERSION}.tar.xz"
+        if [ -d "ome-files-bundle-apidoc-${OME_VERSION}" ]; then
+            echo "Archiving ome-files-bundle-apidoc-${OME_VERSION}.tar.xz"
+            $ROOTCMD tar -cf - $TAR_OPTIONS "ome-files-bundle-apidoc-${OME_VERSION}" | xz > "${artefactdir}/ome-files-bundle-apidoc-${OME_VERSION}.tar.xz"
         fi
     )
 
@@ -212,8 +212,8 @@ build() {
         mkdir test
         cd test
 
-        tar -xvf "${artefactdir}/superbuild/ome-files-${version_tag}.tar.xz"
-        cd ome-files-${version_tag}
+        tar -xvf "${artefactdir}/superbuild/ome-files-bundle-${version_tag}.tar.xz"
+        cd ome-files-bundle-${version_tag}
 
         echo "Test ome-files version"
         bin/ome-files --version
