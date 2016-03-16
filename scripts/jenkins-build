@@ -142,6 +142,7 @@ build() {
             -Dsphinx:BOOL=ON \
             -Dsphinx-pdf:BOOL=OFF \
             -Dsource-cache:PATH=${cachedir}/source \
+            -DSOURCE_ARCHIVE_DIR="${artefactdir}/sources" \
             ${CMAKE_PREREQS} \
             ${sourcedir}
 
@@ -178,8 +179,22 @@ build() {
     done
 
     # Source release
-    echo "Making source release"
+    echo "Making source release for ome-cmake-superbuild"
     make_source_release "$OME_VERSION" "$git_branch"
+    echo "Making source release for ome-cmake-superbuild: done"
+
+    if [ "$build_git" = "ON" ];then
+        for component in ome-common; do
+            (
+                if [ -d "${builddir}/${component}-build" ]; then
+                    echo "Making source release for ${component}"
+                    cd "${builddir}/${component}-build"
+                    cmake --build . --target source-archive
+                    echo "Making source release for ${component}: done"
+                fi
+            )
+        done
+    fi
 
     # Archive builds
     (
@@ -203,7 +218,8 @@ build() {
     )
 
     # Archive sources
-    cp -a ${cachedir}/source "${artefactdir}/sources"
+    mkdir -p "${artefactdir}/sources"
+    cp -a ${cachedir}/source/* "${artefactdir}/sources"
 
     # Test archive
     (
