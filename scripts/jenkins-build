@@ -184,7 +184,7 @@ build() {
     echo "Making source release for ome-cmake-superbuild: done"
 
     if [ "$build_git" = "ON" ];then
-        for component in ome-common; do
+        for component in ome-common ome-files; do
             (
                 if [ -d "${builddir}/${component}-build" ]; then
                     echo "Making source release for ${component}"
