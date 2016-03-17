@@ -29,17 +29,6 @@ os_version() {
       esac
 }
 
-# Make source release
-# $1=version
-# $2=git branch
-make_source_release() {
-    (
-        cd "${sourcedir}"
-        mkdir -p "$artefactdir"
-        git archive "--prefix=ome-cmake-superbuild-$1/" "$2" | xz > "${artefactdir}/ome-cmake-superbuild-$1.tar.xz"
-    )
-}
-
 current_tree() {
     (
         cd "${sourcedir}"
@@ -178,12 +167,14 @@ build() {
         fi
     done
 
-    # Source release
-    echo "Making source release for ome-cmake-superbuild"
-    make_source_release "$OME_VERSION" "$git_branch"
-    echo "Making source release for ome-cmake-superbuild: done"
-
-    if [ "$build_git" = "ON" ];then
+    # Source releases
+    if [ "$build_git" = "ON" ]; then
+        (
+            echo "Making source release for ome-cmake-superbuild"
+            cd "${builddir}"
+            cmake --build . --target source-archive
+            echo "Making source release for ome-cmake-superbuild: done"
+        )
         for component in ome-common ome-files; do
             (
                 if [ -d "${builddir}/${component}-build" ]; then
