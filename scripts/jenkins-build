@@ -29,17 +29,6 @@ os_version() {
       esac
 }
 
-# Make source release
-# $1=version
-# $2=git branch
-make_source_release() {
-    (
-        cd "${sourcedir}"
-        mkdir -p "$artefactdir"
-        git archive "--prefix=ome-cmake-superbuild-$1/" "$2" | xz > "${artefactdir}/ome-cmake-superbuild-$1.tar.xz"
-    )
-}
-
 current_tree() {
     (
         cd "${sourcedir}"
@@ -142,6 +131,7 @@ build() {
             -Dsphinx:BOOL=ON \
             -Dsphinx-pdf:BOOL=OFF \
             -Dsource-cache:PATH=${cachedir}/source \
+            -DSOURCE_ARCHIVE_DIR="${artefactdir}/sources" \
             ${CMAKE_PREREQS} \
             ${sourcedir}
 
@@ -177,9 +167,25 @@ build() {
         fi
     done
 
-    # Source release
-    echo "Making source release"
-    make_source_release "$OME_VERSION" "$git_branch"
+    # Source releases
+    if [ "$build_git" = "ON" ]; then
+        (
+            echo "Making source release for ome-cmake-superbuild"
+            cd "${builddir}"
+            cmake --build . --target source-archive
+            echo "Making source release for ome-cmake-superbuild: done"
+        )
+        for component in ome-common ome-files; do
+            (
+                if [ -d "${builddir}/${component}-build" ]; then
+                    echo "Making source release for ${component}"
+                    cd "${builddir}/${component}-build"
+                    cmake --build . --target source-archive
+                    echo "Making source release for ${component}: done"
+                fi
+            )
+        done
+    fi
 
     # Archive builds
     (
@@ -203,7 +209,8 @@ build() {
     )
 
     # Archive sources
-    cp -a ${cachedir}/source "${artefactdir}/sources"
+    mkdir -p "${artefactdir}/sources"
+    cp -a ${cachedir}/source/* "${artefactdir}/sources"
 
     # Test archive
     (

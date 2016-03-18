@@ -69,9 +69,18 @@ endif()
 # Options to pass through to subsidiary builds.
 include("${CMAKE_CURRENT_LIST_DIR}/Options.cmake")
 
-project(ome-superbuild)
+include(cmake/Version.cmake)
+ome_project_version("OME Super-Build" "${CMAKE_CURRENT_SOURCE_DIR}")
 
-message(STATUS "Configuring OME Super-Build")
+project(ome-superbuild
+        VERSION "${OME_VERSION_MAJOR}.${OME_VERSION_MINOR}.${OME_VERSION_PATCH}"
+        LANGUAGES CXX)
+
+if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
+  message(FATAL_ERROR "In-tree builds are not supported; please run cmake from a separate build directory.")
+endif("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
+
+include(cmake/SourceArchive.cmake)
 
 include(GNUInstallDirs)
 include(ExternalProject)
