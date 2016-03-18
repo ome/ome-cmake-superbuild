@@ -20,9 +20,11 @@ elseif(NOT MSVC_VERSION VERSION_LESS 1800 AND MSVC_VERSION VERSION_LESS 1900)
       "${EP_SOURCE_DIR}")
 # VS 14.0
 elseif(NOT MSVC_VERSION VERSION_LESS 1900 AND MSVC_VERSION VERSION_LESS 2000)
-  message(FATAL_ERROR "VS14 not yet supported")
+  set(ICU_PATCH PATCH_COMMAND "${CMAKE_COMMAND}" -E copy_directory
+      "${CMAKE_CURRENT_LIST_DIR}/files/VC14"
+      "${EP_SOURCE_DIR}")
 else()
-  message(FATAL_ERROR "VS version not supported")
+  message(FATAL_ERROR "VS version not supported by icu")
 endif()
 
 # Notes:

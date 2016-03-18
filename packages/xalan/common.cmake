@@ -27,7 +27,7 @@ if(WIN32)
   elseif(NOT MSVC_VERSION VERSION_LESS 1900 AND MSVC_VERSION VERSION_LESS 2000)
     set(XALAN_SOLUTION VC14)
   else()
-    set(XALAN_SOLUTION VC12)
+    message(FATAL_ERROR "VS version not supported by xalan")
   endif()
 
   set(XALAN_BINARY_DIR "${SOURCE_DIR}/c/Build/${XALAN_PLATFORM_PATH}/${XALAN_SOLUTION}/${XALAN_CONFIG}")
