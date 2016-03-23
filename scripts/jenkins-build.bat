@@ -30,6 +30,8 @@ set cxxdetect=OFF
 set parallel=
 set build_git=OFF
 set action=build
+set qt=OFF
+set "packages=ome-files"
 
 :: Parse command line options.
 :loop
@@ -42,6 +44,10 @@ if NOT "%1"=="" (
     )
     if "%1"=="-G" (
         set "build_git=ON"
+    )
+    if "%1"=="-q" (
+        set "build_qt=ON"
+        set "packages=%packages%;ome-qtwidgets"
     )
     if "%1"=="-d" (
         set "doxygen=ON"
@@ -171,6 +177,7 @@ Options:
   -S system  Build system (MSBuild|Ninja)
   -d         Build doxygen API reference
   -e         Run extended tests
+  -q         Build Qt interface
   -j n       Build in parallel
   -v         Verbose build
   -x         Use C++11/C++14 rather than C++98
@@ -259,7 +266,7 @@ if exist "%cachedir%\tree" (
 )
 
 if [%build_git%] == [ON] (
-    set "GIT_OPTIONS=-Dome-xml-dir=%workspace%\ome-xml -Dome-files-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common"
+    set "GIT_OPTIONS=-Dome-xml-dir=%workspace%\ome-xml -Dome-files-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common -Dome-qtwidgets-dir=%workspace%\ome-qtwidgets"
 )
 
 if [%build_system%] == [MSBuild] (
@@ -278,7 +285,7 @@ if [%build_system%] == [MSBuild] (
         set "GEN=Visual Studio 14 2015!ARCH!"
     )
 
-    cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dqtgui:BOOL=OFF -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dqtgui:BOOL=%qt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source %CMAKE_PREREQS% %sourcedir% || exit /b
 
 :: Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
@@ -315,7 +322,7 @@ if [%build_system%] == [Ninja] (
         call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" %build_arch%
     )
 
-    cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dqtgui:BOOL=OFF -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dqtgui:BOOL=%qt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source %CMAKE_PREREQS% %sourcedir% || exit /b
 
 :: Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
@@ -365,6 +372,10 @@ if exist "%builddir%\ome-xml-build\docs\doxygen\ome-xml" (
 if exist "%builddir%\ome-files-build\docs\doxygen\ome-files" (
     echo Installing doxygen documentation
     (robocopy "%builddir%\ome-files-build\docs\doxygen\ome-files" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+)
+if exist "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" (
+    echo Installing doxygen documentation
+    (robocopy "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 
 :: Archive builds

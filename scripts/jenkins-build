@@ -108,7 +108,7 @@ build() {
 
     GIT_OPTIONS=
     if [ "$build_git" = "ON" ];then
-        GIT_OPTIONS="-Dome-xml-dir=${workspace}/ome-xml -Dome-files-dir=${workspace}/ome-files -Dome-common-dir=${workspace}/ome-common"
+        GIT_OPTIONS="-Dome-xml-dir=${workspace}/ome-xml -Dome-files-dir=${workspace}/ome-files -Dome-common-dir=${workspace}/ome-common -Dome-qtwidgets-dir=${workspace}/ome-qtwidgets"
     fi
 
     rm -rf "$builddir" "$installdir"
@@ -127,7 +127,8 @@ build() {
             -Dcxxstd-autodetect="$cxxdetect" \
             "-Ddoxygen:BOOL=$doxygen" \
             "-Dextended-tests:BOOL=$extended_tests" \
-            -Dqtgui:BOOL=OFF \
+            "-Dbuild-packages=${build_packages}" \
+            -Dqtgui:BOOL=${build_qt} \
             -Dsphinx:BOOL=ON \
             -Dsphinx-pdf:BOOL=OFF \
             -Dsource-cache:PATH=${cachedir}/source \
@@ -160,7 +161,7 @@ build() {
     rm -rf "${installdir}/ome-files-bundle-${version_tag}"
     mv "${installdir}/stage" "${installdir}/ome-files-bundle-${version_tag}"
 
-    for component in ome-common ome-xml ome-files; do
+    for component in ome-common ome-xml ome-files ome-qtwidgets; do
         if [ -d "${builddir}/${component}-build/docs/doxygen/${component}" ]; then
             echo "Installing doxygen documentation for ${component}"
             cp -r "${builddir}/${component}-build/docs/doxygen/${component}" "${installdir}/ome-files-bundle-apidoc-${OME_VERSION}"
@@ -175,7 +176,7 @@ build() {
             cmake --build . --target source-archive
             echo "Making source release for ome-cmake-superbuild: done"
         )
-        for component in ome-common ome-files; do
+        for component in ome-common ome-files ome-qtwidgets; do
             (
                 if [ -d "${builddir}/${component}-build" ]; then
                     echo "Making source release for ${component}"
@@ -265,6 +266,7 @@ Options:
   -d         Build doxygen API reference
   -e         Run extended tests
   -j n       Build in parallel
+  -q         Build Qt interface
   -v         Verbose build
   -x         Use C++11/C++14 rather than C++98
 
@@ -289,9 +291,11 @@ cxxdetect=OFF
 parallel=
 build_git=OFF
 build_tp_prereqs=ON
+build_qt=OFF
+build_packages=ome-files
 
 # Parse command line options.
-while getopts hBGndexvi:b:c:a:g:p:t:S:w:s:j: OPT; do
+while getopts hBGqndexvi:b:c:a:g:p:t:S:w:s:j: OPT; do
     case "$OPT" in
         h)
             usage
@@ -305,6 +309,10 @@ while getopts hBGndexvi:b:c:a:g:p:t:S:w:s:j: OPT; do
             ;;
         n)
             build_tp_prereqs=OFF
+            ;;
+        q)
+            build_qt=ON
+            build_packages="${build_packages};ome-qtwidgets"
             ;;
         d)
             doxygen=ON
