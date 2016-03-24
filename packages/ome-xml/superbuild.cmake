@@ -1,20 +1,20 @@
 # ome-xml superbuild
 
 # Options to build from git (defaults to source zip if unset)
-set(head OFF CACHE BOOL "Force building from current git develop branch")
+set(ome-xml-head ${head} CACHE BOOL "Force building from current git develop branch")
 set(ome-xml-dir "" CACHE PATH "Local directory containing the OME-XML [Bio-Formats] source code")
 set(ome-xml-git-url "" CACHE STRING "URL of OME-XML [Bio-Formats] git repository")
 set(ome-xml-git-branch "" CACHE STRING "URL of OME-XML [Bio-Formats] git repository")
 
 # Current stable release.
-set(RELEASE_URL "http://downloads.openmicroscopy.org/bio-formats/5.1.7/artifacts/bioformats-dfsg-5.1.7.tar.xz")
-set(RELEASE_HASH "SHA512=d6e23abdfe7a13c7b151ecf779cec5a29b147592f65671f8547670adc88a5fe447171cc6eed801a7843b020984cc82331ff9d24634450b4c5bc0f3fe7677bf03")
+set(RELEASE_URL "https://downloads.openmicroscopy.org/bio-formats/5.2.0-m2.5/artifacts/bioformats-dfsg-5.2.0-m2.5.tar.xz")
+set(RELEASE_HASH "SHA512=50df6e4d866a15e981b3089da94b7819bf2aae95180f7f52c0c6a3847a5029396a1aa6a7a2dded9a9e13eb72611a7f21ba7de7e51430d312a00d43f4bbb15b1a")
 
-# Current development branch (defaults for head option).
+# Current development branch (defaults for ome-xml-head option).
 set(GIT_URL "https://github.com/openmicroscopy/bioformats.git")
 set(GIT_BRANCH "develop")
 
-if(NOT head)
+if(NOT ome-xml-head)
   if(ome-xml-git-url)
     set(GIT_URL ${ome-xml-git-url})
   endif()
@@ -29,7 +29,7 @@ if(ome-xml-dir)
   set(EP_SOURCE_DIR "${ome-xml-dir}")
   set(BOOST_VERSION 1.60)
   message(STATUS "Building OME XML C++ from local directory (${ome-xml-dir})")
-elseif(head OR ome-xml-git-url OR ome-xml-git-branch)
+elseif(ome-xml-head OR ome-xml-git-url OR ome-xml-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
