@@ -203,14 +203,15 @@ build() {
             ROOTCMD=fakeroot
             TAR_OPTIONS="--format pax"
         fi
-        mkdir -p "${artefactdir}/superbuild"
+        mkdir -p "${artefactdir}/binaries"
 
         echo "Archiving ${bundle_name}.tar.xz"
-        $ROOTCMD tar -cf - $TAR_OPTIONS "${bundle_name}" | xz > "${artefactdir}/superbuild/${bundle_name}.tar.xz"
+        $ROOTCMD tar -cf - $TAR_OPTIONS "${bundle_name}" | xz > "${artefactdir}/binaries/${bundle_name}.tar.xz"
 
+        mkdir -p "${artefactdir}/docs"
         if [ -d "ome-files-bundle-apidoc-${OME_VERSION}" ]; then
             echo "Archiving ome-files-bundle-apidoc-${OME_VERSION}.tar.xz"
-            $ROOTCMD tar -cf - $TAR_OPTIONS "ome-files-bundle-apidoc-${OME_VERSION}" | xz > "${artefactdir}/ome-files-bundle-apidoc-${OME_VERSION}.tar.xz"
+            $ROOTCMD tar -cf - $TAR_OPTIONS "ome-files-bundle-apidoc-${OME_VERSION}" | xz > "${artefactdir}/docs/ome-files-bundle-apidoc-${OME_VERSION}.tar.xz"
         fi
     )
 
@@ -225,7 +226,7 @@ build() {
         mkdir test
         cd test
 
-        tar -xvf "${artefactdir}/superbuild/${bundle_name}.tar.xz"
+        tar -xvf "${artefactdir}/binaries/${bundle_name}.tar.xz"
         cd "$bundle_name"
 
         echo "Test ome-files version"
