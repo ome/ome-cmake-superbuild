@@ -51,6 +51,8 @@ option(extended-tests "Enable extended tests (more comprehensive, longer run tim
 # superbuild-install directory in the build tree.
 option(relocatable-install "Install tree will be relocatable" ON)
 
+option(head "Force building from current git develop branch (all OME components)" OFF)
+
 # List of packages to build
 set(build-packages "ome-files" CACHE STRING "Packages to build")
 

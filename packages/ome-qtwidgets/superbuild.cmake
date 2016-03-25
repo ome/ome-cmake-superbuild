@@ -1,20 +1,20 @@
 # ome-qtwidgets superbuild
 
 # Options to build from git (defaults to source zip if unset)
-set(head OFF CACHE BOOL "Force building from current git develop branch")
+set(ome-qtwidgets-head ${head} CACHE BOOL "Force building from current git develop branch")
 set(ome-qtwidgets-dir "" CACHE PATH "Local directory containing the OME QtWidgets source code")
 set(ome-qtwidgets-git-url "" CACHE STRING "URL of OME QtWidgets git repository")
 set(ome-qtwidgets-git-branch "" CACHE STRING "URL of OME QtWidgets git repository")
 
 # Current stable release.
-set(RELEASE_URL "")
-set(RELEASE_HASH "")
+set(RELEASE_URL "https://downloads.openmicroscopy.org/ome-qtwidgets/5.2.0-m2/source/ome-qtwidgets-5.2.0-m2.tar.xz")
+set(RELEASE_HASH "SHA512=9d035a970e0289d0a707cd8e8570b75b4acd0865bea0794e49ebb0a06ac336d103eff1de723d3c43e4eeb5ea30d80a4a8688dd4a1b8ff750c35b736bde6a5d39")
 
-# Current development branch (defaults for head option).
+# Current development branch (defaults for ome-qtwidgets-head option).
 set(GIT_URL "https://github.com/ome/ome-qtwidgets.git")
 set(GIT_BRANCH "develop")
 
-if(NOT head)
+if(NOT ome-qtwidgets-head)
   if(ome-qtwidgets-git-url)
     set(GIT_URL ${ome-qtwidgets-git-url})
   endif()
@@ -29,7 +29,7 @@ if(ome-qtwidgets-dir)
   set(EP_SOURCE_DIR "${ome-qtwidgets-dir}")
   set(BOOST_VERSION 1.60)
   message(STATUS "Building OME QtWidgets C++ from local directory (${ome-qtwidgets-dir})")
-elseif(head OR ome-qtwidgets-git-url OR ome-qtwidgets-git-branch)
+elseif(ome-qtwidgets-head OR ome-qtwidgets-git-url OR ome-qtwidgets-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"

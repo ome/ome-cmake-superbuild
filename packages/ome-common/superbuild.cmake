@@ -1,16 +1,16 @@
 # ome-common superbuild
 
 # Options to build from git (defaults to source zip if unset)
-set(ome-common-head OFF CACHE BOOL "Force building from current git develop branch")
+set(ome-common-head ${head} CACHE BOOL "Force building from current git develop branch")
 set(ome-common-dir "" CACHE PATH "Local directory containing the OME Common C++ source code")
 set(ome-common-git-url "" CACHE STRING "URL of OME Common C++ git repository")
 set(ome-common-git-branch "" CACHE STRING "URL of OME Common C++ git repository")
 
 # Current stable release.
-set(RELEASE_URL "")
-set(RELEASE_HASH "SHA512=")
+set(RELEASE_URL "https://downloads.openmicroscopy.org/ome-common-cpp/5.2.0-m2/source/ome-common-cpp-5.2.0-m2.tar.xz")
+set(RELEASE_HASH "SHA512=996b9d0c2aefd8cd9c87732dd2a6dd582bb452490bf7e2dfc73488d8b2dc91eebbbfe8cd91c2315c9343b1755893de982c96cac2dac5c854b7effc621f9fe186")
 
-# Current development branch (defaults for head option).
+# Current development branch (defaults for ome-common-head option).
 set(GIT_URL "https://github.com/ome/ome-common-cpp.git")
 set(GIT_BRANCH "develop")
 

@@ -1,20 +1,20 @@
 # ome-files superbuild
 
 # Options to build from git (defaults to source zip if unset)
-set(head OFF CACHE BOOL "Force building from current git develop branch")
+set(ome-files-head ${head} CACHE BOOL "Force building from current git develop branch")
 set(ome-files-dir "" CACHE PATH "Local directory containing the OME Files source code")
 set(ome-files-git-url "" CACHE STRING "URL of OME Files git repository")
 set(ome-files-git-branch "" CACHE STRING "URL of OME Files git repository")
 
 # Current stable release.
-set(RELEASE_URL "")
-set(RELEASE_HASH "")
+set(RELEASE_URL "https://downloads.openmicroscopy.org/ome-files-cpp/0.1.0/source/ome-files-cpp-0.1.0.tar.xz")
+set(RELEASE_HASH "SHA512=b163bbbb1dc7d1fb740a657c55925338c1690a145e925e6534c83305a13122d4c45385850b9ec04721ea5dc3ec2caf27f9aff5b0435baf15d88d277394b9f79f")
 
-# Current development branch (defaults for head option).
+# Current development branch (defaults for ome-files-head option).
 set(GIT_URL "https://github.com/ome/ome-files.git")
 set(GIT_BRANCH "develop")
 
-if(NOT head)
+if(NOT ome-files-head)
   if(ome-files-git-url)
     set(GIT_URL ${ome-files-git-url})
   endif()
@@ -29,7 +29,7 @@ if(ome-files-dir)
   set(EP_SOURCE_DIR "${ome-files-dir}")
   set(BOOST_VERSION 1.60)
   message(STATUS "Building OME Files C++ from local directory (${ome-files-dir})")
-elseif(head OR ome-files-git-url OR ome-files-git-branch)
+elseif(ome-files-head OR ome-files-git-url OR ome-files-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
