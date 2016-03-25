@@ -8,7 +8,7 @@ set(ome-xml-git-branch "" CACHE STRING "URL of OME-XML [Bio-Formats] git reposit
 
 # Current stable release.
 set(RELEASE_URL "https://downloads.openmicroscopy.org/bio-formats/5.2.0-m2.5/artifacts/bioformats-dfsg-5.2.0-m2.5.tar.xz")
-set(RELEASE_HASH "SHA512=50df6e4d866a15e981b3089da94b7819bf2aae95180f7f52c0c6a3847a5029396a1aa6a7a2dded9a9e13eb72611a7f21ba7de7e51430d312a00d43f4bbb15b1a")
+set(RELEASE_HASH "SHA512=a9e6c21c37a9d141a94b5da64305e08c5da9b563d82f2efbdfd40a1bd68fa86c0aeaf6a74a28d04b1826c65c351f0a83bc780ebe26c11acc47f889a6e14c9023")
 
 # Current development branch (defaults for ome-xml-head option).
 set(GIT_URL "https://github.com/openmicroscopy/bioformats.git")
