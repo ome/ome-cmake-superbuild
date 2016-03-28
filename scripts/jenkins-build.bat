@@ -381,20 +381,21 @@ if exist "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" (
 :: Archive builds
 cd %installdir%
 if not exist "%artefactdir%" mkdir -p "%artefactdir%"
-if not exist "%artefactdir%\superbuild" mkdir -p "%artefactdir%\superbuild"
+if not exist "%artefactdir%\docs" mkdir -p "%artefactdir%\docs"
+if not exist "%artefactdir%\binaries" mkdir -p "%artefactdir%\binaries"
 
 echo Archiving ome-files-bundle-%version_tag%.zip
-if exist "%artefactdir%\superbuild\%version_tag%.zip" (
-  del "%artefactdir%\superbuild\%version_tag%.zip"
+if exist "%artefactdir%\binaries\%version_tag%.zip" (
+  del "%artefactdir%\binaries\%version_tag%.zip"
 )
-zip -r "%artefactdir%\superbuild\%version_tag%.zip" "%version_tag%" || exit /b
+zip -r "%artefactdir%\binaries\%version_tag%.zip" "%version_tag%" || exit /b
 
 if exist "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" (
     echo Archiving ome-files-bundle-apidoc-%OME_VERSION%.zip
     if exist "%artefactdir%\ome-files-bundle-apidoc-%OME_VERSION%.zip" (
         del "%artefactdir%\ome-files-bundle-apidoc-%OME_VERSION%.zip"
     )
-    zip -r "%artefactdir%\ome-files-bundle-apidoc-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" || exit /b
+    zip -r "%artefactdir%\docs\ome-files-bundle-apidoc-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" || exit /b
 )
 
 :: Test archive
@@ -411,7 +412,7 @@ cd test || exit /b
 if exist "%version_tag%" (
     rmdir /s /q "%version_tag%"
 )
-unzip "%artefactdir%\superbuild\%version_tag%.zip" || exit /b
+unzip "%artefactdir%\binaries\%version_tag%.zip" || exit /b
 cd %version_tag% || exit /b
 
 set "PATH=%workspace%\test\%version_tag%\bin;%PATH%"
