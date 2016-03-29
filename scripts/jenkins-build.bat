@@ -23,6 +23,7 @@ set build_type=Debug
 set build_arch=x64
 set build_version=12
 set build_system=MSBuild
+set build_number=
 set doxygen=OFF
 set extended_tests=OFF
 set verbose=OFF
@@ -118,6 +119,10 @@ if NOT "%1"=="" (
         set "parallel=/m:%2"
         shift
     )
+    if "%1"=="-N" (
+        set "build_number=%2"
+        shift
+    )
     if "%1"=="-Y" (
         set "cygwindir=%2"
         shift
@@ -179,6 +184,7 @@ Options:
   -e         Run extended tests
   -q         Build Qt interface
   -j n       Build in parallel
+  -N n       Build number
   -v         Verbose build
   -x         Use C++11/C++14 rather than C++98
 :usageexit
@@ -349,6 +355,7 @@ if [%build_system%] == [Ninja] (
 
 :: Release version
 set "version_tag=ome-files-bundle-%OME_VERSION%-VC%build_version%-%build_arch%-%build_type%"
+if defined build_number set "version_tag=%version_tag%-b%build_number%"
 
 echo Built and installed version %version_tag%
 

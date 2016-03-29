@@ -155,6 +155,9 @@ build() {
     # Release version
     eval $(cat "${builddir}/ome-files-build/config")
     version_tag="${OME_VERSION}-${build_type}-$(os_version)"
+    if [ -n "$build_number" ]; then
+        version_tag="${version_tag}-b${build_number}"
+    fi
     echo "Built and installed version ${version_tag}"
 
     if [ "$build_tp_prereqs" = "OFF" ]; then
@@ -272,6 +275,7 @@ Options:
   -d         Build doxygen API reference
   -e         Run extended tests
   -j n       Build in parallel
+  -N n       Build number
   -q         Build Qt interface
   -v         Verbose build
   -x         Use C++11/C++14 rather than C++98
@@ -299,9 +303,10 @@ build_git=OFF
 build_tp_prereqs=ON
 build_qt=OFF
 build_packages=ome-files
+build_number=
 
 # Parse command line options.
-while getopts hBGqndexvi:b:c:a:g:p:t:S:w:s:j: OPT; do
+while getopts hBGqndexvi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
     case "$OPT" in
         h)
             usage
@@ -346,6 +351,9 @@ while getopts hBGqndexvi:b:c:a:g:p:t:S:w:s:j: OPT; do
             ;;
         g)
             git_branch="$OPTARG"
+            ;;
+        N)
+            build_number="$OPTARG"
             ;;
         p)
             purge="$OPTARG"
