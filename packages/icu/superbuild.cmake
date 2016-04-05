@@ -20,9 +20,11 @@ elseif(NOT MSVC_VERSION VERSION_LESS 1800 AND MSVC_VERSION VERSION_LESS 1900)
       "${EP_SOURCE_DIR}")
 # VS 14.0
 elseif(NOT MSVC_VERSION VERSION_LESS 1900 AND MSVC_VERSION VERSION_LESS 2000)
-  message(FATAL_ERROR "VS14 not yet supported")
+  set(ICU_PATCH PATCH_COMMAND "${CMAKE_COMMAND}" -E copy_directory
+      "${CMAKE_CURRENT_LIST_DIR}/files/VC14"
+      "${EP_SOURCE_DIR}")
 else()
-  message(FATAL_ERROR "VS version not supported")
+  message(FATAL_ERROR "VS version not supported by icu")
 endif()
 
 # Notes:
@@ -30,8 +32,8 @@ endif()
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "http://download.icu-project.org/files/icu4c/55.1/icu4c-55_1-src.tgz"
-  URL_HASH "SHA512=21a3eb2c3678cd27b659eed073f8f1bd99c9751291d077820e9a370fd90b7d9b3bf414cc03dec4acb7fa61087e02d04f9f40e91a32c5180c718e2102fbd0cd35"
+  URL "http://download.icu-project.org/files/icu4c/56.1/icu4c-56_1-src.tgz"
+  URL_HASH "SHA512=297fd91ce6c478309ac3d18813f1b3ff39a992584e3bafb79e2e816a516e903af6b86c6318e1104cda0bb29ba7c0414b65c1e83c0ed0e848ce897a06d7678d9a"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""
