@@ -1,8 +1,10 @@
 # py-sphinx superbuild
 
 # Set dependency list
-ome_add_dependencies(py-sphinx THIRD_PARTY_DEPENDENCIES py-setuptools py-pygments
-                                                        py-docutils py-jinja2)
+ome_add_dependencies(py-sphinx
+                     TYPE tool
+                     THIRD_PARTY_DEPENDENCIES py-setuptools py-pygments
+                                              py-docutils py-jinja2)
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}

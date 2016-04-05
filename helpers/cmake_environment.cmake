@@ -1,20 +1,20 @@
 if(WIN32)
 
   file(TO_NATIVE_PATH "${OME_EP_BUILD_CACHE}" WINDOWS_BUILD_CACHE)
-  file(TO_NATIVE_PATH "${OME_EP_PYTHON_CACHE}" WINDOWS_PYTHON_CACHE)
+  file(TO_NATIVE_PATH "${OME_EP_TOOL_CACHE}" WINDOWS_TOOL_CACHE)
 
   file(TO_NATIVE_PATH "${OME_EP_BIN_DIR}" WINDOWS_BIN_DIR)
-  file(TO_NATIVE_PATH "${OME_EP_PYTHON_DIR}" WINDOWS_PYTHON_DIR)
+  file(TO_NATIVE_PATH "${OME_EP_TOOL_DIR}" WINDOWS_TOOL_DIR)
   if(WINDOWS_BUILD_CACHE)
     set(ENV{PATH} "${WINDOWS_BUILD_CACHE}\\bin;$ENV{PATH}")
   endif()
-  set(ENV{PATH} "${WINDOWS_BIN_DIR};${WINDOWS_PYTHON_DIR}\\bin;$ENV{PATH}")
-  set(ENV{PATH} "${WINDOWS_BIN_DIR};${WINDOWS_PYTHON_DIR}\\scripts;$ENV{PATH}")
+  set(ENV{PATH} "${WINDOWS_BIN_DIR};${WINDOWS_TOOL_DIR}\\bin;$ENV{PATH}")
+  set(ENV{PATH} "${WINDOWS_BIN_DIR};${WINDOWS_TOOL_DIR}\\scripts;$ENV{PATH}")
   file(GLOB python_dirs LIST_DIRECTORIES true
-       "${OME_EP_PYTHON_CACHE}/*/site-packages"
-       "${OME_EP_PYTHON_CACHE}/*/*/site-packages"
-       "${OME_EP_PYTHON_DIR}/*/site-packages"
-       "${OME_EP_PYTHON_DIR}/*/*/site-packages")
+       "${OME_EP_TOOL_CACHE}/*/site-packages"
+       "${OME_EP_TOOL_CACHE}/*/*/site-packages"
+       "${OME_EP_TOOL_DIR}/*/site-packages"
+       "${OME_EP_TOOL_DIR}/*/*/site-packages")
   foreach(dir ${python_dirs})
     file(TO_NATIVE_PATH "${dir}" dir)
     if(PYTHONPATH)
@@ -35,20 +35,20 @@ else()
       set(ENV{LD_LIBRARY_PATH} "${OME_EP_BUILD_CACHE}/lib:$ENV{LD_LIBRARY_PATH}")
     endif()
   endif()
-  if(OME_EP_PYTHON_CACHE)
-    set(ENV{PATH} "${OME_EP_PYTHON_CACHE}/bin:$ENV{PATH}")
+  if(OME_EP_TOOL_CACHE)
+    set(ENV{PATH} "${OME_EP_TOOL_CACHE}/bin:$ENV{PATH}")
   endif()
-  set(ENV{PATH} "${OME_EP_BIN_DIR}:${OME_EP_PYTHON_DIR}/bin:$ENV{PATH}")
+  set(ENV{PATH} "${OME_EP_BIN_DIR}:${OME_EP_TOOL_DIR}/bin:$ENV{PATH}")
   if(APPLE)
     set(ENV{DYLD_FALLBACK_LIBRARY_PATH} "${OME_EP_LIB_DIR}:$ENV{DYLD_FALLBACK_LIBRARY_PATH}")
   else()
     set(ENV{LD_LIBRARY_PATH} "${OME_EP_LIB_DIR}:$ENV{LD_LIBRARY_PATH}")
   endif()
   file(GLOB python_dirs LIST_DIRECTORIES true
-       "${OME_EP_PYTHON_CACHE}/*/site-packages"
-       "${OME_EP_PYTHON_CACHE}/*/*/site-packages"
-       "${OME_EP_PYTHON_DIR}/*/site-packages"
-       "${OME_EP_PYTHON_DIR}/*/*/site-packages")
+       "${OME_EP_TOOL_CACHE}/*/site-packages"
+       "${OME_EP_TOOL_CACHE}/*/*/site-packages"
+       "${OME_EP_TOOL_DIR}/*/site-packages"
+       "${OME_EP_TOOL_DIR}/*/*/site-packages")
   foreach(dir ${python_dirs})
     if(PYTHONPATH)
       set(PYTHONPATH "${dir}:${PYTHONPATH}")
