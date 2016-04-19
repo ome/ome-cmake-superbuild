@@ -408,6 +408,15 @@ if exist "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" (
     zip -r "%artefactdir%\docs\ome-files-bundle-apidoc-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" || exit /b
 )
 
+
+:: Archive sources
+if not exist "%artefactdir%\sources" mkdir -p "%artefactdir%\sources"
+(robocopy "%cachedir%\sources" "%artefactdir%\sources" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+if exist "%cachedir%\tools" (
+   if not exist "%artefactdir%\tools" mkdir -p "%artefactdir%\tools"
+   (robocopy "%cachedir%\tools" "%artefactdir%\tools" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+)
+
 :: Test archive
 :test
 

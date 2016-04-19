@@ -236,6 +236,10 @@ build() {
     # Archive sources
     mkdir -p "${artefactdir}/sources"
     cp -a ${cachedir}/source/* "${artefactdir}/sources"
+    if [ -d "${cachedir}/tools" ]; then
+      mkdir -p "${artefactdir}/tools"
+      cp -a ${cachedir}/tools/* "${artefactdir}/tools"
+    fi
 
     # Test archive
     (
