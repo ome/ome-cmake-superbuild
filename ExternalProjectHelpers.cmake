@@ -137,8 +137,8 @@ endfunction()
 
 macro(ome_add_empty_project project)
   ExternalProject_Add(${project}
-    SOURCE_DIR "${EP_SOURCE_DIR}"
-    BINARY_DIR "${EP_BINARY_DIR}"
+    SOURCE_DIR ""
+    BINARY_DIR ""
     DOWNLOAD_COMMAND ""
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
