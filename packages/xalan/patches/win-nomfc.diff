@@ -1,0 +1,20 @@
+--- xalan-c-1.11.orig/c/Projects/Win32/Res/AllInOne/AllInOne.rc	2012-03-19 16:18:11.000000000 +0000
++++ /home/rleigh/code/ome-cmake-superbuild/packages/xalan/files/c/Projects/Win32/Res/AllInOne/AllInOne.rc	2016-03-03 15:41:26.257222000 +0000
+@@ -7,7 +7,7 @@
+ //
+ // Generated from the TEXTINCLUDE 2 resource.
+ //
+-#include "afxres.h"
++#include "windows.h"
+ 
+ 
+ /////////////////////////////////////////////////////////////////////////////
+@@ -75,7 +75,7 @@
+ 
+ 2 TEXTINCLUDE 
+ BEGIN
+-    "#include ""afxres.h""\r\n"
++    "#include ""windows.h""\r\n"
+     "\r\n"
+     "\0"
+ END
