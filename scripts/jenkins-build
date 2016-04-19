@@ -237,8 +237,10 @@ build() {
     mkdir -p "${artefactdir}/sources"
     cp -a ${cachedir}/source/* "${artefactdir}/sources"
     if [ -d "${cachedir}/tools" ]; then
-      mkdir -p "${artefactdir}/tools"
-      cp -a ${cachedir}/tools/* "${artefactdir}/tools"
+        mkdir -p "${artefactdir}/tools"
+        find "${cachedir}/tools" -maxdepth 1 | while read file; do
+            cp -a "$file" "${artefactdir}/tools"
+        done
     fi
 
     # Test archive
