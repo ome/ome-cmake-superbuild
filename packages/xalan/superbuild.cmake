@@ -1,7 +1,7 @@
 # xalan superbuild
 
 # Set dependency list
-ome_add_dependencies(xalan THIRD_PARTY_DEPENDENCIES xerces icu)
+ome_add_dependencies(xalan THIRD_PARTY_DEPENDENCIES patch xerces icu)
 
 set(EP_BINARY_DIR "${EP_SOURCE_DIR}/c")
 

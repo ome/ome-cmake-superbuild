@@ -151,6 +151,7 @@ set(GENERIC_CMAKE_BUILD "${PROJECT_SOURCE_DIR}/helpers/cmake_build.cmake")
 set(GENERIC_CMAKE_INSTALL "${PROJECT_SOURCE_DIR}/helpers/cmake_install.cmake")
 set(GENERIC_CMAKE_TEST "${PROJECT_SOURCE_DIR}/helpers/cmake_test.cmake")
 set(GENERIC_CMAKE_ENVIRONMENT "${PROJECT_SOURCE_DIR}/helpers/cmake_environment.cmake")
+set(GENERIC_PATCH "${PROJECT_SOURCE_DIR}/helpers/patch.cmake")
 
 set(GENERIC_PYTHON_INSTALL "${PROJECT_SOURCE_DIR}/helpers/python_install.cmake")
 
