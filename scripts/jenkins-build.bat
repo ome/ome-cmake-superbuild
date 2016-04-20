@@ -390,9 +390,9 @@ if exist "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" (
 
 :: Archive builds
 cd %installdir%
-if not exist "%artefactdir%" mkdir -p "%artefactdir%"
-if not exist "%artefactdir%\docs" mkdir -p "%artefactdir%\docs"
-if not exist "%artefactdir%\binaries" mkdir -p "%artefactdir%\binaries"
+if not exist "%artefactdir%" mkdir "%artefactdir%"
+if not exist "%artefactdir%\docs" mkdir "%artefactdir%\docs"
+if not exist "%artefactdir%\binaries" mkdir "%artefactdir%\binaries"
 
 echo Archiving ome-files-bundle-%version_tag%.zip
 if exist "%artefactdir%\binaries\%version_tag%.zip" (
@@ -410,10 +410,10 @@ if exist "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" (
 
 
 :: Archive sources
-if not exist "%artefactdir%\sources" mkdir -p "%artefactdir%\sources"
+if not exist "%artefactdir%\sources" mkdir "%artefactdir%\sources"
 (robocopy "%cachedir%\sources" "%artefactdir%\sources" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 if exist "%cachedir%\tools" (
-   if not exist "%artefactdir%\tools" mkdir -p "%artefactdir%\tools"
+   if not exist "%artefactdir%\tools" mkdir "%artefactdir%\tools"
    (robocopy "%cachedir%\tools" "%artefactdir%\tools" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 
