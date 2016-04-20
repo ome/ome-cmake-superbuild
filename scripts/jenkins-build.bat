@@ -230,7 +230,7 @@ if [%PURGE_SOURCE%] == [true] (
     if exist "%cachedir%\source" (
         rmdir /s /q "%cachedir%\source"
     )
-    if exist "%cachedir%\source" (
+    if exist "%cachedir%\tools" (
         rmdir /s /q "%cachedir%\tools"
     )
 )
@@ -368,7 +368,7 @@ cd "%installdir%"
 
 :: Add version to archive name
 echo Renaming staged install to %version_tag%
-rmdir /s /q "%version_tag%"
+if exist "%version_tag%" rmdir /s /q "%version_tag%"
 rename stage %version_tag%
 
 if exist "%builddir%\ome-common-build\docs\doxygen\ome-common" (
@@ -389,7 +389,8 @@ if exist "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" (
 )
 
 :: Archive builds
-cd %installdir%
+cd "%installdir%"
+
 if not exist "%artefactdir%" mkdir "%artefactdir%"
 if not exist "%artefactdir%\docs" mkdir "%artefactdir%\docs"
 if not exist "%artefactdir%\binaries" mkdir "%artefactdir%\binaries"
@@ -408,11 +409,12 @@ if exist "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" (
     zip -r "%artefactdir%\docs\ome-files-bundle-apidoc-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" || exit /b
 )
 
-
-:: Archive sources
-if not exist "%artefactdir%\sources" mkdir "%artefactdir%\sources"
-(robocopy "%cachedir%\sources" "%artefactdir%\sources" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+:: Archive source
+if not exist "%artefactdir%\source" mkdir "%artefactdir%\source"
+echo Archiving source
+(robocopy "%cachedir%\source" "%artefactdir%\source" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 if exist "%cachedir%\tools" (
+   echo Archiving tools
    if not exist "%artefactdir%\tools" mkdir "%artefactdir%\tools"
    (robocopy "%cachedir%\tools" "%artefactdir%\tools" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
