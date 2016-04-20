@@ -9,10 +9,6 @@ if(WIN32)
   file(COPY ${SOURCE_DIR}/todos.exe ${SOURCE_DIR}/fromdos.exe
        DESTINATION "${OME_EP_TOOL_DIR}/bin")
 
-  if (install_result)
-    message(FATAL_ERROR "tofrodos: Install failed")
-  endif()
-
 endif()
 
 

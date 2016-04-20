@@ -21,15 +21,8 @@ if(WIN32)
 </trustInfo>
 </assembly>")
 
-  execute_process(COMMAND "${CMAKE_COMMAND}" -E copy_directory
-                          "${EP_SOURCE_DIR}/bin"
-                          "${OME_EP_TOOL_DIR}/bin"
-                  WORKING_DIRECTORY ${SOURCE_DIR}
-                  RESULT_VARIABLE install_result)
-
-  if (install_result)
-    message(FATAL_ERROR "patch: Install failed")
-  endif()
+  file(COPY ${SOURCE_DIR}/bin/patch.exe
+       DESTINATION "${OME_EP_TOOL_DIR}/bin")
 
 endif()
 
