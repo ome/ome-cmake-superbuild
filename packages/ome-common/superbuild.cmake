@@ -7,8 +7,8 @@ set(ome-common-git-url "" CACHE STRING "URL of OME Common C++ git repository")
 set(ome-common-git-branch "" CACHE STRING "URL of OME Common C++ git repository")
 
 # Current stable release.
-set(RELEASE_URL "https://downloads.openmicroscopy.org/ome-common-cpp/5.2.0-m2/source/ome-common-cpp-5.2.0-m2.tar.xz")
-set(RELEASE_HASH "SHA512=e3ca0f27e91a2fa301a453f256086d18f5979389acb165cf518abafad5eaa5562fada9da1e516426ac071461809ceca1f521e45390d3cbe94ab44c73c7e7ddc6")
+set(RELEASE_URL "https://downloads.openmicroscopy.org/ome-common-cpp/5.2.0/source/ome-common-cpp-5.2.0.tar.xz")
+set(RELEASE_HASH "SHA512=719d3b66a74aa818372383dcbde7fa2eab5e62cebc03beeed22b1f5ee49fa29f01534418cf176dce5e334dbdc4a083723f1087e55b6e0bee49bb07f2ac7c460e")
 
 # Current development branch (defaults for ome-common-head option).
 set(GIT_URL "https://github.com/ome/ome-common-cpp.git")
