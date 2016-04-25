@@ -1,7 +1,8 @@
 # py-setuptools superbuild
 
 # Set dependency list
-ome_add_dependencies(py-setuptools)
+ome_add_dependencies(py-setuptools
+                     TYPE tool)
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}

@@ -1,7 +1,9 @@
 # py-docutils superbuild
 
 # Set dependency list
-ome_add_dependencies(py-docutils THIRD_PARTY_DEPENDENCIES py-setuptools)
+ome_add_dependencies(py-docutils
+                     TYPE tool
+                     THIRD_PARTY_DEPENDENCIES py-setuptools)
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}

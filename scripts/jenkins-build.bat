@@ -175,7 +175,7 @@ Options:
 
   -g branch  Set git branch or tag to release from
   -G         Build from git (rather than the default source release archive)
-  -p mode    Purge cache (none|all|build|python)
+  -p mode    Purge cache (none|all|build|tools)
   -t type    Build type (Debug|Release)
   -A arch    Build architecture (x86|x64)
   -V VCver   Build with VisualC version
@@ -230,14 +230,17 @@ if [%PURGE_SOURCE%] == [true] (
     if exist "%cachedir%\source" (
         rmdir /s /q "%cachedir%\source"
     )
+    if exist "%cachedir%\tools" (
+        rmdir /s /q "%cachedir%\tools"
+    )
 )
 
 if [%PURGE_BUILD%] == [true] (
     if exist "%cachedir%\build" (
         rmdir /s /q "%cachedir%\build"
     )
-    if exist "%cachedir%\python" (
-        rmdir /s /q "%cachedir%\python"
+    if exist "%cachedir%\tools-build" (
+        rmdir /s /q "%cachedir%\tools-build"
     )
     if exist "%cachedir%\tree" (
         del "%cachedir%\tree"
@@ -266,7 +269,7 @@ mkdir install\stage
 cd build
 
 if exist "%cachedir%\tree" (
-    set "CMAKE_PREREQS=-Dbuild-cache:PATH=%cachedir%\build -Dpython-cache:PATH=%cachedir%\python -Dbuild-prerequisites:BOOL=OFF -Dome-superbuild_BUILD_gtest:BOOL=ON"
+    set "CMAKE_PREREQS=-Dbuild-cache:PATH=%cachedir%\build -Dtools-build-cache:PATH=%cachedir%\tools-build -Dbuild-prerequisites:BOOL=OFF -Dome-superbuild_BUILD_gtest:BOOL=ON"
 ) else (
     set "CMAKE_PREREQS=-Dbuild-prerequisites:BOOL=ON"
 )
@@ -291,7 +294,7 @@ if [%build_system%] == [MSBuild] (
         set "GEN=Visual Studio 14 2015!ARCH!"
     )
 
-    cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dqtgui:BOOL=%qt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dqtgui:BOOL=%qt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
 
 :: Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
@@ -300,11 +303,11 @@ if [%build_system%] == [MSBuild] (
         if exist "%cachedir%\build" (
             rmdir /s /q "%cachedir%\build"
         )
-        if exist "%cachedir%\python" (
-            rmdir /s /q "%cachedir%\python"
+        if exist "%cachedir%\tools-build" (
+            rmdir /s /q "%cachedir%\tools-build"
         )
         (robocopy superbuild-install "%cachedir%\build" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-        (robocopy python "%cachedir%\python" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy tools "%cachedir%\tools-build" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
         cd "%sourcedir%"
         git log -1 --pretty=%%T "%git_branch%" -- >%cachedir%\tree
         cd "%builddir%"
@@ -328,7 +331,7 @@ if [%build_system%] == [Ninja] (
         call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" %build_arch%
     )
 
-    cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dqtgui:BOOL=%qt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dqtgui:BOOL=%qt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
 
 :: Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
@@ -337,11 +340,11 @@ if [%build_system%] == [Ninja] (
         if exist "%cachedir%\build" (
             rmdir /s /q "%cachedir%\build"
         )
-        if exist "%cachedir%\python" (
-            rmdir /s /q "%cachedir%\python"
+        if exist "%cachedir%\tools-build" (
+            rmdir /s /q "%cachedir%\tools-build"
         )
         (robocopy superbuild-install "%cachedir%\build" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-        (robocopy python "%cachedir%\python" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy tools "%cachedir%\tools-build" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
         cd "%sourcedir%"
         git log -1 --pretty=%%T "%git_branch%" -- >%cachedir%\tree
         cd "%builddir%"
@@ -365,7 +368,7 @@ cd "%installdir%"
 
 :: Add version to archive name
 echo Renaming staged install to %version_tag%
-rmdir /s /q "%version_tag%"
+if exist "%version_tag%" rmdir /s /q "%version_tag%"
 rename stage %version_tag%
 
 if exist "%builddir%\ome-common-build\docs\doxygen\ome-common" (
@@ -386,10 +389,11 @@ if exist "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" (
 )
 
 :: Archive builds
-cd %installdir%
-if not exist "%artefactdir%" mkdir -p "%artefactdir%"
-if not exist "%artefactdir%\docs" mkdir -p "%artefactdir%\docs"
-if not exist "%artefactdir%\binaries" mkdir -p "%artefactdir%\binaries"
+cd "%installdir%"
+
+if not exist "%artefactdir%" mkdir "%artefactdir%"
+if not exist "%artefactdir%\docs" mkdir "%artefactdir%\docs"
+if not exist "%artefactdir%\binaries" mkdir "%artefactdir%\binaries"
 
 echo Archiving ome-files-bundle-%version_tag%.zip
 if exist "%artefactdir%\binaries\%version_tag%.zip" (
@@ -403,6 +407,16 @@ if exist "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" (
         del "%artefactdir%\ome-files-bundle-apidoc-%OME_VERSION%.zip"
     )
     zip -r "%artefactdir%\docs\ome-files-bundle-apidoc-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" || exit /b
+)
+
+:: Archive source
+if not exist "%artefactdir%\source" mkdir "%artefactdir%\source"
+echo Archiving source
+(robocopy "%cachedir%\source" "%artefactdir%\source" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+if exist "%cachedir%\tools" (
+   echo Archiving tools
+   if not exist "%artefactdir%\tools" mkdir "%artefactdir%\tools"
+   (robocopy "%cachedir%\tools" "%artefactdir%\tools" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 
 :: Test archive

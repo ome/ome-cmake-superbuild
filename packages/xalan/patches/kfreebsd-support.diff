@@ -1,0 +1,54 @@
+Description: Add support for GNU/kFreeBSD.
+Author: Petr Salinger <Petr.Salinger@seznam.cz>
+Bug-Debian: http://bugs.debian.org/347196
+Forwarded: https://issues.apache.org/jira/browse/XALANC-746
+Last-Update: 2013-06-16
+
+diff --git a/c/configure b/c/configure
+index 63fe660..aa21031 100755
+--- a/c/configure
++++ b/c/configure
+@@ -2816,6 +2816,7 @@ host_os=`echo $ac_cv_host | sed 's/^\([^-]*\)-\([^-]*\)-\(.*\)$/\3/'`
+ case "${host}" in
+         *-*-solaris*)   platform=SOLARIS ;;
+         *-*-linux*)     platform=LINUX ;;
++        *-*-k*bsd*)     platform=LINUX ;;
+         *-*-freebsd*)   platform=FREEBSD ;;
+         *-*-netbsd*)    platform=NETBSD ;;
+         *-*-openbsd*)    platform=OPENBSD ;;
+diff --git a/c/configure.in b/c/configure.in
+index c0bde88..1d79036 100644
+--- a/c/configure.in
++++ b/c/configure.in
+@@ -44,6 +44,7 @@ dnl Platform-specific Makefile setup
+ case "${host}" in
+         *-*-solaris*)   platform=SOLARIS ;;
+         *-*-linux*)     platform=LINUX ;;
++        *-*-k*bsd*)     platform=LINUX ;;
+         *-*-freebsd*)   platform=FREEBSD ;;
+         *-*-netbsd*)    platform=NETBSD ;;
+         *-*-openbsd*)   platform=OPENBSD ;;
+diff --git a/c/samples/configure b/c/samples/configure
+index c93d239..0e480c5 100755
+--- a/c/samples/configure
++++ b/c/samples/configure
+@@ -1171,6 +1171,7 @@ echo "$ac_t""$host" 1>&6
+ case "${host}" in
+         *-*-solaris*)   platform=SOLARIS ;;
+         *-*-linux*)     platform=LINUX ;;
++        *-*-k*bsd*)     platform=LINUX ;;
+         *-*-freebsd*)   platform=FREEBSD ;;
+         *-*-netbsd*)    platform=NETBSD ;;
+         *-*-irix*)      platform=IRIX ;;
+diff --git a/c/samples/configure.in b/c/samples/configure.in
+index 96b5979..6568a58 100755
+--- a/c/samples/configure.in
++++ b/c/samples/configure.in
+@@ -46,6 +46,7 @@ dnl Platform-specific Makefile setup
+ case "${host}" in
+         *-*-solaris*)   platform=SOLARIS ;;
+         *-*-linux*)     platform=LINUX ;;
++        *-*-k*bsd*)     platform=LINUX ;;
+         *-*-freebsd*)   platform=FREEBSD ;;
+         *-*-netbsd*)    platform=NETBSD ;;
+         *-*-irix*)      platform=IRIX ;;

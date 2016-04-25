@@ -1,7 +1,9 @@
 # py-jinja2 superbuild
 
 # Set dependency list
-ome_add_dependencies(py-jinja2 THIRD_PARTY_DEPENDENCIES py-setuptools py-markupsafe)
+ome_add_dependencies(py-jinja2
+                     TYPE tool
+                     THIRD_PARTY_DEPENDENCIES py-setuptools py-markupsafe)
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}

@@ -46,10 +46,19 @@ save_tree() {
 
 make_cache() {
     rm -rf "${cachedir}/build"
-    rm -rf "${cachedir}/python"
+    rm -rf "${cachedir}/tools-build"
     cp -a "superbuild-install" "${cachedir}/build"
-    cp -a "python" "${cachedir}/python"
+    cp -a "tools" "${cachedir}/tools-build"
     save_tree
+}
+
+restore_cache() {
+    rm -rf "superbuild-install"
+    rm -rf "tools"
+    mkdir -p "superbuild-install"
+    mkdir -p "tools"
+    cp -a "${cachedir}/build" "superbuild-install"
+    cp -a "${cachedir}/tools-build" "tools"
 }
 
 # Purge cache if required
@@ -81,11 +90,12 @@ check_cache_validity() {
 
     if [ "$PURGE_SOURCE" = "true" ]; then
         rm -rf "${cachedir}/source"
+        rm -rf "${cachedir}/tools"
     fi
 
     if [ "$PURGE_BUILD" = "true" ]; then
         rm -rf "${cachedir}/build"
-        rm -rf "${cachedir}/python"
+        rm -rf "${cachedir}/tools-build"
         rm -rf "${cachedir}/tree"
     fi
 
@@ -102,7 +112,7 @@ build() {
     if [ "$build_tp_prereqs" = "OFF" ] || [ -n "$(cached_tree)" ]; then
         CMAKE_PREREQS="-Dbuild-prerequisites:BOOL=OFF -Dome-superbuild_BUILD_gtest:BOOL=ON"
         if [ -n "$(cached_tree)" ]; then
-            CMAKE_PREREQS="${CMAKE_PREREQS} -Dbuild-cache:PATH=${cachedir}/build -Dpython-cache:PATH=${cachedir}/python"
+            CMAKE_PREREQS="${CMAKE_PREREQS} -Dbuild-cache:PATH=${cachedir}/build -Dtool-build-cache:PATH=${cachedir}/tools-build"
         fi
     fi
 
@@ -132,15 +142,20 @@ build() {
             -Dsphinx:BOOL=ON \
             -Dsphinx-pdf:BOOL=OFF \
             -Dsource-cache:PATH=${cachedir}/source \
+            -Dtool-cache:PATH=${cachedir}/tools \
             -DSOURCE_ARCHIVE_DIR="${artefactdir}/sources" \
             ${CMAKE_PREREQS} \
             ${sourcedir}
 
         # Make and cache prerequisites if missing
-        if [ "$build_tp_prereqs" = "ON" ] && [ -z "$(cached_tree)" ]; then
-            echo "Building prerequisites"
-            cmake --build . --target third-party-prerequisites -- $parallel
-            make_cache
+        if [ "$build_tp_prereqs" = "ON" ]; then
+            if [ -n "$(cached_tree)" ]; then
+                restore_cache
+            else
+                echo "Building prerequisites"
+                cmake --build . --target third-party-prerequisites -- $parallel
+                make_cache
+            fi
         fi
 
         # Build superbuild (and run tests)
@@ -221,6 +236,12 @@ build() {
     # Archive sources
     mkdir -p "${artefactdir}/sources"
     cp -a ${cachedir}/source/* "${artefactdir}/sources"
+    if [ -d "${cachedir}/tools" ]; then
+        mkdir -p "${artefactdir}/tools"
+        find "${cachedir}/tools" -maxdepth 1 | while read file; do
+            cp -a "$file" "${artefactdir}/tools"
+        done
+    fi
 
     # Test archive
     (
@@ -269,7 +290,7 @@ Options:
   -g branch  Set git branch or tag to release from
   -G         Build from git (rather than the default source release archive)
   -n         Do not build third-party prerequisites
-  -p mode    Purge cache (none|all|build|python)
+  -p mode    Purge cache (none|all|build|tools)
   -t type    Build type (Debug|Release)
   -S system  Build system (Unix Makefiles|Ninja)
   -d         Build doxygen API reference
