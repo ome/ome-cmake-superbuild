@@ -1,34 +1,10 @@
 # icu superbuild
 
 # Set dependency list
-ome_add_dependencies(icu)
-
-if(NOT MSVC)
-  set(ICU_PATCH)
-# VS 10.0
-elseif(NOT MSVC_VERSION VERSION_LESS 1600 AND MSVC_VERSION VERSION_LESS 1700)
-  set(ICU_PATCH)
-# VS 11.0
-elseif(NOT MSVC_VERSION VERSION_LESS 1700 AND MSVC_VERSION VERSION_LESS 1800)
-  set(ICU_PATCH PATCH_COMMAND "${CMAKE_COMMAND}" -E copy_directory
-      "${CMAKE_CURRENT_LIST_DIR}/files/VC11"
-      "${EP_SOURCE_DIR}")
-# VS 12.0
-elseif(NOT MSVC_VERSION VERSION_LESS 1800 AND MSVC_VERSION VERSION_LESS 1900)
-  set(ICU_PATCH PATCH_COMMAND "${CMAKE_COMMAND}" -E copy_directory
-      "${CMAKE_CURRENT_LIST_DIR}/files/VC12"
-      "${EP_SOURCE_DIR}")
-# VS 14.0
-elseif(NOT MSVC_VERSION VERSION_LESS 1900 AND MSVC_VERSION VERSION_LESS 2000)
-  set(ICU_PATCH PATCH_COMMAND "${CMAKE_COMMAND}" -E copy_directory
-      "${CMAKE_CURRENT_LIST_DIR}/files/VC14"
-      "${EP_SOURCE_DIR}")
-else()
-  message(FATAL_ERROR "VS version not supported by icu")
-endif()
+ome_add_dependencies(icu THIRD_PARTY_DEPENDENCIES patch)
 
 # Notes:
-# Patches solution/projects for VS2012 and VS2013
+# Patches solution/projects for VS2012, VS2013 and VS2015
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
@@ -37,7 +13,13 @@ ExternalProject_Add(${EP_PROJECT}
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""
-  ${ICU_PATCH}
+  PATCH_COMMAND
+    ${CMAKE_COMMAND}
+    "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
+    "-DPATCH_DIR:PATH=${CMAKE_CURRENT_LIST_DIR}/patches"
+    "-DCONFIG:INTERNAL=$<CONFIG>"
+    "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
+    -P "${GENERIC_PATCH}"
   CONFIGURE_COMMAND
     ${CMAKE_COMMAND}
     "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
