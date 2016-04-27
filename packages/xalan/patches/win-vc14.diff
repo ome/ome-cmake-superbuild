@@ -1,6 +1,6 @@
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/All/All.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/All/All.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/All/All.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/All/All.vcxproj	2016-04-19 10:32:01.478533193 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/All/All.vcxproj	2016-04-27 16:53:33.461005000 +0100
 @@ -0,0 +1,239 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -244,7 +244,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/All/All.vcxproj xalan-c-1.11-v
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/All/AllWithICU.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/All/AllWithICU.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/All/AllWithICU.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/All/AllWithICU.vcxproj	2016-04-19 10:32:01.478533193 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/All/AllWithICU.vcxproj	2016-04-27 16:53:33.464378000 +0100
 @@ -0,0 +1,178 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -427,7 +427,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/All/AllWithICU.vcxproj xalan-c
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj	2016-04-19 10:32:01.482533288 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj	2016-04-27 17:07:59.926172000 +0100
 @@ -0,0 +1,1332 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -602,7 +602,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj xala
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -640,7 +640,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj xala
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -829,7 +829,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj xala
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -867,7 +867,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj xala
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -1764,7 +1764,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj xala
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj.filters	2016-04-19 10:32:01.482533288 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj.filters	2016-04-27 16:53:33.478646000 +0100
 @@ -0,0 +1,2390 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -4159,7 +4159,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOne.vcxproj.filt
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxproj	2016-04-19 10:32:01.486533383 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxproj	2016-04-27 17:07:59.945439000 +0100
 @@ -0,0 +1,1025 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -4256,7 +4256,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxpr
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -4293,7 +4293,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxpr
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -5189,7 +5189,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxpr
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxproj.filters	2016-04-19 10:32:01.486533383 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxproj.filters	2016-04-27 16:53:33.489609000 +0100
 @@ -0,0 +1,2388 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -7582,7 +7582,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/AllInOne/AllInOneWithICU.vcxpr
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/CompileStylesheet/CompileStylesheet.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/CompileStylesheet/CompileStylesheet.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/CompileStylesheet/CompileStylesheet.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/CompileStylesheet/CompileStylesheet.vcxproj	2016-04-19 10:32:01.490533478 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/CompileStylesheet/CompileStylesheet.vcxproj	2016-04-27 17:07:59.955938000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -7756,7 +7756,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/CompileStylesheet/CompileStyle
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -7791,7 +7791,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/CompileStylesheet/CompileStyle
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -7968,7 +7968,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/CompileStylesheet/CompileStyle
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -8003,7 +8003,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/CompileStylesheet/CompileStyle
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -8047,7 +8047,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/CompileStylesheet/CompileStyle
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/CompileStylesheet/CompileStylesheet.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/CompileStylesheet/CompileStylesheet.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/CompileStylesheet/CompileStylesheet.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/CompileStylesheet/CompileStylesheet.vcxproj.filters	2016-04-19 10:32:01.490533478 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/CompileStylesheet/CompileStylesheet.vcxproj.filters	2016-04-27 16:53:33.507403000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -8074,7 +8074,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/CompileStylesheet/CompileStyle
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Conf/conf.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/Conf/conf.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Conf/conf.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Conf/conf.vcxproj	2016-04-19 10:32:01.494533572 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Conf/conf.vcxproj	2016-04-27 17:07:59.962038000 +0100
 @@ -0,0 +1,480 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -8248,7 +8248,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Conf/conf.vcxproj xalan-c-1.11
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <FloatingPointModel>Precise</FloatingPointModel>
@@ -8285,7 +8285,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Conf/conf.vcxproj xalan-c-1.11
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <FloatingPointModel>Precise</FloatingPointModel>
@@ -8476,7 +8476,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Conf/conf.vcxproj xalan-c-1.11
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <FloatingPointModel>Precise</FloatingPointModel>
@@ -8513,7 +8513,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Conf/conf.vcxproj xalan-c-1.11
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <FloatingPointModel>Precise</FloatingPointModel>
@@ -8559,7 +8559,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Conf/conf.vcxproj xalan-c-1.11
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Conf/conf.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/Conf/conf.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Conf/conf.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Conf/conf.vcxproj.filters	2016-04-19 10:32:01.494533572 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Conf/conf.vcxproj.filters	2016-04-27 16:53:33.527074000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -8586,7 +8586,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Conf/conf.vcxproj.filters xala
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilder.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilder.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilder.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilder.vcxproj	2016-04-19 10:32:01.498533668 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilder.vcxproj	2016-04-27 17:07:59.968256000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -8760,7 +8760,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilde
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -8795,7 +8795,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilde
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -8972,7 +8972,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilde
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -9007,7 +9007,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilde
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -9051,7 +9051,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilde
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilder.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilder.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilder.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilder.vcxproj.filters	2016-04-19 10:32:01.498533668 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilder.vcxproj.filters	2016-04-27 16:53:33.535189000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -9078,7 +9078,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/DocumentBuilder/DocumentBuilde
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/EntityResolver/EntityResolver.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/EntityResolver/EntityResolver.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/EntityResolver/EntityResolver.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/EntityResolver/EntityResolver.vcxproj	2016-04-19 10:32:01.502533762 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/EntityResolver/EntityResolver.vcxproj	2016-04-27 17:07:59.974759000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -9252,7 +9252,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/EntityResolver/EntityResolver.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -9287,7 +9287,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/EntityResolver/EntityResolver.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -9464,7 +9464,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/EntityResolver/EntityResolver.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -9499,7 +9499,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/EntityResolver/EntityResolver.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -9543,7 +9543,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/EntityResolver/EntityResolver.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/EntityResolver/EntityResolver.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/EntityResolver/EntityResolver.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/EntityResolver/EntityResolver.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/EntityResolver/EntityResolver.vcxproj.filters	2016-04-19 10:32:01.502533762 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/EntityResolver/EntityResolver.vcxproj.filters	2016-04-27 16:53:33.560504000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -9570,7 +9570,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/EntityResolver/EntityResolver.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ExternalFunction/ExternalFunction.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/ExternalFunction/ExternalFunction.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/ExternalFunction/ExternalFunction.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ExternalFunction/ExternalFunction.vcxproj	2016-04-19 10:32:01.506533858 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ExternalFunction/ExternalFunction.vcxproj	2016-04-27 17:07:59.981555000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -9744,7 +9744,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ExternalFunction/ExternalFunct
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -9779,7 +9779,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ExternalFunction/ExternalFunct
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -9956,7 +9956,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ExternalFunction/ExternalFunct
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -9991,7 +9991,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ExternalFunction/ExternalFunct
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -10035,7 +10035,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ExternalFunction/ExternalFunct
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ExternalFunction/ExternalFunction.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/ExternalFunction/ExternalFunction.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/ExternalFunction/ExternalFunction.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ExternalFunction/ExternalFunction.vcxproj.filters	2016-04-19 10:32:01.506533858 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ExternalFunction/ExternalFunction.vcxproj.filters	2016-04-27 16:53:33.568294000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -10062,7 +10062,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ExternalFunction/ExternalFunct
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSourceWrappers.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSourceWrappers.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSourceWrappers.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSourceWrappers.vcxproj	2016-04-19 10:32:01.510533952 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSourceWrappers.vcxproj	2016-04-27 17:07:59.987542000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -10236,7 +10236,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSou
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -10271,7 +10271,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSou
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -10448,7 +10448,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSou
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -10483,7 +10483,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSou
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -10527,7 +10527,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSou
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSourceWrappers.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSourceWrappers.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSourceWrappers.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSourceWrappers.vcxproj.filters	2016-04-19 10:32:01.510533952 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSourceWrappers.vcxproj.filters	2016-04-27 16:53:33.575349000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -10554,7 +10554,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ParsedSourceWrappers/ParsedSou
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Performance/perf.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/Performance/perf.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Performance/perf.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Performance/perf.vcxproj	2016-04-19 10:32:01.514534048 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Performance/perf.vcxproj	2016-04-27 17:07:59.994678000 +0100
 @@ -0,0 +1,592 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -10835,7 +10835,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Performance/perf.vcxproj xalan
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -10887,7 +10887,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Performance/perf.vcxproj xalan
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -11029,7 +11029,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Performance/perf.vcxproj xalan
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -11081,7 +11081,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Performance/perf.vcxproj xalan
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -11151,7 +11151,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Performance/perf.vcxproj xalan
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNodeSet.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNodeSet.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNodeSet.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNodeSet.vcxproj	2016-04-19 10:32:01.514534048 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNodeSet.vcxproj	2016-04-27 17:08:00.000459000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -11325,7 +11325,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNode
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -11360,7 +11360,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNode
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -11537,7 +11537,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNode
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -11572,7 +11572,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNode
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -11616,7 +11616,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNode
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNodeSet.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNodeSet.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNodeSet.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNodeSet.vcxproj.filters	2016-04-19 10:32:01.518534142 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNodeSet.vcxproj.filters	2016-04-27 16:53:33.606807000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -11643,7 +11643,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SerializeNodeSet/SerializeNode
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleTransform/SimpleTransform.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleTransform/SimpleTransform.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleTransform/SimpleTransform.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleTransform/SimpleTransform.vcxproj	2016-04-19 10:32:01.518534142 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleTransform/SimpleTransform.vcxproj	2016-04-27 17:08:00.007057000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -11817,7 +11817,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleTransform/SimpleTransfor
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -11852,7 +11852,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleTransform/SimpleTransfor
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -12029,7 +12029,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleTransform/SimpleTransfor
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -12064,7 +12064,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleTransform/SimpleTransfor
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -12108,7 +12108,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleTransform/SimpleTransfor
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleTransform/SimpleTransform.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleTransform/SimpleTransform.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleTransform/SimpleTransform.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleTransform/SimpleTransform.vcxproj.filters	2016-04-19 10:32:01.522534237 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleTransform/SimpleTransform.vcxproj.filters	2016-04-27 16:53:33.626116000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -12135,7 +12135,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleTransform/SimpleTransfor
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.vcxproj	2016-04-19 10:32:01.522534237 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.vcxproj	2016-04-27 17:08:00.013471000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -12309,7 +12309,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -12344,7 +12344,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -12521,7 +12521,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -12556,7 +12556,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -12600,7 +12600,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.vcxproj.filters	2016-04-19 10:32:01.526534332 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.vcxproj.filters	2016-04-27 16:53:33.657301000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -12627,7 +12627,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathAPI/SimpleXPathAPI.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAPI.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAPI.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAPI.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAPI.vcxproj	2016-04-19 10:32:01.526534332 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAPI.vcxproj	2016-04-27 17:08:00.019899000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -12801,7 +12801,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAP
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -12836,7 +12836,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAP
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -13013,7 +13013,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAP
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -13048,7 +13048,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAP
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -13092,7 +13092,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAP
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAPI.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAPI.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAPI.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAPI.vcxproj.filters	2016-04-19 10:32:01.534534522 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAPI.vcxproj.filters	2016-04-27 16:53:33.701822000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -13119,7 +13119,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/SimpleXPathCAPI/SimpleXPathCAP
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/StreamTransform/StreamTransform.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/StreamTransform/StreamTransform.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/StreamTransform/StreamTransform.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/StreamTransform/StreamTransform.vcxproj	2016-04-19 10:32:01.542534711 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/StreamTransform/StreamTransform.vcxproj	2016-04-27 17:08:00.026152000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -13293,7 +13293,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/StreamTransform/StreamTransfor
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -13328,7 +13328,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/StreamTransform/StreamTransfor
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -13505,7 +13505,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/StreamTransform/StreamTransfor
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -13540,7 +13540,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/StreamTransform/StreamTransfor
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -13584,7 +13584,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/StreamTransform/StreamTransfor
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/StreamTransform/StreamTransform.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/StreamTransform/StreamTransform.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/StreamTransform/StreamTransform.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/StreamTransform/StreamTransform.vcxproj.filters	2016-04-19 10:32:01.550534901 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/StreamTransform/StreamTransform.vcxproj.filters	2016-04-27 16:53:33.711946000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -13611,7 +13611,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/StreamTransform/StreamTransfor
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj	2016-04-19 10:32:01.550534901 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj	2016-04-27 17:08:00.031987000 +0100
 @@ -0,0 +1,464 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -13785,7 +13785,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj xa
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -13820,7 +13820,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj xa
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -13997,7 +13997,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj xa
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -14032,7 +14032,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj xa
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -14080,7 +14080,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj xa
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj.filters	2016-04-19 10:32:01.554534997 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj.filters	2016-04-27 16:53:33.722214000 +0100
 @@ -0,0 +1,30 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -14115,7 +14115,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXPath/TestXPath.vcxproj.fi
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj	2016-04-19 10:32:01.554534997 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj	2016-04-27 17:08:00.038053000 +0100
 @@ -0,0 +1,461 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -14289,7 +14289,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj xala
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -14324,7 +14324,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj xala
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -14502,7 +14502,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj xala
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -14537,7 +14537,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj xala
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -14581,7 +14581,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj xala
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj.filters	2016-04-19 10:32:01.558535091 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj.filters	2016-04-27 16:53:33.729397000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -14608,7 +14608,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TestXSLT/TestXSLT.vcxproj.filt
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj	2016-04-19 10:32:01.558535091 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj	2016-04-27 17:08:00.043909000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -14782,7 +14782,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj 
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -14817,7 +14817,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj 
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -14994,7 +14994,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj 
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -15029,7 +15029,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj 
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -15073,7 +15073,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj 
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj.filters	2016-04-19 10:32:01.562535187 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj.filters	2016-04-27 16:53:33.751517000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -15100,7 +15100,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadSafe/ThreadSafe.vcxproj.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj	2016-04-19 10:32:01.562535187 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj	2016-04-27 17:08:00.049447000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -15274,7 +15274,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj 
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -15309,7 +15309,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj 
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -15486,7 +15486,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj 
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -15521,7 +15521,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj 
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -15565,7 +15565,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj 
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj.filters	2016-04-19 10:32:01.566535281 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj.filters	2016-04-27 16:53:33.782584000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -15592,7 +15592,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/ThreadTest/ThreadTest.vcxproj.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxproj	2016-04-19 10:32:01.566535281 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxproj	2016-04-27 17:08:00.054894000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -15766,7 +15766,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxpro
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -15801,7 +15801,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxpro
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -15978,7 +15978,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxpro
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -16013,7 +16013,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxpro
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -16057,7 +16057,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxpro
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxproj.filters	2016-04-19 10:32:01.570535376 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxproj.filters	2016-04-27 16:53:33.827687000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -16084,7 +16084,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TraceListen/TraceListen.vcxpro
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TransformToXercesDOM/TransformToXercesDOM.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/TransformToXercesDOM/TransformToXercesDOM.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/TransformToXercesDOM/TransformToXercesDOM.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TransformToXercesDOM/TransformToXercesDOM.vcxproj	2016-04-19 10:32:01.570535376 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TransformToXercesDOM/TransformToXercesDOM.vcxproj	2016-04-27 17:08:00.062989000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -16258,7 +16258,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TransformToXercesDOM/Transform
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -16293,7 +16293,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TransformToXercesDOM/Transform
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -16470,7 +16470,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TransformToXercesDOM/Transform
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -16505,7 +16505,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TransformToXercesDOM/Transform
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -16549,7 +16549,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TransformToXercesDOM/Transform
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TransformToXercesDOM/TransformToXercesDOM.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/TransformToXercesDOM/TransformToXercesDOM.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/TransformToXercesDOM/TransformToXercesDOM.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TransformToXercesDOM/TransformToXercesDOM.vcxproj.filters	2016-04-19 10:32:01.574535471 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/TransformToXercesDOM/TransformToXercesDOM.vcxproj.filters	2016-04-27 16:53:33.894184000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -16576,7 +16576,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/TransformToXercesDOM/Transform
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/UseStylesheetParam/UseStylesheetParam.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/UseStylesheetParam/UseStylesheetParam.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/UseStylesheetParam/UseStylesheetParam.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/UseStylesheetParam/UseStylesheetParam.vcxproj	2016-04-19 10:32:01.574535471 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/UseStylesheetParam/UseStylesheetParam.vcxproj	2016-04-27 17:08:00.073093000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -16750,7 +16750,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/UseStylesheetParam/UseStyleshe
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -16785,7 +16785,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/UseStylesheetParam/UseStyleshe
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -16962,7 +16962,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/UseStylesheetParam/UseStyleshe
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -16997,7 +16997,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/UseStylesheetParam/UseStyleshe
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -17041,7 +17041,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/UseStylesheetParam/UseStyleshe
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/UseStylesheetParam/UseStylesheetParam.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/UseStylesheetParam/UseStylesheetParam.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/UseStylesheetParam/UseStylesheetParam.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/UseStylesheetParam/UseStylesheetParam.vcxproj.filters	2016-04-19 10:32:01.578535566 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/UseStylesheetParam/UseStylesheetParam.vcxproj.filters	2016-04-27 16:53:33.926156000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -17068,7 +17068,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/UseStylesheetParam/UseStyleshe
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vcxproj	2016-04-19 10:32:01.582535661 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vcxproj	2016-04-27 17:08:00.085348000 +0100
 @@ -0,0 +1,427 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -17242,7 +17242,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vc
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -17275,7 +17275,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vc
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -17418,7 +17418,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vc
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -17451,7 +17451,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vc
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -17500,7 +17500,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vc
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vcxproj.filters	2016-04-19 10:32:01.582535661 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vcxproj.filters	2016-04-27 16:53:33.962695000 +0100
 @@ -0,0 +1,69 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -17574,7 +17574,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/MsgCreator/MsgCreator.vc
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.props xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.props
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.props	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.props	2016-04-19 10:32:01.610536326 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.props	2016-04-27 16:53:33.985011000 +0100
 @@ -0,0 +1,67 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -17646,7 +17646,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibI
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.rules xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.rules
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.rules	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.rules	2016-04-19 10:32:01.610536326 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.rules	2016-04-27 16:53:33.991558000 +0100
 @@ -0,0 +1,52 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<VisualStudioToolFile
@@ -17702,7 +17702,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibI
 +</VisualStudioToolFile>
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.targets xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.targets
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.targets	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.targets	2016-04-19 10:32:01.614536420 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.targets	2016-04-27 16:53:34.009895000 +0100
 @@ -0,0 +1,303 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -18010,7 +18010,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibI
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.vcxproj	2016-04-19 10:32:01.618536516 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.vcxproj	2016-04-27 16:53:34.017281000 +0100
 @@ -0,0 +1,170 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -18185,7 +18185,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibI
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.vcxproj.filters	2016-04-19 10:32:01.618536516 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.vcxproj.filters	2016-04-27 16:53:34.024056000 +0100
 @@ -0,0 +1,65 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -18255,7 +18255,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibI
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.xml xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.xml
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.xml	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.xml	2016-04-19 10:32:01.618536516 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibICU.xml	2016-04-27 16:53:34.036806000 +0100
 @@ -0,0 +1,499 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<ProjectSchemaDefinitions xmlns="clr-namespace:Microsoft.Build.Framework.XamlTypes;assembly=Microsoft.Build.Framework" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:transformCallback="Microsoft.Cpp.Dev10.ConvertPropertyCallback">
@@ -18759,7 +18759,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLibI
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.props xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.props
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.props	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.props	2016-04-19 10:32:01.586535756 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.props	2016-04-27 16:53:34.042709000 +0100
 @@ -0,0 +1,19 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -18783,7 +18783,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.rules xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.rules
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.rules	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.rules	2016-04-19 10:32:01.586535756 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.rules	2016-04-27 16:53:34.050565000 +0100
 @@ -0,0 +1,19 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<VisualStudioToolFile
@@ -18806,7 +18806,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.
 +</VisualStudioToolFile>
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.targets xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.targets
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.targets	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.targets	2016-04-19 10:32:01.586535756 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.targets	2016-04-27 16:53:34.057242000 +0100
 @@ -0,0 +1,81 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -18892,7 +18892,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.vcxproj	2016-04-19 10:32:01.590535850 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.vcxproj	2016-04-27 17:08:00.090957000 +0100
 @@ -0,0 +1,386 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -19051,7 +19051,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.
 +      <PreprocessorDefinitions>XALAN_XALANMSGLIB_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 +      <StringPooling>true</StringPooling>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -19077,7 +19077,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.
 +      <PreprocessorDefinitions>XALAN_XALANMSGLIB_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 +      <StringPooling>true</StringPooling>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -19217,7 +19217,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.
 +      <PreprocessorDefinitions>XALAN_XALANMSGLIB_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 +      <StringPooling>true</StringPooling>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -19243,7 +19243,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.
 +      <PreprocessorDefinitions>XALAN_XALANMSGLIB_BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 +      <StringPooling>true</StringPooling>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -19283,7 +19283,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.vcxproj.filters	2016-04-19 10:32:01.594535946 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.vcxproj.filters	2016-04-27 16:53:34.086471000 +0100
 @@ -0,0 +1,35 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -19323,7 +19323,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.xml xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.xml
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.xml	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.xml	2016-04-19 10:32:01.602536136 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.xml	2016-04-27 16:53:34.092196000 +0100
 @@ -0,0 +1,127 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<ProjectSchemaDefinitions xmlns="clr-namespace:Microsoft.Build.Framework.XamlTypes;assembly=Microsoft.Build.Framework" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:transformCallback="Microsoft.Cpp.Dev10.ConvertPropertyCallback">
@@ -19455,7 +19455,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Utils/XalanMsgLib/XalanMsgLib.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj	2016-04-19 10:32:01.622536610 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj	2016-04-27 16:53:34.110714000 +0100
 @@ -0,0 +1,561 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -20021,7 +20021,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj xala
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj.filters	2016-04-19 10:32:01.626536705 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj.filters	2016-04-27 16:53:34.118008000 +0100
 @@ -0,0 +1,18 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -20044,7 +20044,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanExe/XalanExe.vcxproj.filt
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Xalan.sln xalan-c-1.11-vc14/c/Projects/Win32/VC14/Xalan.sln
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/Xalan.sln	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Xalan.sln	2016-04-19 10:32:01.622536610 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/Xalan.sln	2016-04-27 16:53:34.126059000 +0100
 @@ -0,0 +1,489 @@
 +Microsoft Visual Studio Solution File, Format Version 12.00
 +# Visual Studio 14
@@ -20537,7 +20537,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/Xalan.sln xalan-c-1.11-vc14/c/
 +EndGlobal
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransform/XalanTransform.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransform/XalanTransform.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransform/XalanTransform.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransform/XalanTransform.vcxproj	2016-04-19 10:32:01.626536705 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransform/XalanTransform.vcxproj	2016-04-27 17:08:00.096540000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -20711,7 +20711,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransform/XalanTransform.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -20746,7 +20746,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransform/XalanTransform.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -20923,7 +20923,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransform/XalanTransform.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -20958,7 +20958,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransform/XalanTransform.
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -21002,7 +21002,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransform/XalanTransform.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransform/XalanTransform.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransform/XalanTransform.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransform/XalanTransform.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransform/XalanTransform.vcxproj.filters	2016-04-19 10:32:01.630536800 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransform/XalanTransform.vcxproj.filters	2016-04-27 16:53:34.152632000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -21029,7 +21029,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransform/XalanTransform.
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransformerCallback/XalanTransformerCallback.vcxproj xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransformerCallback/XalanTransformerCallback.vcxproj
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransformerCallback/XalanTransformerCallback.vcxproj	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransformerCallback/XalanTransformerCallback.vcxproj	2016-04-19 10:32:01.630536800 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransformerCallback/XalanTransformerCallback.vcxproj	2016-04-27 17:08:00.102367000 +0100
 @@ -0,0 +1,460 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -21203,7 +21203,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransformerCallback/Xalan
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -21238,7 +21238,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransformerCallback/Xalan
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -21415,7 +21415,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransformerCallback/Xalan
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -21450,7 +21450,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransformerCallback/Xalan
 +      <StringPooling>true</StringPooling>
 +      <MinimalRebuild>true</MinimalRebuild>
 +      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-+      <SmallerTypeCheck>true</SmallerTypeCheck>
++      <SmallerTypeCheck>false</SmallerTypeCheck>
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <FunctionLevelLinking>true</FunctionLevelLinking>
 +      <PrecompiledHeader>
@@ -21494,7 +21494,7 @@ diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransformerCallback/Xalan
 \ No newline at end of file
 diff -urN xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransformerCallback/XalanTransformerCallback.vcxproj.filters xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransformerCallback/XalanTransformerCallback.vcxproj.filters
 --- xalan-c-1.11.orig/c/Projects/Win32/VC14/XalanTransformerCallback/XalanTransformerCallback.vcxproj.filters	1970-01-01 01:00:00.000000000 +0100
-+++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransformerCallback/XalanTransformerCallback.vcxproj.filters	2016-04-19 10:32:01.634536895 +0100
++++ xalan-c-1.11-vc14/c/Projects/Win32/VC14/XalanTransformerCallback/XalanTransformerCallback.vcxproj.filters	2016-04-27 16:53:34.180139000 +0100
 @@ -0,0 +1,22 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
