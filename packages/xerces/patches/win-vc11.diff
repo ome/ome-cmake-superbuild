@@ -1,0 +1,39 @@
+diff -urN xerces-c-3.1.3.orig/projects/Win32/VC11/xerces-all/xerces-all.sln xerces-c-3.1.3.vc11/projects/Win32/VC11/xerces-all/xerces-all.sln
+--- xerces-c-3.1.3.orig/projects/Win32/VC11/xerces-all/xerces-all.sln	2016-02-01 17:44:38.000000000 +0000
++++ xerces-c-3.1.3.vc11/projects/Win32/VC11/xerces-all/xerces-all.sln	2016-04-27 13:59:56.011916397 +0100
+@@ -1,4 +1,4 @@
+-Microsoft Visual Studio Solution File, Format Version 11.00
++Microsoft Visual Studio Solution File, Format Version 12.00
+ # Visual Studio 2012
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "all", "all\all.vcxproj", "{E305E46C-9D74-4755-BF57-29DEAEF4DCDD}"
+ EndProject
+diff -urN xerces-c-3.1.3.orig/projects/Win32/VC11/xerces-all/XercesLib/XercesLib.vcxproj xerces-c-3.1.3.vc11/projects/Win32/VC11/xerces-all/XercesLib/XercesLib.vcxproj
+--- xerces-c-3.1.3.orig/projects/Win32/VC11/xerces-all/XercesLib/XercesLib.vcxproj	2016-02-01 17:44:38.000000000 +0000
++++ xerces-c-3.1.3.vc11/projects/Win32/VC11/xerces-all/XercesLib/XercesLib.vcxproj	2016-04-27 13:59:48.199736434 +0100
+@@ -538,7 +538,7 @@
+     </ResourceCompile>
+     <Link>
+       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+-      <AdditionalDependencies>ws2_32.lib;advapi32.lib;icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
++      <AdditionalDependencies>ws2_32.lib;advapi32.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+       <OutputFile>$(TargetPath)</OutputFile>
+       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+@@ -578,7 +578,7 @@
+       <Culture>0x0409</Culture>
+     </ResourceCompile>
+     <Link>
+-      <AdditionalDependencies>ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
++      <AdditionalDependencies>ws2_32.lib;advapi32.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+       <OutputFile>$(TargetPath)</OutputFile>
+       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+@@ -669,7 +669,7 @@
+       <Culture>0x0409</Culture>
+     </ResourceCompile>
+     <Link>
+-      <AdditionalDependencies>ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
++      <AdditionalDependencies>ws2_32.lib;advapi32.lib;icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+       <OutputFile>$(TargetPath)</OutputFile>
+       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+       <GenerateDebugInformation>true</GenerateDebugInformation>
