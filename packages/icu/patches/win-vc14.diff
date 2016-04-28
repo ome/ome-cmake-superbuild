@@ -1,12 +1,13 @@
-diff -urN icu-1.57.orig/source/allinone/allinone.sln icu-1.57.vc14/source/allinone/allinone.sln
---- icu-1.57.orig/source/allinone/allinone.sln	2016-03-23 20:50:30.000000000 +0000
-+++ icu-1.57.vc14/source/allinone/allinone.sln	2016-04-28 16:50:55.392089000 +0100
+Files icu-57.orig/source/allinone/.vs/allinone/v14/.suo and icu-57.vc14/source/allinone/.vs/allinone/v14/.suo differ
+diff -urN icu-57.orig/source/allinone/allinone.sln icu-57.vc14/source/allinone/allinone.sln
+--- icu-57.orig/source/allinone/allinone.sln	2016-03-23 20:50:30.000000000 +0000
++++ icu-57.vc14/source/allinone/allinone.sln	2016-04-28 18:46:48.930215928 +0100
 @@ -1,5 +1,7 @@
 -Microsoft Visual Studio Solution File, Format Version 11.00
 -# Visual Studio 2010
 +Microsoft Visual Studio Solution File, Format Version 12.00
 +# Visual Studio 14
-+VisualStudioVersion = 14.0.24720.0
++VisualStudioVersion = 14.0.25123.0
 +MinimumVisualStudioVersion = 10.0.40219.1
  Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cal", "..\samples\cal\cal.vcxproj", "{F7659D77-09CF-4FE9-ACEE-927287AA9509}"
  EndProject
@@ -31,9 +32,9 @@ diff -urN icu-1.57.orig/source/allinone/allinone.sln icu-1.57.vc14/source/allino
 +		Manager = AnkhSVN - Subversion Support for Visual Studio
 +	EndGlobalSection
  EndGlobal
-diff -urN icu-1.57.orig/source/common/common.vcxproj icu-1.57.vc14/source/common/common.vcxproj
---- icu-1.57.orig/source/common/common.vcxproj	2016-03-23 20:50:10.000000000 +0000
-+++ icu-1.57.vc14/source/common/common.vcxproj	2016-04-28 16:50:55.420028000 +0100
+diff -urN icu-57.orig/source/common/common.vcxproj icu-57.vc14/source/common/common.vcxproj
+--- icu-57.orig/source/common/common.vcxproj	2016-03-23 20:50:10.000000000 +0000
++++ icu-57.vc14/source/common/common.vcxproj	2016-04-28 18:46:56.948219805 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -74,41 +75,9 @@ diff -urN icu-1.57.orig/source/common/common.vcxproj icu-1.57.vc14/source/common
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/data/makedata.vcxproj icu-1.57.vc14/source/data/makedata.vcxproj
---- icu-1.57.orig/source/data/makedata.vcxproj	2016-03-23 20:56:38.000000000 +0000
-+++ icu-1.57.vc14/source/data/makedata.vcxproj	2016-04-28 16:50:55.482463000 +0100
-@@ -1,5 +1,5 @@
- ﻿<?xml version="1.0" encoding="utf-8"?>
--<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-   <ItemGroup Label="ProjectConfigurations">
-     <ProjectConfiguration Include="Debug|Win32">
-       <Configuration>Debug</Configuration>
-@@ -26,17 +26,21 @@
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-     <ConfigurationType>Makefile</ConfigurationType>
-     <UseOfMfc>false</UseOfMfc>
-+    <PlatformToolset>v140</PlatformToolset>
-   </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-     <ConfigurationType>Makefile</ConfigurationType>
-     <UseOfMfc>false</UseOfMfc>
-+    <PlatformToolset>v140</PlatformToolset>
-   </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-     <ConfigurationType>Makefile</ConfigurationType>
-     <UseOfMfc>false</UseOfMfc>
-+    <PlatformToolset>v140</PlatformToolset>
-   </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-     <ConfigurationType>Makefile</ConfigurationType>
-+    <PlatformToolset>v140</PlatformToolset>
-     <UseOfMfc>false</UseOfMfc>
-   </PropertyGroup>
-   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-diff -urN icu-1.57.orig/source/extra/uconv/uconv.vcxproj icu-1.57.vc14/source/extra/uconv/uconv.vcxproj
---- icu-1.57.orig/source/extra/uconv/uconv.vcxproj	2016-03-23 20:49:46.000000000 +0000
-+++ icu-1.57.vc14/source/extra/uconv/uconv.vcxproj	2016-04-28 16:50:55.493651000 +0100
+diff -urN icu-57.orig/source/extra/uconv/uconv.vcxproj icu-57.vc14/source/extra/uconv/uconv.vcxproj
+--- icu-57.orig/source/extra/uconv/uconv.vcxproj	2016-03-23 20:49:46.000000000 +0000
++++ icu-57.vc14/source/extra/uconv/uconv.vcxproj	2016-04-28 18:46:56.923223202 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -142,42 +111,6 @@ diff -urN icu-1.57.orig/source/extra/uconv/uconv.vcxproj icu-1.57.vc14/source/ex
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -92,7 +96,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/uconv.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -134,7 +138,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/uconv.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -178,7 +182,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/uconv.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
-@@ -219,7 +223,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/uconv.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
 @@ -292,4 +296,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -185,9 +118,9 @@ diff -urN icu-1.57.orig/source/extra/uconv/uconv.vcxproj icu-1.57.vc14/source/ex
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/i18n/i18n.vcxproj icu-1.57.vc14/source/i18n/i18n.vcxproj
---- icu-1.57.orig/source/i18n/i18n.vcxproj	2016-03-23 20:49:28.000000000 +0000
-+++ icu-1.57.vc14/source/i18n/i18n.vcxproj	2016-04-28 16:50:55.539509000 +0100
+diff -urN icu-57.orig/source/i18n/i18n.vcxproj icu-57.vc14/source/i18n/i18n.vcxproj
+--- icu-57.orig/source/i18n/i18n.vcxproj	2016-03-23 20:49:28.000000000 +0000
++++ icu-57.vc14/source/i18n/i18n.vcxproj	2016-04-28 18:46:56.964219664 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -228,9 +161,9 @@ diff -urN icu-1.57.orig/source/i18n/i18n.vcxproj icu-1.57.vc14/source/i18n/i18n.
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/io/io.vcxproj icu-1.57.vc14/source/io/io.vcxproj
---- icu-1.57.orig/source/io/io.vcxproj	2016-03-23 20:50:52.000000000 +0000
-+++ icu-1.57.vc14/source/io/io.vcxproj	2016-04-28 16:50:55.585162000 +0100
+diff -urN icu-57.orig/source/io/io.vcxproj icu-57.vc14/source/io/io.vcxproj
+--- icu-57.orig/source/io/io.vcxproj	2016-03-23 20:50:52.000000000 +0000
++++ icu-57.vc14/source/io/io.vcxproj	2016-04-28 18:46:56.933222137 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -271,9 +204,9 @@ diff -urN icu-1.57.orig/source/io/io.vcxproj icu-1.57.vc14/source/io/io.vcxproj
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/layout/layout.vcxproj icu-1.57.vc14/source/layout/layout.vcxproj
---- icu-1.57.orig/source/layout/layout.vcxproj	2016-03-23 20:56:48.000000000 +0000
-+++ icu-1.57.vc14/source/layout/layout.vcxproj	2016-04-28 16:50:55.603659000 +0100
+diff -urN icu-57.orig/source/layout/layout.vcxproj icu-57.vc14/source/layout/layout.vcxproj
+--- icu-57.orig/source/layout/layout.vcxproj	2016-03-23 20:56:48.000000000 +0000
++++ icu-57.vc14/source/layout/layout.vcxproj	2016-04-28 18:46:56.926223420 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -307,42 +240,6 @@ diff -urN icu-1.57.orig/source/layout/layout.vcxproj icu-1.57.vc14/source/layout
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -92,7 +96,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/layout.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -135,7 +139,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/layout.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -177,7 +181,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/layout.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
-@@ -218,7 +222,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/layout.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
 @@ -576,4 +580,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -350,9 +247,9 @@ diff -urN icu-1.57.orig/source/layout/layout.vcxproj icu-1.57.vc14/source/layout
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/layoutex/layoutex.vcxproj icu-1.57.vc14/source/layoutex/layoutex.vcxproj
---- icu-1.57.orig/source/layoutex/layoutex.vcxproj	2016-03-23 20:56:38.000000000 +0000
-+++ icu-1.57.vc14/source/layoutex/layoutex.vcxproj	2016-04-28 16:50:55.634636000 +0100
+diff -urN icu-57.orig/source/layoutex/layoutex.vcxproj icu-57.vc14/source/layoutex/layoutex.vcxproj
+--- icu-57.orig/source/layoutex/layoutex.vcxproj	2016-03-23 20:56:38.000000000 +0000
++++ icu-57.vc14/source/layoutex/layoutex.vcxproj	2016-04-28 18:46:56.941223044 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -386,42 +283,6 @@ diff -urN icu-1.57.orig/source/layoutex/layoutex.vcxproj icu-1.57.vc14/source/la
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -92,7 +96,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/layoutex.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -133,7 +137,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/layoutex.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -175,7 +179,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/layoutex.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
-@@ -214,7 +218,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/layoutex.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
 @@ -336,4 +340,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -429,9 +290,9 @@ diff -urN icu-1.57.orig/source/layoutex/layoutex.vcxproj icu-1.57.vc14/source/la
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/samples/cal/cal.vcxproj icu-1.57.vc14/source/samples/cal/cal.vcxproj
---- icu-1.57.orig/source/samples/cal/cal.vcxproj	2016-03-23 20:50:38.000000000 +0000
-+++ icu-1.57.vc14/source/samples/cal/cal.vcxproj	2016-04-28 16:50:55.667569000 +0100
+diff -urN icu-57.orig/source/samples/cal/cal.vcxproj icu-57.vc14/source/samples/cal/cal.vcxproj
+--- icu-57.orig/source/samples/cal/cal.vcxproj	2016-03-23 20:50:38.000000000 +0000
++++ icu-57.vc14/source/samples/cal/cal.vcxproj	2016-04-28 18:46:56.531222737 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -485,9 +346,9 @@ diff -urN icu-1.57.orig/source/samples/cal/cal.vcxproj icu-1.57.vc14/source/samp
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/samples/date/date.vcxproj icu-1.57.vc14/source/samples/date/date.vcxproj
---- icu-1.57.orig/source/samples/date/date.vcxproj	2016-03-23 20:50:48.000000000 +0000
-+++ icu-1.57.vc14/source/samples/date/date.vcxproj	2016-04-28 16:50:55.690545000 +0100
+diff -urN icu-57.orig/source/samples/date/date.vcxproj icu-57.vc14/source/samples/date/date.vcxproj
+--- icu-57.orig/source/samples/date/date.vcxproj	2016-03-23 20:50:48.000000000 +0000
++++ icu-57.vc14/source/samples/date/date.vcxproj	2016-04-28 18:46:56.459221903 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -528,9 +389,9 @@ diff -urN icu-1.57.orig/source/samples/date/date.vcxproj icu-1.57.vc14/source/sa
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/stubdata/stubdata.vcxproj icu-1.57.vc14/source/stubdata/stubdata.vcxproj
---- icu-1.57.orig/source/stubdata/stubdata.vcxproj	2016-03-23 20:50:52.000000000 +0000
-+++ icu-1.57.vc14/source/stubdata/stubdata.vcxproj	2016-04-28 16:50:55.701117000 +0100
+diff -urN icu-57.orig/source/stubdata/stubdata.vcxproj icu-57.vc14/source/stubdata/stubdata.vcxproj
+--- icu-57.orig/source/stubdata/stubdata.vcxproj	2016-03-23 20:50:52.000000000 +0000
++++ icu-57.vc14/source/stubdata/stubdata.vcxproj	2016-04-28 18:46:56.917223255 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -564,42 +425,6 @@ diff -urN icu-1.57.orig/source/stubdata/stubdata.vcxproj icu-1.57.vc14/source/st
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -95,7 +99,7 @@
-       </ExceptionHandling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release\stubdata.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -142,7 +146,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/stubdata.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -189,7 +193,7 @@
-       </ExceptionHandling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release\stubdata.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
-@@ -234,7 +238,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/stubdata.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
 @@ -277,4 +281,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -607,9 +432,9 @@ diff -urN icu-1.57.orig/source/stubdata/stubdata.vcxproj icu-1.57.vc14/source/st
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/test/cintltst/cintltst.vcxproj icu-1.57.vc14/source/test/cintltst/cintltst.vcxproj
---- icu-1.57.orig/source/test/cintltst/cintltst.vcxproj	2016-03-23 20:48:20.000000000 +0000
-+++ icu-1.57.vc14/source/test/cintltst/cintltst.vcxproj	2016-04-28 16:50:55.727730000 +0100
+diff -urN icu-57.orig/source/test/cintltst/cintltst.vcxproj icu-57.vc14/source/test/cintltst/cintltst.vcxproj
+--- icu-57.orig/source/test/cintltst/cintltst.vcxproj	2016-03-23 20:48:20.000000000 +0000
++++ icu-57.vc14/source/test/cintltst/cintltst.vcxproj	2016-04-28 18:46:56.906221152 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -650,12 +475,13 @@ diff -urN icu-1.57.orig/source/test/cintltst/cintltst.vcxproj icu-1.57.vc14/sour
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/test/intltest/intltest.vcxproj icu-1.57.vc14/source/test/intltest/intltest.vcxproj
---- icu-1.57.orig/source/test/intltest/intltest.vcxproj	2016-03-23 20:48:36.000000000 +0000
-+++ icu-1.57.vc14/source/test/intltest/intltest.vcxproj	2016-04-28 16:51:39.069192000 +0100
+diff -urN icu-57.orig/source/test/intltest/intltest.vcxproj icu-57.vc14/source/test/intltest/intltest.vcxproj
+--- icu-57.orig/source/test/intltest/intltest.vcxproj	2016-03-23 20:48:36.000000000 +0000
++++ icu-57.vc14/source/test/intltest/intltest.vcxproj	2016-04-28 18:46:56.810222973 +0100
 @@ -1,5 +1,5 @@
- <?xml version="1.0" encoding="utf-8"?>
+-<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
    <ItemGroup Label="ProjectConfigurations">
      <ProjectConfiguration Include="Debug|Win32">
@@ -686,9 +512,16 @@ diff -urN icu-1.57.orig/source/test/intltest/intltest.vcxproj icu-1.57.vc14/sour
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-diff -urN icu-1.57.orig/source/test/iotest/iotest.vcxproj icu-1.57.vc14/source/test/iotest/iotest.vcxproj
---- icu-1.57.orig/source/test/iotest/iotest.vcxproj	2016-03-23 20:48:44.000000000 +0000
-+++ icu-1.57.vc14/source/test/iotest/iotest.vcxproj	2016-04-28 16:50:55.795491000 +0100
+@@ -579,4 +583,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+diff -urN icu-57.orig/source/test/iotest/iotest.vcxproj icu-57.vc14/source/test/iotest/iotest.vcxproj
+--- icu-57.orig/source/test/iotest/iotest.vcxproj	2016-03-23 20:48:44.000000000 +0000
++++ icu-57.vc14/source/test/iotest/iotest.vcxproj	2016-04-28 18:46:56.911222330 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -722,42 +555,6 @@ diff -urN icu-1.57.orig/source/test/iotest/iotest.vcxproj icu-1.57.vc14/source/t
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -90,7 +94,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/iotest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -127,7 +131,7 @@
-       <PreprocessorDefinitions>U_ATTRIBUTE_DEPRECATED=;WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/iotest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -166,7 +170,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/iotest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
-@@ -201,7 +205,7 @@
-       <PreprocessorDefinitions>U_ATTRIBUTE_DEPRECATED=;WIN64;WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/iotest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
 @@ -259,4 +263,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -765,9 +562,9 @@ diff -urN icu-1.57.orig/source/test/iotest/iotest.vcxproj icu-1.57.vc14/source/t
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/test/letest/letest.vcxproj icu-1.57.vc14/source/test/letest/letest.vcxproj
---- icu-1.57.orig/source/test/letest/letest.vcxproj	2016-03-23 20:48:12.000000000 +0000
-+++ icu-1.57.vc14/source/test/letest/letest.vcxproj	2016-04-28 16:50:55.821802000 +0100
+diff -urN icu-57.orig/source/test/letest/letest.vcxproj icu-57.vc14/source/test/letest/letest.vcxproj
+--- icu-57.orig/source/test/letest/letest.vcxproj	2016-03-23 20:48:12.000000000 +0000
++++ icu-57.vc14/source/test/letest/letest.vcxproj	2016-04-28 18:46:56.895223448 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -808,9 +605,9 @@ diff -urN icu-1.57.orig/source/test/letest/letest.vcxproj icu-1.57.vc14/source/t
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/ctestfw/ctestfw.vcxproj icu-1.57.vc14/source/tools/ctestfw/ctestfw.vcxproj
---- icu-1.57.orig/source/tools/ctestfw/ctestfw.vcxproj	2016-03-23 20:50:16.000000000 +0000
-+++ icu-1.57.vc14/source/tools/ctestfw/ctestfw.vcxproj	2016-04-28 16:50:55.846423000 +0100
+diff -urN icu-57.orig/source/tools/ctestfw/ctestfw.vcxproj icu-57.vc14/source/tools/ctestfw/ctestfw.vcxproj
+--- icu-57.orig/source/tools/ctestfw/ctestfw.vcxproj	2016-03-23 20:50:16.000000000 +0000
++++ icu-57.vc14/source/tools/ctestfw/ctestfw.vcxproj	2016-04-28 18:46:56.796222119 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -844,42 +641,6 @@ diff -urN icu-1.57.orig/source/tools/ctestfw/ctestfw.vcxproj icu-1.57.vc14/sourc
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -92,7 +96,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/icutest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -133,7 +137,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/icutest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -175,7 +179,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/icutest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
-@@ -214,7 +218,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/icutest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
 @@ -278,4 +282,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -887,9 +648,9 @@ diff -urN icu-1.57.orig/source/tools/ctestfw/ctestfw.vcxproj icu-1.57.vc14/sourc
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/genbrk/genbrk.vcxproj icu-1.57.vc14/source/tools/genbrk/genbrk.vcxproj
---- icu-1.57.orig/source/tools/genbrk/genbrk.vcxproj	2016-03-23 20:50:24.000000000 +0000
-+++ icu-1.57.vc14/source/tools/genbrk/genbrk.vcxproj	2016-04-28 16:50:55.865938000 +0100
+diff -urN icu-57.orig/source/tools/genbrk/genbrk.vcxproj icu-57.vc14/source/tools/genbrk/genbrk.vcxproj
+--- icu-57.orig/source/tools/genbrk/genbrk.vcxproj	2016-03-23 20:50:24.000000000 +0000
++++ icu-57.vc14/source/tools/genbrk/genbrk.vcxproj	2016-04-28 18:46:56.789224380 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -930,9 +691,9 @@ diff -urN icu-1.57.orig/source/tools/genbrk/genbrk.vcxproj icu-1.57.vc14/source/
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/genccode/genccode.vcxproj icu-1.57.vc14/source/tools/genccode/genccode.vcxproj
---- icu-1.57.orig/source/tools/genccode/genccode.vcxproj	2016-03-23 20:50:22.000000000 +0000
-+++ icu-1.57.vc14/source/tools/genccode/genccode.vcxproj	2016-04-28 16:50:55.876869000 +0100
+diff -urN icu-57.orig/source/tools/genccode/genccode.vcxproj icu-57.vc14/source/tools/genccode/genccode.vcxproj
+--- icu-57.orig/source/tools/genccode/genccode.vcxproj	2016-03-23 20:50:22.000000000 +0000
++++ icu-57.vc14/source/tools/genccode/genccode.vcxproj	2016-04-28 18:46:56.751223247 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -973,9 +734,9 @@ diff -urN icu-1.57.orig/source/tools/genccode/genccode.vcxproj icu-1.57.vc14/sou
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/gencfu/gencfu.vcxproj icu-1.57.vc14/source/tools/gencfu/gencfu.vcxproj
---- icu-1.57.orig/source/tools/gencfu/gencfu.vcxproj	2016-03-23 20:50:24.000000000 +0000
-+++ icu-1.57.vc14/source/tools/gencfu/gencfu.vcxproj	2016-04-28 16:50:55.898577000 +0100
+diff -urN icu-57.orig/source/tools/gencfu/gencfu.vcxproj icu-57.vc14/source/tools/gencfu/gencfu.vcxproj
+--- icu-57.orig/source/tools/gencfu/gencfu.vcxproj	2016-03-23 20:50:24.000000000 +0000
++++ icu-57.vc14/source/tools/gencfu/gencfu.vcxproj	2016-04-28 18:46:56.719222551 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1015,88 +776,9 @@ diff -urN icu-1.57.orig/source/tools/gencfu/gencfu.vcxproj icu-1.57.vc14/source/
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/gencmn/gencmn.vcxproj icu-1.57.vc14/source/tools/gencmn/gencmn.vcxproj
---- icu-1.57.orig/source/tools/gencmn/gencmn.vcxproj	2016-03-23 20:50:24.000000000 +0000
-+++ icu-1.57.vc14/source/tools/gencmn/gencmn.vcxproj	2016-04-28 16:50:55.909029000 +0100
-@@ -1,5 +1,5 @@
- ﻿<?xml version="1.0" encoding="utf-8"?>
--<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-   <ItemGroup Label="ProjectConfigurations">
-     <ProjectConfiguration Include="Debug|Win32">
-       <Configuration>Debug</Configuration>
-@@ -26,21 +26,25 @@
-     <ConfigurationType>Application</ConfigurationType>
-     <UseOfMfc>false</UseOfMfc>
-     <CharacterSet>MultiByte</CharacterSet>
-+    <PlatformToolset>v140</PlatformToolset>
-   </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-     <ConfigurationType>Application</ConfigurationType>
-     <UseOfMfc>false</UseOfMfc>
-     <CharacterSet>MultiByte</CharacterSet>
-+    <PlatformToolset>v140</PlatformToolset>
-   </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-     <ConfigurationType>Application</ConfigurationType>
-     <UseOfMfc>false</UseOfMfc>
-     <CharacterSet>MultiByte</CharacterSet>
-+    <PlatformToolset>v140</PlatformToolset>
-   </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-     <ConfigurationType>Application</ConfigurationType>
-     <UseOfMfc>false</UseOfMfc>
-     <CharacterSet>MultiByte</CharacterSet>
-+    <PlatformToolset>v140</PlatformToolset>
-   </PropertyGroup>
-   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-   <ImportGroup Label="ExtensionSettings">
-@@ -92,7 +96,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/gencmn.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -132,7 +136,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/gencmn.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -175,7 +179,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/gencmn.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
-@@ -214,7 +218,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/gencmn.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
-@@ -255,4 +259,4 @@
-   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-   <ImportGroup Label="ExtensionTargets">
-   </ImportGroup>
--</Project>
-+</Project>
-\ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/gencnval/gencnval.vcxproj icu-1.57.vc14/source/tools/gencnval/gencnval.vcxproj
---- icu-1.57.orig/source/tools/gencnval/gencnval.vcxproj	2016-03-23 20:50:20.000000000 +0000
-+++ icu-1.57.vc14/source/tools/gencnval/gencnval.vcxproj	2016-04-28 16:50:55.935102000 +0100
+diff -urN icu-57.orig/source/tools/gencmn/gencmn.vcxproj icu-57.vc14/source/tools/gencmn/gencmn.vcxproj
+--- icu-57.orig/source/tools/gencmn/gencmn.vcxproj	2016-03-23 20:50:24.000000000 +0000
++++ icu-57.vc14/source/tools/gencmn/gencmn.vcxproj	2016-04-28 18:46:56.743223807 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1137,9 +819,9 @@ diff -urN icu-1.57.orig/source/tools/gencnval/gencnval.vcxproj icu-1.57.vc14/sou
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/gendict/gendict.vcxproj icu-1.57.vc14/source/tools/gendict/gendict.vcxproj
---- icu-1.57.orig/source/tools/gendict/gendict.vcxproj	2016-03-23 20:50:30.000000000 +0000
-+++ icu-1.57.vc14/source/tools/gendict/gendict.vcxproj	2016-04-28 16:50:55.945638000 +0100
+diff -urN icu-57.orig/source/tools/gencnval/gencnval.vcxproj icu-57.vc14/source/tools/gencnval/gencnval.vcxproj
+--- icu-57.orig/source/tools/gencnval/gencnval.vcxproj	2016-03-23 20:50:20.000000000 +0000
++++ icu-57.vc14/source/tools/gencnval/gencnval.vcxproj	2016-04-28 18:46:56.759223177 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1173,42 +855,6 @@ diff -urN icu-1.57.orig/source/tools/gendict/gendict.vcxproj icu-1.57.vc14/sourc
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -92,7 +96,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/gendict.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -132,7 +136,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/gendict.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -175,7 +179,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/gendict.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
-@@ -214,7 +218,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/gendict.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
 @@ -255,4 +259,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -1216,9 +862,52 @@ diff -urN icu-1.57.orig/source/tools/gendict/gendict.vcxproj icu-1.57.vc14/sourc
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/gennorm2/gennorm2.vcxproj icu-1.57.vc14/source/tools/gennorm2/gennorm2.vcxproj
---- icu-1.57.orig/source/tools/gennorm2/gennorm2.vcxproj	2016-03-23 20:50:18.000000000 +0000
-+++ icu-1.57.vc14/source/tools/gennorm2/gennorm2.vcxproj	2016-04-28 16:50:55.955863000 +0100
+diff -urN icu-57.orig/source/tools/gendict/gendict.vcxproj icu-57.vc14/source/tools/gendict/gendict.vcxproj
+--- icu-57.orig/source/tools/gendict/gendict.vcxproj	2016-03-23 20:50:30.000000000 +0000
++++ icu-57.vc14/source/tools/gendict/gendict.vcxproj	2016-04-28 18:46:56.756221493 +0100
+@@ -1,5 +1,5 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <ItemGroup Label="ProjectConfigurations">
+     <ProjectConfiguration Include="Debug|Win32">
+       <Configuration>Debug</Configuration>
+@@ -26,21 +26,25 @@
+     <ConfigurationType>Application</ConfigurationType>
+     <UseOfMfc>false</UseOfMfc>
+     <CharacterSet>MultiByte</CharacterSet>
++    <PlatformToolset>v140</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+     <ConfigurationType>Application</ConfigurationType>
+     <UseOfMfc>false</UseOfMfc>
+     <CharacterSet>MultiByte</CharacterSet>
++    <PlatformToolset>v140</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+     <ConfigurationType>Application</ConfigurationType>
+     <UseOfMfc>false</UseOfMfc>
+     <CharacterSet>MultiByte</CharacterSet>
++    <PlatformToolset>v140</PlatformToolset>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+     <ConfigurationType>Application</ConfigurationType>
+     <UseOfMfc>false</UseOfMfc>
+     <CharacterSet>MultiByte</CharacterSet>
++    <PlatformToolset>v140</PlatformToolset>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+   <ImportGroup Label="ExtensionSettings">
+@@ -255,4 +259,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+diff -urN icu-57.orig/source/tools/gennorm2/gennorm2.vcxproj icu-57.vc14/source/tools/gennorm2/gennorm2.vcxproj
+--- icu-57.orig/source/tools/gennorm2/gennorm2.vcxproj	2016-03-23 20:50:18.000000000 +0000
++++ icu-57.vc14/source/tools/gennorm2/gennorm2.vcxproj	2016-04-28 18:46:56.729224419 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1258,9 +947,9 @@ diff -urN icu-1.57.orig/source/tools/gennorm2/gennorm2.vcxproj icu-1.57.vc14/sou
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/genrb/derb.vcxproj icu-1.57.vc14/source/tools/genrb/derb.vcxproj
---- icu-1.57.orig/source/tools/genrb/derb.vcxproj	2016-03-23 20:50:22.000000000 +0000
-+++ icu-1.57.vc14/source/tools/genrb/derb.vcxproj	2016-04-28 16:50:55.971776000 +0100
+diff -urN icu-57.orig/source/tools/genrb/derb.vcxproj icu-57.vc14/source/tools/genrb/derb.vcxproj
+--- icu-57.orig/source/tools/genrb/derb.vcxproj	2016-03-23 20:50:22.000000000 +0000
++++ icu-57.vc14/source/tools/genrb/derb.vcxproj	2016-04-28 18:46:56.740220655 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1294,42 +983,6 @@ diff -urN icu-1.57.orig/source/tools/genrb/derb.vcxproj icu-1.57.vc14/source/too
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -96,7 +100,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release_derb/derb.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release_derb/</AssemblerListingLocation>
-@@ -140,7 +144,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug_derb/derb.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug_derb/</AssemblerListingLocation>
-@@ -185,7 +189,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release_derb/derb.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release_derb/</AssemblerListingLocation>
-@@ -227,7 +231,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug_derb/derb.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug_derb/</AssemblerListingLocation>
 @@ -278,4 +282,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -1337,9 +990,9 @@ diff -urN icu-1.57.orig/source/tools/genrb/derb.vcxproj icu-1.57.vc14/source/too
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/genrb/genrb.vcxproj icu-1.57.vc14/source/tools/genrb/genrb.vcxproj
---- icu-1.57.orig/source/tools/genrb/genrb.vcxproj	2016-03-23 20:50:20.000000000 +0000
-+++ icu-1.57.vc14/source/tools/genrb/genrb.vcxproj	2016-04-28 16:50:55.983056000 +0100
+diff -urN icu-57.orig/source/tools/genrb/genrb.vcxproj icu-57.vc14/source/tools/genrb/genrb.vcxproj
+--- icu-57.orig/source/tools/genrb/genrb.vcxproj	2016-03-23 20:50:20.000000000 +0000
++++ icu-57.vc14/source/tools/genrb/genrb.vcxproj	2016-04-28 18:46:56.732186505 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1373,45 +1026,9 @@ diff -urN icu-1.57.orig/source/tools/genrb/genrb.vcxproj icu-1.57.vc14/source/to
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -91,7 +95,7 @@
-       <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/genrb.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -131,7 +135,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/genrb.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -173,7 +177,7 @@
-       <PreprocessorDefinitions>WIN64;WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/genrb.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
-@@ -212,7 +216,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/genrb.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
-diff -urN icu-1.57.orig/source/tools/gensprep/gensprep.vcxproj icu-1.57.vc14/source/tools/gensprep/gensprep.vcxproj
---- icu-1.57.orig/source/tools/gensprep/gensprep.vcxproj	2016-03-23 20:50:16.000000000 +0000
-+++ icu-1.57.vc14/source/tools/gensprep/gensprep.vcxproj	2016-04-28 16:50:56.006271000 +0100
+diff -urN icu-57.orig/source/tools/gensprep/gensprep.vcxproj icu-57.vc14/source/tools/gensprep/gensprep.vcxproj
+--- icu-57.orig/source/tools/gensprep/gensprep.vcxproj	2016-03-23 20:50:16.000000000 +0000
++++ icu-57.vc14/source/tools/gensprep/gensprep.vcxproj	2016-04-28 18:46:56.710222875 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1452,9 +1069,9 @@ diff -urN icu-1.57.orig/source/tools/gensprep/gensprep.vcxproj icu-1.57.vc14/sou
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/gentest/gentest.vcxproj icu-1.57.vc14/source/tools/gentest/gentest.vcxproj
---- icu-1.57.orig/source/tools/gentest/gentest.vcxproj	2016-03-23 20:50:24.000000000 +0000
-+++ icu-1.57.vc14/source/tools/gentest/gentest.vcxproj	2016-04-28 16:50:56.016480000 +0100
+diff -urN icu-57.orig/source/tools/gentest/gentest.vcxproj icu-57.vc14/source/tools/gentest/gentest.vcxproj
+--- icu-57.orig/source/tools/gentest/gentest.vcxproj	2016-03-23 20:50:24.000000000 +0000
++++ icu-57.vc14/source/tools/gentest/gentest.vcxproj	2016-04-28 18:46:56.767223107 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1488,42 +1105,6 @@ diff -urN icu-1.57.orig/source/tools/gentest/gentest.vcxproj icu-1.57.vc14/sourc
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -88,7 +92,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/gentest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -123,7 +127,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/gentest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -161,7 +165,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/gentest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
-@@ -195,7 +199,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/gentest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
 @@ -244,4 +248,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -1531,9 +1112,9 @@ diff -urN icu-1.57.orig/source/tools/gentest/gentest.vcxproj icu-1.57.vc14/sourc
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/icuinfo/icuinfo.vcxproj icu-1.57.vc14/source/tools/icuinfo/icuinfo.vcxproj
---- icu-1.57.orig/source/tools/icuinfo/icuinfo.vcxproj	2016-03-23 20:50:20.000000000 +0000
-+++ icu-1.57.vc14/source/tools/icuinfo/icuinfo.vcxproj	2016-04-28 16:50:56.037511000 +0100
+diff -urN icu-57.orig/source/tools/icuinfo/icuinfo.vcxproj icu-57.vc14/source/tools/icuinfo/icuinfo.vcxproj
+--- icu-57.orig/source/tools/icuinfo/icuinfo.vcxproj	2016-03-23 20:50:20.000000000 +0000
++++ icu-57.vc14/source/tools/icuinfo/icuinfo.vcxproj	2016-04-28 18:46:56.773222565 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1567,42 +1148,6 @@ diff -urN icu-1.57.orig/source/tools/icuinfo/icuinfo.vcxproj icu-1.57.vc14/sourc
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -91,7 +95,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>x86\Release/icuinfo.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>x86\Release/</AssemblerListingLocation>
-@@ -127,7 +131,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>Debug/icuinfo.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
-@@ -168,7 +172,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>x64\Release/icuinfo.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>x64\Release/</AssemblerListingLocation>
-@@ -205,7 +209,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>Debug/icuinfo.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
 @@ -256,4 +260,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -1610,9 +1155,9 @@ diff -urN icu-1.57.orig/source/tools/icuinfo/icuinfo.vcxproj icu-1.57.vc14/sourc
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/icuinfo/testplug.vcxproj icu-1.57.vc14/source/tools/icuinfo/testplug.vcxproj
---- icu-1.57.orig/source/tools/icuinfo/testplug.vcxproj	2016-03-23 20:50:18.000000000 +0000
-+++ icu-1.57.vc14/source/tools/icuinfo/testplug.vcxproj	2016-04-28 16:50:56.048230000 +0100
+diff -urN icu-57.orig/source/tools/icuinfo/testplug.vcxproj icu-57.vc14/source/tools/icuinfo/testplug.vcxproj
+--- icu-57.orig/source/tools/icuinfo/testplug.vcxproj	2016-03-23 20:50:18.000000000 +0000
++++ icu-57.vc14/source/tools/icuinfo/testplug.vcxproj	2016-04-28 18:46:56.776222783 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1646,42 +1191,6 @@ diff -urN icu-1.57.orig/source/tools/icuinfo/testplug.vcxproj icu-1.57.vc14/sour
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -92,7 +96,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release-testplug/testplug.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release-testplug/</AssemblerListingLocation>
-@@ -133,7 +137,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug-testplug/testplug.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug-testplug/</AssemblerListingLocation>
-@@ -175,7 +179,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release-testplug/testplug.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release-testplug/</AssemblerListingLocation>
-@@ -214,7 +218,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug-testplug/testplug.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug-testplug/</AssemblerListingLocation>
 @@ -255,4 +259,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -1689,9 +1198,9 @@ diff -urN icu-1.57.orig/source/tools/icuinfo/testplug.vcxproj icu-1.57.vc14/sour
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/icupkg/icupkg.vcxproj icu-1.57.vc14/source/tools/icupkg/icupkg.vcxproj
---- icu-1.57.orig/source/tools/icupkg/icupkg.vcxproj	2016-03-23 20:50:16.000000000 +0000
-+++ icu-1.57.vc14/source/tools/icupkg/icupkg.vcxproj	2016-04-28 16:50:56.061075000 +0100
+diff -urN icu-57.orig/source/tools/icupkg/icupkg.vcxproj icu-57.vc14/source/tools/icupkg/icupkg.vcxproj
+--- icu-57.orig/source/tools/icupkg/icupkg.vcxproj	2016-03-23 20:50:16.000000000 +0000
++++ icu-57.vc14/source/tools/icupkg/icupkg.vcxproj	2016-04-28 18:46:56.778224721 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1725,42 +1234,6 @@ diff -urN icu-1.57.orig/source/tools/icupkg/icupkg.vcxproj icu-1.57.vc14/source/
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -90,7 +94,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>x86\Release/icupkg.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>x86\Release/</AssemblerListingLocation>
-@@ -126,7 +130,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>Debug/icupkg.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
-@@ -167,7 +171,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>x64\Release/icupkg.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>x64\Release/</AssemblerListingLocation>
-@@ -204,7 +208,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>Debug/icupkg.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
 @@ -244,4 +248,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -1768,48 +1241,9 @@ diff -urN icu-1.57.orig/source/tools/icupkg/icupkg.vcxproj icu-1.57.vc14/source/
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/icuswap/icuswap.vcxproj icu-1.57.vc14/source/tools/icuswap/icuswap.vcxproj
---- icu-1.57.orig/source/tools/icuswap/icuswap.vcxproj	2016-03-23 20:50:24.000000000 +0000
-+++ icu-1.57.vc14/source/tools/icuswap/icuswap.vcxproj	2016-04-28 16:50:56.071243000 +0100
-@@ -92,7 +92,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <PrecompiledHeaderOutputFile>.\x86\Release/icuswap.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-       <ObjectFileName>.\x86\Release/</ObjectFileName>
-@@ -128,7 +128,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/icuswap.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-       <ObjectFileName>.\x86\Debug/</ObjectFileName>
-@@ -167,7 +167,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <PrecompiledHeaderOutputFile>.\x64\Release/icuswap.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
-       <ObjectFileName>.\x64\Release/</ObjectFileName>
-@@ -205,7 +205,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/icuswap.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
-       <ObjectFileName>.\x64\Debug/</ObjectFileName>
-diff -urN icu-1.57.orig/source/tools/makeconv/makeconv.vcxproj icu-1.57.vc14/source/tools/makeconv/makeconv.vcxproj
---- icu-1.57.orig/source/tools/makeconv/makeconv.vcxproj	2016-03-23 20:50:22.000000000 +0000
-+++ icu-1.57.vc14/source/tools/makeconv/makeconv.vcxproj	2016-04-28 16:50:56.092365000 +0100
+diff -urN icu-57.orig/source/tools/makeconv/makeconv.vcxproj icu-57.vc14/source/tools/makeconv/makeconv.vcxproj
+--- icu-57.orig/source/tools/makeconv/makeconv.vcxproj	2016-03-23 20:50:22.000000000 +0000
++++ icu-57.vc14/source/tools/makeconv/makeconv.vcxproj	2016-04-28 18:46:56.784223691 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1850,9 +1284,9 @@ diff -urN icu-1.57.orig/source/tools/makeconv/makeconv.vcxproj icu-1.57.vc14/sou
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/pkgdata/pkgdata.vcxproj icu-1.57.vc14/source/tools/pkgdata/pkgdata.vcxproj
---- icu-1.57.orig/source/tools/pkgdata/pkgdata.vcxproj	2016-03-23 20:50:26.000000000 +0000
-+++ icu-1.57.vc14/source/tools/pkgdata/pkgdata.vcxproj	2016-04-28 16:50:56.102840000 +0100
+diff -urN icu-57.orig/source/tools/pkgdata/pkgdata.vcxproj icu-57.vc14/source/tools/pkgdata/pkgdata.vcxproj
+--- icu-57.orig/source/tools/pkgdata/pkgdata.vcxproj	2016-03-23 20:50:26.000000000 +0000
++++ icu-57.vc14/source/tools/pkgdata/pkgdata.vcxproj	2016-04-28 18:46:56.727222969 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1886,42 +1320,6 @@ diff -urN icu-1.57.orig/source/tools/pkgdata/pkgdata.vcxproj icu-1.57.vc14/sourc
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -93,7 +97,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/pkgdata.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -135,7 +139,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/pkgdata.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -176,7 +180,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/pkgdata.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
-@@ -217,7 +221,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/pkgdata.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
 @@ -271,4 +275,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -1929,9 +1327,9 @@ diff -urN icu-1.57.orig/source/tools/pkgdata/pkgdata.vcxproj icu-1.57.vc14/sourc
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/toolutil/toolutil.vcxproj icu-1.57.vc14/source/tools/toolutil/toolutil.vcxproj
---- icu-1.57.orig/source/tools/toolutil/toolutil.vcxproj	2016-03-23 20:50:28.000000000 +0000
-+++ icu-1.57.vc14/source/tools/toolutil/toolutil.vcxproj	2016-04-28 16:50:56.138416000 +0100
+diff -urN icu-57.orig/source/tools/toolutil/toolutil.vcxproj icu-57.vc14/source/tools/toolutil/toolutil.vcxproj
+--- icu-57.orig/source/tools/toolutil/toolutil.vcxproj	2016-03-23 20:50:28.000000000 +0000
++++ icu-57.vc14/source/tools/toolutil/toolutil.vcxproj	2016-04-28 18:46:56.793221901 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1965,42 +1363,6 @@ diff -urN icu-1.57.orig/source/tools/toolutil/toolutil.vcxproj icu-1.57.vc14/sou
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -92,7 +96,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/toolutil.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -135,7 +139,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/toolutil.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -178,7 +182,7 @@
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-       <FunctionLevelLinking>true</FunctionLevelLinking>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/toolutil.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
-@@ -219,7 +223,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/toolutil.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
 @@ -328,4 +332,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
@@ -2008,15 +1370,3 @@ diff -urN icu-1.57.orig/source/tools/toolutil/toolutil.vcxproj icu-1.57.vc14/sou
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.57.orig/source/tools/tzcode/icuzdump.vcxproj icu-1.57.vc14/source/tools/tzcode/icuzdump.vcxproj
---- icu-1.57.orig/source/tools/tzcode/icuzdump.vcxproj	2016-03-23 20:50:18.000000000 +0000
-+++ icu-1.57.vc14/source/tools/tzcode/icuzdump.vcxproj	2016-04-28 16:50:56.173575000 +0100
-@@ -57,7 +57,7 @@
-       <MinimalRebuild>false</MinimalRebuild>
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <PrecompiledHeader>
-       </PrecompiledHeader>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/icuzdump.pch</PrecompiledHeaderOutputFile>
