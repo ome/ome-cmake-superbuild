@@ -1,6 +1,6 @@
-diff -urN icu-1.56.orig/source/allinone/allinone.sln icu-1.56.vc14/source/allinone/allinone.sln
---- icu-1.56.orig/source/allinone/allinone.sln	2015-10-08 04:54:08.000000000 +0100
-+++ icu-1.56.vc14/source/allinone/allinone.sln	2016-04-27 21:12:04.678717000 +0100
+diff -urN icu-1.57.orig/source/allinone/allinone.sln icu-1.57.vc14/source/allinone/allinone.sln
+--- icu-1.57.orig/source/allinone/allinone.sln	2016-03-23 20:50:30.000000000 +0000
++++ icu-1.57.vc14/source/allinone/allinone.sln	2016-04-28 16:50:55.392089000 +0100
 @@ -1,5 +1,7 @@
 -Microsoft Visual Studio Solution File, Format Version 11.00
 -# Visual Studio 2010
@@ -31,9 +31,9 @@ diff -urN icu-1.56.orig/source/allinone/allinone.sln icu-1.56.vc14/source/allino
 +		Manager = AnkhSVN - Subversion Support for Visual Studio
 +	EndGlobalSection
  EndGlobal
-diff -urN icu-1.56.orig/source/common/common.vcxproj icu-1.56.vc14/source/common/common.vcxproj
---- icu-1.56.orig/source/common/common.vcxproj	2015-10-08 04:53:48.000000000 +0100
-+++ icu-1.56.vc14/source/common/common.vcxproj	2016-04-27 21:12:04.679716000 +0100
+diff -urN icu-1.57.orig/source/common/common.vcxproj icu-1.57.vc14/source/common/common.vcxproj
+--- icu-1.57.orig/source/common/common.vcxproj	2016-03-23 20:50:10.000000000 +0000
++++ icu-1.57.vc14/source/common/common.vcxproj	2016-04-28 16:50:55.420028000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -67,16 +67,16 @@ diff -urN icu-1.56.orig/source/common/common.vcxproj icu-1.56.vc14/source/common
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -1774,4 +1778,4 @@
+@@ -1850,4 +1854,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
    </ImportGroup>
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/data/makedata.vcxproj icu-1.56.vc14/source/data/makedata.vcxproj
---- icu-1.56.orig/source/data/makedata.vcxproj	2015-10-08 05:00:10.000000000 +0100
-+++ icu-1.56.vc14/source/data/makedata.vcxproj	2016-04-27 21:12:04.679716000 +0100
+diff -urN icu-1.57.orig/source/data/makedata.vcxproj icu-1.57.vc14/source/data/makedata.vcxproj
+--- icu-1.57.orig/source/data/makedata.vcxproj	2016-03-23 20:56:38.000000000 +0000
++++ icu-1.57.vc14/source/data/makedata.vcxproj	2016-04-28 16:50:55.482463000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -106,273 +106,9 @@ diff -urN icu-1.56.orig/source/data/makedata.vcxproj icu-1.56.vc14/source/data/m
      <UseOfMfc>false</UseOfMfc>
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-diff -urN icu-1.56.orig/source/data/makedata.vcxproj~ icu-1.56.vc14/source/data/makedata.vcxproj~
---- icu-1.56.orig/source/data/makedata.vcxproj~	1970-01-01 01:00:00.000000000 +0100
-+++ icu-1.56.vc14/source/data/makedata.vcxproj~	2016-04-27 21:12:04.680715000 +0100
-@@ -0,0 +1,260 @@
-+﻿﻿<?xml version="1.0" encoding="utf-8"?>
-+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-+  <ItemGroup Label="ProjectConfigurations">
-+    <ProjectConfiguration Include="Debug|Win32">
-+      <Configuration>Debug</Configuration>
-+      <Platform>Win32</Platform>
-+    </ProjectConfiguration>
-+    <ProjectConfiguration Include="Debug|x64">
-+      <Configuration>Debug</Configuration>
-+      <Platform>x64</Platform>
-+    </ProjectConfiguration>
-+    <ProjectConfiguration Include="Release|Win32">
-+      <Configuration>Release</Configuration>
-+      <Platform>Win32</Platform>
-+    </ProjectConfiguration>
-+    <ProjectConfiguration Include="Release|x64">
-+      <Configuration>Release</Configuration>
-+      <Platform>x64</Platform>
-+    </ProjectConfiguration>
-+  </ItemGroup>
-+  <PropertyGroup Label="Globals">
-+    <ProjectGuid>{D9DF7F2F-93B7-4810-B5CD-96F4F33C079B}</ProjectGuid>
-+    <Keyword>MakeFileProj</Keyword>
-+  </PropertyGroup>
-+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-+    <ConfigurationType>Makefile</ConfigurationType>
-+    <UseOfMfc>false</UseOfMfc>
-+    <PlatformToolset>v140</PlatformToolset>
-+  </PropertyGroup>
-+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-+    <ConfigurationType>Makefile</ConfigurationType>
-+    <UseOfMfc>false</UseOfMfc>
-+    <PlatformToolset>v140</PlatformToolset>
-+  </PropertyGroup>
-+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-+    <ConfigurationType>Makefile</ConfigurationType>
-+    <UseOfMfc>false</UseOfMfc>
-+    <PlatformToolset>v140</PlatformToolset>
-+  </PropertyGroup>
-+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-+    <ConfigurationType>Makefile</ConfigurationType>
-+    <PlatformToolset>v140</PlatformToolset>
-+    <UseOfMfc>false</UseOfMfc>
-+  </PropertyGroup>
-+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-+  <ImportGroup Label="ExtensionSettings">
-+  </ImportGroup>
-+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-+  </ImportGroup>
-+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-+  </ImportGroup>
-+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
-+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-+  </ImportGroup>
-+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
-+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-+  </ImportGroup>
-+  <PropertyGroup Label="UserMacros" />
-+  <PropertyGroup>
-+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\x86\Release\</OutDir>
-+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\x86\Release\</IntDir>
-+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x86\Release</NMakeBuildCommandLine>
-+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x86\Release clean all</NMakeReBuildCommandLine>
-+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x86\Release clean</NMakeCleanCommandLine>
-+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
-+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
-+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
-+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
-+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\x86\Debug\</OutDir>
-+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\x86\Debug\</IntDir>
-+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x86\Debug</NMakeBuildCommandLine>
-+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x86\Debug clean all</NMakeReBuildCommandLine>
-+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x86\Debug clean</NMakeCleanCommandLine>
-+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
-+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
-+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
-+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
-+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
-+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\x64\Release\</OutDir>
-+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\x64\Release\</IntDir>
-+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x64\Release</NMakeBuildCommandLine>
-+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x64\Release clean all</NMakeReBuildCommandLine>
-+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x64\Release clean</NMakeCleanCommandLine>
-+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
-+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
-+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
-+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
-+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
-+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\x64\Debug\</OutDir>
-+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\x64\Debug\</IntDir>
-+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x64\Debug</NMakeBuildCommandLine>
-+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x64\Debug clean all</NMakeReBuildCommandLine>
-+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NMAKE /f makedata.mak ICUMAKE="$(ProjectDir)\" CFG=x64\Debug clean</NMakeCleanCommandLine>
-+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
-+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
-+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
-+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
-+  </PropertyGroup>
-+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-+    <BuildLog>
-+      <Path>.\out\tmp\x86\ReleaseBuildLog.html</Path>
-+    </BuildLog>
-+  </ItemDefinitionGroup>
-+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-+    <BuildLog>
-+      <Path>.\out\tmp\x86\DebugBuildLog.html</Path>
-+    </BuildLog>
-+  </ItemDefinitionGroup>
-+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-+    <BuildLog>
-+      <Path>.\out\tmp\x64\ReleaseBuildLog.html</Path>
-+    </BuildLog>
-+  </ItemDefinitionGroup>
-+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-+    <BuildLog>
-+      <Path>.\out\tmp\x64\DebugBuildLog.html</Path>
-+    </BuildLog>
-+  </ItemDefinitionGroup>
-+  <ItemGroup>
-+    <None Include="brkitr\brkfiles.mk" />
-+    <None Include="coll\colfiles.mk" />
-+    <None Include="makedata.mak" />
-+    <None Include="misc\miscfiles.mk" />
-+    <None Include="rbnf\rbnffiles.mk" />
-+    <None Include="locales\resfiles.mk" />
-+    <None Include="..\test\testdata\testdata.mak" />
-+    <None Include="translit\trnsfiles.mk" />
-+    <None Include="..\test\testdata\tstfiles.mk" />
-+    <None Include="mappings\ucmcore.mk" />
-+    <None Include="mappings\ucmebcdic.mk" />
-+    <None Include="mappings\ucmfiles.mk" />
-+  </ItemGroup>
-+  <ItemGroup>
-+    <ProjectReference Include="..\common\common.vcxproj">
-+      <Project>{73c0a65b-d1f2-4de1-b3a6-15dad2c23f3d}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\extra\uconv\uconv.vcxproj">
-+      <Project>{dba4088d-f6f9-4f8f-8820-082a4765c16c}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\i18n\i18n.vcxproj">
-+      <Project>{0178b127-6269-407d-b112-93877bb62776}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\io\io.vcxproj">
-+      <Project>{c2b04507-2521-4801-bf0d-5fd79d6d518c}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\layoutex\layoutex.vcxproj">
-+      <Project>{37fc2c7f-1904-4811-8955-2f478830ead1}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\layout\layout.vcxproj">
-+      <Project>{c920062a-0647-4553-a3b2-37c58065664b}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\stubdata\stubdata.vcxproj">
-+      <Project>{203ec78a-0531-43f0-a636-285439bde025}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\test\cintltst\cintltst.vcxproj">
-+      <Project>{3d1246ae-1b32-479b-beca-aefa97be2321}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\test\intltest\intltest.vcxproj">
-+      <Project>{73632960-b3a6-464d-83a3-4b43365f19b8}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\test\iotest\iotest.vcxproj">
-+      <Project>{e4993e82-d68a-46ca-bae0-9d35e172e46f}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\test\letest\letest.vcxproj">
-+      <Project>{67351485-4d18-4245-be39-a7ef0675acd2}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\ctestfw\ctestfw.vcxproj">
-+      <Project>{eca6b435-b4fa-4f9f-bf95-f451d078fc47}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\genbrk\genbrk.vcxproj">
-+      <Project>{c2be5000-7501-4e87-9724-b8d82494fae6}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\genccode\genccode.vcxproj">
-+      <Project>{fdd3c4f2-9805-44eb-9a77-bc1c1c95b547}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\gencfu\gencfu.vcxproj">
-+      <Project>{691ee0c0-dc57-4a48-8aee-8ed75eb3a057}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\gencmn\gencmn.vcxproj">
-+      <Project>{a8d36f8d-09e6-4174-91c3-7beaa9c3f04f}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\gencnval\gencnval.vcxproj">
-+      <Project>{8b41752b-5a52-41e4-b7e0-07921c0cc6bf}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\gendict\gendict.vcxproj">
-+      <Project>{9d4211f7-2c77-439c-82f0-30a4e43ba569}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\gennorm2\gennorm2.vcxproj">
-+      <Project>{c7891a65-80ab-4245-912e-5f1e17b0e6c4}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\genrb\derb.vcxproj">
-+      <Project>{d3065adb-8820-4cc7-9b6c-9510833961a3}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\genrb\genrb.vcxproj">
-+      <Project>{97521d06-ec47-45d4-8bd0-9e16b3f93b2a}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\gensprep\gensprep.vcxproj">
-+      <Project>{631c23ce-6c1d-4875-88f0-85e0a42b36ea}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\gentest\gentest.vcxproj">
-+      <Project>{77c78066-746f-4ea6-b3fe-b8c8a4a97891}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\icupkg\icupkg.vcxproj">
-+      <Project>{62d4b15d-7a90-4ecb-ba19-5e021d6a21bc}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\makeconv\makeconv.vcxproj">
-+      <Project>{f5ad9738-1a3d-4906-b9c4-a7d9ce33dc2c}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\pkgdata\pkgdata.vcxproj">
-+      <Project>{4c8454fe-81d3-4ca3-9927-29ba96f03dac}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+    <ProjectReference Include="..\tools\toolutil\toolutil.vcxproj">
-+      <Project>{6b231032-3cb5-4eed-9210-810d666a23a0}</Project>
-+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-+    </ProjectReference>
-+  </ItemGroup>
-+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-+  <ImportGroup Label="ExtensionTargets">
-+  </ImportGroup>
-+</Project>
-diff -urN icu-1.56.orig/source/extra/uconv/uconv.vcxproj icu-1.56.vc14/source/extra/uconv/uconv.vcxproj
---- icu-1.56.orig/source/extra/uconv/uconv.vcxproj	2015-10-08 04:53:24.000000000 +0100
-+++ icu-1.56.vc14/source/extra/uconv/uconv.vcxproj	2016-04-27 21:12:04.680715000 +0100
+diff -urN icu-1.57.orig/source/extra/uconv/uconv.vcxproj icu-1.57.vc14/source/extra/uconv/uconv.vcxproj
+--- icu-1.57.orig/source/extra/uconv/uconv.vcxproj	2016-03-23 20:49:46.000000000 +0000
++++ icu-1.57.vc14/source/extra/uconv/uconv.vcxproj	2016-04-28 16:50:55.493651000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -449,9 +185,9 @@ diff -urN icu-1.56.orig/source/extra/uconv/uconv.vcxproj icu-1.56.vc14/source/ex
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/i18n/i18n.vcxproj icu-1.56.vc14/source/i18n/i18n.vcxproj
---- icu-1.56.orig/source/i18n/i18n.vcxproj	2015-10-08 04:53:06.000000000 +0100
-+++ icu-1.56.vc14/source/i18n/i18n.vcxproj	2016-04-27 21:12:04.680715000 +0100
+diff -urN icu-1.57.orig/source/i18n/i18n.vcxproj icu-1.57.vc14/source/i18n/i18n.vcxproj
+--- icu-1.57.orig/source/i18n/i18n.vcxproj	2016-03-23 20:49:28.000000000 +0000
++++ icu-1.57.vc14/source/i18n/i18n.vcxproj	2016-04-28 16:50:55.539509000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -485,16 +221,16 @@ diff -urN icu-1.56.orig/source/i18n/i18n.vcxproj icu-1.56.vc14/source/i18n/i18n.
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -1740,4 +1744,4 @@
+@@ -1699,4 +1703,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
    </ImportGroup>
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/io/io.vcxproj icu-1.56.vc14/source/io/io.vcxproj
---- icu-1.56.orig/source/io/io.vcxproj	2015-10-08 04:54:34.000000000 +0100
-+++ icu-1.56.vc14/source/io/io.vcxproj	2016-04-27 21:12:04.681717000 +0100
+diff -urN icu-1.57.orig/source/io/io.vcxproj icu-1.57.vc14/source/io/io.vcxproj
+--- icu-1.57.orig/source/io/io.vcxproj	2016-03-23 20:50:52.000000000 +0000
++++ icu-1.57.vc14/source/io/io.vcxproj	2016-04-28 16:50:55.585162000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -535,9 +271,9 @@ diff -urN icu-1.56.orig/source/io/io.vcxproj icu-1.56.vc14/source/io/io.vcxproj
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/layout/layout.vcxproj icu-1.56.vc14/source/layout/layout.vcxproj
---- icu-1.56.orig/source/layout/layout.vcxproj	2015-10-08 05:00:22.000000000 +0100
-+++ icu-1.56.vc14/source/layout/layout.vcxproj	2016-04-27 21:12:04.681717000 +0100
+diff -urN icu-1.57.orig/source/layout/layout.vcxproj icu-1.57.vc14/source/layout/layout.vcxproj
+--- icu-1.57.orig/source/layout/layout.vcxproj	2016-03-23 20:56:48.000000000 +0000
++++ icu-1.57.vc14/source/layout/layout.vcxproj	2016-04-28 16:50:55.603659000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -614,9 +350,9 @@ diff -urN icu-1.56.orig/source/layout/layout.vcxproj icu-1.56.vc14/source/layout
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/layoutex/layoutex.vcxproj icu-1.56.vc14/source/layoutex/layoutex.vcxproj
---- icu-1.56.orig/source/layoutex/layoutex.vcxproj	2015-10-08 05:00:12.000000000 +0100
-+++ icu-1.56.vc14/source/layoutex/layoutex.vcxproj	2016-04-27 21:12:04.681717000 +0100
+diff -urN icu-1.57.orig/source/layoutex/layoutex.vcxproj icu-1.57.vc14/source/layoutex/layoutex.vcxproj
+--- icu-1.57.orig/source/layoutex/layoutex.vcxproj	2016-03-23 20:56:38.000000000 +0000
++++ icu-1.57.vc14/source/layoutex/layoutex.vcxproj	2016-04-28 16:50:55.634636000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -686,16 +422,16 @@ diff -urN icu-1.56.orig/source/layoutex/layoutex.vcxproj icu-1.56.vc14/source/la
        <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
        <PrecompiledHeaderOutputFile>.\x64\Debug/layoutex.pch</PrecompiledHeaderOutputFile>
        <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
-@@ -327,4 +331,4 @@
+@@ -336,4 +340,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
    </ImportGroup>
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/samples/cal/cal.vcxproj icu-1.56.vc14/source/samples/cal/cal.vcxproj
---- icu-1.56.orig/source/samples/cal/cal.vcxproj	2015-10-08 04:54:14.000000000 +0100
-+++ icu-1.56.vc14/source/samples/cal/cal.vcxproj	2016-04-27 21:12:04.681717000 +0100
+diff -urN icu-1.57.orig/source/samples/cal/cal.vcxproj icu-1.57.vc14/source/samples/cal/cal.vcxproj
+--- icu-1.57.orig/source/samples/cal/cal.vcxproj	2016-03-23 20:50:38.000000000 +0000
++++ icu-1.57.vc14/source/samples/cal/cal.vcxproj	2016-04-28 16:50:55.667569000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -749,9 +485,9 @@ diff -urN icu-1.56.orig/source/samples/cal/cal.vcxproj icu-1.56.vc14/source/samp
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/samples/date/date.vcxproj icu-1.56.vc14/source/samples/date/date.vcxproj
---- icu-1.56.orig/source/samples/date/date.vcxproj	2015-10-08 04:54:26.000000000 +0100
-+++ icu-1.56.vc14/source/samples/date/date.vcxproj	2016-04-27 21:12:04.682716000 +0100
+diff -urN icu-1.57.orig/source/samples/date/date.vcxproj icu-1.57.vc14/source/samples/date/date.vcxproj
+--- icu-1.57.orig/source/samples/date/date.vcxproj	2016-03-23 20:50:48.000000000 +0000
++++ icu-1.57.vc14/source/samples/date/date.vcxproj	2016-04-28 16:50:55.690545000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -792,9 +528,9 @@ diff -urN icu-1.56.orig/source/samples/date/date.vcxproj icu-1.56.vc14/source/sa
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/stubdata/stubdata.vcxproj icu-1.56.vc14/source/stubdata/stubdata.vcxproj
---- icu-1.56.orig/source/stubdata/stubdata.vcxproj	2015-10-08 04:54:34.000000000 +0100
-+++ icu-1.56.vc14/source/stubdata/stubdata.vcxproj	2016-04-27 21:12:04.682716000 +0100
+diff -urN icu-1.57.orig/source/stubdata/stubdata.vcxproj icu-1.57.vc14/source/stubdata/stubdata.vcxproj
+--- icu-1.57.orig/source/stubdata/stubdata.vcxproj	2016-03-23 20:50:52.000000000 +0000
++++ icu-1.57.vc14/source/stubdata/stubdata.vcxproj	2016-04-28 16:50:55.701117000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -871,9 +607,9 @@ diff -urN icu-1.56.orig/source/stubdata/stubdata.vcxproj icu-1.56.vc14/source/st
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/test/cintltst/cintltst.vcxproj icu-1.56.vc14/source/test/cintltst/cintltst.vcxproj
---- icu-1.56.orig/source/test/cintltst/cintltst.vcxproj	2015-10-08 04:51:48.000000000 +0100
-+++ icu-1.56.vc14/source/test/cintltst/cintltst.vcxproj	2016-04-27 21:12:04.682716000 +0100
+diff -urN icu-1.57.orig/source/test/cintltst/cintltst.vcxproj icu-1.57.vc14/source/test/cintltst/cintltst.vcxproj
+--- icu-1.57.orig/source/test/cintltst/cintltst.vcxproj	2016-03-23 20:48:20.000000000 +0000
++++ icu-1.57.vc14/source/test/cintltst/cintltst.vcxproj	2016-04-28 16:50:55.727730000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -907,18 +643,18 @@ diff -urN icu-1.56.orig/source/test/cintltst/cintltst.vcxproj icu-1.56.vc14/sour
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -374,4 +378,4 @@
+@@ -375,4 +379,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
    </ImportGroup>
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/test/intltest/intltest.vcxproj icu-1.56.vc14/source/test/intltest/intltest.vcxproj
---- icu-1.56.orig/source/test/intltest/intltest.vcxproj	2015-10-08 04:52:08.000000000 +0100
-+++ icu-1.56.vc14/source/test/intltest/intltest.vcxproj	2016-04-27 21:12:04.682716000 +0100
+diff -urN icu-1.57.orig/source/test/intltest/intltest.vcxproj icu-1.57.vc14/source/test/intltest/intltest.vcxproj
+--- icu-1.57.orig/source/test/intltest/intltest.vcxproj	2016-03-23 20:48:36.000000000 +0000
++++ icu-1.57.vc14/source/test/intltest/intltest.vcxproj	2016-04-28 16:51:39.069192000 +0100
 @@ -1,5 +1,5 @@
- ﻿<?xml version="1.0" encoding="utf-8"?>
+ <?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 +<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
    <ItemGroup Label="ProjectConfigurations">
@@ -950,52 +686,9 @@ diff -urN icu-1.56.orig/source/test/intltest/intltest.vcxproj icu-1.56.vc14/sour
    </PropertyGroup>
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
    <ImportGroup Label="ExtensionSettings">
-@@ -89,7 +93,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Debug/intltest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Debug/</AssemblerListingLocation>
-@@ -129,7 +133,7 @@
-       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-       <BufferSecurityCheck>true</BufferSecurityCheck>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Debug/intltest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
-@@ -164,7 +168,7 @@
-       <PreprocessorDefinitions>U_ATTRIBUTE_DEPRECATED=;WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x86\Release/intltest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x86\Release/</AssemblerListingLocation>
-@@ -199,7 +203,7 @@
-       <PreprocessorDefinitions>U_ATTRIBUTE_DEPRECATED=;WIN64;WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-       <StringPooling>true</StringPooling>
-       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
--      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-       <PrecompiledHeaderOutputFile>.\x64\Release/intltest.pch</PrecompiledHeaderOutputFile>
-       <AssemblerListingLocation>.\x64\Release/</AssemblerListingLocation>
-@@ -579,4 +583,4 @@
-   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-   <ImportGroup Label="ExtensionTargets">
-   </ImportGroup>
--</Project>
-+</Project>
-\ No newline at end of file
-diff -urN icu-1.56.orig/source/test/iotest/iotest.vcxproj icu-1.56.vc14/source/test/iotest/iotest.vcxproj
---- icu-1.56.orig/source/test/iotest/iotest.vcxproj	2015-10-08 04:52:16.000000000 +0100
-+++ icu-1.56.vc14/source/test/iotest/iotest.vcxproj	2016-04-27 21:12:04.683717000 +0100
+diff -urN icu-1.57.orig/source/test/iotest/iotest.vcxproj icu-1.57.vc14/source/test/iotest/iotest.vcxproj
+--- icu-1.57.orig/source/test/iotest/iotest.vcxproj	2016-03-23 20:48:44.000000000 +0000
++++ icu-1.57.vc14/source/test/iotest/iotest.vcxproj	2016-04-28 16:50:55.795491000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1072,9 +765,9 @@ diff -urN icu-1.56.orig/source/test/iotest/iotest.vcxproj icu-1.56.vc14/source/t
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/test/letest/letest.vcxproj icu-1.56.vc14/source/test/letest/letest.vcxproj
---- icu-1.56.orig/source/test/letest/letest.vcxproj	2015-10-08 04:51:40.000000000 +0100
-+++ icu-1.56.vc14/source/test/letest/letest.vcxproj	2016-04-27 21:12:04.683717000 +0100
+diff -urN icu-1.57.orig/source/test/letest/letest.vcxproj icu-1.57.vc14/source/test/letest/letest.vcxproj
+--- icu-1.57.orig/source/test/letest/letest.vcxproj	2016-03-23 20:48:12.000000000 +0000
++++ icu-1.57.vc14/source/test/letest/letest.vcxproj	2016-04-28 16:50:55.821802000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1115,9 +808,9 @@ diff -urN icu-1.56.orig/source/test/letest/letest.vcxproj icu-1.56.vc14/source/t
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/ctestfw/ctestfw.vcxproj icu-1.56.vc14/source/tools/ctestfw/ctestfw.vcxproj
---- icu-1.56.orig/source/tools/ctestfw/ctestfw.vcxproj	2015-10-08 04:53:54.000000000 +0100
-+++ icu-1.56.vc14/source/tools/ctestfw/ctestfw.vcxproj	2016-04-27 21:12:04.683717000 +0100
+diff -urN icu-1.57.orig/source/tools/ctestfw/ctestfw.vcxproj icu-1.57.vc14/source/tools/ctestfw/ctestfw.vcxproj
+--- icu-1.57.orig/source/tools/ctestfw/ctestfw.vcxproj	2016-03-23 20:50:16.000000000 +0000
++++ icu-1.57.vc14/source/tools/ctestfw/ctestfw.vcxproj	2016-04-28 16:50:55.846423000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1187,16 +880,16 @@ diff -urN icu-1.56.orig/source/tools/ctestfw/ctestfw.vcxproj icu-1.56.vc14/sourc
        <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
        <PrecompiledHeaderOutputFile>.\x64\Debug/icutest.pch</PrecompiledHeaderOutputFile>
        <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
-@@ -280,4 +284,4 @@
+@@ -278,4 +282,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
    </ImportGroup>
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/genbrk/genbrk.vcxproj icu-1.56.vc14/source/tools/genbrk/genbrk.vcxproj
---- icu-1.56.orig/source/tools/genbrk/genbrk.vcxproj	2015-10-08 04:54:02.000000000 +0100
-+++ icu-1.56.vc14/source/tools/genbrk/genbrk.vcxproj	2016-04-27 21:12:04.683717000 +0100
+diff -urN icu-1.57.orig/source/tools/genbrk/genbrk.vcxproj icu-1.57.vc14/source/tools/genbrk/genbrk.vcxproj
+--- icu-1.57.orig/source/tools/genbrk/genbrk.vcxproj	2016-03-23 20:50:24.000000000 +0000
++++ icu-1.57.vc14/source/tools/genbrk/genbrk.vcxproj	2016-04-28 16:50:55.865938000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1237,9 +930,9 @@ diff -urN icu-1.56.orig/source/tools/genbrk/genbrk.vcxproj icu-1.56.vc14/source/
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/genccode/genccode.vcxproj icu-1.56.vc14/source/tools/genccode/genccode.vcxproj
---- icu-1.56.orig/source/tools/genccode/genccode.vcxproj	2015-10-08 04:54:00.000000000 +0100
-+++ icu-1.56.vc14/source/tools/genccode/genccode.vcxproj	2016-04-27 21:12:04.683717000 +0100
+diff -urN icu-1.57.orig/source/tools/genccode/genccode.vcxproj icu-1.57.vc14/source/tools/genccode/genccode.vcxproj
+--- icu-1.57.orig/source/tools/genccode/genccode.vcxproj	2016-03-23 20:50:22.000000000 +0000
++++ icu-1.57.vc14/source/tools/genccode/genccode.vcxproj	2016-04-28 16:50:55.876869000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1280,9 +973,9 @@ diff -urN icu-1.56.orig/source/tools/genccode/genccode.vcxproj icu-1.56.vc14/sou
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/gencfu/gencfu.vcxproj icu-1.56.vc14/source/tools/gencfu/gencfu.vcxproj
---- icu-1.56.orig/source/tools/gencfu/gencfu.vcxproj	2015-10-08 04:54:00.000000000 +0100
-+++ icu-1.56.vc14/source/tools/gencfu/gencfu.vcxproj	2016-04-27 21:12:04.684717000 +0100
+diff -urN icu-1.57.orig/source/tools/gencfu/gencfu.vcxproj icu-1.57.vc14/source/tools/gencfu/gencfu.vcxproj
+--- icu-1.57.orig/source/tools/gencfu/gencfu.vcxproj	2016-03-23 20:50:24.000000000 +0000
++++ icu-1.57.vc14/source/tools/gencfu/gencfu.vcxproj	2016-04-28 16:50:55.898577000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1322,9 +1015,9 @@ diff -urN icu-1.56.orig/source/tools/gencfu/gencfu.vcxproj icu-1.56.vc14/source/
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/gencmn/gencmn.vcxproj icu-1.56.vc14/source/tools/gencmn/gencmn.vcxproj
---- icu-1.56.orig/source/tools/gencmn/gencmn.vcxproj	2015-10-08 04:54:02.000000000 +0100
-+++ icu-1.56.vc14/source/tools/gencmn/gencmn.vcxproj	2016-04-27 21:12:04.684717000 +0100
+diff -urN icu-1.57.orig/source/tools/gencmn/gencmn.vcxproj icu-1.57.vc14/source/tools/gencmn/gencmn.vcxproj
+--- icu-1.57.orig/source/tools/gencmn/gencmn.vcxproj	2016-03-23 20:50:24.000000000 +0000
++++ icu-1.57.vc14/source/tools/gencmn/gencmn.vcxproj	2016-04-28 16:50:55.909029000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1401,9 +1094,9 @@ diff -urN icu-1.56.orig/source/tools/gencmn/gencmn.vcxproj icu-1.56.vc14/source/
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/gencnval/gencnval.vcxproj icu-1.56.vc14/source/tools/gencnval/gencnval.vcxproj
---- icu-1.56.orig/source/tools/gencnval/gencnval.vcxproj	2015-10-08 04:53:58.000000000 +0100
-+++ icu-1.56.vc14/source/tools/gencnval/gencnval.vcxproj	2016-04-27 21:12:04.684717000 +0100
+diff -urN icu-1.57.orig/source/tools/gencnval/gencnval.vcxproj icu-1.57.vc14/source/tools/gencnval/gencnval.vcxproj
+--- icu-1.57.orig/source/tools/gencnval/gencnval.vcxproj	2016-03-23 20:50:20.000000000 +0000
++++ icu-1.57.vc14/source/tools/gencnval/gencnval.vcxproj	2016-04-28 16:50:55.935102000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1444,9 +1137,9 @@ diff -urN icu-1.56.orig/source/tools/gencnval/gencnval.vcxproj icu-1.56.vc14/sou
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/gendict/gendict.vcxproj icu-1.56.vc14/source/tools/gendict/gendict.vcxproj
---- icu-1.56.orig/source/tools/gendict/gendict.vcxproj	2015-10-08 04:54:06.000000000 +0100
-+++ icu-1.56.vc14/source/tools/gendict/gendict.vcxproj	2016-04-27 21:12:04.684717000 +0100
+diff -urN icu-1.57.orig/source/tools/gendict/gendict.vcxproj icu-1.57.vc14/source/tools/gendict/gendict.vcxproj
+--- icu-1.57.orig/source/tools/gendict/gendict.vcxproj	2016-03-23 20:50:30.000000000 +0000
++++ icu-1.57.vc14/source/tools/gendict/gendict.vcxproj	2016-04-28 16:50:55.945638000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1523,9 +1216,9 @@ diff -urN icu-1.56.orig/source/tools/gendict/gendict.vcxproj icu-1.56.vc14/sourc
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/gennorm2/gennorm2.vcxproj icu-1.56.vc14/source/tools/gennorm2/gennorm2.vcxproj
---- icu-1.56.orig/source/tools/gennorm2/gennorm2.vcxproj	2015-10-08 04:53:54.000000000 +0100
-+++ icu-1.56.vc14/source/tools/gennorm2/gennorm2.vcxproj	2016-04-27 21:12:04.684717000 +0100
+diff -urN icu-1.57.orig/source/tools/gennorm2/gennorm2.vcxproj icu-1.57.vc14/source/tools/gennorm2/gennorm2.vcxproj
+--- icu-1.57.orig/source/tools/gennorm2/gennorm2.vcxproj	2016-03-23 20:50:18.000000000 +0000
++++ icu-1.57.vc14/source/tools/gennorm2/gennorm2.vcxproj	2016-04-28 16:50:55.955863000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1565,9 +1258,9 @@ diff -urN icu-1.56.orig/source/tools/gennorm2/gennorm2.vcxproj icu-1.56.vc14/sou
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/genrb/derb.vcxproj icu-1.56.vc14/source/tools/genrb/derb.vcxproj
---- icu-1.56.orig/source/tools/genrb/derb.vcxproj	2015-10-08 04:53:58.000000000 +0100
-+++ icu-1.56.vc14/source/tools/genrb/derb.vcxproj	2016-04-27 21:12:04.685716000 +0100
+diff -urN icu-1.57.orig/source/tools/genrb/derb.vcxproj icu-1.57.vc14/source/tools/genrb/derb.vcxproj
+--- icu-1.57.orig/source/tools/genrb/derb.vcxproj	2016-03-23 20:50:22.000000000 +0000
++++ icu-1.57.vc14/source/tools/genrb/derb.vcxproj	2016-04-28 16:50:55.971776000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1644,9 +1337,9 @@ diff -urN icu-1.56.orig/source/tools/genrb/derb.vcxproj icu-1.56.vc14/source/too
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/genrb/genrb.vcxproj icu-1.56.vc14/source/tools/genrb/genrb.vcxproj
---- icu-1.56.orig/source/tools/genrb/genrb.vcxproj	2015-10-08 04:53:58.000000000 +0100
-+++ icu-1.56.vc14/source/tools/genrb/genrb.vcxproj	2016-04-27 21:12:04.685716000 +0100
+diff -urN icu-1.57.orig/source/tools/genrb/genrb.vcxproj icu-1.57.vc14/source/tools/genrb/genrb.vcxproj
+--- icu-1.57.orig/source/tools/genrb/genrb.vcxproj	2016-03-23 20:50:20.000000000 +0000
++++ icu-1.57.vc14/source/tools/genrb/genrb.vcxproj	2016-04-28 16:50:55.983056000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1716,9 +1409,9 @@ diff -urN icu-1.56.orig/source/tools/genrb/genrb.vcxproj icu-1.56.vc14/source/to
        <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
        <PrecompiledHeaderOutputFile>.\x64\Debug/genrb.pch</PrecompiledHeaderOutputFile>
        <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
-diff -urN icu-1.56.orig/source/tools/gensprep/gensprep.vcxproj icu-1.56.vc14/source/tools/gensprep/gensprep.vcxproj
---- icu-1.56.orig/source/tools/gensprep/gensprep.vcxproj	2015-10-08 04:53:54.000000000 +0100
-+++ icu-1.56.vc14/source/tools/gensprep/gensprep.vcxproj	2016-04-27 21:12:04.685716000 +0100
+diff -urN icu-1.57.orig/source/tools/gensprep/gensprep.vcxproj icu-1.57.vc14/source/tools/gensprep/gensprep.vcxproj
+--- icu-1.57.orig/source/tools/gensprep/gensprep.vcxproj	2016-03-23 20:50:16.000000000 +0000
++++ icu-1.57.vc14/source/tools/gensprep/gensprep.vcxproj	2016-04-28 16:50:56.006271000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1759,9 +1452,9 @@ diff -urN icu-1.56.orig/source/tools/gensprep/gensprep.vcxproj icu-1.56.vc14/sou
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/gentest/gentest.vcxproj icu-1.56.vc14/source/tools/gentest/gentest.vcxproj
---- icu-1.56.orig/source/tools/gentest/gentest.vcxproj	2015-10-08 04:54:02.000000000 +0100
-+++ icu-1.56.vc14/source/tools/gentest/gentest.vcxproj	2016-04-27 21:12:04.685716000 +0100
+diff -urN icu-1.57.orig/source/tools/gentest/gentest.vcxproj icu-1.57.vc14/source/tools/gentest/gentest.vcxproj
+--- icu-1.57.orig/source/tools/gentest/gentest.vcxproj	2016-03-23 20:50:24.000000000 +0000
++++ icu-1.57.vc14/source/tools/gentest/gentest.vcxproj	2016-04-28 16:50:56.016480000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1838,9 +1531,9 @@ diff -urN icu-1.56.orig/source/tools/gentest/gentest.vcxproj icu-1.56.vc14/sourc
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/icuinfo/icuinfo.vcxproj icu-1.56.vc14/source/tools/icuinfo/icuinfo.vcxproj
---- icu-1.56.orig/source/tools/icuinfo/icuinfo.vcxproj	2015-10-08 04:53:56.000000000 +0100
-+++ icu-1.56.vc14/source/tools/icuinfo/icuinfo.vcxproj	2016-04-27 21:12:04.685716000 +0100
+diff -urN icu-1.57.orig/source/tools/icuinfo/icuinfo.vcxproj icu-1.57.vc14/source/tools/icuinfo/icuinfo.vcxproj
+--- icu-1.57.orig/source/tools/icuinfo/icuinfo.vcxproj	2016-03-23 20:50:20.000000000 +0000
++++ icu-1.57.vc14/source/tools/icuinfo/icuinfo.vcxproj	2016-04-28 16:50:56.037511000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1917,9 +1610,9 @@ diff -urN icu-1.56.orig/source/tools/icuinfo/icuinfo.vcxproj icu-1.56.vc14/sourc
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/icuinfo/testplug.vcxproj icu-1.56.vc14/source/tools/icuinfo/testplug.vcxproj
---- icu-1.56.orig/source/tools/icuinfo/testplug.vcxproj	2015-10-08 04:53:56.000000000 +0100
-+++ icu-1.56.vc14/source/tools/icuinfo/testplug.vcxproj	2016-04-27 21:12:04.685716000 +0100
+diff -urN icu-1.57.orig/source/tools/icuinfo/testplug.vcxproj icu-1.57.vc14/source/tools/icuinfo/testplug.vcxproj
+--- icu-1.57.orig/source/tools/icuinfo/testplug.vcxproj	2016-03-23 20:50:18.000000000 +0000
++++ icu-1.57.vc14/source/tools/icuinfo/testplug.vcxproj	2016-04-28 16:50:56.048230000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1996,9 +1689,9 @@ diff -urN icu-1.56.orig/source/tools/icuinfo/testplug.vcxproj icu-1.56.vc14/sour
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/icupkg/icupkg.vcxproj icu-1.56.vc14/source/tools/icupkg/icupkg.vcxproj
---- icu-1.56.orig/source/tools/icupkg/icupkg.vcxproj	2015-10-08 04:53:54.000000000 +0100
-+++ icu-1.56.vc14/source/tools/icupkg/icupkg.vcxproj	2016-04-27 21:12:04.686716000 +0100
+diff -urN icu-1.57.orig/source/tools/icupkg/icupkg.vcxproj icu-1.57.vc14/source/tools/icupkg/icupkg.vcxproj
+--- icu-1.57.orig/source/tools/icupkg/icupkg.vcxproj	2016-03-23 20:50:16.000000000 +0000
++++ icu-1.57.vc14/source/tools/icupkg/icupkg.vcxproj	2016-04-28 16:50:56.061075000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -2075,9 +1768,9 @@ diff -urN icu-1.56.orig/source/tools/icupkg/icupkg.vcxproj icu-1.56.vc14/source/
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/icuswap/icuswap.vcxproj icu-1.56.vc14/source/tools/icuswap/icuswap.vcxproj
---- icu-1.56.orig/source/tools/icuswap/icuswap.vcxproj	2015-10-08 04:54:02.000000000 +0100
-+++ icu-1.56.vc14/source/tools/icuswap/icuswap.vcxproj	2016-04-27 21:12:04.686716000 +0100
+diff -urN icu-1.57.orig/source/tools/icuswap/icuswap.vcxproj icu-1.57.vc14/source/tools/icuswap/icuswap.vcxproj
+--- icu-1.57.orig/source/tools/icuswap/icuswap.vcxproj	2016-03-23 20:50:24.000000000 +0000
++++ icu-1.57.vc14/source/tools/icuswap/icuswap.vcxproj	2016-04-28 16:50:56.071243000 +0100
 @@ -92,7 +92,7 @@
        <StringPooling>true</StringPooling>
        <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -2114,9 +1807,9 @@ diff -urN icu-1.56.orig/source/tools/icuswap/icuswap.vcxproj icu-1.56.vc14/sourc
        <PrecompiledHeaderOutputFile>.\x64\Debug/icuswap.pch</PrecompiledHeaderOutputFile>
        <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
        <ObjectFileName>.\x64\Debug/</ObjectFileName>
-diff -urN icu-1.56.orig/source/tools/makeconv/makeconv.vcxproj icu-1.56.vc14/source/tools/makeconv/makeconv.vcxproj
---- icu-1.56.orig/source/tools/makeconv/makeconv.vcxproj	2015-10-08 04:54:00.000000000 +0100
-+++ icu-1.56.vc14/source/tools/makeconv/makeconv.vcxproj	2016-04-27 21:12:04.686716000 +0100
+diff -urN icu-1.57.orig/source/tools/makeconv/makeconv.vcxproj icu-1.57.vc14/source/tools/makeconv/makeconv.vcxproj
+--- icu-1.57.orig/source/tools/makeconv/makeconv.vcxproj	2016-03-23 20:50:22.000000000 +0000
++++ icu-1.57.vc14/source/tools/makeconv/makeconv.vcxproj	2016-04-28 16:50:56.092365000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -2157,9 +1850,9 @@ diff -urN icu-1.56.orig/source/tools/makeconv/makeconv.vcxproj icu-1.56.vc14/sou
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/pkgdata/pkgdata.vcxproj icu-1.56.vc14/source/tools/pkgdata/pkgdata.vcxproj
---- icu-1.56.orig/source/tools/pkgdata/pkgdata.vcxproj	2015-10-08 04:54:02.000000000 +0100
-+++ icu-1.56.vc14/source/tools/pkgdata/pkgdata.vcxproj	2016-04-27 21:12:04.686716000 +0100
+diff -urN icu-1.57.orig/source/tools/pkgdata/pkgdata.vcxproj icu-1.57.vc14/source/tools/pkgdata/pkgdata.vcxproj
+--- icu-1.57.orig/source/tools/pkgdata/pkgdata.vcxproj	2016-03-23 20:50:26.000000000 +0000
++++ icu-1.57.vc14/source/tools/pkgdata/pkgdata.vcxproj	2016-04-28 16:50:56.102840000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -2236,9 +1929,9 @@ diff -urN icu-1.56.orig/source/tools/pkgdata/pkgdata.vcxproj icu-1.56.vc14/sourc
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/toolutil/toolutil.vcxproj icu-1.56.vc14/source/tools/toolutil/toolutil.vcxproj
---- icu-1.56.orig/source/tools/toolutil/toolutil.vcxproj	2015-10-08 04:54:04.000000000 +0100
-+++ icu-1.56.vc14/source/tools/toolutil/toolutil.vcxproj	2016-04-27 21:12:04.686716000 +0100
+diff -urN icu-1.57.orig/source/tools/toolutil/toolutil.vcxproj icu-1.57.vc14/source/tools/toolutil/toolutil.vcxproj
+--- icu-1.57.orig/source/tools/toolutil/toolutil.vcxproj	2016-03-23 20:50:28.000000000 +0000
++++ icu-1.57.vc14/source/tools/toolutil/toolutil.vcxproj	2016-04-28 16:50:56.138416000 +0100
 @@ -1,5 +1,5 @@
  ﻿<?xml version="1.0" encoding="utf-8"?>
 -<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -2308,16 +2001,16 @@ diff -urN icu-1.56.orig/source/tools/toolutil/toolutil.vcxproj icu-1.56.vc14/sou
        <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
        <PrecompiledHeaderOutputFile>.\x64\Debug/toolutil.pch</PrecompiledHeaderOutputFile>
        <AssemblerListingLocation>.\x64\Debug/</AssemblerListingLocation>
-@@ -326,4 +330,4 @@
+@@ -328,4 +332,4 @@
    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
    <ImportGroup Label="ExtensionTargets">
    </ImportGroup>
 -</Project>
 +</Project>
 \ No newline at end of file
-diff -urN icu-1.56.orig/source/tools/tzcode/icuzdump.vcxproj icu-1.56.vc14/source/tools/tzcode/icuzdump.vcxproj
---- icu-1.56.orig/source/tools/tzcode/icuzdump.vcxproj	2015-10-08 04:53:56.000000000 +0100
-+++ icu-1.56.vc14/source/tools/tzcode/icuzdump.vcxproj	2016-04-27 21:12:04.687716000 +0100
+diff -urN icu-1.57.orig/source/tools/tzcode/icuzdump.vcxproj icu-1.57.vc14/source/tools/tzcode/icuzdump.vcxproj
+--- icu-1.57.orig/source/tools/tzcode/icuzdump.vcxproj	2016-03-23 20:50:18.000000000 +0000
++++ icu-1.57.vc14/source/tools/tzcode/icuzdump.vcxproj	2016-04-28 16:50:56.173575000 +0100
 @@ -57,7 +57,7 @@
        <MinimalRebuild>false</MinimalRebuild>
        <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
