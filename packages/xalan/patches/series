@@ -1,7 +1,6 @@
 kfreebsd-support.diff
 macosx-dyld-fallback.diff
 win-nomfc.diff
-win-vc11.diff
 win-vc12.diff
 win-vc14.diff
 fix-ftbfs-ld-as-needed.diff

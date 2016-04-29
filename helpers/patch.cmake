@@ -4,18 +4,8 @@ include("${GENERIC_CMAKE_ENVIRONMENT}")
 
 set(seriesfile "${PATCH_DIR}/series")
 if(MSVC)
-  # VS 10.0
-  if(NOT MSVC_VERSION VERSION_LESS 1600 AND MSVC_VERSION VERSION_LESS 1700)
-    if(EXISTS "${PATCH_DIR}/series-vc10")
-      set(seriesfile "${PATCH_DIR}/series-vc10")
-    endif()
-  # VS 11.0
-  elseif(NOT MSVC_VERSION VERSION_LESS 1700 AND MSVC_VERSION VERSION_LESS 1800)
-    if(EXISTS "${PATCH_DIR}/series-vc11")
-      set(seriesfile "${PATCH_DIR}/series-vc11")
-    endif()
   # VS 12.0
-  elseif(NOT MSVC_VERSION VERSION_LESS 1800 AND MSVC_VERSION VERSION_LESS 1900)
+  if(NOT MSVC_VERSION VERSION_LESS 1800 AND MSVC_VERSION VERSION_LESS 1900)
     if(EXISTS "${PATCH_DIR}/series-vc12")
       set(seriesfile "${PATCH_DIR}/series-vc12")
     endif()
