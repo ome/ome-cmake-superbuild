@@ -8,8 +8,8 @@ ome_add_dependencies(icu THIRD_PARTY_DEPENDENCIES patch)
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "http://download.icu-project.org/files/icu4c/56.1/icu4c-56_1-src.tgz"
-  URL_HASH "SHA512=297fd91ce6c478309ac3d18813f1b3ff39a992584e3bafb79e2e816a516e903af6b86c6318e1104cda0bb29ba7c0414b65c1e83c0ed0e848ce897a06d7678d9a"
+  URL "http://download.icu-project.org/files/icu4c/57.1/icu4c-57_1-src.tgz"
+  URL_HASH "SHA512=a3c701e9c81622db545bcf93f315c7b13159750f43f009d0aec59ceae3a8e1ccb751826d4b8a7387aca47f38bff2a85816b1a123b07d2bf731558c7b66e47b8a"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""
