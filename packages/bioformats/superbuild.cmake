@@ -6,8 +6,8 @@ set(bf-git-url "" CACHE STRING "URL of Bio-Formats git repository")
 set(bf-git-branch "" CACHE STRING "URL of Bio-Formats git repository")
 
 # Current stable release.
-set(RELEASE_URL "http://downloads.openmicroscopy.org/bio-formats/5.1.9/artifacts/bioformats-dfsg-5.1.9.tar.xz")
-set(RELEASE_HASH "SHA512=ce3eb4f20b795871cd79a869b05013e36e4bb0d184c585b4c3e0ae8f607d647d2dd507e154f416ab903db3f437f932e4b5ea5f3081235dd113dfc8b75c67520e")
+set(RELEASE_URL "http://downloads.openmicroscopy.org/bio-formats/5.1.10/artifacts/bioformats-dfsg-5.1.10.tar.xz")
+set(RELEASE_HASH "SHA512=08140c1ba8ca5a3b5cb8afe70350a3d1e02f989ab9f61cd3e240dc4ee51b2c2b19dd68536c1c3beeda1b26355a5645527f6fa40f28b8eadee935d726483a8099")
 
 # Current development branch (defaults for head option).
 set(GIT_URL "https://github.com/openmicroscopy/bioformats.git")
