@@ -27,20 +27,20 @@ if(ome-qtwidgets-dir)
   set(EP_SOURCE_DOWNLOAD
     DOWNLOAD_COMMAND "")
   set(EP_SOURCE_DIR "${ome-qtwidgets-dir}")
-  set(BOOST_VERSION 1.60)
+  set(BOOST_VERSION 1.61)
   message(STATUS "Building OME QtWidgets C++ from local directory (${ome-qtwidgets-dir})")
 elseif(ome-qtwidgets-head OR ome-qtwidgets-git-url OR ome-qtwidgets-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
-  set(BOOST_VERSION 1.60)
+  set(BOOST_VERSION 1.61)
   message(STATUS "Building OME QtWidgets C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
-  set(BOOST_VERSION 1.60)
+  set(BOOST_VERSION 1.61)
   message(STATUS "Building OME QtWidgets C++ from source release (${RELEASE_URL})")
 endif()
 

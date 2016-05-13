@@ -1,7 +1,7 @@
 # boost superbuild
 
 # Set dependency list
-ome_add_dependencies(boost-1.60 THIRD_PARTY_DEPENDENCIES zlib bzip2 icu)
+ome_add_dependencies(boost-1.61 THIRD_PARTY_DEPENDENCIES zlib bzip2 icu)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   # VS 12.0
@@ -26,8 +26,8 @@ endif()
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.bz2"
-  URL_HASH "SHA512=7c851b3fc2b322ff05d642d9cf03e7c30c5f04d5cf0579c99046b1ec708901c58a3d349031dfe24591f5b88c1e664b6a0d40abea6cce89abb52080c02eb725df"
+  URL "http://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.bz2"
+  URL_HASH "SHA512=a1c7338e2d2dbac8552ede7c554640d22cbb2fda7fbc325dc3cdcb51e769713626695426ffc158cbe0e1729dd9a7b5ad18af4800d74e24539e8d8564268c2b9d"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   INSTALL_DIR ""
   PATCH_COMMAND
