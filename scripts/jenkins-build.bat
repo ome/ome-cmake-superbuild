@@ -32,7 +32,7 @@ set parallel=
 set build_git=OFF
 set action=build
 set qt=OFF
-set "packages=ome-files"
+set "packages=ome-files;ome-cmake-superbuild-docs"
 
 :: Parse command line options.
 :loop
@@ -47,7 +47,6 @@ if NOT "%1"=="" (
         set "build_git=ON"
     )
     if "%1"=="-q" (
-        set "build_qt=ON"
         set "packages=%packages%;ome-qtwidgets"
     )
     if "%1"=="-d" (
@@ -294,7 +293,7 @@ if [%build_system%] == [MSBuild] (
         set "GEN=Visual Studio 14 2015!ARCH!"
     )
 
-    cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dqtgui:BOOL=%qt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
 
 :: Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
@@ -331,7 +330,7 @@ if [%build_system%] == [Ninja] (
         call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" %build_arch%
     )
 
-    cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dqtgui:BOOL=%qt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
 
 :: Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (

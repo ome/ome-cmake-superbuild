@@ -138,7 +138,6 @@ build() {
             "-Ddoxygen:BOOL=$doxygen" \
             "-Dextended-tests:BOOL=$extended_tests" \
             "-Dbuild-packages=${build_packages}" \
-            -Dqtgui:BOOL=${build_qt} \
             -Dsphinx:BOOL=ON \
             -Dsphinx-pdf:BOOL=OFF \
             -Dsource-cache:PATH=${cachedir}/source \
@@ -323,7 +322,7 @@ parallel=
 build_git=OFF
 build_tp_prereqs=ON
 build_qt=OFF
-build_packages=ome-files
+build_packages="ome-files;ome-cmake-superbuild-docs"
 build_number=
 
 # Parse command line options.
@@ -343,7 +342,6 @@ while getopts hBGqndexvi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
             build_tp_prereqs=OFF
             ;;
         q)
-            build_qt=ON
             build_packages="${build_packages};ome-qtwidgets"
             ;;
         d)
