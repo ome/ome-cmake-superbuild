@@ -46,7 +46,7 @@ include(GNUInstallDirs)
 include("${CMAKE_CURRENT_LIST_DIR}/../../Options.cmake")
 include(Sphinx)
 
-if (BUILD_SPHINX)
+if (BUILD_SPHINX AND SPHINX_BUILD)
   message(STATUS "Checking manual page dependencies")
 
   # Create build directory and conf.py
