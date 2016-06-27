@@ -16,6 +16,7 @@ set "installdir=%workspace%\install"
 set "artefactdir=%workspace%\artefacts"
 set "cachedir=%workspace%\cache"
 set "cygwindir=C:\CYGWIN64\BIN"
+set "qtdir=C:\Qt\5.7"
 
 set git_branch=HEAD
 set purge=none
@@ -47,6 +48,7 @@ if NOT "%1"=="" (
         set "build_git=ON"
     )
     if "%1"=="-q" (
+        set "qt=ON"
         set "packages=%packages%;ome-qtwidgets"
     )
     if "%1"=="-d" (
@@ -126,6 +128,10 @@ if NOT "%1"=="" (
         set "cygwindir=%2"
         shift
     )
+    if "%1"=="-Q" (
+        set "qtdir=%2"
+        shift
+    )
 
     shift
     goto :loop
@@ -138,6 +144,7 @@ echo installdir=%installdir%
 echo artefactdir=%artefactdir%
 echo cachedir=%cachedir%
 echo cygwindir=%cygwindir%
+echo qtdir=%qtdir%
 
 echo git_branch=%git_branch%
 echo purge=%purge%
@@ -151,6 +158,7 @@ echo verbose=%verbose%
 echo cxxdetect=%cxxdetect%
 echo parallel=%parallel%
 echo build_git=%build_git%
+echo qt=%qt%
 
 goto main
 
@@ -171,6 +179,7 @@ Options:
   -a dir     Set artefact directory
   -c dir     Set cache directory
   -Y dir     Set Cygwin directory (used for zip/unzip)
+  -Q dir     Set Qt5 directory (used for ome-qtwidgets)
 
   -g branch  Set git branch or tag to release from
   -G         Build from git (rather than the default source release archive)
@@ -275,6 +284,25 @@ if exist "%cachedir%\tree" (
 
 if [%build_git%] == [ON] (
     set "GIT_OPTIONS=-Dome-xml-dir=%workspace%\ome-xml -Dome-files-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common -Dome-qtwidgets-dir=%workspace%\ome-qtwidgets"
+)
+
+if [%qt%] == [ON] (
+    if [%build_version%] == [12] (
+        set "qt_root=!qtdir!\msvc2013"
+    )
+    if [%build_version%] == [14] (
+        set "qt_root=!qtdir!\msvc2013"
+    )
+    if [%build_arch%] == [x86] (
+        set "qt_root=!qt_root!_32"
+    ) else (
+        set "qt_root=!qt_root!_64"
+    )
+    if NOT exist "!qt_root!" (
+        echo Warning: Qt5 root !qt_root! does not exist
+    )
+    set "CMAKE_PATH_PREFIX=!qt_root!"
+    set "PATH=!qt_root!\bin;!PATH!"
 )
 
 if [%build_system%] == [MSBuild] (
