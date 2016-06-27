@@ -16,7 +16,6 @@ srcdir = '@sphinx_srcdir@'
 builddir = '@sphinx_builddir@'
 ext_source_branch = '@sphinx_source_branch@'
 ext_source_user = '@sphinx_source_user@'
-ext_omerodoc_uri = '@sphinx_omerodoc_uri@'
 
 import sys, os
 sys.path.insert(0, os.path.abspath(os.path.join(srcdir, '_ext')))
@@ -135,10 +134,6 @@ oo_root = 'http://www.openmicroscopy.org'
 oo_site_root = oo_root + '/site'
 lists_root = 'http://lists.openmicroscopy.org.uk'
 downloads_root = 'http://downloads.openmicroscopy.org'
-omerodoc_uri = oo_site_root + '/support/omero5.1'
-if (ext_omerodoc_uri is not None and len(ext_omerodoc_uri) > 0 and
-    ext_omerodoc_uri != "@%s@" % ('sphinx_omerodoc_uri}')):
-    omerodoc_uri = ext_omerodoc_uri
 
 extlinks = {
     # Trac links
@@ -164,7 +159,6 @@ extlinks = {
     'legacy_plone' : (oo_site_root + '/support/legacy/%s', ''),
     'about_plone' : (oo_site_root + '/about/%s', ''),
     'team_plone' : (oo_site_root + '/team/%s', ''),
-    'omerodoc' : (omerodoc_uri + '/%s', ''),
     'devs_doc' : (oo_site_root + '/support/contributing/%s', ''),
     # Downloads
     'downloads_cpp' : (downloads_root + '/latest/ome-files-cpp/%s', ''),
