@@ -48,7 +48,7 @@ endif()
 ome_add_dependencies(ome-qtwidgets
                      DEPENDENCIES ome-files
                      THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} png tiff
-                                              py-sphinx gtest)
+                                              glm py-sphinx gtest)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
