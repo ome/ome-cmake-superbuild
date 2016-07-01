@@ -1,0 +1,19 @@
+.. _pkg_png:
+
+PNG
+---
+
+The PNG library (libpng) reference implementation of the PNG image
+file format, used for reading and writing PNG images.
+
++------------------+--------------+
+| System           | Package      |
++==================+==============+
+| BSD Ports        | graphics/png |
++------------------+--------------+
+| Debian/Ubuntu    | libpng12-dev |
++------------------+--------------+
+| Homebrew         | libpng       |
++------------------+--------------+
+| RedHat/CentOS    | libpng-devel |
++------------------+--------------+

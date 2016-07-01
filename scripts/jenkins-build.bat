@@ -16,6 +16,7 @@ set "installdir=%workspace%\install"
 set "artefactdir=%workspace%\artefacts"
 set "cachedir=%workspace%\cache"
 set "cygwindir=C:\CYGWIN64\BIN"
+set "qtdir=C:\Qt\5.7"
 
 set git_branch=HEAD
 set purge=none
@@ -32,7 +33,7 @@ set parallel=
 set build_git=OFF
 set action=build
 set qt=OFF
-set "packages=ome-files"
+set "packages=ome-files;ome-cmake-superbuild-docs"
 
 :: Parse command line options.
 :loop
@@ -47,7 +48,7 @@ if NOT "%1"=="" (
         set "build_git=ON"
     )
     if "%1"=="-q" (
-        set "build_qt=ON"
+        set "qt=ON"
         set "packages=%packages%;ome-qtwidgets"
     )
     if "%1"=="-d" (
@@ -127,6 +128,10 @@ if NOT "%1"=="" (
         set "cygwindir=%2"
         shift
     )
+    if "%1"=="-Q" (
+        set "qtdir=%2"
+        shift
+    )
 
     shift
     goto :loop
@@ -139,6 +144,7 @@ echo installdir=%installdir%
 echo artefactdir=%artefactdir%
 echo cachedir=%cachedir%
 echo cygwindir=%cygwindir%
+echo qtdir=%qtdir%
 
 echo git_branch=%git_branch%
 echo purge=%purge%
@@ -152,6 +158,7 @@ echo verbose=%verbose%
 echo cxxdetect=%cxxdetect%
 echo parallel=%parallel%
 echo build_git=%build_git%
+echo qt=%qt%
 
 goto main
 
@@ -172,6 +179,7 @@ Options:
   -a dir     Set artefact directory
   -c dir     Set cache directory
   -Y dir     Set Cygwin directory (used for zip/unzip)
+  -Q dir     Set Qt5 directory (used for ome-qtwidgets)
 
   -g branch  Set git branch or tag to release from
   -G         Build from git (rather than the default source release archive)
@@ -269,13 +277,32 @@ mkdir install\stage
 cd build
 
 if exist "%cachedir%\tree" (
-    set "CMAKE_PREREQS=-Dbuild-cache:PATH=%cachedir%\build -Dtools-build-cache:PATH=%cachedir%\tools-build -Dbuild-prerequisites:BOOL=OFF -Dome-superbuild_BUILD_gtest:BOOL=ON"
+    set "CMAKE_PREREQS=-Dbuild-cache:PATH=%cachedir%\build -Dtool-build-cache:PATH=%cachedir%\tools-build -Dbuild-prerequisites:BOOL=OFF -Dome-superbuild_BUILD_gtest:BOOL=ON"
 ) else (
     set "CMAKE_PREREQS=-Dbuild-prerequisites:BOOL=ON"
 )
 
 if [%build_git%] == [ON] (
     set "GIT_OPTIONS=-Dome-xml-dir=%workspace%\ome-xml -Dome-files-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common -Dome-qtwidgets-dir=%workspace%\ome-qtwidgets"
+)
+
+if [%qt%] == [ON] (
+    if [%build_version%] == [12] (
+        set "qt_root=!qtdir!\msvc2013"
+    )
+    if [%build_version%] == [14] (
+        set "qt_root=!qtdir!\msvc2013"
+    )
+    if [%build_arch%] == [x86] (
+        set "qt_root=!qt_root!_32"
+    ) else (
+        set "qt_root=!qt_root!_64"
+    )
+    if NOT exist "!qt_root!" (
+        echo Warning: Qt5 root !qt_root! does not exist
+    )
+    set "CMAKE_PATH_PREFIX=!qt_root!"
+    set "PATH=!qt_root!\bin;!PATH!"
 )
 
 if [%build_system%] == [MSBuild] (
@@ -294,7 +321,7 @@ if [%build_system%] == [MSBuild] (
         set "GEN=Visual Studio 14 2015!ARCH!"
     )
 
-    cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dqtgui:BOOL=%qt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
 
 :: Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
@@ -331,7 +358,7 @@ if [%build_system%] == [Ninja] (
         call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" %build_arch%
     )
 
-    cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dqtgui:BOOL=%qt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
 
 :: Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
