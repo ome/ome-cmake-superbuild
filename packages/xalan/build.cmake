@@ -7,6 +7,15 @@ if(WIN32)
 
   message(STATUS "Building xalan (Windows)")
 
+  set(N 1)
+  if(OME_EP_BUILD_PARALLEL)
+    include(ProcessorCount)
+    ProcessorCount(N)
+    if(N EQUAL 0)
+      set(N 1)
+    endif()
+  endif()
+
   # Initially create MsgCreator.exe.
   message(STATUS "Building xalan MsgCreator")
   execute_process(COMMAND msbuild "c\\Projects\\Win32\\${XALAN_SOLUTION}\\Xalan.sln"
@@ -14,6 +23,7 @@ if(WIN32)
                           "/p:Platform=${XALAN_PLATFORM}"
                           "/t:MsgCreator"
                           "/p:useenv=true" "/v:d"
+                          "/m:${N}"
                   WORKING_DIRECTORY ${SOURCE_DIR}
                   RESULT_VARIABLE build_result)
 
@@ -38,6 +48,7 @@ if(WIN32)
                             "/p:Platform=${XALAN_PLATFORM}"
                             "/t:AllInOne"
                             "/p:useenv=true" "/v:d"
+                            "/m:${N}"
                     WORKING_DIRECTORY ${SOURCE_DIR}
                     RESULT_VARIABLE build_result)
   endif()
@@ -48,6 +59,7 @@ if(WIN32)
                             "/p:Platform=${XALAN_PLATFORM}"
                             "/t:XalanExe"
                             "/p:useenv=true" "/v:d"
+                            "/m:${N}"
                     WORKING_DIRECTORY ${SOURCE_DIR}
                     RESULT_VARIABLE build_result)
   endif()
@@ -55,7 +67,15 @@ else(WIN32)
 
   message(STATUS "Building xalan (Unix)")
 
-  execute_process(COMMAND ${OME_MAKE_PROGRAM}
+  if(OME_EP_BUILD_PARALLEL)
+    include(ProcessorCount)
+    ProcessorCount(N)
+    if(N EQUAL 0)
+      set(build_parallel "-j${N}")
+    endif()
+  endif()
+
+  execute_process(COMMAND ${OME_MAKE_PROGRAM} ${build_parallel}
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE build_result)
 

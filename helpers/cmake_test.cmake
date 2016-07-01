@@ -7,7 +7,15 @@ if(WIN32)
   set(ENV{OME_HOME} "${CMAKE_INSTALL_PREFIX}")
 endif()
 
-execute_process(COMMAND "${CMAKE_CTEST_COMMAND}" -C "${CONFIG}" -V
+if(parallel)
+  include(ProcessorCount)
+  ProcessorCount(N)
+  if(NOT N EQUAL 0)
+    set(test_parallel "-j${N}")
+  endif()
+endif()
+
+execute_process(COMMAND "${CMAKE_CTEST_COMMAND}" -C "${CONFIG}" -V ${test_parallel}
                 WORKING_DIRECTORY "${EP_BUILD_DIR}"
                 RESULT_VARIABLE test_result)
 

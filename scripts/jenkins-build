@@ -138,6 +138,7 @@ build() {
             "-Ddoxygen:BOOL=$doxygen" \
             "-Dextended-tests:BOOL=$extended_tests" \
             "-Dbuild-packages=${build_packages}" \
+            -Dparallel:BOOL="$parallel_opt" \
             -Dsphinx:BOOL=ON \
             -Dsphinx-pdf:BOOL=OFF \
             -Dsource-cache:PATH=${cachedir}/source \
@@ -295,6 +296,7 @@ Options:
   -d         Build doxygen API reference
   -e         Run extended tests
   -j n       Build in parallel
+  -P         Enable paralellism in subsidiary builds
   -N n       Build number
   -q         Build Qt interface
   -v         Verbose build
@@ -319,6 +321,7 @@ extended_tests=OFF
 verbose=OFF
 cxxdetect=OFF
 parallel=
+parallel_opt=OFF
 build_git=OFF
 build_tp_prereqs=ON
 build_qt=OFF
@@ -326,7 +329,7 @@ build_packages="ome-files;ome-cmake-superbuild-docs"
 build_number=
 
 # Parse command line options.
-while getopts hBGqndexvi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
+while getopts hBGqndexvPi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
     case "$OPT" in
         h)
             usage
@@ -355,6 +358,9 @@ while getopts hBGqndexvi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
             ;;
         v)
             verbose=ON
+            ;;
+        P)
+            parallel_opt=ON
             ;;
         i)
             installdir="$OPTARG"

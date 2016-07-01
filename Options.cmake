@@ -34,6 +34,14 @@
 # policies, either expressed or implied, of any organization.
 # #L%
 
+# Build subcomponents in parallel and run CMake tests in parallel.
+# Note this does not control whether the build tool in use is building
+# in parallel.  Rather, this controls whether other build tools used
+# by subsidiary builds to also build in parellel (e.g. boost b2,
+# msbuild).  Its purpose is to allow such additional parallelism to be
+# disabled on resource-constrained systems.
+option(parallel "Build subcomponents in parallel" ON)
+
 # These are annoyingly verbose, produce false positives or don't work
 # nicely with all supported compiler versions, so are disabled unless
 # explicitly enabled.

@@ -9,12 +9,19 @@ if(WIN32)
     set(ICU_PLATFORM x64)
   endif()
 
+  include(ProcessorCount)
+  ProcessorCount(N)
+  if(N EQUAL 0)
+    set(N 1)
+  endif()
+
   message(STATUS "Building icu (Windows)")
   message(STATUS "C=${CONFIG} P=${ICU_PLATFORM}")
 
   execute_process(COMMAND msbuild "source\\allinone\\allinone.sln"
                           "/p:Configuration=${CONFIG}"
                           "/p:Platform=${ICU_PLATFORM}"
+                          "/m:${N}"
                   WORKING_DIRECTORY ${SOURCE_DIR}
                   RESULT_VARIABLE build_result)
 
