@@ -5,8 +5,8 @@ ome_add_dependencies(xerces THIRD_PARTY_DEPENDENCIES patch icu)
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "http://www.apache.org/dist/xerces/c/3/sources/xerces-c-3.1.3.tar.xz"
-  URL_HASH "SHA512=9931fbf2c91ba2dcb36e5909486c9fc7532420d6f692b1bb24fc93abf3cc67fbd3c9e2ffd443645c93013634000e0bca3ac2ba7ff298d4f5324db9d4d1340600"
+  URL "https://www.apache.org/dist/xerces/c/3/sources/xerces-c-3.1.4.tar.xz"
+  URL_HASH "SHA512=3e07f35f5fb8067cec1bd2973fb3c7acf0df5069f717eab6ffa581728292829d52d6d6f5186456718767264dc16e2d392a4493fbe4839c00fc3eef06ca84b495"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""

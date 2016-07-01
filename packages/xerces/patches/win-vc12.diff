@@ -1,12 +1,6 @@
-diff -urN xerces-c-3.1.3.orig/projects/Win32/VC12/xerces-all/XercesLib/XercesLib.vcxproj xerces-c-3.1.3.vc12/projects/Win32/VC12/xerces-all/XercesLib/XercesLib.vcxproj
---- xerces-c-3.1.3.orig/projects/Win32/VC12/xerces-all/XercesLib/XercesLib.vcxproj	2016-02-01 17:44:38.000000000 +0000
-+++ xerces-c-3.1.3.vc12/projects/Win32/VC12/xerces-all/XercesLib/XercesLib.vcxproj	2016-04-27 14:01:41.870355203 +0100
-@@ -1,4 +1,4 @@
--﻿<?xml version="1.0" encoding="utf-8"?>
-+<?xml version="1.0" encoding="utf-8"?>
- <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-   <ItemGroup Label="ProjectConfigurations">
-     <ProjectConfiguration Include="Debug|Win32">
+diff -urN xerces-c-3.1.4.orig/projects/Win32/VC12/xerces-all/XercesLib/XercesLib.vcxproj xerces-c-3.1.4/projects/Win32/VC12/xerces-all/XercesLib/XercesLib.vcxproj
+--- xerces-c-3.1.4.orig/projects/Win32/VC12/xerces-all/XercesLib/XercesLib.vcxproj	2016-06-22 16:22:39.000000000 +0100
++++ xerces-c-3.1.4/projects/Win32/VC12/xerces-all/XercesLib/XercesLib.vcxproj	2016-06-30 11:39:24.611296829 +0100
 @@ -538,7 +538,7 @@
      </ResourceCompile>
      <Link>
