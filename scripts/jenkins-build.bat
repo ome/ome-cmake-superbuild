@@ -30,6 +30,7 @@ set extended_tests=OFF
 set verbose=OFF
 set cxxdetect=OFF
 set parallel=
+set parallel_opt=OFF
 set build_git=OFF
 set action=build
 set qt=OFF
@@ -56,6 +57,9 @@ if NOT "%1"=="" (
     )
     if "%1"=="-e" (
         set "extended_tests=ON"
+    )
+    if "%1"=="-P" (
+        set "parallel_opt=ON"
     )
     if "%1"=="-x" (
         set "cxxdetect=ON"
@@ -192,6 +196,7 @@ Options:
   -e         Run extended tests
   -q         Build Qt interface
   -j n       Build in parallel
+  -P         Enable paralellism in subsidiary builds
   -N n       Build number
   -v         Verbose build
   -x         Use C++11/C++14 rather than C++98
@@ -321,7 +326,7 @@ if [%build_system%] == [MSBuild] (
         set "GEN=Visual Studio 14 2015!ARCH!"
     )
 
-    cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dparallel:BOOL=%parallel_opt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
 
 :: Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
@@ -358,7 +363,7 @@ if [%build_system%] == [Ninja] (
         call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" %build_arch%
     )
 
-    cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dparallel:BOOL=%parallel_opt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
 
 :: Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (

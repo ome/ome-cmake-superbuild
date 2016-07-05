@@ -110,6 +110,14 @@ head=(ON|OFF)
   Force building from the current git ``develop`` branch.  Disabled by
   default.  :program:`git` is required to clone the repositories if
   enabled.
+parallel=(ON|OFF)
+  Build subcomponents in parallel and run CMake tests in parallel (ON
+  by default).  Note this does not control whether the build tool in
+  use is building in parallel.  Rather, this controls whether other
+  build tools used by subsidiary builds to also build in parellel when
+  possible (e.g. boost b2, msbuild).  Its purpose is to allow such
+  additional parallelism to be disabled on resource-constrained
+  systems.
 qtgui=(ON|OFF)
   Enable building of the Qt5 widget library ``ome-qtwidgets`` and a
   simple Qt5 OpenGL image viewer.  This is enabled by default if the

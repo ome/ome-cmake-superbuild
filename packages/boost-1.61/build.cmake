@@ -12,6 +12,14 @@ else()
   set(ZLIB_BINARY zlibd)
 endif()
 
+if(OME_EP_BUILD_PARALLEL)
+  include(ProcessorCount)
+  ProcessorCount(N)
+  if(NOT N EQUAL 0)
+    set(build_parallel -j ${N})
+  endif()
+endif()
+
 if(WIN32)
 
   message(STATUS "Running ./b2 install
@@ -33,7 +41,8 @@ threading=multi
 -sZLIB_BINARY=${ZLIB_BINARY}
 -sZLIB_INCLUDE=${WINDOWS_INCLUDE_DIR}
 -sZLIB_LIBPATH=${WINDOWS_LIB_DIR}
--sICU_PATH=${WINDOWS_INSTALL_DIR}")
+-sICU_PATH=${WINDOWS_INSTALL_DIR}"
+${build_parallel})
 
   execute_process(COMMAND ./b2 install
                                "--prefix=${WINDOWS_INSTALL_DIR}"
@@ -55,6 +64,7 @@ threading=multi
                                "-sZLIB_INCLUDE=${WINDOWS_INCLUDE_DIR}"
                                "-sZLIB_LIBPATH=${WINDOWS_LIB_DIR}"
                                "-sICU_PATH=${WINDOWS_INSTALL_DIR}"
+                               ${build_parallel}
                   WORKING_DIRECTORY "${SOURCE_DIR}"
                   RESULT_VARIABLE build_result)
 
@@ -77,6 +87,7 @@ else(WIN32)
                                "threading=multi"
                                "toolset=${BOOST_TOOLSET}"
                                "-d+2"
+                               ${build_parallel}
                   WORKING_DIRECTORY "${SOURCE_DIR}"
                   RESULT_VARIABLE build_result)
 
