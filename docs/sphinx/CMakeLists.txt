@@ -46,6 +46,7 @@ include(GNUInstallDirs)
 include("${CMAKE_CURRENT_LIST_DIR}/../../Options.cmake")
 include(Sphinx)
 
+find_program(SPHINX_BUILD sphinx-build)
 if (BUILD_SPHINX AND SPHINX_BUILD)
   message(STATUS "Checking manual page dependencies")
 

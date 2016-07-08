@@ -1,9 +1,9 @@
 @echo off
-:: Build with Jenkins CI.  This script is intended for use with the OME
-:: Jenkins CI infrastructure, though it may be useful as an example for
-:: how one might use various cmake options.
+REM Build with Jenkins CI.  This script is intended for use with the OME
+REM Jenkins CI infrastructure, though it may be useful as an example for
+REM how one might use various cmake options.
 
-:: So that statements like "set" work inside nested conditionals
+REM So that statements like "set" work inside nested conditionals
 setlocal ENABLEDELAYEDEXPANSION
 setlocal ENABLEEXTENSIONS
 
@@ -36,7 +36,7 @@ set action=build
 set qt=OFF
 set "packages=ome-files;ome-cmake-superbuild-docs"
 
-:: Parse command line options.
+REM Parse command line options.
 :loop
 if NOT "%1"=="" (
     if "%1"=="-h" (
@@ -205,7 +205,7 @@ exit /b
 
 :main
 
-:: Purge cache if required
+REM Purge cache if required
 
 set PURGE_SOURCE=false
 set PURGE_BUILD=false
@@ -215,7 +215,7 @@ if [%purge%] == [all] set PURGE_BUILD=true
 if [%purge%] == [source] set PURGE_SOURCE=true
 if [%purge%] == [build] set PURGE_BUILD=true
 
-:: Get current tree hashes
+REM Get current tree hashes
 cd "%sourcedir%"
 for /f %%i in ('git log -1 "--pretty=%%T" "%git_branch%" --') do set CURRENT_TREE=%%i
 echo Current tree: %CURRENT_TREE%
@@ -264,10 +264,10 @@ if NOT exist "%cachedir%" mkdir "%cachedir%"
 if NOT exist "%cachedir%\source" mkdir "%cachedir%\source"
 
 
-:: Use build cache if present; set environment so it's detected by
-:: cmake and exclude cached prerequisites from build.  Note that
-:: since gtest isn't installed and cached, so we still need to
-:: build it.
+REM Use build cache if present; set environment so it's detected by
+REM cmake and exclude cached prerequisites from build.  Note that
+REM since gtest isn't installed and cached, so we still need to
+REM build it.
 
 cd "%workspace%"
 if exist "build" (
@@ -328,7 +328,7 @@ if [%build_system%] == [MSBuild] (
 
     cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dparallel:BOOL=%parallel_opt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
 
-:: Make and cache prerequisites if missing
+REM Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
         cmake --build . --config %build_type% --target third-party-prerequisites -- %parallel% || exit /b
 
@@ -365,7 +365,7 @@ if [%build_system%] == [Ninja] (
 
     cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dparallel:BOOL=%parallel_opt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
 
-:: Make and cache prerequisites if missing
+REM Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
         cmake --build . --config %build_type% --target third-party-prerequisites || exit /b
 
@@ -388,7 +388,7 @@ if [%build_system%] == [Ninja] (
     call ome-files-build\config.bat
 )
 
-:: Release version
+REM Release version
 set "version_tag=ome-files-bundle-%OME_VERSION%-VC%build_version%-%build_arch%-%build_type%"
 if defined build_number set "version_tag=%version_tag%-b%build_number%"
 
@@ -398,7 +398,7 @@ set "PATH=%cygwindir%;%PATH%"
 
 cd "%installdir%"
 
-:: Add version to archive name
+REM Add version to archive name
 echo Renaming staged install to %version_tag%
 if exist "%version_tag%" rmdir /s /q "%version_tag%"
 rename stage %version_tag%
@@ -420,7 +420,7 @@ if exist "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" (
     (robocopy "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 
-:: Archive builds
+REM Archive builds
 cd "%installdir%"
 
 if not exist "%artefactdir%" mkdir "%artefactdir%"
@@ -441,7 +441,7 @@ if exist "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" (
     zip -r "%artefactdir%\docs\ome-files-bundle-apidoc-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" || exit /b
 )
 
-:: Archive source
+REM Archive source
 if not exist "%artefactdir%\source" mkdir "%artefactdir%\source"
 echo Archiving source
 (robocopy "%cachedir%\source" "%artefactdir%\source" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
@@ -451,7 +451,7 @@ if exist "%cachedir%\tools" (
    (robocopy "%cachedir%\tools" "%artefactdir%\tools" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 
-:: Test archive
+REM Test archive
 :test
 
 echo Test archive functionality
@@ -470,32 +470,29 @@ cd %version_tag% || exit /b
 
 set "PATH=%workspace%\test\%version_tag%\bin;%PATH%"
 
-:: The ome-files batch file currently doesn't handle these options:
+REM The ome-files batch file currently doesn't handle these options:
 
-::echo Test ome-files version
-::call bin\ome-files --version || exit /b
-::echo Test ome-files usage
-::call bin\ome-files --usage || exit /b
-::echo Test ome-files help
-::call bin\ome-files --help || exit /b
-
-:: The ome-files "info" command doesn't automatically redirect to
-:: libexec, so invoke by hand with the full path
-:: info --help can not yet automatically discover the doc directory
-:: to display the help page
+echo Test ome-files version
+call ome-files --version || exit /b
+echo Test ome-files usage
+call ome-files --usage || exit /b
+REM Help is not text-based, so don't test here
+REM echo Test ome-files help
+REM call ome-files --help || exit /b
 
 echo Test ome-files info version
-call bin\ome-files libexec\ome\files\info --version || exit /b
+call ome-files info --version || exit /b
 echo Test ome-files info usage
-call bin\ome-files libexec\ome\files\info --usage || exit /b
-::echo Test ome-files info help
-::call bin\ome-files info --help || exit /b
+call ome-files info --usage || exit /b
+REM Help is not text-based, so don't test here
+REM echo Test ome-files info help
+REM call ome-files info --help || exit /b
 
 echo Complete
 
 exit /b
 
-:: See http://stackoverflow.com/a/15032476/2647431
+REM See http://stackoverflow.com/a/15032476/2647431
 :heredoc
 setlocal enabledelayedexpansion
 set go=
