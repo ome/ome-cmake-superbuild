@@ -7,8 +7,8 @@ set(ome-files-git-url "" CACHE STRING "URL of OME Files git repository")
 set(ome-files-git-branch "" CACHE STRING "URL of OME Files git repository")
 
 # Current stable release.
-set(RELEASE_URL "https://downloads.openmicroscopy.org/ome-files-cpp/0.1.1/source/ome-files-cpp-0.1.1.tar.xz")
-set(RELEASE_HASH "SHA512=a7a87d5e8ca21c2d7a2002b106587acc337a799927f5daae3d495a13e340b5338e13c0aee5ed9dc18ad15f5c1816c920a602980fddfdf433bbf185003b9a2287")
+set(RELEASE_URL "https://downloads.openmicroscopy.org/ome-files-cpp/0.2.0/source/ome-files-cpp-0.2.0.tar.xz")
+set(RELEASE_HASH "SHA512=e2bbdc595dddd4b225a22c2e122cb2c38c86d9a1f96986a9423d02211a51cf578abf8b5ebf6de4ea7ac377a262d0ca648615a94313ef84ede3a888dfcaab6136")
 
 # Current development branch (defaults for ome-files-head option).
 set(GIT_URL "https://github.com/ome/ome-files.git")
