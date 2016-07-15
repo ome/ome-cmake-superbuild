@@ -140,6 +140,7 @@ build() {
             "-Dbuild-packages=${build_packages}" \
             -Dparallel:BOOL="$parallel_opt" \
             -Dsphinx:BOOL=ON \
+            "-Dsphinx-linkcheck:BOOL=${linkcheck}" \
             -Dsphinx-pdf:BOOL=OFF \
             -Dsource-cache:PATH=${cachedir}/source \
             -Dtool-cache:PATH=${cachedir}/tools \
@@ -294,6 +295,7 @@ Options:
   -t type    Build type (Debug|Release)
   -S system  Build system (Unix Makefiles|Ninja)
   -d         Build doxygen API reference
+  -L         Run sphinx link checks
   -e         Run extended tests
   -j n       Build in parallel
   -P         Enable paralellism in subsidiary builds
@@ -317,6 +319,7 @@ purge=none
 build_type=Debug
 build_system="Unix Makefiles"
 doxygen=OFF
+linkcheck=OFF
 extended_tests=OFF
 verbose=OFF
 cxxdetect=OFF
@@ -329,7 +332,7 @@ build_packages="ome-files;ome-cmake-superbuild-docs"
 build_number=
 
 # Parse command line options.
-while getopts hBGqndexvPi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
+while getopts hBGqndLexvPi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
     case "$OPT" in
         h)
             usage
@@ -349,6 +352,9 @@ while getopts hBGqndexvPi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
             ;;
         d)
             doxygen=ON
+            ;;
+        L)
+            linkcheck=ON
             ;;
         e)
             extended_tests=ON

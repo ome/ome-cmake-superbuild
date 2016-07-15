@@ -95,6 +95,7 @@ if(XELATEX AND MAKEINDEX)
   set(SPHINX_PDF_DEFAULT ON)
 endif()
 option(sphinx-pdf "Enable sphinx PDF documentation" ${SPHINX_PDF_DEFAULT})
+option(sphinx-linkcheck "Check sphinx documentation links by default" OFF)
 
 set(SUPERBUILD_OPTIONS
     "-Dextra-warnings:BOOL=${extra-warnings}"
@@ -104,4 +105,5 @@ set(SUPERBUILD_OPTIONS
     "-Dextended-tests:BOOL=${extended-tests}"
     "-Ddoxygen:BOOL=${doxygen}"
     "-Dsphinx:BOOL=${sphinx}"
-    "-Dsphinx-pdf:BOOL=${sphinx-pdf}")
+    "-Dsphinx-pdf:BOOL=${sphinx-pdf}"
+    "-Dsphinx-linkcheck:BOOL=${sphinx-linkcheck}")
