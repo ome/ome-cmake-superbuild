@@ -439,21 +439,12 @@ echo Renaming staged install to %version_tag%
 if exist "%version_tag%" rmdir /s /q "%version_tag%"
 rename stage %version_tag%
 
-if exist "%builddir%\ome-common-build\docs\doxygen\ome-common" (
-    echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-common-build\docs\doxygen\ome-common" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-)
-if exist "%builddir%\ome-xml-build\docs\doxygen\ome-xml" (
-    echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-xml-build\docs\doxygen\ome-xml" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-)
-if exist "%builddir%\ome-files-build\docs\doxygen\ome-files" (
-    echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-files-build\docs\doxygen\ome-files" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-)
-if exist "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" (
-    echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+mkdir "%installdir%\ome-files-bundle-docs-%OME_VERSION%"
+for %%C in (ome-common,ome-xml,ome-files,ome-qtwidgets,ome-cmake-superbuild) do (
+    if exist "%builddir%\superbuild-install\%%C" (
+        echo Installing documentation for %%C
+        (robocopy "%builddir%\superbuild-install\%%C" "%installdir%\ome-files-bundle-docs-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+    )
 )
 
 REM Archive builds
@@ -469,12 +460,12 @@ if exist "%artefactdir%\binaries\%version_tag%.zip" (
 )
 zip -r "%artefactdir%\binaries\%version_tag%.zip" "%version_tag%" || exit /b
 
-if exist "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" (
-    echo Archiving ome-files-bundle-apidoc-%OME_VERSION%.zip
-    if exist "%artefactdir%\ome-files-bundle-apidoc-%OME_VERSION%.zip" (
-        del "%artefactdir%\ome-files-bundle-apidoc-%OME_VERSION%.zip"
+if exist "%installdir%\ome-files-bundle-docs-%OME_VERSION%" (
+    echo Archiving ome-files-bundle-docs-%OME_VERSION%.zip
+    if exist "%artefactdir%\ome-files-bundle-docs-%OME_VERSION%.zip" (
+        del "%artefactdir%\ome-files-bundle-docs-%OME_VERSION%.zip"
     )
-    zip -r "%artefactdir%\docs\ome-files-bundle-apidoc-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" || exit /b
+    zip -r "%artefactdir%\docs\ome-files-bundle-docs-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-docs-%OME_VERSION%" || exit /b
 )
 
 REM Archive source
