@@ -234,6 +234,8 @@ build() {
         if [ -d "ome-files-bundle-docs-${OME_VERSION}" ]; then
             echo "Archiving ome-files-bundle-docs-${OME_VERSION}.tar.xz"
             $ROOTCMD tar -cf - $TAR_OPTIONS "ome-files-bundle-docs-${OME_VERSION}" | xz > "${artefactdir}/docs/ome-files-bundle-docs-${OME_VERSION}.tar.xz"
+            echo "Archiving ome-files-bundle-docs-${OME_VERSION}.zip"
+            zip -r "${artefactdir}/docs/ome-files-bundle-docs-${OME_VERSION}.zip" "ome-files-bundle-docs-${OME_VERSION}"
         fi
     )
 
