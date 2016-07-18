@@ -140,6 +140,7 @@ build() {
             "-Dbuild-packages=${build_packages}" \
             -Dparallel:BOOL="$parallel_opt" \
             -Dsphinx:BOOL=ON \
+            "-Dsphinx-linkcheck:BOOL=${linkcheck}" \
             -Dsphinx-pdf:BOOL=OFF \
             -Dsource-cache:PATH=${cachedir}/source \
             -Dtool-cache:PATH=${cachedir}/tools \
@@ -184,10 +185,11 @@ build() {
     rm -rf "${installdir}/${bundle_name}"
     mv "${installdir}/stage" "${installdir}/${bundle_name}"
 
-    for component in ome-common ome-xml ome-files ome-qtwidgets; do
-        if [ -d "${builddir}/${component}-build/docs/doxygen/${component}" ]; then
-            echo "Installing doxygen documentation for ${component}"
-            cp -r "${builddir}/${component}-build/docs/doxygen/${component}" "${installdir}/ome-files-bundle-apidoc-${OME_VERSION}"
+    for component in ome-common ome-xml ome-files ome-qtwidgets ome-cmake-superbuild; do
+        if [ -d "${builddir}/superbuild-install/share/doc/${component}" ]; then
+            mkdir -p "${installdir}/ome-files-bundle-docs-${OME_VERSION}"
+            echo "Installing documentation for ${component}"
+            cp -r "${builddir}/superbuild-install/share/doc/${component}" "${installdir}/ome-files-bundle-docs-${OME_VERSION}"
         fi
     done
 
@@ -213,6 +215,8 @@ build() {
 
     # Archive builds
     (
+        # Remove SCHILY extensions to tar on MacOS X.
+        export COPYFILE_DISABLE=1
         cd "${installdir}"
         if [ "$(uname -s)" = "Linux" ]; then
             ROOTCMD=
@@ -227,9 +231,11 @@ build() {
         $ROOTCMD tar -cf - $TAR_OPTIONS "${bundle_name}" | xz > "${artefactdir}/binaries/${bundle_name}.tar.xz"
 
         mkdir -p "${artefactdir}/docs"
-        if [ -d "ome-files-bundle-apidoc-${OME_VERSION}" ]; then
-            echo "Archiving ome-files-bundle-apidoc-${OME_VERSION}.tar.xz"
-            $ROOTCMD tar -cf - $TAR_OPTIONS "ome-files-bundle-apidoc-${OME_VERSION}" | xz > "${artefactdir}/docs/ome-files-bundle-apidoc-${OME_VERSION}.tar.xz"
+        if [ -d "ome-files-bundle-docs-${OME_VERSION}" ]; then
+            echo "Archiving ome-files-bundle-docs-${OME_VERSION}.tar.xz"
+            $ROOTCMD tar -cf - $TAR_OPTIONS "ome-files-bundle-docs-${OME_VERSION}" | xz > "${artefactdir}/docs/ome-files-bundle-docs-${OME_VERSION}.tar.xz"
+            echo "Archiving ome-files-bundle-docs-${OME_VERSION}.zip"
+            zip -r "${artefactdir}/docs/ome-files-bundle-docs-${OME_VERSION}.zip" "ome-files-bundle-docs-${OME_VERSION}"
         fi
     )
 
@@ -294,6 +300,7 @@ Options:
   -t type    Build type (Debug|Release)
   -S system  Build system (Unix Makefiles|Ninja)
   -d         Build doxygen API reference
+  -L         Run sphinx link checks
   -e         Run extended tests
   -j n       Build in parallel
   -P         Enable paralellism in subsidiary builds
@@ -317,6 +324,7 @@ purge=none
 build_type=Debug
 build_system="Unix Makefiles"
 doxygen=OFF
+linkcheck=OFF
 extended_tests=OFF
 verbose=OFF
 cxxdetect=OFF
@@ -329,7 +337,7 @@ build_packages="ome-files;ome-cmake-superbuild-docs"
 build_number=
 
 # Parse command line options.
-while getopts hBGqndexvPi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
+while getopts hBGqndLexvPi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
     case "$OPT" in
         h)
             usage
@@ -349,6 +357,9 @@ while getopts hBGqndexvPi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
             ;;
         d)
             doxygen=ON
+            ;;
+        L)
+            linkcheck=ON
             ;;
         e)
             extended_tests=ON

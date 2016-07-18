@@ -26,6 +26,7 @@ set build_version=12
 set build_system=MSBuild
 set build_number=
 set doxygen=OFF
+set linkcheck=OFF
 set extended_tests=OFF
 set verbose=OFF
 set cxxdetect=OFF
@@ -54,6 +55,9 @@ if NOT "%1"=="" (
     )
     if "%1"=="-d" (
         set "doxygen=ON"
+    )
+    if "%1"=="-L" (
+        set "linkcheck=ON"
     )
     if "%1"=="-e" (
         set "extended_tests=ON"
@@ -157,6 +161,7 @@ echo build_arch=%build_arch%
 echo build_version=%build_version%
 echo build_system=%build_system%
 echo doxygen=%doxygen%
+echo linkcheck=%linkcheck%
 echo extended_tests=%extended_tests%
 echo verbose=%verbose%
 echo cxxdetect=%cxxdetect%
@@ -193,6 +198,7 @@ Options:
   -V VCver   Build with VisualC version
   -S system  Build system (MSBuild|Ninja)
   -d         Build doxygen API reference
+  -L         Run sphinx link checks
   -e         Run extended tests
   -q         Build Qt interface
   -j n       Build in parallel
@@ -326,7 +332,21 @@ if [%build_system%] == [MSBuild] (
         set "GEN=Visual Studio 14 2015!ARCH!"
     )
 
-    cmake -G "!GEN!" -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dparallel:BOOL=%parallel_opt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "!GEN!" ^
+      -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage ^
+      %GIT_OPTIONS% ^
+      -Ddoxygen:BOOL=%doxygen% ^
+      -Dextended-tests=%extended_tests% ^
+      -Dbuild-packages=%packages% ^
+      -Dparallel:BOOL=%parallel_opt% ^
+      -Dsphinx:BOOL=ON ^
+      -Dsphinx-pdf:BOOL=OFF ^
+      -Dsphinx-linkcheck:BOOL=%linkcheck% ^
+      -Dsource-cache:PATH=%cachedir%\source ^
+      -Dtool-cache:PATH=%cachedir%\tools ^
+      %CMAKE_PREREQS% ^
+      %sourcedir% ^
+      || exit /b
 
 REM Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
@@ -363,7 +383,23 @@ if [%build_system%] == [Ninja] (
         call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" %build_arch%
     )
 
-    cmake -G "Ninja" -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage -DCMAKE_BUILD_TYPE=%build_type% %GIT_OPTIONS% -Dextended-tests=%extended_tests% -Dbuild-packages=%packages% -Dparallel:BOOL=%parallel_opt% -Dsphinx:BOOL=ON -Dsphinx-pdf:BOOL=OFF -Dsource-cache:PATH=%cachedir%\source -Dtool-cache:PATH=%cachedir%\tools %CMAKE_PREREQS% %sourcedir% || exit /b
+    cmake -G "Ninja" ^
+      -DCMAKE_VERBOSE_MAKEFILE:BOOL=%verbose% ^
+      -DCMAKE_INSTALL_PREFIX:PATH=%installdir%\stage ^
+      -DCMAKE_BUILD_TYPE=%build_type% ^
+      %GIT_OPTIONS% ^
+      -Ddoxygen:BOOL=%doxygen% ^
+      -Dextended-tests=%extended_tests% ^
+      -Dbuild-packages=%packages% ^
+      -Dparallel:BOOL=%parallel_opt% ^
+      -Dsphinx:BOOL=ON ^
+      -Dsphinx-pdf:BOOL=OFF ^
+      -Dsphinx-linkcheck:BOOL=%linkcheck% ^
+      -Dsource-cache:PATH=%cachedir%\source ^
+      -Dtool-cache:PATH=%cachedir%\tools ^
+      %CMAKE_PREREQS% ^
+      %sourcedir% ^
+      || exit /b
 
 REM Make and cache prerequisites if missing
     if NOT exist "%cachedir%\tree" (
@@ -403,21 +439,12 @@ echo Renaming staged install to %version_tag%
 if exist "%version_tag%" rmdir /s /q "%version_tag%"
 rename stage %version_tag%
 
-if exist "%builddir%\ome-common-build\docs\doxygen\ome-common" (
-    echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-common-build\docs\doxygen\ome-common" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-)
-if exist "%builddir%\ome-xml-build\docs\doxygen\ome-xml" (
-    echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-xml-build\docs\doxygen\ome-xml" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-)
-if exist "%builddir%\ome-files-build\docs\doxygen\ome-files" (
-    echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-files-build\docs\doxygen\ome-files" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-)
-if exist "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" (
-    echo Installing doxygen documentation
-    (robocopy "%builddir%\ome-qtwidgets-build\docs\doxygen\ome-qtwidgets" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+mkdir "%installdir%\ome-files-bundle-docs-%OME_VERSION%"
+for %%C in (ome-common,ome-xml,ome-files,ome-qtwidgets,ome-cmake-superbuild) do (
+    if exist "%builddir%\superbuild-install\%%C" (
+        echo Installing documentation for %%C
+        (robocopy "%builddir%\superbuild-install\%%C" "%installdir%\ome-files-bundle-docs-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+    )
 )
 
 REM Archive builds
@@ -433,12 +460,12 @@ if exist "%artefactdir%\binaries\%version_tag%.zip" (
 )
 zip -r "%artefactdir%\binaries\%version_tag%.zip" "%version_tag%" || exit /b
 
-if exist "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" (
-    echo Archiving ome-files-bundle-apidoc-%OME_VERSION%.zip
-    if exist "%artefactdir%\ome-files-bundle-apidoc-%OME_VERSION%.zip" (
-        del "%artefactdir%\ome-files-bundle-apidoc-%OME_VERSION%.zip"
+if exist "%installdir%\ome-files-bundle-docs-%OME_VERSION%" (
+    echo Archiving ome-files-bundle-docs-%OME_VERSION%.zip
+    if exist "%artefactdir%\ome-files-bundle-docs-%OME_VERSION%.zip" (
+        del "%artefactdir%\ome-files-bundle-docs-%OME_VERSION%.zip"
     )
-    zip -r "%artefactdir%\docs\ome-files-bundle-apidoc-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-apidoc-%OME_VERSION%" || exit /b
+    zip -r "%artefactdir%\docs\ome-files-bundle-docs-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-docs-%OME_VERSION%" || exit /b
 )
 
 REM Archive source

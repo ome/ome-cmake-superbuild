@@ -436,8 +436,11 @@ If using ``Ninja``, simply run::
 Using the library
 -----------------
 
-The :doxygen:`Doxygen API reference <annotated.html>` is used to
-document all aspects of the OME-Files API.
+The :ome_files_api:`OME Files C++ API reference <annotated.html>` is
+used to document all aspects of the OME-Files API.  Likewise there
+are companion references for the
+:ome_common_api:`OME Common <annotated.html>` and
+:ome_xml_api:`OME XML <annotated.html>` components.
 
 Example scenarios
 -----------------

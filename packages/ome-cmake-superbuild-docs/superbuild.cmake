@@ -1,8 +1,16 @@
 # ome-cmake-superbuild-docs superbuild
 
+# We need to ensure that the documentation of all projects is
+# installed before we build, or else the link checking will fail.
+set(ome_docs_dependencies ${build-packages})
+list(REMOVE_ITEM ome_docs_dependencies ome-cmake-superbuild-docs)
+
 # Set dependency list
 ome_add_dependencies(ome-cmake-superbuild-docs
+                     DEPENDENCIES ${ome_docs_dependencies}
                      THIRD_PARTY_DEPENDENCIES py-sphinx)
+
+unset(ome_docs_dependencies)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS

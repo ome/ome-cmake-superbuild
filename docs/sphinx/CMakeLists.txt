@@ -80,7 +80,11 @@ if (BUILD_SPHINX AND SPHINX_BUILD)
   install(DIRECTORY "${sphinx_builddir}/html"
           DESTINATION "${CMAKE_INSTALL_DOCDIR}/manual")
 
-  add_custom_target(doc-linkcheck
+  if(sphinx-linkcheck)
+    set(sphinx_linkcheck_all ALL)
+  endif()
+
+  add_custom_target(doc-linkcheck ${sphinx_linkcheck_all}
                     COMMAND ${CMAKE_COMMAND} -E make_directory "${sphinx_builddir}/cache"
                     COMMAND ${CMAKE_COMMAND} -E make_directory "${sphinx_builddir}/linkcheck"
                     COMMAND ${SPHINX_BUILD}
@@ -92,6 +96,19 @@ if (BUILD_SPHINX AND SPHINX_BUILD)
                             "${sphinx_srcdir}" "${sphinx_builddir}/linkcheck"
                      WORKING_DIRECTORY "${sphinx_srcdir}"
                      DEPENDS ${SPHINX_DEPENDENCIES})
+
+  add_custom_target(doc-locallinkcheck ${sphinx_linkcheck_all}
+                    COMMAND ${CMAKE_COMMAND}
+                            "-DOUTPUT=${sphinx_builddir}/linkcheck/output.txt"
+                            "-DSPHINX_INSTALL_PATH=${PROJECT_NAME}/manual/html"
+                            "-DINTERNAL_REFERENCE=${sphinx_builddir}/html"
+                            "-DEXTERNAL_REFERENCE=${CMAKE_INSTALL_FULL_DATAROOTDIR}/doc"
+                            "-DDOXYGEN_REFERENCE="
+                            "-DDOXYGEN_INSTALL_PATH="
+                            -P "${CMAKE_CURRENT_LIST_DIR}/../../cmake/SphinxCheckInternalLinks.cmake"
+                     COMMENT "Checking local links in sphinx documentation"
+                     WORKING_DIRECTORY "${sphinx_srcdir}"
+                     DEPENDS doc-linkcheck)
 
   # Generate and install PDF manual
 
