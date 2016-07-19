@@ -3,13 +3,7 @@
 Changes made locally
 --------------------
 
-* The Visual Studio solution and project files have been retargetted
-  to build with VS2013 and VS2015.
-
-* The Xerces-C DLL dependencies have been corrected to allow both
-  Release and Debug builds to link correctly with the corresponding
-  ICU libraries.  These changes have been submitted upstream, but have
-  not been merged.
+* A CMake build system for bzip2 has been added
 
 These changes are made available under the original project license.
 
