@@ -427,6 +427,8 @@ REM Make and cache prerequisites if missing
 REM Release version
 set "version_tag=ome-files-bundle-%OME_VERSION%-VC%build_version%-%build_arch%-%build_type%"
 if defined build_number set "version_tag=%version_tag%-b%build_number%"
+set "docs_version_tag=ome-files-bundle-docs-%OME_VERSION%"
+if defined build_number set "docs_version_tag=%docs_version_tag%-b%build_number%"
 
 echo Built and installed version %version_tag%
 
@@ -439,11 +441,11 @@ echo Renaming staged install to %version_tag%
 if exist "%version_tag%" rmdir /s /q "%version_tag%"
 rename stage %version_tag%
 
-mkdir "%installdir%\ome-files-bundle-docs-%OME_VERSION%"
+mkdir "%installdir%\%docs_version_tag%"
 for %%C in (ome-common,ome-xml,ome-files,ome-qtwidgets,ome-cmake-superbuild) do (
     if exist "%builddir%\superbuild-install\%%C" (
         echo Installing documentation for %%C
-        (robocopy "%builddir%\superbuild-install\%%C" "%installdir%\ome-files-bundle-docs-%OME_VERSION%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy "%builddir%\superbuild-install\%%C" "%installdir%\%docs_version_tag%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
     )
 )
 
@@ -460,12 +462,12 @@ if exist "%artefactdir%\binaries\%version_tag%.zip" (
 )
 zip -r "%artefactdir%\binaries\%version_tag%.zip" "%version_tag%" || exit /b
 
-if exist "%installdir%\ome-files-bundle-docs-%OME_VERSION%" (
-    echo Archiving ome-files-bundle-docs-%OME_VERSION%.zip
-    if exist "%artefactdir%\ome-files-bundle-docs-%OME_VERSION%.zip" (
-        del "%artefactdir%\ome-files-bundle-docs-%OME_VERSION%.zip"
+if exist "%installdir%\%docs_version_tag%" (
+    echo Archiving %docs_version_tag%.zip
+    if exist "%artefactdir%\%docs_version_tag%.zip" (
+        del "%artefactdir%\%docs_version_tag%.zip"
     )
-    zip -r "%artefactdir%\docs\ome-files-bundle-docs-%OME_VERSION%.zip" "%installdir%\ome-files-bundle-docs-%OME_VERSION%" || exit /b
+    zip -r "%artefactdir%\docs\%docs_version_tag%.zip" "%installdir%\%docs_version_tag%" || exit /b
 )
 
 REM Archive source
