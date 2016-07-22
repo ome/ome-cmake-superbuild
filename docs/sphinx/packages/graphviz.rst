@@ -19,4 +19,4 @@ by :ref:`pkg_doxygen` to generate figures.
 +------------------+-------------------+
 
 - `Website <http://graphviz.org/>`__
-- `Download (for Windows) <http://graphviz.org/Download_windows.php>`__
+- `Download <http://graphviz.org/Download.php>`__
