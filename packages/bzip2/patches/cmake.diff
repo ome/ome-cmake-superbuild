@@ -1,36 +1,6 @@
-diff -urN bzip2-1.0.6.orig/bz2.def bzip2-1.0.6/bz2.def
---- bzip2-1.0.6.orig/bz2.def	1970-01-01 00:00:00.000000000 +0000
-+++ bzip2-1.0.6/bz2.def	2016-06-10 20:54:31.322169744 +0000
-@@ -0,0 +1,26 @@
-+LIBRARY
-+EXPORTS
-+	BZ2_bzCompressInit
-+	BZ2_bzCompress
-+	BZ2_bzCompressEnd
-+	BZ2_bzDecompressInit
-+	BZ2_bzDecompress
-+	BZ2_bzDecompressEnd
-+	BZ2_bzReadOpen
-+	BZ2_bzReadClose
-+	BZ2_bzReadGetUnused
-+	BZ2_bzRead
-+	BZ2_bzWriteOpen
-+	BZ2_bzWrite
-+	BZ2_bzWriteClose
-+	BZ2_bzWriteClose64
-+	BZ2_bzBuffToBuffCompress
-+	BZ2_bzBuffToBuffDecompress
-+	BZ2_bzlibVersion
-+	BZ2_bzopen
-+	BZ2_bzdopen
-+	BZ2_bzread
-+	BZ2_bzwrite
-+	BZ2_bzflush
-+	BZ2_bzclose
-+	BZ2_bzerror
 diff -urN bzip2-1.0.6.orig/BZip2Config.cmake.in bzip2-1.0.6/BZip2Config.cmake.in
---- bzip2-1.0.6.orig/BZip2Config.cmake.in	1970-01-01 00:00:00.000000000 +0000
-+++ bzip2-1.0.6/BZip2Config.cmake.in	2016-06-11 11:27:17.436332180 +0000
+--- bzip2-1.0.6.orig/BZip2Config.cmake.in	1970-01-01 01:00:00.000000000 +0100
++++ bzip2-1.0.6/BZip2Config.cmake.in	2016-07-19 22:39:17.466714868 +0100
 @@ -0,0 +1,12 @@
 +@PACKAGE_INIT@
 +
@@ -45,9 +15,9 @@ diff -urN bzip2-1.0.6.orig/BZip2Config.cmake.in bzip2-1.0.6/BZip2Config.cmake.in
 +get_target_property(BZIP2_INCLUDE_DIR bzip2_bz2 INTERFACE_INCLUDE_DIRECTORIES)
 +set(BZIP2_LIBRARIES BZip2::BZip2)
 diff -urN bzip2-1.0.6.orig/CMakeLists.txt bzip2-1.0.6/CMakeLists.txt
---- bzip2-1.0.6.orig/CMakeLists.txt	1970-01-01 00:00:00.000000000 +0000
-+++ bzip2-1.0.6/CMakeLists.txt	2016-06-12 17:06:12.880930487 +0000
-@@ -0,0 +1,227 @@
+--- bzip2-1.0.6.orig/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ bzip2-1.0.6/CMakeLists.txt	2016-07-19 22:42:12.669767988 +0100
+@@ -0,0 +1,232 @@
 +# CMake build for bzip2
 +# Copyright © 2015-2016 Roger Leigh <rleigh@codelibre.net>
 +
@@ -140,7 +110,8 @@ diff -urN bzip2-1.0.6.orig/CMakeLists.txt bzip2-1.0.6/CMakeLists.txt
 +  COMPATIBILITY SameMajorVersion)
 +install(FILES ${CMAKE_CURRENT_BINARY_DIR}/BZip2Config.cmake
 +              ${CMAKE_CURRENT_BINARY_DIR}/BZip2ConfigVersion.cmake
-+              DESTINATION "${bzip2_config_dir}")
++        DESTINATION "${bzip2_config_dir}"
++        COMPONENT "development")
 +install(FILES ${bzip2_public_headers}
 +        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
 +        COMPONENT "development")
@@ -213,11 +184,13 @@ diff -urN bzip2-1.0.6.orig/CMakeLists.txt bzip2-1.0.6/CMakeLists.txt
 +  if (WIN32)
 +    install(CODE "file(WRITE
 +                       \"${CMAKE_INSTALL_FULL_MANDIR}/man1/${dest}.1\"
-+                       \".so man1/${target}.1\")")
++                       \".so man1/${target}.1\")"
++            COMPONENT "runtime")
 +  else()
 +    install(CODE "file(WRITE
 +                       \"\$ENV{DESTDIR}${CMAKE_INSTALL_FULL_MANDIR}/man1/${dest}.1\"
-+                       \".so man1/${target}.1\")")
++                       \".so man1/${target}.1\")"
++            COMPONENT "runtime")
 +  endif()
 +endforeach()
 +
@@ -246,10 +219,12 @@ diff -urN bzip2-1.0.6.orig/CMakeLists.txt bzip2-1.0.6/CMakeLists.txt
 +    # Copy or symlink aliases, including manpages
 +    install(CODE "execute_process(COMMAND \"${CMAKE_COMMAND}\" -E
 +            create_symlink ${target}
-+            \"\$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/${dest}\")")
++            \"\$ENV{DESTDIR}${CMAKE_INSTALL_FULL_BINDIR}/${dest}\")"
++            COMPONENT "runtime")
 +    install(CODE "file(WRITE
 +                       \"\$ENV{DESTDIR}${CMAKE_INSTALL_FULL_MANDIR}/man1/${dest}.1\"
-+                       \".so man1/${target}.1\")")
++                       \".so man1/${target}.1\")"
++            COMPONENT "runtime")
 +  endforeach()
 +endif()
 +
@@ -276,8 +251,8 @@ diff -urN bzip2-1.0.6.orig/CMakeLists.txt bzip2-1.0.6/CMakeLists.txt
 +add_bzip_test(test4 -d  sample2.bz2 sample2.tst sample2.ref)
 +add_bzip_test(test5 -ds sample3.bz2 sample3.tst sample3.ref)
 diff -urN bzip2-1.0.6.orig/RunTest.cmake bzip2-1.0.6/RunTest.cmake
---- bzip2-1.0.6.orig/RunTest.cmake	1970-01-01 00:00:00.000000000 +0000
-+++ bzip2-1.0.6/RunTest.cmake	2016-06-11 12:20:08.326113341 +0000
+--- bzip2-1.0.6.orig/RunTest.cmake	1970-01-01 01:00:00.000000000 +0100
++++ bzip2-1.0.6/RunTest.cmake	2016-07-19 22:39:17.472714832 +0100
 @@ -0,0 +1,25 @@
 +# Run bzip2 test and compare test output with expected output
 +# Copyright © 2015-2016 Roger Leigh <rleigh@codelibre.net>
@@ -304,3 +279,33 @@ diff -urN bzip2-1.0.6.orig/RunTest.cmake bzip2-1.0.6/RunTest.cmake
 +if (BZIP2_COMPARE_STATUS)
 +  message(FATAL_ERROR "bzip2: Test output comparison failed")
 +endif()
+diff -urN bzip2-1.0.6.orig/bz2.def bzip2-1.0.6/bz2.def
+--- bzip2-1.0.6.orig/bz2.def	1970-01-01 01:00:00.000000000 +0100
++++ bzip2-1.0.6/bz2.def	2016-07-19 22:39:17.465714141 +0100
+@@ -0,0 +1,26 @@
++LIBRARY
++EXPORTS
++	BZ2_bzCompressInit
++	BZ2_bzCompress
++	BZ2_bzCompressEnd
++	BZ2_bzDecompressInit
++	BZ2_bzDecompress
++	BZ2_bzDecompressEnd
++	BZ2_bzReadOpen
++	BZ2_bzReadClose
++	BZ2_bzReadGetUnused
++	BZ2_bzRead
++	BZ2_bzWriteOpen
++	BZ2_bzWrite
++	BZ2_bzWriteClose
++	BZ2_bzWriteClose64
++	BZ2_bzBuffToBuffCompress
++	BZ2_bzBuffToBuffDecompress
++	BZ2_bzlibVersion
++	BZ2_bzopen
++	BZ2_bzdopen
++	BZ2_bzread
++	BZ2_bzwrite
++	BZ2_bzflush
++	BZ2_bzclose
++	BZ2_bzerror
