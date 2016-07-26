@@ -471,9 +471,9 @@ if exist "%installdir%\%docs_version_tag%" (
 )
 
 REM Archive source
-if not exist "%artefactdir%\source" mkdir "%artefactdir%\source"
-echo Archiving source
-(robocopy "%cachedir%\source" "%artefactdir%\source" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+if not exist "%artefactdir%\sources" mkdir "%artefactdir%\sources"
+echo Archiving sources
+(robocopy "%cachedir%\source" "%artefactdir%\sources" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 if exist "%cachedir%\tools" (
    echo Archiving tools
    if not exist "%artefactdir%\tools" mkdir "%artefactdir%\tools"
