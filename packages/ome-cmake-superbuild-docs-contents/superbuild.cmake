@@ -1,12 +1,12 @@
-# ome-cmake-superbuild-docs superbuild
+# ome-cmake-superbuild-docs-contents superbuild
 
 # We need to ensure that the documentation of all projects is
 # installed before we build, or else the link checking will fail.
 set(ome_docs_dependencies ${build-packages})
-list(REMOVE_ITEM ome_docs_dependencies ome-cmake-superbuild-docs ome-cmake-superbuild-docs-contents)
+list(REMOVE_ITEM ome_docs_dependencies ome-cmake-superbuild-docs-contents)
 
 # Set dependency list
-ome_add_dependencies(ome-cmake-superbuild-docs
+ome_add_dependencies(ome-cmake-superbuild-docs-contents
                      DEPENDENCIES ${ome_docs_dependencies}
                      THIRD_PARTY_DEPENDENCIES py-sphinx)
 
@@ -21,25 +21,25 @@ list(APPEND CONFIGURE_OPTIONS
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
-  SOURCE_DIR "${PROJECT_SOURCE_DIR}/docs/sphinx"
+  SOURCE_DIR "${PROJECT_SOURCE_DIR}/docs/contents"
   BINARY_DIR "${EP_BINARY_DIR}"
   ${OME_EP_COMMON_ARGS}
   INSTALL_DIR ""
   CONFIGURE_COMMAND ${CMAKE_COMMAND}
-    "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}/docs/sphinx"
+    "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}/docs/contents"
     "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
     "-DCONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}"
     "-DCONFIG:INTERNAL=$<CONFIG>"
     "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
     -P "${GENERIC_CMAKE_CONFIGURE}"
   BUILD_COMMAND ${CMAKE_COMMAND}
-    "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}/docs/sphinx"
+    "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}/docs/contents"
     "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
     "-DCONFIG:INTERNAL=$<CONFIG>"
     "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
     -P "${GENERIC_CMAKE_BUILD}"
   INSTALL_COMMAND ${CMAKE_COMMAND}
-    "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}/docs/sphinx"
+    "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}/docs/contents"
     "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
     "-DCONFIG:INTERNAL=$<CONFIG>"
     "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
