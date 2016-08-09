@@ -3,7 +3,7 @@
 Changes made locally
 --------------------
 
-* A CMake build system for bzip2 has been added
+* A CMake build system for xerces has been added
 
 These changes are made available under the original project license.
 
