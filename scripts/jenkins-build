@@ -197,6 +197,9 @@ build() {
             cp -r "${builddir}/superbuild-install/share/doc/${component}" "${installdir}/${docs_bundle_name}"
         fi
     done
+    for file in "${builddir}/superbuild-install/share/doc/"*.html "${builddir}/superbuild-install/share/doc/"*.inv "${builddir}/superbuild-install/share/doc/"*.js "${builddir}/superbuild-install/share/doc/"_*; do
+        cp -r "${file}" "${installdir}/${docs_bundle_name}"
+    done
 
     # Source releases
     if [ "$build_git" = "ON" ]; then
