@@ -443,15 +443,15 @@ rename stage %version_tag%
 
 mkdir "%installdir%\%docs_version_tag%"
 for %%C in (ome-common,ome-xml,ome-files,ome-qtwidgets,ome-cmake-superbuild) do (
-    if exist "%builddir%\superbuild-install\%%C" (
+    if exist "%builddir%\superbuild-install\share\doc\%%C" (
         echo Installing documentation for %%C
-        (robocopy "%builddir%\superbuild-install\%%C" "%installdir%\%docs_version_tag%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy "%builddir%\superbuild-install\share\doc\%%C" "%installdir%\%docs_version_tag%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
     )
 )
-for %%C in ("*.html","*.inv","*.js","_*") do (
-    echo Installing documentation contents: %%C
-    (robocopy "%builddir%\superbuild-install" "%installdir%\%docs_version_tag%" "%%C" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-)
+(robocopy "%builddir%\superbuild-install\share\doc" "%installdir%\%docs_version_tag%" "*.html" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc" "%installdir%\%docs_version_tag%" "*.inv"  /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc" "%installdir%\%docs_version_tag%" "*.js"   /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc" "%installdir%\%docs_version_tag%" "_*"     /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 
 REM Archive builds
 cd "%installdir%"
