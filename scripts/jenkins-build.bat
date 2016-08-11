@@ -358,8 +358,8 @@ REM Make and cache prerequisites if missing
         if exist "%cachedir%\tools-build" (
             rmdir /s /q "%cachedir%\tools-build"
         )
-        (robocopy superbuild-install "%cachedir%\build" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-        (robocopy tools "%cachedir%\tools-build" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy superbuild-install "%cachedir%\build" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy tools "%cachedir%\tools-build" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
         cd "%sourcedir%"
         git log -1 --pretty=%%T "%git_branch%" -- >%cachedir%\tree
         cd "%builddir%"
@@ -411,8 +411,8 @@ REM Make and cache prerequisites if missing
         if exist "%cachedir%\tools-build" (
             rmdir /s /q "%cachedir%\tools-build"
         )
-        (robocopy superbuild-install "%cachedir%\build" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-        (robocopy tools "%cachedir%\tools-build" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy superbuild-install "%cachedir%\build" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy tools "%cachedir%\tools-build" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
         cd "%sourcedir%"
         git log -1 --pretty=%%T "%git_branch%" -- >%cachedir%\tree
         cd "%builddir%"
@@ -445,14 +445,14 @@ mkdir "%installdir%\%docs_version_tag%"
 for %%C in (ome-common,ome-xml,ome-files,ome-qtwidgets,ome-cmake-superbuild) do (
     if exist "%builddir%\superbuild-install\share\doc\%%C" (
         echo Installing documentation for %%C
-        (robocopy "%builddir%\superbuild-install\share\doc\%%C" "%installdir%\%docs_version_tag%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy "%builddir%\superbuild-install\share\doc\%%C" "%installdir%\%docs_version_tag%" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
     )
 )
-(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.html" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.inv"  /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.js"   /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-(robocopy "%builddir%\superbuild-install\share\doc\_static"  "%installdir%\%docs_version_tag%"          /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-(robocopy "%builddir%\superbuild-install\share\doc\_sources" "%installdir%\%docs_version_tag%"          /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.html"       >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.inv"        >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.js"         >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc\_static"  "%installdir%\%docs_version_tag%\_static"  /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc\_sources" "%installdir%\%docs_version_tag%\_sources" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 
 REM Archive builds
 cd "%installdir%"
@@ -476,11 +476,11 @@ zip -r "%artefactdir%\docs\%docs_version_tag%.zip" "%docs_version_tag%" || exit 
 REM Archive source
 if not exist "%artefactdir%\sources" mkdir "%artefactdir%\sources"
 echo Archiving sources
-(robocopy "%cachedir%\source" "%artefactdir%\sources" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%cachedir%\source" "%artefactdir%\sources" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 if exist "%cachedir%\tools" (
    echo Archiving tools
    if not exist "%artefactdir%\tools" mkdir "%artefactdir%\tools"
-   (robocopy "%cachedir%\tools" "%artefactdir%\tools" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+   (robocopy "%cachedir%\tools" "%artefactdir%\tools" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 )
 
 REM Test archive
