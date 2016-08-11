@@ -460,19 +460,17 @@ if not exist "%artefactdir%" mkdir "%artefactdir%"
 if not exist "%artefactdir%\docs" mkdir "%artefactdir%\docs"
 if not exist "%artefactdir%\binaries" mkdir "%artefactdir%\binaries"
 
-echo Archiving ome-files-bundle-%version_tag%.zip
+echo Archiving %version_tag%.zip
 if exist "%artefactdir%\binaries\%version_tag%.zip" (
   del "%artefactdir%\binaries\%version_tag%.zip"
 )
 zip -r "%artefactdir%\binaries\%version_tag%.zip" "%version_tag%" || exit /b
 
-if exist "%installdir%\%docs_version_tag%" (
-    echo Archiving %docs_version_tag%.zip
-    if exist "%artefactdir%\%docs_version_tag%.zip" (
-        del "%artefactdir%\%docs_version_tag%.zip"
-    )
-    zip -r "%artefactdir%\docs\%docs_version_tag%.zip" "%installdir%\%docs_version_tag%" || exit /b
+echo Archiving %docs_version_tag%.zip
+if exist "%artefactdir%\%docs_version_tag%.zip" (
+    del "%artefactdir%\%docs_version_tag%.zip"
 )
+zip -r "%artefactdir%\docs\%docs_version_tag%.zip" "%docs_version_tag%" || exit /b
 
 REM Archive source
 if not exist "%artefactdir%\sources" mkdir "%artefactdir%\sources"
