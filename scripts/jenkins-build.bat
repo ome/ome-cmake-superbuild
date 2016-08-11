@@ -445,7 +445,7 @@ mkdir "%installdir%\%docs_version_tag%"
 for %%C in (ome-common,ome-xml,ome-files,ome-qtwidgets,ome-cmake-superbuild) do (
     if exist "%builddir%\superbuild-install\share\doc\%%C" (
         echo Installing documentation for %%C
-        (robocopy "%builddir%\superbuild-install\share\doc\%%C" "%installdir%\%docs_version_tag%" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy "%builddir%\superbuild-install\share\doc\%%C" "%installdir%\%docs_version_tag%\%%C" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
     )
 )
 (robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.html"       >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
