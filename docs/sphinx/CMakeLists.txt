@@ -84,16 +84,18 @@ if (BUILD_SPHINX AND SPHINX_BUILD)
     set(sphinx_linkcheck_all ALL)
   endif()
 
-  add_custom_target(doc-linkcheck ${sphinx_linkcheck_all}
-                    COMMAND ${CMAKE_COMMAND} -E make_directory "${sphinx_builddir}/cache"
-                    COMMAND ${CMAKE_COMMAND} -E make_directory "${sphinx_builddir}/linkcheck"
-                    COMMAND ${SPHINX_BUILD}
-                            -D "release=${DOC_VERSION_MAJOR}.${DOC_VERSION_MINOR}.${DOC_VERSION_PATCH}"
-                            -D "version=${DOC_VERSION_MAJOR}.${DOC_VERSION_MINOR}"
-                            -c "${sphinx_builddir}"
-                            -d "${sphinx_builddir}/cache"
-                            -b linkcheck
-                            "${sphinx_srcdir}" "${sphinx_builddir}/linkcheck"
+  add_custom_target(doc-remotelinkcheck ${sphinx_linkcheck_all}
+                    COMMAND ${CMAKE_COMMAND}
+                            "-DSPHINX_BUILD=${SPHINX_BUILD}"
+                            "-DSPHINX_SRCDIR=${sphinx_srcdir}"
+                            "-DSPHINX_BUILDDIR=${sphinx_builddir}"
+                            "-DSPHINX_CACHEDIR=${sphinx_builddir}/cache"
+                            "-DSPHINX_LINKCHECKDIR=${sphinx_builddir}/linkcheck"
+                            "-DSPHINX_RELEASE=${DOC_VERSION_MAJOR}.${DOC_VERSION_MINOR}.${DOC_VERSION_PATCH}"
+                            "-DSPHINX_VERSION=${DOC_VERSION_MAJOR}.${DOC_VERSION_MINOR}"
+                            "-DSPHINX_INSTALL_PATH=${PROJECT_NAME}/manual/html"
+                            -P "${CMAKE_CURRENT_LIST_DIR}/../../cmake/SphinxCheckRemoteLinks.cmake"
+                     COMMENT "Checking remote links in sphinx documentation"
                      WORKING_DIRECTORY "${sphinx_srcdir}"
                      DEPENDS ${SPHINX_DEPENDENCIES})
 
@@ -108,7 +110,7 @@ if (BUILD_SPHINX AND SPHINX_BUILD)
                             -P "${CMAKE_CURRENT_LIST_DIR}/../../cmake/SphinxCheckInternalLinks.cmake"
                      COMMENT "Checking local links in sphinx documentation"
                      WORKING_DIRECTORY "${sphinx_srcdir}"
-                     DEPENDS doc-linkcheck)
+                     DEPENDS doc-remotelinkcheck)
 
   # Generate and install PDF manual
 
