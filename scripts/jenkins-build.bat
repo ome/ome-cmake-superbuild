@@ -448,10 +448,11 @@ for %%C in (ome-common,ome-xml,ome-files,ome-qtwidgets,ome-cmake-superbuild) do 
         (robocopy "%builddir%\superbuild-install\share\doc\%%C" "%installdir%\%docs_version_tag%" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
     )
 )
-(robocopy "%builddir%\superbuild-install\share\doc" "%installdir%\%docs_version_tag%" "*.html" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-(robocopy "%builddir%\superbuild-install\share\doc" "%installdir%\%docs_version_tag%" "*.inv"  /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-(robocopy "%builddir%\superbuild-install\share\doc" "%installdir%\%docs_version_tag%" "*.js"   /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-(robocopy "%builddir%\superbuild-install\share\doc" "%installdir%\%docs_version_tag%" "_*"     /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.html" /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.inv"  /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.js"   /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc\_static"  "%installdir%\%docs_version_tag%"          /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\superbuild-install\share\doc\_sources" "%installdir%\%docs_version_tag%"          /s /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 
 REM Archive builds
 cd "%installdir%"
