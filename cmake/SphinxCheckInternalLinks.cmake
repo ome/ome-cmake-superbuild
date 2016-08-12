@@ -83,5 +83,5 @@ endforeach()
 file(RENAME "${OUTPUT}.new" "${OUTPUT}")
 
 if(failed)
-  message(FATAL_ERROR "Broken links detected")
+  message(WARNING "Broken links detected")
 endif()

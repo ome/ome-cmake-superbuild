@@ -197,6 +197,9 @@ build() {
             cp -r "${builddir}/superbuild-install/share/doc/${component}" "${installdir}/${docs_bundle_name}"
         fi
     done
+    for file in "${builddir}/superbuild-install/share/doc/"*.html "${builddir}/superbuild-install/share/doc/"*.inv "${builddir}/superbuild-install/share/doc/"*.js "${builddir}/superbuild-install/share/doc/"_*; do
+        cp -r "${file}" "${installdir}/${docs_bundle_name}"
+    done
 
     # Source releases
     if [ "$build_git" = "ON" ]; then
@@ -338,7 +341,7 @@ parallel_opt=OFF
 build_git=OFF
 build_tp_prereqs=ON
 build_qt=OFF
-build_packages="ome-files;ome-cmake-superbuild-docs"
+build_packages="ome-files;ome-cmake-superbuild-docs;ome-cmake-superbuild-docs-contents"
 build_number=
 
 # Parse command line options.
