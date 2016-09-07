@@ -4,7 +4,7 @@
 set(tiff-head OFF CACHE BOOL "Force building libtiff from current CVS head")
 
 # Current stable release.
-set(RELEASE_URL "ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.6.tar.gz")
+set(RELEASE_URL "http://download.osgeo.org/libtiff/tiff-4.0.6.tar.gz")
 set(RELEASE_HASH "SHA512=2c8dbaaaab9f82a7722bfe8cb6fcfcf67472beb692f1b7dafaf322759e7016dad1bc58457c0f03db50aa5bd088fef2b37358fcbc1524e20e9e14a9620373fdf8")
 
 # Current development branch (defaults for head option).
