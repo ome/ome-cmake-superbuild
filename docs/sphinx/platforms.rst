@@ -15,8 +15,6 @@ status for these is as follows:
 +===============+==============+==============+==============+=============+
 | CentOS        | 7            | 6            | Unsupported* | Supported   |
 +---------------+--------------+--------------+--------------+-------------+
-| Debian        | 8            | 7            | Unsupported  | Unsupported |
-+---------------+--------------+--------------+--------------+-------------+
 | FreeBSD       | 11           | 10           | Supported†   | Supported   |
 +---------------+--------------+--------------+--------------+-------------+
 | MacOS X       | 10.11        | 10.9         | Supported‡   | Supported   |
@@ -36,7 +34,7 @@ status for these is as follows:
   With 11 only; 10 may work with ports built with a newer toolchain.
 
 ‡
-  Supported via homebrew.
+  Supported via Homebrew.
 
 §
   Windows does not have a package manager or provide any third-party
