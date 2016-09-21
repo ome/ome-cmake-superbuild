@@ -11,7 +11,7 @@ status for these is as follows:
 +---------------+--------------+--------------+--------------+-------------+
 |               |           Version           |         Build type         |
 +---------------+--------------+--------------+--------------+-------------+
-| System        | Recommended  | Minimum      | Platform     | Super-Build |
+| System        | Recommended  | Minimum      | Platform     | Super-build |
 +===============+==============+==============+==============+=============+
 | CentOS        | 7            | 6            | Unsupported* | Supported   |
 +---------------+--------------+--------------+--------------+-------------+
@@ -29,7 +29,7 @@ status for these is as follows:
 \*
   CentOS does not provide all the prequired libraries; CentOS 6
   provides a broken version of Boost and an obsolete libtiff, so using
-  the Super-Build or building new versions of the needed libraries is
+  the super-build or building new versions of the needed libraries is
   a requirement.
 
 †
@@ -41,13 +41,13 @@ status for these is as follows:
 §
   Windows does not have a package manager or provide any third-party
   libraries for a given Visual Studio version; either use the
-  Super-Build or build the needed libraries yourself.
+  super-build or build the needed libraries yourself.
 
 "Platform" builds are builds of the OME C++ components with
 third-party library and tool dependencies provided by the platform,
 i.e. the operating system's package manager.  Systems without a
-package manager, or with missing or outdated packages, can not support
-these builds.  "Super-Build" builds are builds of the OME C++
+package manager, or with missing or outdated packages, cannot support
+these builds.  "Super-build" builds are builds of the OME C++
 components with all third-party dependencies built at the same time,
 and are supported by all platforms irrespective of whether the
 platform also provides the needed packages.  Both of these build types
