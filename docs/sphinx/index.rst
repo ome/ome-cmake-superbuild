@@ -7,6 +7,7 @@ OME CMake Super-Build
     :titlesonly:
 
     overview
+    platforms
     prerequisites
     packages
     building
