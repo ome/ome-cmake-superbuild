@@ -27,34 +27,30 @@ if(ome-xml-dir)
   set(EP_SOURCE_DOWNLOAD
     DOWNLOAD_COMMAND "")
   set(EP_SOURCE_DIR "${ome-xml-dir}")
-  set(BOOST_VERSION 1.61)
   message(STATUS "Building OME XML C++ from local directory (${ome-xml-dir})")
 elseif(ome-xml-head OR ome-xml-git-url OR ome-xml-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
-  set(BOOST_VERSION 1.61)
   message(STATUS "Building OME XML C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
-  set(BOOST_VERSION 1.61)
   message(STATUS "Building OME XML C++ from source release (${RELEASE_URL})")
 endif()
 
 # Set dependency list
 ome_add_dependencies(ome-xml
                      DEPENDENCIES ome-common
-                     THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} png tiff xerces
+                     THIRD_PARTY_DEPENDENCIES boost png tiff xerces
                                               xalan py-genshi py-sphinx gtest)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
      "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
      -DBoost_NO_BOOST_CMAKE:BOOL=true
-     "-DBoost_ADDITIONAL_VERSIONS=${BOOST_VERSION}"
      ${SUPERBUILD_OPTIONS})
 if(TARGET gtest)
   list(APPEND CONFIGURE_OPTIONS "-DGTEST_SOURCE=${CMAKE_BINARY_DIR}/gtest-source")
