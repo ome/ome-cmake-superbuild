@@ -27,31 +27,27 @@ if(ome-common-dir)
   set(EP_SOURCE_DOWNLOAD
     DOWNLOAD_COMMAND "")
   set(EP_SOURCE_DIR "${ome-common-dir}")
-  set(BOOST_VERSION 1.61)
   message(STATUS "Building OME Common C++ from local directory (${ome-common-dir})")
 elseif(ome-common-head OR ome-common-git-url OR ome-common-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
-  set(BOOST_VERSION 1.61)
   message(STATUS "Building OME Common C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
-  set(BOOST_VERSION 1.61)
   message(STATUS "Building OME Common C++ from source release (${RELEASE_URL})")
 endif()
 
 # Set dependency list
-ome_add_dependencies(ome-common THIRD_PARTY_DEPENDENCIES boost-${BOOST_VERSION} gtest xerces xalan)
+ome_add_dependencies(ome-common THIRD_PARTY_DEPENDENCIES boost gtest xerces xalan)
 
 unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
      "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
      -DBoost_NO_BOOST_CMAKE:BOOL=true
-     "-DBoost_ADDITIONAL_VERSIONS=${BOOST_VERSION}"
      ${SUPERBUILD_OPTIONS})
 if(TARGET gtest)
   list(APPEND CONFIGURE_OPTIONS "-DGTEST_SOURCE=${CMAKE_BINARY_DIR}/gtest-source")
