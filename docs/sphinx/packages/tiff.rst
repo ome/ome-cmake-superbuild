@@ -19,4 +19,4 @@ file format, used for reading and writing TIFF images.
 +------------------+----------------+
 
 Versions 4.0.2 and earlier do not have the :cpp:func:`TIFFField`
-accessor functions, and so 4.0.3 or later is required.
+accessor functions, so 4.0.3 or later is required.

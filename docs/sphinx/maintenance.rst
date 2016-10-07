@@ -154,7 +154,7 @@ Over time, portability workarounds we have put in place may be
 dropped.  Examples include:
 
 - dropping functionality checks and workarounds for functionality and
-  behaviour differences, e.g. missing filesystem functions and
+  behavior differences, e.g. missing filesystem functions and
   geometry and endian libraries in older Boost releases
 - using the standard implementation of various functions,
   e.g. :cpp:class:`std::shared_ptr` and :cpp:class:`std::regex` in
