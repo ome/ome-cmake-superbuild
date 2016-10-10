@@ -153,14 +153,8 @@ purposes.
 Over time, portability workarounds we have put in place may be
 dropped.  Examples include:
 
-- dropping support for older versions of libraries, e.g. we have
-  extensive workarounds to support older libtiff releases which can be
-  removed entirely once all the Linux distribution versions we support
-  are 4.0.0 or later, or 4.0.4 or later (there are two sets of
-  workarounds); this will simplify the code, and also allow
-  assumptions to be made regarding the availability of BigTIFF support
 - dropping functionality checks and workarounds for functionality and
-  behaviour differences, e.g. missing filesystem functions and
+  behavior differences, e.g. missing filesystem functions and
   geometry and endian libraries in older Boost releases
 - using the standard implementation of various functions,
   e.g. :cpp:class:`std::shared_ptr` and :cpp:class:`std::regex` in
