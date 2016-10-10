@@ -7,8 +7,8 @@ set(ome-qtwidgets-git-url "" CACHE STRING "URL of OME QtWidgets git repository")
 set(ome-qtwidgets-git-branch "" CACHE STRING "URL of OME QtWidgets git repository")
 
 # Current stable release.
-set(RELEASE_URL "https://downloads.openmicroscopy.org/ome-qtwidgets/5.3.1/source/ome-qtwidgets-5.3.1.tar.xz")
-set(RELEASE_HASH "SHA512=0c1d4e3d4c1f331caa453a68a2766f48601beac0dd7b8876ed0b2a544a6ab2abf41b739ba55af3e0f5d5c50e0f685fec3e5b84859a7bbf1f889f3fb39f488408")
+set(RELEASE_URL "https://downloads.openmicroscopy.org/ome-qtwidgets/5.3.2/source/ome-qtwidgets-5.3.2.tar.xz")
+set(RELEASE_HASH "SHA512=ab9c3b745cdf409b977076853d227ccc65ca45b3977a373e65661f65ae101a2d11ff34328205bbc5693b219ef0b8f12f0536ef5652a7bb205e3f142e35bd1477")
 
 # Current development branch (defaults for ome-qtwidgets-head option).
 set(GIT_URL "https://github.com/ome/ome-qtwidgets.git")
