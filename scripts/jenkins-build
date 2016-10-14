@@ -21,7 +21,7 @@ os_version() {
           echo "$(freebsd-version | sed -e 's;\([^-]*\)-.*;FreeBSD\1;')-$machine"
           ;;
       Darwin*)
-          echo "$(sw_vers | grep ^ProductVersion: | sed -e 's;^ProductVersion:[[:space:]]*\(.*\)\.\(.*\)\.\(.*\);MacOSX\1.\2;')-$machine"
+          echo "$(sw_vers | grep ^ProductVersion: | sed -e 's;^ProductVersion:[[:space:]]*\(.*\)\.\(.*\)\(\..*\)*;MacOSX\1.\2;')-$machine"
           ;;
       *)
           echo "$(uname -sr | sed -e 's;[[:space:]]*;;g')-$machine"
