@@ -2,9 +2,9 @@
 
 # Options to build from git (defaults to source zip if unset)
 set(ome-model-head ${head} CACHE BOOL "Force building from current git develop branch")
-set(ome-model-dir "" CACHE PATH "Local directory containing the OME-XML [Bio-Formats] source code")
-set(ome-model-git-url "" CACHE STRING "URL of OME-XML [Bio-Formats] git repository")
-set(ome-model-git-branch "" CACHE STRING "URL of OME-XML [Bio-Formats] git repository")
+set(ome-model-dir "" CACHE PATH "Local directory containing the OME Model source code")
+set(ome-model-git-url "" CACHE STRING "URL of OME Model git repository")
+set(ome-model-git-branch "" CACHE STRING "URL of OME Model git repository")
 
 # Current stable release.
 set(RELEASE_URL "")
@@ -27,18 +27,18 @@ if(ome-model-dir)
   set(EP_SOURCE_DOWNLOAD
     DOWNLOAD_COMMAND "")
   set(EP_SOURCE_DIR "${ome-model-dir}")
-  message(STATUS "Building OME XML C++ from local directory (${ome-model-dir})")
+  message(STATUS "Building OME Model C++ from local directory (${ome-model-dir})")
 elseif(ome-model-head OR ome-model-git-url OR ome-model-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
-  message(STATUS "Building OME XML C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
+  message(STATUS "Building OME Model C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
-  message(STATUS "Building OME XML C++ from source release (${RELEASE_URL})")
+  message(STATUS "Building OME Model C++ from source release (${RELEASE_URL})")
 endif()
 
 # Set dependency list
