@@ -294,7 +294,7 @@ if exist "%cachedir%\tree" (
 )
 
 if [%build_git%] == [ON] (
-    set "GIT_OPTIONS=-Dome-xml-dir=%workspace%\ome-xml -Dome-files-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common -Dome-qtwidgets-dir=%workspace%\ome-qtwidgets"
+    set "GIT_OPTIONS=-Dome-model-dir=%workspace%\ome-model -Dome-files-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common -Dome-qtwidgets-dir=%workspace%\ome-qtwidgets"
 )
 
 if [%qt%] == [ON] (
@@ -442,7 +442,7 @@ if exist "%version_tag%" rmdir /s /q "%version_tag%"
 rename stage %version_tag%
 
 mkdir "%installdir%\%docs_version_tag%"
-for %%C in (ome-common,ome-xml,ome-files,ome-qtwidgets,ome-cmake-superbuild) do (
+for %%C in (ome-common,ome-model,ome-files,ome-qtwidgets,ome-cmake-superbuild) do (
     if exist "%builddir%\superbuild-install\share\doc\%%C" (
         echo Installing documentation for %%C
         (robocopy "%builddir%\superbuild-install\share\doc\%%C" "%installdir%\%docs_version_tag%\%%C" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b

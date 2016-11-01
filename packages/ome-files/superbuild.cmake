@@ -43,7 +43,7 @@ endif()
 
 # Set dependency list
 ome_add_dependencies(ome-files
-                     DEPENDENCIES ome-xml
+                     DEPENDENCIES ome-model
                      THIRD_PARTY_DEPENDENCIES boost png tiff
                                               py-sphinx gtest)
 
