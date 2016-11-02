@@ -478,7 +478,7 @@ out.  Run::
 
     mkdir build
     cd build
-    cmake -G Ninja -Dome-common-dir=/path/to/ome-common-cpp -Dome-model-dir=/path/to/bioformats -Dome-files-dir=/path/to/ome-files -Dome-qtwidgets-dir=/path/to/ome-qtwidgets -Dbuild-prerequisites=OFF -Dome-superbuild_BUILD_gtest=ON -Dbuild-packages=ome-qtwidgets -DCMAKE_INSTALL_PREFIX=/install/dir /path/to/superbuild/git/repo
+    cmake -G Ninja -Dome-common-dir=/path/to/ome-common-cpp -Dome-model-dir=/path/to/ome-model -Dome-files-dir=/path/to/ome-files -Dome-qtwidgets-dir=/path/to/ome-qtwidgets -Dbuild-prerequisites=OFF -Dome-superbuild_BUILD_gtest=ON -Dbuild-packages=ome-qtwidgets -DCMAKE_INSTALL_PREFIX=/install/dir /path/to/superbuild/git/repo
     make
     make install
 
@@ -514,6 +514,6 @@ clone has the branch you wish to build checked out.  Run::
 
     mkdir build
     cd build
-    cmake -G Ninja -Dome-common-dir=/path/to/ome-common-cpp -Dome-model-dir=/path/to/bioformats -Dome-files-dir=/path/to/ome-files -Dome-qtwidgets-dir=/path/to/ome-qtwidgets -Dbuild-packages=ome-qtwidgets -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/install/dir /path/to/superbuild/sources
+    cmake -G Ninja -Dome-common-dir=/path/to/ome-common-cpp -Dome-model-dir=/path/to/ome-model -Dome-files-dir=/path/to/ome-files -Dome-qtwidgets-dir=/path/to/ome-qtwidgets -Dbuild-packages=ome-qtwidgets -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/install/dir /path/to/superbuild/sources
     ninja
     ninja install
