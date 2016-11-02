@@ -47,17 +47,17 @@ save_tree() {
 make_cache() {
     rm -rf "${cachedir}/build"
     rm -rf "${cachedir}/tools-build"
-    cp -a "superbuild-install" "${cachedir}/build"
+    cp -a "stage" "${cachedir}/build"
     cp -a "tools" "${cachedir}/tools-build"
     save_tree
 }
 
 restore_cache() {
-    rm -rf "superbuild-install"
+    rm -rf "stage"
     rm -rf "tools"
-    mkdir -p "superbuild-install"
+    mkdir -p "stage"
     mkdir -p "tools"
-    cp -a "${cachedir}/build" "superbuild-install"
+    cp -a "${cachedir}/build" "stage"
     cp -a "${cachedir}/tools-build" "tools"
 }
 
@@ -191,13 +191,13 @@ build() {
     mv "${installdir}/stage" "${installdir}/${bundle_name}"
 
     for component in ome-common ome-model ome-files ome-qtwidgets ome-cmake-superbuild; do
-        if [ -d "${builddir}/superbuild-install/share/doc/${component}" ]; then
+        if [ -d "${builddir}/stage/share/doc/${component}" ]; then
             mkdir -p "${installdir}/${docs_bundle_name}"
             echo "Installing documentation for ${component}"
-            cp -r "${builddir}/superbuild-install/share/doc/${component}" "${installdir}/${docs_bundle_name}"
+            cp -r "${builddir}/stage/share/doc/${component}" "${installdir}/${docs_bundle_name}"
         fi
     done
-    for file in "${builddir}/superbuild-install/share/doc/"*.html "${builddir}/superbuild-install/share/doc/"*.inv "${builddir}/superbuild-install/share/doc/"*.js "${builddir}/superbuild-install/share/doc/"_*; do
+    for file in "${builddir}/stage/share/doc/"*.html "${builddir}/stage/share/doc/"*.inv "${builddir}/stage/share/doc/"*.js "${builddir}/stage/share/doc/"_*; do
         cp -r "${file}" "${installdir}/${docs_bundle_name}"
     done
 

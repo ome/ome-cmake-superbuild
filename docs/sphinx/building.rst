@@ -171,8 +171,8 @@ source-cache=directory
 build-cache=directory
   Specify a directory from which to source pre-built third-party
   prerequisites.  Useful to save time when rebuilding if the
-  content of the :file:`superbuild-install` directory is placed
-  here after building ``third-party-prerequisites``.
+  content of the :file:`stage` directory is placed here after
+  building ``third-party-prerequisites``.
 python-cache=directory
   Specify a directory from which to source pre-built third-party
   python prerequisites.  Useful to save time when rebuilding if the
