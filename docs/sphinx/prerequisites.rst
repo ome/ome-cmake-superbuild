@@ -80,4 +80,4 @@ prerequisites to be added.
     prerequisites/ome-common
     prerequisites/ome-files
     prerequisites/ome-qtwidgets
-    prerequisites/ome-xml
+    prerequisites/ome-model

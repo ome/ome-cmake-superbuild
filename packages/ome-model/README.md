@@ -1,4 +1,4 @@
-# ome-xml build
+# ome-model build
 
 Changes made locally
 --------------------

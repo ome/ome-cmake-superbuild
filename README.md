@@ -1,8 +1,8 @@
-# Bio-Formats CMake super-build
+# OME CMake super-build
 
 This package provides a CMake super-build for the
-[Bio-Formats](http://github.com/openmicroscopy/bioformats) C++
-library.
+[OME Files C++](http://github.com/ome/ome-files-cpp)
+library, and other additional libraries.
 
 
 Purpose
@@ -19,14 +19,14 @@ prerequisites, as well as Bio-Formats itself.
 Supported platforms
 -------------------
 
-- Microsoft Windows with Visual Studio 2012 or 2013
+- Microsoft Windows with Visual Studio 2013 or 2015
 - RHEL 6 and 7
 - CentOS 6 and 7
-- Ubuntu 12.04 and 14.04
-- FreeBSD 10.2
+- Ubuntu 14.04 and 16.04
+- FreeBSD 11
 
 More information
 ----------------
 
-For more information, see the [Bio-Formats C++
-documentation](http://www.openmicroscopy.org/site/support/bio-formats5.1/developers/cpp/overview.html).
+For more information, see the [documentation]
+(http://www.openmicroscopy.org/site/support/ome-files-cpp/).

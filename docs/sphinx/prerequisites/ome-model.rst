@@ -1,7 +1,7 @@
-.. _prereq_ome_xml:
+.. _prereq_ome_model:
 
-OME XML
-=======
+OME Model
+=========
 
 Various software packages are required to be installed in order to
 build from source.  Several of these may also be built and installed

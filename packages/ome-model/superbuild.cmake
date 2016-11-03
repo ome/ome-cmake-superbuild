@@ -1,48 +1,48 @@
-# ome-xml superbuild
+# ome-model superbuild
 
 # Options to build from git (defaults to source zip if unset)
-set(ome-xml-head ${head} CACHE BOOL "Force building from current git develop branch")
-set(ome-xml-dir "" CACHE PATH "Local directory containing the OME-XML [Bio-Formats] source code")
-set(ome-xml-git-url "" CACHE STRING "URL of OME-XML [Bio-Formats] git repository")
-set(ome-xml-git-branch "" CACHE STRING "URL of OME-XML [Bio-Formats] git repository")
+set(ome-model-head ${head} CACHE BOOL "Force building from current git develop branch")
+set(ome-model-dir "" CACHE PATH "Local directory containing the OME Model source code")
+set(ome-model-git-url "" CACHE STRING "URL of OME Model git repository")
+set(ome-model-git-branch "" CACHE STRING "URL of OME Model git repository")
 
 # Current stable release.
-set(RELEASE_URL "http://downloads.openmicroscopy.org/bio-formats/5.2.4/artifacts/bioformats-dfsg-5.2.4.tar.xz")
-set(RELEASE_HASH "SHA512=d7842785ba8e10090eec5ca32c811637773842a546cc885df6bd01e50c64070114042c5ce2edad6b9902222237d7f8cfed2c03c20d571b8348a874ddd9a3958c")
+set(RELEASE_URL "")
+set(RELEASE_HASH "SHA512=")
 
-# Current development branch (defaults for ome-xml-head option).
-set(GIT_URL "https://github.com/openmicroscopy/bioformats.git")
-set(GIT_BRANCH "develop")
+# Current development branch (defaults for ome-model-head option).
+set(GIT_URL "https://github.com/ome/ome-model.git")
+set(GIT_BRANCH "master")
 
-if(NOT ome-xml-head)
-  if(ome-xml-git-url)
-    set(GIT_URL ${ome-xml-git-url})
+if(NOT ome-model-head)
+  if(ome-model-git-url)
+    set(GIT_URL ${ome-model-git-url})
   endif()
-  if(ome-xml-git-branch)
-    set(GIT_BRANCH ${ome-xml-git-branch})
+  if(ome-model-git-branch)
+    set(GIT_BRANCH ${ome-model-git-branch})
   endif()
 endif()
 
-if(ome-xml-dir)
+if(ome-model-dir)
   set(EP_SOURCE_DOWNLOAD
     DOWNLOAD_COMMAND "")
-  set(EP_SOURCE_DIR "${ome-xml-dir}")
-  message(STATUS "Building OME XML C++ from local directory (${ome-xml-dir})")
-elseif(ome-xml-head OR ome-xml-git-url OR ome-xml-git-branch)
+  set(EP_SOURCE_DIR "${ome-model-dir}")
+  message(STATUS "Building OME Model C++ from local directory (${ome-model-dir})")
+elseif(ome-model-head OR ome-model-git-url OR ome-model-git-branch)
   set(EP_SOURCE_DOWNLOAD
     GIT_REPOSITORY "${GIT_URL}"
     GIT_TAG "${GIT_BRANCH}"
     UPDATE_DISCONNECTED 1)
-  message(STATUS "Building OME XML C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
+  message(STATUS "Building OME Model C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
 else()
   set(EP_SOURCE_DOWNLOAD
     URL "${RELEASE_URL}"
     URL_HASH "${RELEASE_HASH}")
-  message(STATUS "Building OME XML C++ from source release (${RELEASE_URL})")
+  message(STATUS "Building OME Model C++ from source release (${RELEASE_URL})")
 endif()
 
 # Set dependency list
-ome_add_dependencies(ome-xml
+ome_add_dependencies(ome-model
                      DEPENDENCIES ome-common
                      THIRD_PARTY_DEPENDENCIES boost png tiff xerces
                                               xalan py-genshi py-sphinx gtest)

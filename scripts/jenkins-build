@@ -118,7 +118,7 @@ build() {
 
     GIT_OPTIONS=
     if [ "$build_git" = "ON" ];then
-        GIT_OPTIONS="-Dome-xml-dir=${workspace}/ome-xml -Dome-files-dir=${workspace}/ome-files -Dome-common-dir=${workspace}/ome-common -Dome-qtwidgets-dir=${workspace}/ome-qtwidgets"
+        GIT_OPTIONS="-Dome-model-dir=${workspace}/ome-model -Dome-files-dir=${workspace}/ome-files -Dome-common-dir=${workspace}/ome-common -Dome-qtwidgets-dir=${workspace}/ome-qtwidgets"
     fi
 
     rm -rf "$builddir" "$installdir"
@@ -126,7 +126,7 @@ build() {
 
     (
         cd "$builddir"
-        # Note that due to using a local git mirror, the ome-xml-git-branch
+        # Note that due to using a local git mirror, the ome-model-git-branch
         # is HEAD since it's already at the correct commit
         cmake \
             -G "$build_system" \
@@ -190,7 +190,7 @@ build() {
     rm -rf "${installdir}/${bundle_name}"
     mv "${installdir}/stage" "${installdir}/${bundle_name}"
 
-    for component in ome-common ome-xml ome-files ome-qtwidgets ome-cmake-superbuild; do
+    for component in ome-common ome-model ome-files ome-qtwidgets ome-cmake-superbuild; do
         if [ -d "${builddir}/superbuild-install/share/doc/${component}" ]; then
             mkdir -p "${installdir}/${docs_bundle_name}"
             echo "Installing documentation for ${component}"
