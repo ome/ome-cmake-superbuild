@@ -56,7 +56,7 @@ option(extended-tests "Enable extended tests (more comprehensive, longer run tim
 
 # Note that unlike in individual components, the default here is ON
 # since we require it to be relocatable to move it out of the
-# superbuild-install directory in the build tree.
+# stage directory in the build tree.
 option(relocatable-install "Install tree will be relocatable" ON)
 
 option(head "Force building from current git develop branch (all OME components)" OFF)

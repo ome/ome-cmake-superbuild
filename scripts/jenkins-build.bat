@@ -358,7 +358,7 @@ REM Make and cache prerequisites if missing
         if exist "%cachedir%\tools-build" (
             rmdir /s /q "%cachedir%\tools-build"
         )
-        (robocopy superbuild-install "%cachedir%\build" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy stage "%cachedir%\build" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
         (robocopy tools "%cachedir%\tools-build" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
         cd "%sourcedir%"
         git log -1 --pretty=%%T "%git_branch%" -- >%cachedir%\tree
@@ -411,7 +411,7 @@ REM Make and cache prerequisites if missing
         if exist "%cachedir%\tools-build" (
             rmdir /s /q "%cachedir%\tools-build"
         )
-        (robocopy superbuild-install "%cachedir%\build" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy stage "%cachedir%\build" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
         (robocopy tools "%cachedir%\tools-build" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
         cd "%sourcedir%"
         git log -1 --pretty=%%T "%git_branch%" -- >%cachedir%\tree
@@ -443,16 +443,16 @@ rename stage %version_tag%
 
 mkdir "%installdir%\%docs_version_tag%"
 for %%C in (ome-common,ome-model,ome-files,ome-qtwidgets,ome-cmake-superbuild) do (
-    if exist "%builddir%\superbuild-install\share\doc\%%C" (
+    if exist "%builddir%\stage\share\doc\%%C" (
         echo Installing documentation for %%C
-        (robocopy "%builddir%\superbuild-install\share\doc\%%C" "%installdir%\%docs_version_tag%\%%C" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy "%builddir%\stage\share\doc\%%C" "%installdir%\%docs_version_tag%\%%C" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
     )
 )
-(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.html"       >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.inv"        >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-(robocopy "%builddir%\superbuild-install\share\doc"          "%installdir%\%docs_version_tag%" "*.js"         >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-(robocopy "%builddir%\superbuild-install\share\doc\_static"  "%installdir%\%docs_version_tag%\_static"  /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
-(robocopy "%builddir%\superbuild-install\share\doc\_sources" "%installdir%\%docs_version_tag%\_sources" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\stage\share\doc"          "%installdir%\%docs_version_tag%" "*.html"       >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\stage\share\doc"          "%installdir%\%docs_version_tag%" "*.inv"        >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\stage\share\doc"          "%installdir%\%docs_version_tag%" "*.js"         >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\stage\share\doc\_static"  "%installdir%\%docs_version_tag%\_static"  /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+(robocopy "%builddir%\stage\share\doc\_sources" "%installdir%\%docs_version_tag%\_sources" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
 
 REM Archive builds
 cd "%installdir%"
