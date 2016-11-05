@@ -111,39 +111,6 @@ if (BUILD_SPHINX AND SPHINX_BUILD)
                      COMMENT "Checking local links in sphinx documentation"
                      WORKING_DIRECTORY "${sphinx_srcdir}"
                      DEPENDS doc-remotelinkcheck)
-
-  # Generate and install PDF manual
-
-  if (BUILD_SPHINX_PDF AND XELATEX AND MAKEINDEX)
-    set(texprefix "OME-CMake-Super-Build")
-    add_custom_command(OUTPUT "${sphinx_builddir}/latex/${texprefix}.tex" "${sphinx_builddir}/latex/preamble.tex"
-                       COMMAND ${CMAKE_COMMAND} -E make_directory "${sphinx_builddir}/cache"
-                       COMMAND ${CMAKE_COMMAND} -E make_directory "${sphinx_builddir}/latex"
-                       COMMAND ${SPHINX_BUILD}
-                               -D "release=${DOC_VERSION_MAJOR}.${DOC_VERSION_MINOR}.${DOC_VERSION_PATCH}"
-                               -D "version=${DOC_VERSION_MAJOR}.${DOC_VERSION_MINOR}"
-                               -c "${sphinx_builddir}"
-                               -d "${sphinx_builddir}/cache"
-                               -b latex
-                               "${sphinx_srcdir}" "${sphinx_builddir}/latex"
-                       COMMAND ${CMAKE_COMMAND} -E copy "preamble.tex" "${sphinx_builddir}/latex"
-                       WORKING_DIRECTORY "${sphinx_srcdir}"
-                       DEPENDS ${SPHINX_DEPENDENCIES})
-    add_custom_command(OUTPUT "${sphinx_builddir}/latex/${texprefix}.pdf"
-                       COMMAND ${XELATEX} "${texprefix}.tex"
-                       COMMAND ${XELATEX} "${texprefix}.tex"
-                       COMMAND ${MAKEINDEX} -s python.ist "${texprefix}.idx"
-                       COMMAND ${XELATEX} "${texprefix}.tex"
-                       COMMAND ${XELATEX} "${texprefix}.tex"
-                       COMMAND ${XELATEX} "${texprefix}.tex"
-                       WORKING_DIRECTORY "${sphinx_builddir}/latex"
-                       DEPENDS "${sphinx_builddir}/latex/${texprefix}.tex" "${sphinx_builddir}/latex/preamble.tex")
-
-    add_custom_target(doc-pdf ALL DEPENDS "${sphinx_builddir}/latex/${texprefix}.pdf")
-
-    install(FILES "${sphinx_builddir}/latex/${texprefix}.pdf"
-            DESTINATION "${CMAKE_INSTALL_DOCDIR}/manual")
-  endif (BUILD_SPHINX_PDF AND XELATEX AND MAKEINDEX)
 else()
   message(WARNING "Manual pages and HTML manual will not be generated or installed")
 endif()

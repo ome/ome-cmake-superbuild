@@ -340,7 +340,6 @@ if [%build_system%] == [MSBuild] (
       -Dbuild-packages=%packages% ^
       -Dparallel:BOOL=%parallel_opt% ^
       -Dsphinx:BOOL=ON ^
-      -Dsphinx-pdf:BOOL=OFF ^
       -Dsphinx-linkcheck:BOOL=%linkcheck% ^
       -Dsource-cache:PATH=%cachedir%\source ^
       -Dtool-cache:PATH=%cachedir%\tools ^
@@ -393,7 +392,6 @@ if [%build_system%] == [Ninja] (
       -Dbuild-packages=%packages% ^
       -Dparallel:BOOL=%parallel_opt% ^
       -Dsphinx:BOOL=ON ^
-      -Dsphinx-pdf:BOOL=OFF ^
       -Dsphinx-linkcheck:BOOL=%linkcheck% ^
       -Dsource-cache:PATH=%cachedir%\source ^
       -Dtool-cache:PATH=%cachedir%\tools ^
