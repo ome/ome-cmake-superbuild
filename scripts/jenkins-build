@@ -141,7 +141,6 @@ build() {
             -Dparallel:BOOL="$parallel_opt" \
             -Dsphinx:BOOL=ON \
             "-Dsphinx-linkcheck:BOOL=${linkcheck}" \
-            -Dsphinx-pdf:BOOL=OFF \
             -Dsource-cache:PATH=${cachedir}/source \
             -Dtool-cache:PATH=${cachedir}/tools \
             -DSOURCE_ARCHIVE_DIR="${artefactdir}/sources" \

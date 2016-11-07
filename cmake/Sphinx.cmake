@@ -35,7 +35,6 @@
 # #L%
 
 set(BUILD_SPHINX ${sphinx})
-set(BUILD_SPHINX_PDF ${sphinx-pdf})
 
 function(sphinx_manpages srcdir confdir mandir manvar)
   execute_process(COMMAND python -B ${PROJECT_SOURCE_DIR}/cmake/list-manpages.py

@@ -35,8 +35,7 @@ configurations may be selected for different projects.
 - Activate a python virtualenv if needed
 - Ensure that needed tools are on the user :envvar:`PATH`
   (e.g. :program:`cmake`, :program:`doxygen`, :program:`dot`,
-  :program:`git`, :program:`python`, :program:`sphinx`,
-  :program:`xelatex`)
+  :program:`git`, :program:`python`, :program:`sphinx`)
 - Set ``CMAKE_PREFIX_PATH`` if some libraries and tools are not on the
   default search path.  Not all tools need to be on the default path;
   some will be discovered automatically by :program:`cmake`
@@ -134,9 +133,6 @@ relocatable-install=(ON|OFF)
 sphinx=(ON|OFF)
   Build manual pages and HTML documentation with Sphinx.  Enabled by
   default if Sphinx is autodetected.
-sphinx-pdf=(ON|OFF)
-  Build PDF documentation with Sphinx.  Enabled by default if Sphinx
-  and XeLaTeX are autodetected.
 test=(ON|OFF)
   Enable unit tests.  Tests are enabled by default.
 xsdfu-debug=(ON|OFF)

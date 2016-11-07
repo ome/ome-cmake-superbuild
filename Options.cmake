@@ -76,25 +76,7 @@ option(doxygen "Enable doxygen documentation" ${DOXYGEN_DEFAULT})
 set(BUILD_DOXYGEN ${doxygen})
 
 # Sphinx documentation generator
-find_program(XELATEX xelatex)
-if (XELATEX)
-  message(STATUS "Looking for xelatex - ${XELATEX}")
-else()
-  message(STATUS "Looking for xelatex - not found")
-endif()
-find_program(MAKEINDEX makeindex)
-if (MAKEINDEX)
-  message(STATUS "Looking for makeindex - ${MAKEINDEX}")
-else()
-  message(STATUS "Looking for makeindex - not found")
-endif()
-
 option(sphinx "Enable sphinx manual page and HTML documentation" ON)
-set(SPHINX_PDF_DEFAULT OFF)
-if(XELATEX AND MAKEINDEX)
-  set(SPHINX_PDF_DEFAULT ON)
-endif()
-option(sphinx-pdf "Enable sphinx PDF documentation" ${SPHINX_PDF_DEFAULT})
 option(sphinx-linkcheck "Check sphinx documentation links by default" OFF)
 
 set(SUPERBUILD_OPTIONS
@@ -105,5 +87,4 @@ set(SUPERBUILD_OPTIONS
     "-Dextended-tests:BOOL=${extended-tests}"
     "-Ddoxygen:BOOL=${doxygen}"
     "-Dsphinx:BOOL=${sphinx}"
-    "-Dsphinx-pdf:BOOL=${sphinx-pdf}"
     "-Dsphinx-linkcheck:BOOL=${sphinx-linkcheck}")
