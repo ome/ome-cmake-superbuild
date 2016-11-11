@@ -4,7 +4,8 @@ Basic toolchain
 ---------------
 
 A functional compiler, assembler and linker are required to build C++
-code.
+code.  The C++ compiler must support the C++11 standard at a minimum,
+with the C++14 standard being preferred.
 
 +------------------+-----------------+
 | System           | Package         |

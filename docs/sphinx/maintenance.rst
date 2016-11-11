@@ -157,16 +157,15 @@ dropped.  Examples include:
   behavior differences, e.g. missing filesystem functions and
   geometry and endian libraries in older Boost releases
 - using the standard implementation of various functions,
-  e.g. :cpp:class:`std::shared_ptr` and :cpp:class:`std::regex` in
-  C++11, :cpp:func:`std::make_unique` in C++14, ``filesystem``
-  functions in C++17, where the Boost equivalents are currently used;
-  this will reduce our dependency upon Boost over time, once the set
-  of platforms we support all support the functionality we require;
-  note that having the functionality does not make it usable, e.g. GCC
-  has :cpp:class:`std::regex` but it is broken until 5.1 meaning that
-  we need to use :cpp:class:`boost::regex` for the time being; use
-  CMake feature tests to test that each feature is functional as well
-  as present
+  e.g. :cpp:class:`std::regex` in C++11, :cpp:func:`std::make_unique`
+  in C++14, ``filesystem`` functions in C++17, where the Boost
+  equivalents are currently used; this will reduce our dependency upon
+  Boost over time, once the set of platforms we support all support
+  the functionality we require; note that having the functionality
+  does not make it usable, e.g. GCC has :cpp:class:`std::regex` but it
+  is broken until 5.1 meaning that we need to use
+  :cpp:class:`boost::regex` for the time being; use CMake feature
+  tests to test that each feature is functional as well as present
 
 Such changes should be safe to make with the existing test coverage we
 have in place.
