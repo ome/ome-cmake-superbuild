@@ -12,6 +12,12 @@ release, the corresponding source release or git tag is appropriate,
 but if you wish to build the latest development work, or make changes
 to the sources, the git repository will be more useful.
 
+Errata
+------
+
+Before proceeding, please check the :ref:`errata` for known problems
+with certain libraries and platforms.
+
 Build environment
 -----------------
 
