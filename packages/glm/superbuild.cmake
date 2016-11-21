@@ -3,7 +3,7 @@
 # Set dependency list
 ome_add_dependencies(glm)
 
-set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli -DGLM_TEST_ENABLE:BOOL=ON)
+list(APPEND CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli -DGLM_TEST_ENABLE:BOOL=ON)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}

@@ -6,7 +6,7 @@ ome_add_dependencies(png THIRD_PARTY_DEPENDENCIES zlib)
 # Notes:
 # Installs cmake settings into lib/libpng; could be deleted
 
-set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
+list(APPEND CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}

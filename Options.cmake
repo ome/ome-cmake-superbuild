@@ -79,6 +79,10 @@ set(BUILD_DOXYGEN ${doxygen})
 option(sphinx "Enable sphinx manual page and HTML documentation" ON)
 option(sphinx-linkcheck "Check sphinx documentation links by default" OFF)
 
+# C++ standard
+set(CMAKE_CXX_STANDARD "14" CACHE STRING "Preferred C++ standard version")
+set(CMAKE_CXX_STANDARD_REQUIRED "11" CACHE STRING "Minimum C++ standard version")
+
 set(SUPERBUILD_OPTIONS
     "-Dextra-warnings:BOOL=${extra-warnings}"
     "-Dfatal-warnings:BOOL=${fatal-warnings}"

@@ -12,7 +12,6 @@ ome_add_dependencies(ome-cmake-superbuild-docs-contents
 
 unset(ome_docs_dependencies)
 
-unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
      "-DDOC_VERSION_MAJOR=${OME_VERSION_MAJOR}"
      "-DDOC_VERSION_MINOR=${OME_VERSION_MINOR}"

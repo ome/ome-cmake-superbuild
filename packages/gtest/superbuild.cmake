@@ -3,7 +3,7 @@
 # Set dependency list
 ome_add_dependencies(gtest)
 
-set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
+list(APPEND CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
 list(APPEND CONFIGURE_OPTIONS "-Dgtest_force_shared_crt:BOOL=ON")
 list(APPEND CONFIGURE_OPTIONS "-DCMAKE_INSTALL_PREFIX:PATH=${OME_EP_TOOL_DIR}")
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")

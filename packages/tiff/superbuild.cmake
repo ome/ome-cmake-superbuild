@@ -29,7 +29,7 @@ endif()
 # upstream and may be included in a future release.  If so, the
 # files copied in the patch step may be dropped.
 
-set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
+list(APPEND CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}

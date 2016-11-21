@@ -44,7 +44,6 @@ endif()
 # Set dependency list
 ome_add_dependencies(ome-common THIRD_PARTY_DEPENDENCIES boost gtest xerces xalan)
 
-unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
      "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
      -DBoost_NO_BOOST_CMAKE:BOOL=true
