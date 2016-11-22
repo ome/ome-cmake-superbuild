@@ -59,6 +59,9 @@ option(extended-tests "Enable extended tests (more comprehensive, longer run tim
 # stage directory in the build tree.
 option(relocatable-install "Install tree will be relocatable" ON)
 
+# Default location of git repositories
+set(git-dir "" CACHE STRING "Default location of local git repositories")
+
 option(head "Force building from current git develop branch (all OME components)" OFF)
 
 # List of packages to build

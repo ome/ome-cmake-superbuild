@@ -1,45 +1,13 @@
 # ome-qtwidgets superbuild
 
-# Options to build from git (defaults to source zip if unset)
-set(ome-qtwidgets-head ${head} CACHE BOOL "Force building from current git develop branch")
-set(ome-qtwidgets-dir "" CACHE PATH "Local directory containing the OME QtWidgets source code")
-set(ome-qtwidgets-git-url "" CACHE STRING "URL of OME QtWidgets git repository")
-set(ome-qtwidgets-git-branch "" CACHE STRING "URL of OME QtWidgets git repository")
-
-# Current stable release.
-set(RELEASE_URL "https://downloads.openmicroscopy.org/ome-qtwidgets/5.3.2/source/ome-qtwidgets-5.3.2.tar.xz")
-set(RELEASE_HASH "SHA512=ab9c3b745cdf409b977076853d227ccc65ca45b3977a373e65661f65ae101a2d11ff34328205bbc5693b219ef0b8f12f0536ef5652a7bb205e3f142e35bd1477")
-
-# Current development branch (defaults for ome-qtwidgets-head option).
-set(GIT_URL "https://github.com/ome/ome-qtwidgets.git")
-set(GIT_BRANCH "develop")
-
-if(NOT ome-qtwidgets-head)
-  if(ome-qtwidgets-git-url)
-    set(GIT_URL ${ome-qtwidgets-git-url})
-  endif()
-  if(ome-qtwidgets-git-branch)
-    set(GIT_BRANCH ${ome-qtwidgets-git-branch})
-  endif()
-endif()
-
-if(ome-qtwidgets-dir)
-  set(EP_SOURCE_DOWNLOAD
-    DOWNLOAD_COMMAND "")
-  set(EP_SOURCE_DIR "${ome-qtwidgets-dir}")
-  message(STATUS "Building OME QtWidgets C++ from local directory (${ome-qtwidgets-dir})")
-elseif(ome-qtwidgets-head OR ome-qtwidgets-git-url OR ome-qtwidgets-git-branch)
-  set(EP_SOURCE_DOWNLOAD
-    GIT_REPOSITORY "${GIT_URL}"
-    GIT_TAG "${GIT_BRANCH}"
-    UPDATE_DISCONNECTED 1)
-  message(STATUS "Building OME QtWidgets C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
-else()
-  set(EP_SOURCE_DOWNLOAD
-    URL "${RELEASE_URL}"
-    URL_HASH "${RELEASE_HASH}")
-  message(STATUS "Building OME QtWidgets C++ from source release (${RELEASE_URL})")
-endif()
+# Source information
+ome_source_settings(ome-qtwidgets
+  NAME            "OME QtWidgets"
+  GIT_NAME        "ome-qtwidgets"
+  GIT_URL         "https://github.com/ome/ome-qtwidgets.git"
+  GIT_HEAD_BRANCH "master"
+  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-qtwidgets/5.3.2/source/ome-qtwidgets-5.3.2.tar.xz"
+  RELEASE_HASH    "SHA512=ab9c3b745cdf409b977076853d227ccc65ca45b3977a373e65661f65ae101a2d11ff34328205bbc5693b219ef0b8f12f0536ef5652a7bb205e3f142e35bd1477")
 
 # Set dependency list
 ome_add_dependencies(ome-qtwidgets
