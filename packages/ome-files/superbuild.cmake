@@ -1,45 +1,13 @@
 # ome-files superbuild
 
-# Options to build from git (defaults to source zip if unset)
-set(ome-files-head ${head} CACHE BOOL "Force building from current git develop branch")
-set(ome-files-dir "" CACHE PATH "Local directory containing the OME Files source code")
-set(ome-files-git-url "" CACHE STRING "URL of OME Files git repository")
-set(ome-files-git-branch "" CACHE STRING "URL of OME Files git repository")
-
-# Current stable release.
-set(RELEASE_URL "https://downloads.openmicroscopy.org/ome-files-cpp/0.2.3/source/ome-files-cpp-0.2.3.tar.xz")
-set(RELEASE_HASH "SHA512=8d7cc123a3f32f363fb573529222f4d4c47dc16e8cc3f7a8e42a1592018971f4a8bf3c87b83ced3b4f5cda2dc58cdc7a40bf8b9215fe2b02ace9b589b04ab635")
-
-# Current development branch (defaults for ome-files-head option).
-set(GIT_URL "https://github.com/ome/ome-files.git")
-set(GIT_BRANCH "develop")
-
-if(NOT ome-files-head)
-  if(ome-files-git-url)
-    set(GIT_URL ${ome-files-git-url})
-  endif()
-  if(ome-files-git-branch)
-    set(GIT_BRANCH ${ome-files-git-branch})
-  endif()
-endif()
-
-if(ome-files-dir)
-  set(EP_SOURCE_DOWNLOAD
-    DOWNLOAD_COMMAND "")
-  set(EP_SOURCE_DIR "${ome-files-dir}")
-  message(STATUS "Building OME Files C++ from local directory (${ome-files-dir})")
-elseif(ome-files-head OR ome-files-git-url OR ome-files-git-branch)
-  set(EP_SOURCE_DOWNLOAD
-    GIT_REPOSITORY "${GIT_URL}"
-    GIT_TAG "${GIT_BRANCH}"
-    UPDATE_DISCONNECTED 1)
-  message(STATUS "Building OME Files C++ from git (URL ${GIT_URL}, branch/tag ${GIT_BRANCH})")
-else()
-  set(EP_SOURCE_DOWNLOAD
-    URL "${RELEASE_URL}"
-    URL_HASH "${RELEASE_HASH}")
-  message(STATUS "Building OME Files C++ from source release (${RELEASE_URL})")
-endif()
+# Source information
+ome_source_settings(ome-files
+  NAME            "OME Files C++"
+  GIT_NAME        "ome-files-cpp"
+  GIT_URL         "https://github.com/ome/ome-files-cpp.git"
+  GIT_HEAD_BRANCH "master"
+  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-files-cpp/0.2.3/source/ome-files-cpp-0.2.3.tar.xz"
+  RELEASE_HASH    "SHA512=8d7cc123a3f32f363fb573529222f4d4c47dc16e8cc3f7a8e42a1592018971f4a8bf3c87b83ced3b4f5cda2dc58cdc7a40bf8b9215fe2b02ace9b589b04ab635")
 
 # Set dependency list
 ome_add_dependencies(ome-files

@@ -478,6 +478,11 @@ out.  Run::
     make
     make install
 
+Note that if all the git repositories are in a common location and use
+their canonical names, then this may be simplified::
+
+    cmake -G Ninja -Dgit-dir=/path/to/git/repos -Dbuild-prerequisites=OFF -Dome-superbuild_BUILD_gtest=ON -Dbuild-packages=ome-qtwidgets -DCMAKE_INSTALL_PREFIX=/install/dir /path/to/superbuild/git/repo
+
 Building OME Files on Windows (release)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -513,3 +518,8 @@ clone has the branch you wish to build checked out.  Run::
     cmake -G Ninja -Dome-common-dir=/path/to/ome-common-cpp -Dome-model-dir=/path/to/ome-model -Dome-files-dir=/path/to/ome-files -Dome-qtwidgets-dir=/path/to/ome-qtwidgets -Dbuild-packages=ome-qtwidgets -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/install/dir /path/to/superbuild/sources
     ninja
     ninja install
+
+Note that if all the git repositories are in a common location and use
+their canonical names, then this may be simplified::
+
+    cmake -G Ninja -Dgit-dir=/path/to/git/repos -Dbuild-packages=ome-qtwidgets -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/install/dir /path/to/superbuild/sources

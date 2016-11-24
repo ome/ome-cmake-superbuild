@@ -146,6 +146,90 @@ macro(ome_add_empty_project project)
     DEPENDS ${project}-prerequisites)
 endmacro()
 
+function(ome_source_settings target)
+  set(options)
+  set(oneValueArgs NAME GIT_NAME GIT_URL GIT_HEAD_BRANCH RELEASE_URL RELEASE_HASH)
+  set(multiValueArgs DEPENDENCIES THIRD_PARTY_DEPENDENCIES)
+
+  cmake_parse_arguments(OSS "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+  if(OSS_UNPARSED_ARGUMENTS)
+    message(FATAL_ERROR "Unknown keywords given to OME_SOURCE_SETTINGS(): \"${OSS_UNPARSED_ARGUMENTS}\"")
+  endif()
+
+  if(NOT OSS_NAME)
+    set(OSS_NAME "${target}")
+  endif()
+  if(NOT OSS_GIT_NAME)
+    set(OSS_GIT_NAME "${target}")
+  endif()
+  if(NOT OSS_GIT_URL)
+    set(OSS_GIT_URL "")
+  endif()
+  if(NOT OSS_GIT_BRANCH)
+    set(OSS_GIT_BRANCH "")
+  endif()
+  if(NOT OSS_GIT_HEAD_BRANCH)
+    set(OSS_GIT_HEAD_BRANCH "")
+  endif()
+
+  # Options to build from git (defaults to source zip if unset)
+  set(${target}-head ${head} CACHE BOOL "Force building ${OSS_NAME} from current git ${OSS_GIT_HEAD} branch")
+
+  set(git-dir-default "")
+  if(EXISTS "${git-dir}")
+    set(git-dir-default "${git-dir}/${OSS_GIT_NAME}")
+  endif()
+  set(${target}-dir "${git-dir-default}" CACHE PATH "Local directory containing the ${OSS_NAME} source code")
+
+  set(${target}-git-url "${OSS_GIT_URL}" CACHE STRING "URL of ${OSS_NAME} git repository")
+  set(${target}-git-branch "${OSS_GIT_BRANCH}" CACHE STRING "Branch or tag of ${OSS_NAME} git repository to build")
+
+  if(NOT ${target}-head)
+    if(${target}-git-url)
+      set(OSS_GIT_URL ${${target}-git-url})
+    endif()
+    if(${target}-git-branch)
+      set(OSS_GIT_BRANCH ${${target}-git-branch})
+    endif()
+  endif()
+
+  if(${target}-dir AND NOT ${target}-dir STREQUAL git-dir-default)
+    if(NOT EXISTS "${${target}-dir}")
+      message(FATAL_ERROR "Git directory ${${target}-dir} defined for target ${target} does not exist")
+    endif()
+  endif()
+
+  if(OSS_GIT_HEAD_BRANCH AND ${target}-head)
+    set(EP_SOURCE_DOWNLOAD
+      GIT_REPOSITORY "${OSS_GIT_URL}"
+      GIT_TAG "${OSS_GIT_HEAD_BRANCH}"
+      UPDATE_DISCONNECTED 1)
+    message(STATUS "Building ${OSS_NAME} from git HEAD (URL ${OSS_GIT_URL}, branch/tag ${OSS_GIT_HEAD_BRANCH})")
+  elseif(OSS_GIT_URL AND ${target}-git-branch)
+    set(EP_SOURCE_DOWNLOAD
+      GIT_REPOSITORY "${OSS_GIT_URL}"
+      GIT_TAG "${OSS_GIT_BRANCH}"
+      UPDATE_DISCONNECTED 1)
+    message(STATUS "Building ${OSS_NAME} from git (URL ${OSS_GIT_URL}, branch/tag ${OSS_GIT_BRANCH})")
+  elseif(${target}-dir AND EXISTS "${${target}-dir}")
+    set(EP_SOURCE_DOWNLOAD
+      DOWNLOAD_COMMAND "")
+    set(EP_SOURCE_DIR "${${target}-dir}")
+    message(STATUS "Building ${OSS_NAME} from local directory (${${target}-dir})")
+  elseif(OSS_RELEASE_URL AND OSS_RELEASE_HASH)
+    set(EP_SOURCE_DOWNLOAD
+      URL "${OSS_RELEASE_URL}"
+      URL_HASH "${OSS_RELEASE_HASH}")
+    message(STATUS "Building ${OSS_NAME} from source release (${OSS_RELEASE_URL})")
+  else()
+    message(FATAL_ERROR "No sources defined for target ${target}")
+  endif()
+
+  set(EP_SOURCE_DIR "${EP_SOURCE_DIR}" PARENT_SCOPE)
+  set(EP_SOURCE_DOWNLOAD "${EP_SOURCE_DOWNLOAD}" PARENT_SCOPE)
+endfunction()
+
 set(GENERIC_CMAKE_CONFIGURE "${PROJECT_SOURCE_DIR}/helpers/cmake_configure.cmake")
 set(GENERIC_CMAKE_BUILD "${PROJECT_SOURCE_DIR}/helpers/cmake_build.cmake")
 set(GENERIC_CMAKE_INSTALL "${PROJECT_SOURCE_DIR}/helpers/cmake_install.cmake")
