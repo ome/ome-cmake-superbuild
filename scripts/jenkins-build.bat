@@ -440,7 +440,7 @@ if exist "%version_tag%" rmdir /s /q "%version_tag%"
 rename stage %version_tag%
 
 mkdir "%installdir%\%docs_version_tag%"
-for %%C in (ome-common,ome-model,ome-files,ome-qtwidgets,ome-cmake-superbuild) do (
+for %%C in (ome-common,ome-model,ome-xml,ome-files,ome-qtwidgets,ome-cmake-superbuild) do (
     if exist "%builddir%\stage\share\doc\%%C" (
         echo Installing documentation for %%C
         (robocopy "%builddir%\stage\share\doc\%%C" "%installdir%\%docs_version_tag%\%%C" /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
