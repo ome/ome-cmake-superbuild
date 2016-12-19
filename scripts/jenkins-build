@@ -189,7 +189,7 @@ build() {
     rm -rf "${installdir}/${bundle_name}"
     mv "${installdir}/stage" "${installdir}/${bundle_name}"
 
-    for component in ome-common ome-model ome-files ome-qtwidgets ome-cmake-superbuild; do
+    for component in ome-common ome-model ome-xml ome-files ome-qtwidgets ome-cmake-superbuild; do
         if [ -d "${builddir}/stage/share/doc/${component}" ]; then
             mkdir -p "${installdir}/${docs_bundle_name}"
             echo "Installing documentation for ${component}"
