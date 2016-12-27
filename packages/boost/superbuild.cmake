@@ -26,8 +26,8 @@ endif()
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "http://sourceforge.net/projects/boost/files/boost/1.62.0/boost_1_62_0.tar.bz2"
-  URL_HASH "SHA512=5385ae3d5255a433a704169ad454d8dc2b0b5bcae3fb23defd6570df4ff7d845cf9fcbeebccdc1c5db0eec9f82ee3d90040de9507c8167467c635d3b215463be"
+  URL "http://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.bz2"
+  URL_HASH "SHA512=c915c5f5778dee49b8e9d0a40f37f90f56fb1fdb1d8ce92d97bf48bc7bc462212487badfe4bbe30b06196d1149cfb221da12ac54e97499b0d4cb6466813bb4ad"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   INSTALL_DIR ""
   PATCH_COMMAND
