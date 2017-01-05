@@ -65,6 +65,9 @@ function(ome_add_package name)
       set(EP_PROJECT "${name}")
       set(EP_SOURCE_DIR "${CMAKE_BINARY_DIR}/${name}-source")
       set(EP_BINARY_DIR "${CMAKE_BINARY_DIR}/${name}-build")
+      set(CONFIGURE_OPTIONS
+          "-DCMAKE_CXX_STANDARD=${CMAKE_CXX_STANDARD}"
+          "-DCMAKE_CXX_STANDARD_REQUIRED=${CMAKE_CXX_STANDARD_REQUIRED}")
       if(OAP_THIRD_PARTY)
         add_dependencies(third-party-prerequisites "${name}")
         message(STATUS "Adding third-party dependency - ${name}")

@@ -3,7 +3,7 @@
 # Set dependency list
 ome_add_dependencies(zlib)
 
-set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
+list(APPEND CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}

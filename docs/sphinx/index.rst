@@ -12,3 +12,4 @@ OME CMake Super-Build
     packages
     building
     maintenance
+    errata

@@ -29,7 +29,6 @@ set doxygen=OFF
 set linkcheck=OFF
 set extended_tests=OFF
 set verbose=OFF
-set cxxdetect=OFF
 set parallel=
 set parallel_opt=OFF
 set build_git=OFF
@@ -64,9 +63,6 @@ if NOT "%1"=="" (
     )
     if "%1"=="-P" (
         set "parallel_opt=ON"
-    )
-    if "%1"=="-x" (
-        set "cxxdetect=ON"
     )
     if "%1"=="-v" (
         set "verbose=ON"
@@ -164,7 +160,6 @@ echo doxygen=%doxygen%
 echo linkcheck=%linkcheck%
 echo extended_tests=%extended_tests%
 echo verbose=%verbose%
-echo cxxdetect=%cxxdetect%
 echo parallel=%parallel%
 echo build_git=%build_git%
 echo qt=%qt%
@@ -205,7 +200,6 @@ Options:
   -P         Enable paralellism in subsidiary builds
   -N n       Build number
   -v         Verbose build
-  -x         Use C++11/C++14 rather than C++98
 :usageexit
 exit /b
 

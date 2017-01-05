@@ -15,7 +15,6 @@ ome_add_dependencies(ome-qtwidgets
                      THIRD_PARTY_DEPENDENCIES boost png tiff
                                               glm py-sphinx gtest)
 
-unset(CONFIGURE_OPTIONS)
 list(APPEND CONFIGURE_OPTIONS
      "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
      -DBoost_NO_BOOST_CMAKE:BOOL=true

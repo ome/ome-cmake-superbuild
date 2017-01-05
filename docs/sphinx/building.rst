@@ -12,6 +12,12 @@ release, the corresponding source release or git tag is appropriate,
 but if you wish to build the latest development work, or make changes
 to the sources, the git repository will be more useful.
 
+Errata
+------
+
+Before proceeding, please check the :ref:`errata` for known problems
+with certain libraries and platforms.
+
 Build environment
 -----------------
 
@@ -81,15 +87,6 @@ build-prerequisites=(ON|OFF)
   dependencies.  If disabled, required dependencies of any of the
   packages to be built (specified with ``build-packages``) must be
   provided by the system, and optional dependencies will be ignored.
-cxxstd-autodetect=(ON|OFF)
-  Enable or disable (default) C++ compiler standard autodetection.  If
-  enabled, the compiler will be put into C++11 mode if available,
-  otherwise falling back to C++03 or C++98.  If disabled, the default
-  compiler standard mode is used, and it is the responsibility of the
-  user to add the appropriate compiler options to build using the
-  required standard.  This is useful if autodetection fails or a
-  compiler is buggy in certain modes (e.g. GCC 4.4 or 4.6 require
-  ``-std=gnu++98`` or else ``stdarg`` support is broken).
 doxygen=(ON|OFF)
   Enable doxygen documentation.  These will be enabled by default if
   doxygen is found.
@@ -188,20 +185,6 @@ ome-superbuild_BUILD_${package}=(ON|OFF)
   default, building of all components is disabled. `${package}` is the
   component name.  Look in the :file:`packages` directory for a full
   list of components.
-
-C++11
-^^^^^
-
-C++11 features such as :cpp:class:`std::shared_ptr` are used when
-using a C++11 or C++14 compiler, or when ``-Dcxxstd-autodetect=ON`` is
-used and the compiler can be put into a C++11 or C++14 compatibility
-mode.  When using an older compatbility mode such as C++98, the Boost
-equivalents of C++11 library features will be used as fallbacks to
-provide the same functionality.  In both cases these types are
-imported into the :cpp:class:`ome::compat` namespace, for example as
-:cpp:class:`ome::compat::shared_ptr`, and the types in this namespace
-should be used for portability when using any part of the API which
-use types from this namespace.
 
 Unix, Linux and MacOS X
 ^^^^^^^^^^^^^^^^^^^^^^^
