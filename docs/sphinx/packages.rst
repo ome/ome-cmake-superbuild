@@ -33,3 +33,4 @@ packages.
     packages/toolchain
     packages/xalan-c
     packages/xerces-c
+    packages/zlib
