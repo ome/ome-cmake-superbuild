@@ -11,8 +11,8 @@ string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "http://downloads.sourceforge.net/project/libpng/libpng16/1.6.25/libpng-1.6.25.tar.xz"
-  URL_HASH "SHA512=74de15b1146d479660e2b1fd6b192388857955f502b249f00b69e37b594af4d53117704cb77b5ae07ffd84510cc801695be2121adbedfaf65dc4e3b521259f5d"
+  URL "http://downloads.sourceforge.net/project/libpng/libpng16/1.6.27/libpng-1.6.27.tar.xz"
+  URL_HASH "SHA512=9dcf54147fa2637a72364246e8565c0a6d25e4313f26150689b166eabd4358177e1caf38ff622b04c71f3b7cfd550f7fd6ca87892c50203a63b92f365fc7c8d7"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""
