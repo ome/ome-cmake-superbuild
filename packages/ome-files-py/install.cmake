@@ -10,5 +10,5 @@ execute_process(COMMAND python setup.py install --skip-build
   RESULT_VARIABLE install_result)
 
 if(install_result)
-  message(FATAL_ERROR "cmake: Install failed")
+  message(FATAL_ERROR "ome-files-py: install failed")
 endif()

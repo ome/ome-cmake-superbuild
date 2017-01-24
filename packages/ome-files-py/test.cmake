@@ -9,5 +9,5 @@ execute_process(COMMAND python all_tests.py
   RESULT_VARIABLE test_result)
 
 if(test_result)
-  message(FATAL_ERROR "cmake: Install failed")
+  message(FATAL_ERROR "ome-files-py: test failed")
 endif()
