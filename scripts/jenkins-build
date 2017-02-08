@@ -312,6 +312,7 @@ Options:
   -P         Enable paralellism in subsidiary builds
   -N n       Build number
   -q         Build Qt interface
+  -W         Build Python wrapper
   -v         Verbose build
 
 EOF
@@ -336,12 +337,11 @@ parallel=
 parallel_opt=OFF
 build_git=OFF
 build_tp_prereqs=ON
-build_qt=OFF
-build_packages="ome-files-py;ome-cmake-superbuild-docs;ome-cmake-superbuild-docs-contents"
+build_packages="ome-files;ome-cmake-superbuild-docs;ome-cmake-superbuild-docs-contents"
 build_number=
 
 # Parse command line options.
-while getopts hBGqndLexvPi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
+while getopts hBGqWndLexvPi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
     case "$OPT" in
         h)
             usage
@@ -358,6 +358,9 @@ while getopts hBGqndLexvPi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
             ;;
         q)
             build_packages="${build_packages};ome-qtwidgets"
+            ;;
+        W)
+            build_packages="${build_packages};ome-files-py"
             ;;
         d)
             doxygen=ON
