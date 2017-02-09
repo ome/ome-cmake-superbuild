@@ -22,11 +22,11 @@ of third-party dependencies which are already provided by the package
 manager.  This is supported.  When building for older distributions,
 where the base platform has outdated or missing dependencies, the
 super-build can be used to create a self-contained set of newer
-libraries which won't conflict with the base platform.  However, if a
-package both exists on the system and is built by the super-build, it
-could potentially result in a mismatching set of headers and libraries
-being used, which could cause obscure failures when compiling, linking
-or running.  It is advisable to use one or the other.  Ensure that the
+libraries which will not conflict with the base platform.  However, if
+a package both exists on the system and is built by the super-build,
+it could result in a mismatching set of headers and libraries being
+used, which might cause obscure failures when compiling, linking or
+running.  It is advisable to use one or the other.  Ensure that the
 system does not have any conflicting development packages installed to
 guarantee that only the headers provided by packages in the
 super-build are used, or disable the building of these packages by the
