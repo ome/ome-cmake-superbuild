@@ -18,7 +18,7 @@ if(WIN32)
        "${OME_EP_TOOL_CACHE}/*/*/site-packages"
        "${OME_EP_TOOL_DIR}/*/site-packages"
        "${OME_EP_TOOL_DIR}/*/*/site-packages"
-       "${OME_EP_LIB_DIR}/*/site-packages")
+       "${OME_EP_INSTALL_DIR}/*/*/site-packages")
   foreach(dir ${python_dirs})
     file(TO_NATIVE_PATH "${dir}" dir)
     if(PYTHONPATH)
@@ -53,7 +53,7 @@ else()
        "${OME_EP_TOOL_CACHE}/*/*/site-packages"
        "${OME_EP_TOOL_DIR}/*/site-packages"
        "${OME_EP_TOOL_DIR}/*/*/site-packages"
-       "${OME_EP_LIB_DIR}/*/site-packages")
+       "${OME_EP_INSTALL_DIR}/*/*/site-packages")
   foreach(dir ${python_dirs})
     if(PYTHONPATH)
       set(PYTHONPATH "${dir}:${PYTHONPATH}")

@@ -18,7 +18,7 @@ string(REPLACE ";" ":" INCLUDE_ARG "${INCLUDE_DIRS}")
 string(REPLACE ";" ":" LIB_ARG "${LIB_DIRS}")
 
 execute_process(COMMAND python setup.py build_ext
-  "-I${INCLUDE_ARG}" "-L${LIB_ARG}" "-R${LIB_ARG}"
+  "-I${INCLUDE_ARG}" "-L${LIB_ARG}"
   WORKING_DIRECTORY "${SOURCE_DIR}"
   RESULT_VARIABLE build_ext_result)
 if(build_ext_result)
