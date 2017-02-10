@@ -207,7 +207,7 @@ build() {
             cmake --build . --target source-archive
             echo "Making source release for ome-cmake-superbuild: done"
         )
-        for component in ome-common ome-files ome-qtwidgets; do
+        for component in ome-common ome-model ome-files ome-qtwidgets; do
             (
                 if [ -d "${builddir}/${component}-build" ]; then
                     echo "Making source release for ${component}"
