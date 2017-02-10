@@ -6,8 +6,8 @@ ome_source_settings(ome-model
   GIT_NAME        "ome-model"
   GIT_URL         "https://github.com/ome/ome-model.git"
   GIT_HEAD_BRANCH "master"
-  RELEASE_URL     ""
-  RELEASE_HASH    "SHA512=")
+  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-model/5.5.0/source/ome-model-5.5.0.tar.xz"
+  RELEASE_HASH    "SHA512=9ce0dc9343e854d4b3f547a5067bcab0e85ada90d238fc0300c539cbe4fb2bd0b65771efb56e34ce9108b56fa467a397bb0b27d22a5655d9c11e4682bc417ba2")
 
 # Set dependency list
 ome_add_dependencies(ome-model
