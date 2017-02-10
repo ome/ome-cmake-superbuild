@@ -17,11 +17,20 @@ the same compiler options, to ensure that all the libraries and
 programs are compatible.
 
 When building for a system which includes a package manager with a
-comprehensive set of packages it may be desirable to disable building
-of the third-party dependencies provided by the package manager.  This
-is supported.  However, when building for older distributions with
-outdated dependencies, it can be used to create a self-contained set
-of newer libraries which won't conflict with the base platform.
+comprehensive set of packages, it may be desirable to disable building
+of third-party dependencies which are already provided by the package
+manager.  This is supported.  When building for older distributions,
+where the base platform has outdated or missing dependencies, the
+super-build can be used to create a self-contained set of newer
+libraries which will not conflict with the base platform.  However, if
+a package both exists on the system and is built by the super-build,
+it could result in a mismatching set of headers and libraries being
+used, which might cause obscure failures when compiling, linking or
+running.  It is advisable to use one or the other.  Ensure that the
+system does not have any conflicting development packages installed to
+guarantee that only the headers provided by packages in the
+super-build are used, or disable the building of these packages by the
+super-build to force the system copy to be used.
 
 The super-build can not provide *every* dependency.  Some very large
 and complex packages are required to be installed using a package
