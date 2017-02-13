@@ -214,8 +214,8 @@ Windows
 
 On Windows, the generator will require specifying by hand, and this
 will configure the version of Visual Studio (or other compiler) to
-use.  For example, ``-G "Visual Studio 12 Win64"`` will configure for
-generating Visual Studio 2013 64-bit solution and project files for
+use.  For example, ``-G "Visual Studio 14 Win64"`` will configure for
+generating Visual Studio 2015 64-bit solution and project files for
 use with the Visual C++ compiler tool :program:`msbuild` or for
 opening in the Visual Studio application.
 
