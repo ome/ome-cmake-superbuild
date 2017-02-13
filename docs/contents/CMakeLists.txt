@@ -88,8 +88,8 @@ if (BUILD_SPHINX AND SPHINX_BUILD)
                      COMMAND ${CMAKE_COMMAND} -E make_directory "${sphinx_builddir}/cache"
                      COMMAND ${CMAKE_COMMAND} -E make_directory "${sphinx_builddir}/html"
                      COMMAND ${SPHINX_BUILD}
-                             -D "release=${DOC_VERSION_MAJOR}.${DOC_VERSION_MINOR}.${DOC_VERSION_PATCH}"
-                             -D "version=${DOC_VERSION_MAJOR}.${DOC_VERSION_MINOR}"
+                             -D "release=${DOC_VERSION_MAJOR}.${DOC_VERSION_MINOR}.${DOC_VERSION_PATCH}${DOC_VERSION_DEV}"
+                             -D "version=${DOC_VERSION_MAJOR}.${DOC_VERSION_MINOR}${DOC_VERSION_DEV}"
                              -c "${sphinx_builddir}"
                              -d "${sphinx_builddir}/cache"
                              -b html
