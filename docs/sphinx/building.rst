@@ -171,14 +171,14 @@ python-cache=directory
   python prerequisites.  Useful to save time when rebuilding if the
   content of the :file:`python` directory is placed here after
   building ``third-party-prerequisites``.
-ome-superbuild_USE_SYSTEM_${package}=(ON|OFF)
+ome-cmake-superbuild_USE_SYSTEM_${package}=(ON|OFF)
   Use when ``build-prerequisites`` is enabled.  This permits the
   selective disabling of the building of particular components, in
   order to use the system version of these components.  By default,
   building of all components is enabled. `${package}` is the component
   name.  Look in the :file:`packages` directory for a full list of
   components.
-ome-superbuild_BUILD_${package}=(ON|OFF)
+ome-cmake-superbuild_BUILD_${package}=(ON|OFF)
   Use when ``build-prerequisites`` is disabled.  This permits the
   selective enabling of the building of particular components, in
   order to use the superbuild version of these components.  By
@@ -457,14 +457,14 @@ out.  Run::
 
     mkdir build
     cd build
-    cmake -G Ninja -Dome-common-dir=/path/to/ome-common-cpp -Dome-model-dir=/path/to/ome-model -Dome-files-dir=/path/to/ome-files -Dome-qtwidgets-dir=/path/to/ome-qtwidgets -Dbuild-prerequisites=OFF -Dome-superbuild_BUILD_gtest=ON -Dbuild-packages=ome-qtwidgets -DCMAKE_INSTALL_PREFIX=/install/dir /path/to/superbuild/git/repo
+    cmake -G Ninja -Dome-common-dir=/path/to/ome-common-cpp -Dome-model-dir=/path/to/ome-model -Dome-files-dir=/path/to/ome-files -Dome-qtwidgets-dir=/path/to/ome-qtwidgets -Dbuild-prerequisites=OFF -Dome-cmake-superbuild_BUILD_gtest=ON -Dbuild-packages=ome-qtwidgets -DCMAKE_INSTALL_PREFIX=/install/dir /path/to/superbuild/git/repo
     make
     make install
 
 Note that if all the git repositories are in a common location and use
 their canonical names, then this may be simplified::
 
-    cmake -G Ninja -Dgit-dir=/path/to/git/repos -Dbuild-prerequisites=OFF -Dome-superbuild_BUILD_gtest=ON -Dbuild-packages=ome-qtwidgets -DCMAKE_INSTALL_PREFIX=/install/dir /path/to/superbuild/git/repo
+    cmake -G Ninja -Dgit-dir=/path/to/git/repos -Dbuild-prerequisites=OFF -Dome-cmake-superbuild_BUILD_gtest=ON -Dbuild-packages=ome-qtwidgets -DCMAKE_INSTALL_PREFIX=/install/dir /path/to/superbuild/git/repo
 
 Building OME Files on Windows (release)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

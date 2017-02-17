@@ -110,7 +110,7 @@ build() {
     # build it.
     CMAKE_PREREQS="-Dbuild-prerequisites:BOOL=ON"
     if [ "$build_tp_prereqs" = "OFF" ] || [ -n "$(cached_tree)" ]; then
-        CMAKE_PREREQS="-Dbuild-prerequisites:BOOL=OFF -Dome-superbuild_BUILD_gtest:BOOL=ON"
+        CMAKE_PREREQS="-Dbuild-prerequisites:BOOL=OFF -Dome-cmake-superbuild_BUILD_gtest:BOOL=ON"
         if [ -n "$(cached_tree)" ]; then
             CMAKE_PREREQS="${CMAKE_PREREQS} -Dbuild-cache:PATH=${cachedir}/build -Dtool-build-cache:PATH=${cachedir}/tools-build"
         fi
