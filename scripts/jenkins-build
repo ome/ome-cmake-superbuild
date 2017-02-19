@@ -246,9 +246,9 @@ build() {
     )
 
     # Archive sources
-    if [ -d "${cachedir}/sources" ]; then
+    if [ -d "${cachedir}/source" ]; then
         mkdir -p "${artefactdir}/sources"
-        find "${cachedir}/sources" -maxdepth 1 | while read file; do
+        find "${cachedir}/source" -maxdepth 1 | while read file; do
             cp -a "$file" "${artefactdir}/sources"
         done
     fi
