@@ -246,15 +246,15 @@ build() {
     )
 
     # Archive sources
-    if [ -d "${cachedir}/sources" ]; then
+    if [ -d "${cachedir}/source" ]; then
         mkdir -p "${artefactdir}/sources"
-        find "${cachedir}/sources" -maxdepth 1 | while read file; do
+        find "${cachedir}/source" -type f -maxdepth 1 | while read file; do
             cp -a "$file" "${artefactdir}/sources"
         done
     fi
     if [ -d "${cachedir}/tools" ]; then
         mkdir -p "${artefactdir}/tools"
-        find "${cachedir}/tools" -maxdepth 1 | while read file; do
+        find "${cachedir}/tools" -type f -maxdepth 1 | while read file; do
             cp -a "$file" "${artefactdir}/tools"
         done
     fi
