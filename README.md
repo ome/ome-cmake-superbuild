@@ -4,6 +4,10 @@ This package provides a CMake super-build for the
 [OME Files C++](http://github.com/ome/ome-files-cpp)
 library, and other additional libraries.
 
+Links
+-----
+
+- [Documentation](http://www.openmicroscopy.org/site/support/ome-files-cpp/ome-cmake-superbuild/manual/html/index.html)
 
 Purpose
 -------
@@ -29,4 +33,4 @@ More information
 ----------------
 
 For more information, see the [documentation]
-(http://www.openmicroscopy.org/site/support/ome-files-cpp/).
+(http://www.openmicroscopy.org/site/support/ome-files-cpp/ome-cmake-superbuild/manual/html/index.html).
