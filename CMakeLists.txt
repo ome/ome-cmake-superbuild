@@ -70,7 +70,7 @@ endif()
 include("${CMAKE_CURRENT_LIST_DIR}/Options.cmake")
 
 set(release-name "ome-cmake-superbuild")
-set(release-version "0.3.1")
+set(release-version "0.3.2")
 project("${release-name}"
   VERSION "${release-version}"
   LANGUAGES CXX)
