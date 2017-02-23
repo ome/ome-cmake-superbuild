@@ -6,8 +6,8 @@ ome_source_settings(ome-files
   GIT_NAME        "ome-files-cpp"
   GIT_URL         "https://github.com/ome/ome-files-cpp.git"
   GIT_HEAD_BRANCH "master"
-  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-files-cpp/0.3.1/source/ome-files-cpp-0.3.1.tar.xz"
-  RELEASE_HASH    "SHA512=ddcdc000cda4d6deb31a1dcd25cde56997b182dbed4de3e872d16bd4b1cffdbe79f8c229f8fe7009e6ca5172cb4fca1f95ab6ebf969d05d434ac6d03239bdf59")
+  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-files-cpp/0.3.2/source/ome-files-cpp-0.3.2.tar.xz"
+  RELEASE_HASH    "SHA512=7a3afe9ec68f2657da22e3265070e478f2a5166179552730434047729bcfea53993509f3b760f96792d116cfd69289ba5fd8ec6b321934c4da8b4213ddb989b2")
 
 # Set dependency list
 ome_add_dependencies(ome-files
