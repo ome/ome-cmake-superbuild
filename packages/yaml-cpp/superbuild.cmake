@@ -3,8 +3,11 @@
 # Set dependency list
 ome_add_dependencies(yaml-cpp THIRD_PARTY_DEPENDENCIES boost gtest patch)
 
-list(APPEND CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
-list(APPEND CONFIGURE_OPTIONS "-DGTEST_SOURCE=${CMAKE_BINARY_DIR}/gtest-source")
+list(APPEND CONFIGURE_OPTIONS
+  -Wno-dev --no-warn-unused-cli
+  "-DGTEST_SOURCE=${CMAKE_BINARY_DIR}/gtest-source"
+  "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
+  -DBoost_NO_BOOST_CMAKE:BOOL=true)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
