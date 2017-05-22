@@ -4,8 +4,8 @@
 set(tiff-head OFF CACHE BOOL "Force building libtiff from current CVS head")
 
 # Current stable release.
-set(RELEASE_URL "http://download.osgeo.org/libtiff/tiff-4.0.7.tar.gz")
-set(RELEASE_HASH "SHA512=941357bdd5f947cdca41a1d31ae14b3fadc174ae5dce7b7981dbe58f61995f575ac2e97a7cc4fcc435184012017bec0920278263490464644f2cdfad9a6c5ddc")
+set(RELEASE_URL "http://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz")
+set(RELEASE_HASH "SHA512=5d010ec4ce37aca733f7ab7db9f432987b0cd21664bd9d99452a146833c40f0d1e7309d1870b0395e947964134d5cfeb1366181e761fe353ad585803ff3d6be6")
 
 # Current development branch (defaults for head option).
 set(CVS_REPOSITORY ":pserver:cvsanon@cvs.maptools.org:/cvs/maptools/cvsroot")
