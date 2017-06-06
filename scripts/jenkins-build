@@ -341,7 +341,7 @@ parallel=
 parallel_opt=OFF
 build_git=OFF
 build_tp_prereqs=ON
-build_packages="ome-files;ome-cmake-superbuild-docs;ome-cmake-superbuild-docs-contents;yaml-cpp"
+build_packages="ome-files;ome-cmake-superbuild-docs;ome-cmake-superbuild-docs-contents"
 build_number=
 
 # Parse command line options.

@@ -34,7 +34,7 @@ set parallel_opt=OFF
 set build_git=OFF
 set action=build
 set qt=OFF
-set "packages=ome-files;ome-cmake-superbuild-docs;ome-cmake-superbuild-docs-contents;yaml-cpp"
+set "packages=ome-files;ome-cmake-superbuild-docs;ome-cmake-superbuild-docs-contents"
 
 REM Parse command line options.
 :loop
