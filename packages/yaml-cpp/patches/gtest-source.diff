@@ -1,0 +1,35 @@
+From 461e58f38bd5f93f379358b8e627caeec018cfae Mon Sep 17 00:00:00 2001
+From: Roger Leigh <rleigh@dundee.ac.uk>
+Date: Wed, 10 May 2017 11:48:41 +0100
+Subject: [PATCH] test: Allow overriding of the gtest source location
+
+---
+ test/CMakeLists.txt | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index 74455a5..5821eb3 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -1,8 +1,15 @@
++set(GTEST_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/gmock-1.7.0" CACHE PATH
++  "Location of gtest sources")
++# If not using a shared runtime, gtest hardcodes its own (which breaks linking)
+ set(gtest_force_shared_crt ${MSVC_SHARED_RT} CACHE BOOL
+   "Use shared (DLL) run-time lib even when Google Test built as a static lib.")
+-add_subdirectory(gmock-1.7.0)
+-include_directories(SYSTEM gmock-1.7.0/gtest/include)
+-include_directories(SYSTEM gmock-1.7.0/include)
++add_subdirectory(${GTEST_SOURCE} "${CMAKE_CURRENT_BINARY_DIR}/ext/gtest")
++# 1.7.0
++include_directories(SYSTEM ${GTEST_SOURCE}/gtest/include)
++include_directories(SYSTEM ${GTEST_SOURCE}/include)
++# 1.8.0+
++include_directories(SYSTEM ${GTEST_SOURCE}/googlemock/include)
++include_directories(SYSTEM ${GTEST_SOURCE}/googletest/include)
+ 
+ if(WIN32 AND BUILD_SHARED_LIBS)
+   add_definitions("-DGTEST_LINKED_AS_SHARED_LIBRARY")
+-- 
+2.11.0
+
