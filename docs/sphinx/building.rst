@@ -103,7 +103,7 @@ fatal-warnings=(ON|OFF)
   Make compiler warnings into fatal errors.  This is disabled by
   default.
 head=(ON|OFF)
-  Force building from the current git ``develop`` branch.  Disabled by
+  Force building from the current git ``master`` branch.  Disabled by
   default.  :program:`git` is required to clone the repositories if
   enabled.
 parallel=(ON|OFF)
