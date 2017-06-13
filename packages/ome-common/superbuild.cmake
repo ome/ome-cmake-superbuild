@@ -6,8 +6,8 @@ ome_source_settings(ome-common
   GIT_NAME        "ome-common-cpp"
   GIT_URL         "https://github.com/ome/ome-common-cpp.git"
   GIT_HEAD_BRANCH "master"
-  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-common-cpp/5.4.1/source/ome-common-cpp-5.4.1.tar.xz"
-  RELEASE_HASH    "SHA512=f455f68def8baf784feb9f5d0de808f6f0df65507913fb817130a1871a5709ef4610bb387f9d57bea4a9f5e83d7e43b0ba7d9d897d240924f549b75289e44dfe")
+  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-common-cpp/5.4.2/source/ome-common-cpp-5.4.2.tar.xz"
+  RELEASE_HASH    "SHA512=db057145c5fe16d2664541789957d62609d4aa33705aab6719ef9731f0064a5911351fdce56e83d50c406c934e6688067634c8f9c96b395b13e2de4163785168")
 
 # Set dependency list
 ome_add_dependencies(ome-common THIRD_PARTY_DEPENDENCIES boost gtest xerces xalan)
