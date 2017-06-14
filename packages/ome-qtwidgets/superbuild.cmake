@@ -6,8 +6,8 @@ ome_source_settings(ome-qtwidgets
   GIT_NAME        "ome-qtwidgets"
   GIT_URL         "https://github.com/ome/ome-qtwidgets.git"
   GIT_HEAD_BRANCH "master"
-  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-qtwidgets/5.4.1/source/ome-qtwidgets-5.4.1.tar.xz"
-  RELEASE_HASH    "SHA512=4d5e3be7de713e27adbfcaa31d9267217ad07a9c62472be25ebe163634fe10790b53882c1ada665cd2cda1a5e4e55d1c32d7c63017faaff71a6b908fbc2676b9")
+  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-qtwidgets/5.4.2/source/ome-qtwidgets-5.4.2.tar.xz"
+  RELEASE_HASH    "SHA512=72e5051b1e7602577f32ff83c20958ef050a5327045cc5886b52cabc2f761c2995a4607021a4793811ee5c5f15dc0f2efb39e1c60fad70394eb4c019f4b668f7")
 
 # Set dependency list
 ome_add_dependencies(ome-qtwidgets
