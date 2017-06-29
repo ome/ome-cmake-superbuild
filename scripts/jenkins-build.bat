@@ -34,6 +34,7 @@ set parallel_opt=OFF
 set build_git=OFF
 set action=build
 set qt=OFF
+set perf=OFF
 set "packages=ome-files;ome-cmake-superbuild-docs;ome-cmake-superbuild-docs-contents"
 
 REM Parse command line options.
@@ -47,6 +48,10 @@ if NOT "%1"=="" (
     )
     if "%1"=="-G" (
         set "build_git=ON"
+    )
+    if "%1"=="-F" (
+        set "perf=ON"
+        set "packages=%packages%;ome-files-performance"
     )
     if "%1"=="-q" (
         set "qt=ON"
@@ -163,6 +168,7 @@ echo verbose=%verbose%
 echo parallel=%parallel%
 echo build_git=%build_git%
 echo qt=%qt%
+echo perf=%perf%
 
 goto main
 
@@ -195,6 +201,7 @@ Options:
   -d         Build doxygen API reference
   -L         Run sphinx link checks
   -e         Run extended tests
+  -F         Build performance tests
   -q         Build Qt interface
   -j n       Build in parallel
   -P         Enable paralellism in subsidiary builds
@@ -288,7 +295,7 @@ if exist "%cachedir%\tree" (
 )
 
 if [%build_git%] == [ON] (
-    set "GIT_OPTIONS=-Dome-model-dir=%workspace%\ome-model -Dome-files-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common -Dome-qtwidgets-dir=%workspace%\ome-qtwidgets"
+    set "GIT_OPTIONS=-Dome-model-dir=%workspace%\ome-model -Dome-files-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common -Dome-files-performance-dir=%workspace%\ome-files-performance -Dome-qtwidgets-dir=%workspace%\ome-qtwidgets"
 )
 
 if [%qt%] == [ON] (
