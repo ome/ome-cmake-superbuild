@@ -42,8 +42,8 @@ list(APPEND CMAKE_MODULE_PATH
 
 project(ome-cmake-superbuild)
 
+include(Options)
 include(GNUInstallDirs)
-include("${CMAKE_CURRENT_LIST_DIR}/../../Options.cmake")
 include(Sphinx)
 
 find_program(SPHINX_BUILD sphinx-build)

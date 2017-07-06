@@ -12,8 +12,6 @@ execute_process(COMMAND "${CMAKE_COMMAND}" --build .
                 WORKING_DIRECTORY "${EP_BUILD_DIR}"
                 RESULT_VARIABLE install_result)
 
-endif()
-
 if(install_result)
   message(FATAL_ERROR "cmake: Install failed")
 endif()
