@@ -14,7 +14,7 @@ ome_add_dependencies(ome-model
                      DEPENDENCIES ome-common
                      THIRD_PARTY_DEPENDENCIES boost png tiff xerces
                                               xalan py-genshi py-sphinx
-                                              pybind11 gtest)
+                                              gtest)
 
 list(APPEND CONFIGURE_OPTIONS
      "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
