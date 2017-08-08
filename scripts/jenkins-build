@@ -111,6 +111,11 @@ build() {
         CMAKE_PREREQS="-Dbuild-prerequisites:BOOL=OFF -Dome-cmake-superbuild_BUILD_gtest:BOOL=ON"
     fi
 
+    CMAKE_OPTIONS=
+    if [ -n "$CMAKE_PREFIX_PATH" ]; then
+        CMAKE_OPTIONS="-DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH"
+    fi
+
     GIT_OPTIONS=
     if [ "$build_git" = "ON" ];then
         GIT_OPTIONS="-Dome-model-dir=${workspace}/ome-model -Dome-files-dir=${workspace}/ome-files -Dome-common-dir=${workspace}/ome-common  -Dome-files-performance-dir=${workspace}/ome-files-performance -Dome-qtwidgets-dir=${workspace}/ome-qtwidgets -Dome-files-py-dir=${workspace}/ome-files-py"
@@ -128,6 +133,7 @@ build() {
             -DCMAKE_VERBOSE_MAKEFILE:BOOL="$verbose" \
             -DCMAKE_BUILD_TYPE="$build_type" \
             -DCMAKE_INSTALL_PREFIX:PATH=${installdir}/stage \
+            ${CMAKE_OPTIONS} \
             ${GIT_OPTIONS} \
             "-Ddoxygen:BOOL=$doxygen" \
             "-Dextended-tests:BOOL=$extended_tests" \
