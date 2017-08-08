@@ -14,7 +14,7 @@ else(WIN32)
   execute_process(COMMAND "./configure"
                           "--prefix=${OME_EP_INSTALL_DIR}"
                           "--libdir=${OME_EP_LIB_DIR}"
-                          "CXXFLAGS=${EP_CXXFLAGS}"
+                          "CXXFLAGS=${EP_CXXFLAGS} -std=c++11"
                           "LDFLAGS=${EP_LDFLAGS}"
                   WORKING_DIRECTORY ${BUILD_DIR}
                   RESULT_VARIABLE configure_result)
