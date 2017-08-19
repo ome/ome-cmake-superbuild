@@ -5,9 +5,9 @@ Basic toolchain
 
 A functional compiler, assembler and linker are required to build C++
 code.  The C++ compiler must support the C++11 standard at a minimum,
-with selected C++14 features such as make_unique.  Optional C++14 and
-C++17 features will be enabled if the compiler supports them, otherwise
-Boost will be used to provide equivalent functionality.
+with selected C++14 features such as make_unique.  Optional C++14
+features will be enabled if the compiler supports them, otherwise Boost
+will be used to provide equivalent functionality.
 
 +------------------+-----------------+
 | System           | Package         |
