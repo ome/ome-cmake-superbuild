@@ -1,0 +1,35 @@
+diff -urN boost_1_65_0.orig/libs/stacktrace/build/has_addr2line.cpp boost_1_65_0/libs/stacktrace/build/has_addr2line.cpp
+--- boost_1_65_0.orig/libs/stacktrace/build/has_addr2line.cpp	2017-08-19 17:49:49.000000000 +0100
++++ boost_1_65_0/libs/stacktrace/build/has_addr2line.cpp	2017-08-24 15:06:00.934090448 +0100
+@@ -4,22 +4,24 @@
+ // accompanying file LICENSE_1_0.txt or copy at
+ // http://www.boost.org/LICENSE_1_0.txt)
+ 
+-#include <cstdlib>
+ #include <string>
+ 
+ #include <boost/config.hpp>
+-#include <unwind.h>
+-#include <sys/types.h>
+-#include <sys/wait.h>
++#ifdef BOOST_MSVC
++#include <io.h>
++#define X_OK 4
++#define access _access
++#else
++#include <unistd.h>
++#endif
+ 
+ int main() {
+ 
+ #ifdef BOOST_STACKTRACE_ADDR2LINE_LOCATION
+     std::string s = BOOST_STRINGIZE( BOOST_STACKTRACE_ADDR2LINE_LOCATION );
+-    s += " -h";
+ #else
+-    std::string s = "/usr/bin/addr2line -h";
++    std::string s = "/usr/bin/addr2line";
+ #endif
+ 
+-    return std::system(s.c_str());
++    return ::access(s.c_str(), X_OK) == -1;
+ }
