@@ -118,7 +118,7 @@ build() {
 
     GIT_OPTIONS=
     if [ "$build_git" = "ON" ];then
-        GIT_OPTIONS="-Dome-model-dir=${workspace}/ome-model -Dome-files-dir=${workspace}/ome-files -Dome-common-dir=${workspace}/ome-common -Dome-qtwidgets-dir=${workspace}/ome-qtwidgets -Dome-files-py-dir=${workspace}/ome-files-py"
+        GIT_OPTIONS="-Dome-model-dir=${workspace}/ome-model -Dome-files-dir=${workspace}/ome-files -Dome-common-dir=${workspace}/ome-common  -Dome-files-performance-dir=${workspace}/ome-files-performance -Dome-qtwidgets-dir=${workspace}/ome-qtwidgets -Dome-files-py-dir=${workspace}/ome-files-py"
     fi
 
     rm -rf "$builddir" "$installdir"
@@ -315,6 +315,7 @@ Options:
   -j n       Build in parallel
   -P         Enable paralellism in subsidiary builds
   -N n       Build number
+  -F         Build performance tests
   -q         Build Qt interface
   -W         Build Python wrapper
   -v         Verbose build
@@ -359,6 +360,9 @@ while getopts hBGqWndLexvPi:b:c:a:g:N:p:t:S:w:s:j: OPT; do
             ;;
         n)
             build_tp_prereqs=OFF
+            ;;
+        F)
+            build_packages="${build_packages};ome-files-performance"
             ;;
         q)
             build_packages="${build_packages};ome-qtwidgets"
