@@ -1,0 +1,16 @@
+diff -urN boost_1_65_0.orig/boost/stacktrace/detail/collect_unwind.ipp boost_1_65_0/boost/stacktrace/detail/collect_unwind.ipp
+--- boost_1_65_0.orig/boost/stacktrace/detail/collect_unwind.ipp	2017-08-19 17:49:49.000000000 +0100
++++ boost_1_65_0/boost/stacktrace/detail/collect_unwind.ipp	2017-08-24 15:05:54.630089077 +0100
+@@ -14,7 +14,12 @@
+ 
+ #include <boost/stacktrace/safe_dump_to.hpp>
+ 
++#define _GNU_SOURCE
+ #include <unwind.h>
++#if defined(__arm__) && !defined(__ARM_DWARF_EH__)
++#define _URC_NO_REASON _URC_OK
++#endif
++#undef _GNU_SOURCE
+ #include <cstdio>
+ 
+ namespace boost { namespace stacktrace { namespace detail {
