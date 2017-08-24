@@ -83,7 +83,8 @@ option(sphinx "Enable sphinx manual page and HTML documentation" ON)
 option(sphinx-linkcheck "Check sphinx documentation links by default" OFF)
 
 # C++ standard
-set(CMAKE_CXX_STANDARD "14" CACHE STRING "Preferred C++ standard version (will fall back to earlier versions if unavailable)")
+set(default_cxx_standard 14)
+set(CMAKE_CXX_STANDARD "${default_cxx_standard}" CACHE STRING "Preferred C++ standard version (will fall back to earlier versions if unavailable)")
 set(CMAKE_CXX_STANDARD_REQUIRED FALSE CACHE BOOL "Force use of specified C++ standard (no fallback to earlier versions)")
 
 set(SUPERBUILD_OPTIONS
