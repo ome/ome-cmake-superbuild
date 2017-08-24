@@ -1,18 +1,16 @@
-# png superbuild
+# pybind11 superbuild
 
 # Set dependency list
-ome_add_dependencies(png THIRD_PARTY_DEPENDENCIES zlib)
+ome_add_dependencies(pybind11
+                     THIRD_PARTY_DEPENDENCIES py-numpy py-pytest)
 
-# Notes:
-# Installs cmake settings into lib/libpng; could be deleted
-
-list(APPEND CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
+list(APPEND CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli -DPYBIND11_TEST:BOOL=OFF)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "http://downloads.sourceforge.net/project/libpng/libpng16/1.6.31/libpng-1.6.31.tar.xz"
-  URL_HASH "SHA512=714da63e19d32eadeeb44edf7f2afeaf6ac59f2756e0951015313a98c0f3c1216296886301c5704958b56f4c96b00725791ba2efe9f26b4a92cd743410cc36a9"
+  URL "https://github.com/pybind/pybind11/archive/v2.1.1.tar.gz"
+  URL_HASH "SHA512=9c1493fabd0e38f5e46bc94d78e3e4e735e81b309a403a5c6060527d21b0c4ce5081f4eb4861258897ca01cca3e9cb2770f4e844d9222671b6f2ec8dd1dbe047"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""
@@ -35,12 +33,12 @@ ExternalProject_Add(${EP_PROJECT}
     "-DCONFIG:INTERNAL=$<CONFIG>"
     "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
     -P "${GENERIC_CMAKE_INSTALL}"
-  TEST_COMMAND ${CMAKE_COMMAND}
-    "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
-    "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
-    "-DCONFIG:INTERNAL=$<CONFIG>"
-    "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
-    -P "${GENERIC_CMAKE_TEST}"
+#  TEST_COMMAND ${CMAKE_COMMAND}
+#    "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
+#    "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
+#    "-DCONFIG:INTERNAL=$<CONFIG>"
+#    "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
+#    -P "${CMAKE_CURRENT_LIST_DIR}/test.cmake"
   DEPENDS
     ${EP_PROJECT}-prerequisites
 )

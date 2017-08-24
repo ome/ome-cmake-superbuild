@@ -42,8 +42,8 @@ list(APPEND CMAKE_MODULE_PATH
 
 project(ome-cmake-superbuild)
 
+include(Options)
 include(GNUInstallDirs)
-include("${CMAKE_CURRENT_LIST_DIR}/../../Options.cmake")
 include(Sphinx)
 
 find_program(SPHINX_BUILD sphinx-build)
@@ -55,7 +55,7 @@ if (BUILD_SPHINX AND SPHINX_BUILD)
   file(GLOB apirefs RELATIVE "${docdir}" "${docdir}/ome-*/api/html/index.html")
   list(SORT manuals)
   list(SORT apirefs)
-  
+
   foreach(man IN LISTS manuals)
     string(REGEX REPLACE "^([^/]+)/.*" "\\1" man_name "${man}")
     set(manual_links "${manual_links}
@@ -78,9 +78,10 @@ if (BUILD_SPHINX AND SPHINX_BUILD)
   configure_file("${PROJECT_SOURCE_DIR}/index.rst.in"
                  "${sphinx_builddir}/index.rst"
                  @ONLY)
-  file(COPY "${PROJECT_SOURCE_DIR}/../sphinx/themes"
-       DESTINATION "${sphinx_builddir}"
-       FILES_MATCHING PATTERN "*.html")
+  file(COPY "${PROJECT_SOURCE_DIR}/../sphinx/images"
+       DESTINATION "${sphinx_builddir}")
+  file(COPY "${PROJECT_SOURCE_DIR}/../sphinx/_templates"
+       DESTINATION "${sphinx_builddir}")
 
   # Generate and install HTML manual
 

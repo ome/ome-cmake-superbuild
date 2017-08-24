@@ -66,16 +66,13 @@ if(NOT MSVC)
   endif()
 endif()
 
-# Options to pass through to subsidiary builds.
-include("${CMAKE_CURRENT_LIST_DIR}/Options.cmake")
-
 set(release-name "ome-cmake-superbuild")
-set(release-version "0.3.2")
+set(release-version "0.4.0")
 project("${release-name}"
   VERSION "${release-version}"
   LANGUAGES CXX)
 
-include(cmake/Version.cmake)
+include(Version)
 git_version_info("OME CMake Super-Build" "${CMAKE_CURRENT_SOURCE_DIR}")
 
 if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
@@ -85,11 +82,13 @@ endif("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
 include(cmake/SourceArchive.cmake)
 source_archive("${release-name}" "${PROJECT_VERSION}${OME_VCS_DEV}")
 
+# Options to pass through to subsidiary builds.
+include(Options)
 include(GNUInstallDirs)
 include(ExternalProject)
 
 # Helper functions and variables used by the following external projects.
-include("${CMAKE_CURRENT_LIST_DIR}/ExternalProjectHelpers.cmake")
+include(ExternalProjectHelpers)
 
 # External projects to build (will resolve dependencies recursively).
 foreach(package ${build-packages})

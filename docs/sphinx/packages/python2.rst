@@ -17,8 +17,13 @@ The Python language intepreter, version 2.
 | RedHat/CentOS    | python      |
 +------------------+-------------+
 
+**Note:** the super-build requires the *development* version of
+Python, which provides the Python headers. In some systems, this is
+installed as a separate package, e.g., ``python-dev`` in Debian/Ubuntu
+and ``python-devel`` in CentOS.
+
 - `Website <https://www.python.org/>`__
-- `Download <https://www.python.org/downloads/release/python-2711>`__
+- `Download <https://www.python.org/downloads/release/python-2713>`__
 
 Windows
 ^^^^^^^

@@ -6,14 +6,15 @@ ome_source_settings(ome-model
   GIT_NAME        "ome-model"
   GIT_URL         "https://github.com/ome/ome-model.git"
   GIT_HEAD_BRANCH "master"
-  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-model/5.5.1/source/ome-model-5.5.1.tar.xz"
-  RELEASE_HASH    "SHA512=331cee0a3f9c2d144316236be7a9e4978108ea6838ae290a8e9e587f780ec512317232ae9f0b16fa49ae7223b74f6a522394e2fc2e50d597dce8e2f951f18ac5")
+  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-model/5.5.6/source/ome-model-5.5.6.tar.xz"
+  RELEASE_HASH    "SHA512=cdc66cc340defb258919179b16a8a30c5f77e6b93c8f62fda0d0177f85a104fa13979ee9f4e74dcaceedeef7a864b44ff1f74f909303390fde15a44053a17a06")
 
 # Set dependency list
 ome_add_dependencies(ome-model
                      DEPENDENCIES ome-common
                      THIRD_PARTY_DEPENDENCIES boost png tiff xerces
-                                              xalan py-genshi py-sphinx gtest)
+                                              xalan py-genshi py-sphinx
+                                              gtest)
 
 list(APPEND CONFIGURE_OPTIONS
      "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"

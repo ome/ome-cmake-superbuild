@@ -3,24 +3,6 @@
 Errata
 ======
 
-Boost
------
-
-``apply_visitor`` and ``const`` references
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-``apply_visitor`` fails to compile using ``const`` references with
-using Boost 1.58 and a C++14 compiler.  This affects all platforms
-using a C++14 compiler, but is most likely to affect Ubuntu 16.04
-users, since the system provides Boost 1.58.  See the `trac ticket
-<https://svn.boost.org/trac/boost/ticket/11285>`__ for further
-information.
-
-Solutions:
-
-- Run cmake with ``-DCMAKE_CXX_STANDARD=11`` to force the use of C++11
-- Use the newer version of Boost provided by the superbuild
-
 Windows
 -------
 

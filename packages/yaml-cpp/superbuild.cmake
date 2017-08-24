@@ -1,41 +1,35 @@
-# ome-qtwidgets superbuild
-
-# Source information
-ome_source_settings(ome-qtwidgets
-  NAME            "OME QtWidgets"
-  GIT_NAME        "ome-qtwidgets"
-  GIT_URL         "https://github.com/ome/ome-qtwidgets.git"
-  GIT_HEAD_BRANCH "master"
-  RELEASE_URL     "https://downloads.openmicroscopy.org/ome-qtwidgets/5.4.2/source/ome-qtwidgets-5.4.2.tar.xz"
-  RELEASE_HASH    "SHA512=72e5051b1e7602577f32ff83c20958ef050a5327045cc5886b52cabc2f761c2995a4607021a4793811ee5c5f15dc0f2efb39e1c60fad70394eb4c019f4b668f7")
+# yaml-cpp superbuild
 
 # Set dependency list
-ome_add_dependencies(ome-qtwidgets
-                     DEPENDENCIES ome-files
-                     THIRD_PARTY_DEPENDENCIES boost png tiff
-                                              glm py-sphinx gtest)
+ome_add_dependencies(yaml-cpp THIRD_PARTY_DEPENDENCIES boost gtest patch)
 
 list(APPEND CONFIGURE_OPTIONS
-     "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
-     -DBoost_NO_BOOST_CMAKE:BOOL=true
-     ${SUPERBUILD_OPTIONS})
-if(SOURCE_ARCHIVE_DIR)
-  list(APPEND CONFIGURE_OPTIONS "-DSOURCE_ARCHIVE_DIR=${SOURCE_ARCHIVE_DIR}")
-endif()
+  -Wno-dev --no-warn-unused-cli
+  "-DGTEST_SOURCE=${CMAKE_BINARY_DIR}/gtest-source"
+  "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
+  -DBoost_NO_BOOST_CMAKE:BOOL=true)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  ${EP_SOURCE_DOWNLOAD}
-  SOURCE_DIR ${EP_SOURCE_DIR}
-  BINARY_DIR ${EP_BINARY_DIR}
+  URL "https://github.com/jbeder/yaml-cpp/archive/release-0.5.3.tar.gz"
+  URL_HASH "SHA512=5ed15fee3c6455c08e6bd8f74256b230f274ef18f8e144491e940640e41626517c7eaaf4a1f380c4179066a2a757c8a0f61878df9dc3caa15e37c4954be47fe0"
+  SOURCE_DIR "${EP_SOURCE_DIR}"
+  BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""
+  PATCH_COMMAND
+    ${CMAKE_COMMAND}
+    "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
+    "-DPATCH_DIR:PATH=${CMAKE_CURRENT_LIST_DIR}/patches"
+    "-DCONFIG:INTERNAL=$<CONFIG>"
+    "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
+    -P "${GENERIC_PATCH}"
   CONFIGURE_COMMAND ${CMAKE_COMMAND}
     "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
     "-DBUILD_DIR:PATH=${EP_BINARY_DIR}"
-    "-DCONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}"
     "-DCONFIG:INTERNAL=$<CONFIG>"
     "-DEP_SCRIPT_CONFIG:FILEPATH=${EP_SCRIPT_CONFIG}"
+    "-DCONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}"
     -P "${GENERIC_CMAKE_CONFIGURE}"
   BUILD_COMMAND ${CMAKE_COMMAND}
     "-DSOURCE_DIR:PATH=${EP_SOURCE_DIR}"
@@ -57,4 +51,4 @@ ExternalProject_Add(${EP_PROJECT}
     -P "${GENERIC_CMAKE_TEST}"
   DEPENDS
     ${EP_PROJECT}-prerequisites
-  )
+)
