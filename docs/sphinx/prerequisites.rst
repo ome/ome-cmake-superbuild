@@ -9,26 +9,24 @@ building, shown in the table below.
 
 .. tabularcolumns:: |l|l|l|c|c|c|
 
-+---------------+--------------+--------------+--------------------------------------+
-|               |           Version           |             When required            |
-+---------------+--------------+--------------+--------------+--------------+--------+
-| Package       | Recommended  | Minimum      | Source build | Client build | Deploy |
-+===============+==============+==============+==============+==============+========+
-| Toolchain     |              |              |    \•        | \•           |        |
-+---------------+--------------+--------------+--------------+--------------+--------+
-| CMake         | 3.9          | 3.4          |    \•        | \•           |        |
-+---------------+--------------+--------------+--------------+--------------+--------+
-| Git           | 2.9.x        | 1.7.x        |    ◦         | ◦            |        |
-+---------------+--------------+--------------+--------------+--------------+--------+
++----------------------+--------------+--------------+--------------------------------------+
+|                      |           Version           |             When required            |
++----------------------+--------------+--------------+--------------+--------------+--------+
+| Package              | Recommended  | Minimum      | Source build | Client build | Deploy |
++======================+==============+==============+==============+==============+========+
+| :ref:`pkg_toolchain` |              |              |    \•        | \•           |        |
++----------------------+--------------+--------------+--------------+--------------+--------+
+| :ref:`pkg_cmake`     | 3.9          | 3.4          |    \•        | \•           |        |
++----------------------+--------------+--------------+--------------+--------------+--------+
+| :ref:`pkg_python2`   | 2.7.13       | 2.7.x        |    \•        | \•           |        |
++----------------------+--------------+--------------+--------------+--------------+--------+
+| :ref:`pkg_git`       | 2.9.x        | 1.7.x        |    ◦         | ◦            |        |
++----------------------+--------------+--------------+--------------+--------------+--------+
 
 \•
   Required
 ◦
   Optional, needed only if building from a git repository
-
-:ref:`pkg_toolchain`
-:ref:`pkg_cmake`
-:ref:`pkg_git`
 
 Quick start
 -----------
@@ -43,14 +41,15 @@ Install the following:
 
 - :ref:`pkg_toolchain`
 - :ref:`pkg_cmake`
+- :ref:`pkg_python2`
 - :ref:`pkg_git`
 
 Examples:
 
 BSD Ports
-  ``pkg install cmake git``
+  ``pkg install cmake python git``
 Debian/Ubuntu
-  ``apt-get install build-essential cmake git``
+  ``apt-get install build-essential cmake python python-dev git``
 
 Homebrew and RedHat/CentOS do not provide packages for everything that
 is needed. The commands listed will install *most* of the
@@ -58,9 +57,9 @@ dependencies, but further dependencies will need to be installed as
 described in various sections below.
 
 Homebrew
-  Install Xcode, then ``brew install cmake git``
+  Install Xcode, then ``brew install cmake python git``
 RedHat/CentOS
-  ``yum groupinstall "Development Tools"``, then ``yum install git``;
+  ``yum groupinstall "Development Tools"``, then ``yum install python python-devel git``;
   install cmake by hand.
 
 Additional prerequisites
