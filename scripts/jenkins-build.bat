@@ -15,7 +15,8 @@ set "builddir=%workspace%\build"
 set "installdir=%workspace%\install"
 set "artefactdir=%workspace%\artefacts"
 set "cachedir=%workspace%\cache"
-set "cygwindir=C:\CYGWIN64\BIN"
+set "cygwindir=C:\Cygwin64\bin"
+set "pythondir=C:\Python27"
 set "qtdir=C:\Qt\5.7"
 
 set git_branch=HEAD
@@ -136,6 +137,10 @@ if NOT "%1"=="" (
         set "qtdir=%2"
         shift
     )
+    if "%1"=="-R" (
+        set "pythondir=%2"
+        shift
+    )
 
     shift
     goto :loop
@@ -183,6 +188,7 @@ Options:
   -a dir     Set artefact directory
   -c dir     Set cache directory
   -Y dir     Set Cygwin directory (used for zip/unzip)
+  -R dir     Set Python directory (used for python components)
   -Q dir     Set Qt5 directory (used for ome-qtwidgets)
 
   -g branch  Set git branch or tag to release from
@@ -290,6 +296,8 @@ if exist "%cachedir%\tree" (
 if [%build_git%] == [ON] (
     set "GIT_OPTIONS=-Dome-model-dir=%workspace%\ome-model -Dome-files-dir=%workspace%\ome-files -Dome-common-dir=%workspace%\ome-common -Dome-qtwidgets-dir=%workspace%\ome-qtwidgets"
 )
+
+set "PATH=%pythondir%;%PATH%"
 
 if [%qt%] == [ON] (
     if [%build_version%] == [12] (
