@@ -8,8 +8,8 @@ string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "https://shibboleth.net/downloads/prerelease/xerces-c/xerces-c-3.2.0rc1.tar.xz"
-  URL_HASH "SHA512=be8a2653db4893b20a750c5fecb0614f51fb59e6392b01774d10badbd939028bb041bb2b2d7bc76959eb0d501215363075d416cd87650a2b4074a297a6b4ab0d"
+  URL "https://shibboleth.net/downloads/prerelease/xerces-c/xerces-c-3.2.0rc2.tar.xz"
+  URL_HASH "SHA512=caf298395e2a93eb22f05a5f774b33a49bc73ef1dbd70b8dc047eb746335542488a7d8560080e951d633b7efb1863d65229b5526d18b8eac37c6d886c0efcba4"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""
