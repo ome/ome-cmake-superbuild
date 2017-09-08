@@ -16,8 +16,11 @@ The :program:`ant` build tool for Java.
 +------------------+------------------------------+
 | Homebrew         | ant                          |
 +------------------+------------------------------+
-| RedHat/CentOS    | N/A                          |
+| RedHat/CentOS    | ant*                         |
 +------------------+------------------------------+
+
+\*
+  From EPEL.
 
 - `Website <http://ant.apache.org/>`__
 - `Download <http://ant.apache.org/bindownload.cgi>`__

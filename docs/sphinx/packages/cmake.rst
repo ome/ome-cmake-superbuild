@@ -16,8 +16,12 @@ components and is required for building them.
 +------------------+-------------+
 | Homebrew         | cmake       |
 +------------------+-------------+
-| RedHat/CentOS    | cmake       |
+| RedHat/CentOS    | cmake3*     |
 +------------------+-------------+
+
+\*
+  From EPEL.  Note that the commands have a ``3`` suffix, and and are
+  named :program:`cmake3`, :program:`ctest3` etc.
 
 - `Website <https://cmake.org/>`__
 - `Download <https://cmake.org/download/>`__

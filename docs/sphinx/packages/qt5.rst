@@ -16,11 +16,14 @@ Used for cross-platform OpenGL rendering.
 +------------------+----------------------------------------------+
 | Homebrew         | qt5*                                         |
 +------------------+----------------------------------------------+
-| RedHat/CentOS    | N/A                                          |
+| RedHat/CentOS    | qt5-qtbase-devel qt5-qtsvg-devel†            |
 +------------------+----------------------------------------------+
 
 \*
   Add :file:`/usr/local/opt/qt5/bin` to :envvar:`PATH`
+
+†
+  From EPEL
 
 - `Website <http://www.qt.io/>`__
 - `Download <http://www.qt.io/download/>`__
