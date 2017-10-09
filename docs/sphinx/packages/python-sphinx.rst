@@ -18,7 +18,11 @@ including HTML and PDF.
 +------------------+--------------------+
 | Homebrew         | N/A (use pip)      |
 +------------------+--------------------+
-| RedHat/CentOS    | N/A (use pip)      |
+| RedHat/CentOS    | python-sphinx*     |
 +------------------+--------------------+
 
-Use ``pip install sphinx`` if a packaged version is not available.
+\*
+  From EPEL.
+
+Use ``pip install sphinx`` if a packaged version is not available, or
+if you want a current version.

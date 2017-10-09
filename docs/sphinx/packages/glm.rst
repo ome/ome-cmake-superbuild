@@ -15,8 +15,11 @@ rendering.
 +------------------+--------------+
 | Homebrew         | glm          |
 +------------------+--------------+
-| RedHat/CentOS    | N/A          |
+| RedHat/CentOS    | glm-devel*   |
 +------------------+--------------+
+
+\*
+  From EPEL.
 
 .. note::
 

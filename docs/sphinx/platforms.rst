@@ -13,7 +13,7 @@ status for these is as follows:
 +---------------+--------------+--------------+--------------+-------------+
 | System        | Recommended  | Minimum      | Platform     | Super-build |
 +===============+==============+==============+==============+=============+
-| CentOS        | 7            | 6            | Unsupported* | Supported   |
+| CentOS        | 7            | 6            | Supported*   | Supported   |
 +---------------+--------------+--------------+--------------+-------------+
 | FreeBSD       | 11           | 10           | Supported†   | Supported   |
 +---------------+--------------+--------------+--------------+-------------+
@@ -25,10 +25,11 @@ status for these is as follows:
 +---------------+--------------+--------------+--------------+-------------+
 
 \*
-  CentOS does not provide all the prequired libraries; CentOS 6
-  provides a broken version of Boost and an obsolete libtiff, so using
-  the super-build or building new versions of the needed libraries is
-  a requirement.
+  CentOS 6 does not provide all the required libraries; it provides a
+  broken version of Boost and an obsolete libtiff, so using the
+  super-build or building new versions of the needed libraries is a
+  requirement.  CentOS 7 requires the use of EPEL to provide the
+  required libraries.
 
 †
   With 11 only; 10 may work with ports built with a newer toolchain.

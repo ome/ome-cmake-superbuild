@@ -26,8 +26,13 @@ portability reasons.
 
 †
   RHEL/CentOS 6 users should build a more recent Boost release.
+  RHEL/CentOS 7 users can use the packaged Boost, but note it is
+  missing a number of desirable features mentioned below, and it
+  may be worth updating to a more recent version.
 
 Considerations:
 
-- 1.48 or later needed for Boost.Geometry
 - 1.54 or later needed for Boost.Geometry spatial indexes.
+- 1.54 or later needed for Boost.Log
+- 1.54 or later needed for Boost.Filesystem ``absolute()`` and
+  ``canonical()`` functions.

@@ -60,7 +60,12 @@ Homebrew
   Install Xcode, then ``brew install cmake python git``
 RedHat/CentOS
   ``yum groupinstall "Development Tools"``, then ``yum install python python-devel git``;
-  install cmake by hand.
+  install cmake by hand, or run ``yum install epel-release`` to enable the
+  `EPEL <https://fedoraproject.org/wiki/EPEL>`__ package repository, which
+  contains third-party prerequisites, and then ``yum install cmake3``.
+  EPEL is not needed if third-party dependencies are to be built by
+  the superbuild, but provides missing libraries including xalan, glm
+  and qt5.
 
 Additional prerequisites
 ------------------------

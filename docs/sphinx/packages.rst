@@ -13,7 +13,6 @@ packages.
     :maxdepth: 1
     :titlesonly:
 
-    packages/ant
     packages/boost
     packages/cmake
     packages/doxygen
