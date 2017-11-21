@@ -8,7 +8,7 @@ list(REMOVE_ITEM ome_docs_dependencies ome-cmake-superbuild-docs-contents)
 # Set dependency list
 ome_add_dependencies(ome-cmake-superbuild-docs-contents
                      DEPENDENCIES ${ome_docs_dependencies}
-                     THIRD_PARTY_DEPENDENCIES py-sphinx)
+                     THIRD_PARTY_PYTHON2_DEPENDENCIES sphinx)
 
 unset(ome_docs_dependencies)
 

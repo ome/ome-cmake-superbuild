@@ -2,7 +2,7 @@
 
 # Set dependency list
 ome_add_dependencies(pybind11
-                     THIRD_PARTY_DEPENDENCIES py-numpy py-pytest)
+                     THIRD_PARTY_PYTHON2_DEPENDENCIES numpy pytest)
 
 list(APPEND CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli -DPYBIND11_TEST:BOOL=OFF)
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")

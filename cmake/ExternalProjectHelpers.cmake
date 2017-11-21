@@ -36,6 +36,9 @@
 
 include(CMakeParseArguments)
 
+# Location of python2 virtualenv requirements
+set(OME_EP_PYTHON2_REQUIREMENTS_FILE "${PROJECT_BINARY_DIR}/python2-packages")
+
 # Single target to build all prerequisites
 add_custom_target(third-party-prerequisites)
 
@@ -91,7 +94,7 @@ endfunction()
 function(ome_add_dependencies target)
   set(options)
   set(oneValueArgs TYPE)
-  set(multiValueArgs DEPENDENCIES THIRD_PARTY_DEPENDENCIES)
+  set(multiValueArgs DEPENDENCIES THIRD_PARTY_DEPENDENCIES THIRD_PARTY_PYTHON2_DEPENDENCIES)
 
   cmake_parse_arguments(OAD "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
@@ -117,6 +120,23 @@ function(ome_add_dependencies target)
       if(targetname)
         list(APPEND ${target}_DEPENDENCIES "${targetname}")
       endif()
+    endforeach()
+    foreach(name ${OAD_THIRD_PARTY_PYTHON2_DEPENDENCIES})
+      # All python2 dependencies are installed into the virtualenv in
+      # a single step (due to pip not handling parallel install).
+      ome_add_package("python2-virtualenv" THIRD_PARTY TARGETVAR targetname)
+      if(targetname)
+        list(APPEND ${target}_DEPENDENCIES "${targetname}")
+      endif()
+      get_property(python2_dependencies_added GLOBAL PROPERTY PYTHON2_DEPENDENCIES SET)
+      if(python2_dependencies_added)
+        get_property(python2_dependencies GLOBAL PROPERTY PYTHON2_DEPENDENCIES)
+      endif()
+      list(APPEND python2_dependencies "${name}")
+      list(REMOVE_DUPLICATES python2_dependencies)
+      set_property(GLOBAL PROPERTY PYTHON2_DEPENDENCIES "${python2_dependencies}")
+      string(REPLACE ";" "\n" python2_dependencies "${python2_dependencies}")
+      file(WRITE "${OME_EP_PYTHON2_REQUIREMENTS_FILE}" "${python2_dependencies}\n")
     endforeach()
     if (${target}_DEPENDENCIES)
       list(REMOVE_DUPLICATES ${target}_DEPENDENCIES)
@@ -240,8 +260,6 @@ set(GENERIC_CMAKE_INSTALL "${PROJECT_SOURCE_DIR}/helpers/cmake_install.cmake")
 set(GENERIC_CMAKE_TEST "${PROJECT_SOURCE_DIR}/helpers/cmake_test.cmake")
 set(GENERIC_CMAKE_ENVIRONMENT "${PROJECT_SOURCE_DIR}/helpers/cmake_environment.cmake")
 set(GENERIC_PATCH "${PROJECT_SOURCE_DIR}/helpers/patch.cmake")
-
-set(GENERIC_PYTHON_INSTALL "${PROJECT_SOURCE_DIR}/helpers/python_install.cmake")
 
 # Compute -G arg for configuring external projects with the same CMake generator:
 if(CMAKE_EXTRA_GENERATOR)

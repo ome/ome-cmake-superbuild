@@ -9,15 +9,13 @@ if(WIN32)
     set(ENV{PATH} "${WINDOWS_BUILD_CACHE}\\bin;$ENV{PATH}")
   endif()
   if(WINDOWS_TOOL_CACHE)
-    set(ENV{PATH} "${WINDOWS_TOOL_CACHE}\\bin;${WINDOWS_TOOL_CACHE}\\scripts;$ENV{PATH}")
+    set(ENV{PATH} "${WINDOWS_TOOL_CACHE}\\bin;${WINDOWS_TOOL_CACHE}\\scripts;${WINDOWS_TOOL_DIR}\\python2-venv\\scripts;$ENV{PATH}")
   endif()
+  set(ENV{PATH} "${WINDOWS_TOOL_DIR}\\bin;$ENV{PATH}")
+  set(ENV{PATH} "${WINDOWS_TOOL_DIR}\\scripts;$ENV{PATH}")
+  set(ENV{PATH} "${WINDOWS_TOOL_DIR}\\python2-venv\\scripts;$ENV{PATH}")
   set(ENV{PATH} "${WINDOWS_BIN_DIR};${WINDOWS_TOOL_DIR}\\bin;$ENV{PATH}")
-  set(ENV{PATH} "${WINDOWS_BIN_DIR};${WINDOWS_TOOL_DIR}\\scripts;$ENV{PATH}")
   file(GLOB python_dirs LIST_DIRECTORIES true
-       "${OME_EP_TOOL_CACHE}/*/site-packages"
-       "${OME_EP_TOOL_CACHE}/*/*/site-packages"
-       "${OME_EP_TOOL_DIR}/*/site-packages"
-       "${OME_EP_TOOL_DIR}/*/*/site-packages"
        "${OME_EP_INSTALL_DIR}/*/*/site-packages")
   foreach(dir ${python_dirs})
     file(TO_NATIVE_PATH "${dir}" dir)
@@ -41,18 +39,18 @@ else()
   endif()
   if(OME_EP_TOOL_CACHE)
     set(ENV{PATH} "${OME_EP_TOOL_CACHE}/bin:$ENV{PATH}")
+    set(ENV{PATH} "${OME_EP_TOOL_CACHE}/python2-venv/bin:$ENV{PATH}")
   endif()
-  set(ENV{PATH} "${OME_EP_BIN_DIR}:${OME_EP_TOOL_DIR}/bin:$ENV{PATH}")
+  set(ENV{PATH} "${OME_EP_TOOL_DIR}/bin:$ENV{PATH}")
+  set(ENV{PATH} "${OME_EP_TOOL_DIR}/python2-venv/bin:$ENV{PATH}")
+  set(ENV{PATH} "${OME_EP_BIN_DIR}:$ENV{PATH}")
+
   if(APPLE)
     set(ENV{DYLD_FALLBACK_LIBRARY_PATH} "${OME_EP_LIB_DIR}:$ENV{DYLD_FALLBACK_LIBRARY_PATH}")
   else()
     set(ENV{LD_LIBRARY_PATH} "${OME_EP_LIB_DIR}:$ENV{LD_LIBRARY_PATH}")
   endif()
   file(GLOB python_dirs LIST_DIRECTORIES true
-       "${OME_EP_TOOL_CACHE}/*/site-packages"
-       "${OME_EP_TOOL_CACHE}/*/*/site-packages"
-       "${OME_EP_TOOL_DIR}/*/site-packages"
-       "${OME_EP_TOOL_DIR}/*/*/site-packages"
        "${OME_EP_INSTALL_DIR}/*/*/site-packages")
   foreach(dir ${python_dirs})
     if(PYTHONPATH)

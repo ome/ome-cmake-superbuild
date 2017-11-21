@@ -12,8 +12,7 @@ ome_source_settings(ome-qtwidgets
 # Set dependency list
 ome_add_dependencies(ome-qtwidgets
                      DEPENDENCIES ome-files
-                     THIRD_PARTY_DEPENDENCIES boost png tiff
-                                              glm py-sphinx gtest)
+                     THIRD_PARTY_DEPENDENCIES boost png tiff glm gtest)
 
 list(APPEND CONFIGURE_OPTIONS
      "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"

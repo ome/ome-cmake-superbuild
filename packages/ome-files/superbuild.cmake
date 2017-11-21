@@ -12,8 +12,8 @@ ome_source_settings(ome-files
 # Set dependency list
 ome_add_dependencies(ome-files
                      DEPENDENCIES ome-model
-                     THIRD_PARTY_DEPENDENCIES boost png tiff
-                                              py-sphinx gtest)
+                     THIRD_PARTY_DEPENDENCIES boost png tiff gtest
+                     THIRD_PARTY_PYTHON2_DEPENDENCIES sphinx)
 
 list(APPEND CONFIGURE_OPTIONS
      "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
