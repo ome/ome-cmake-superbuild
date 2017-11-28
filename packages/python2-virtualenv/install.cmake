@@ -16,7 +16,7 @@ if (virtualenvresult)
 endif()
 
 if (PIP_REQUIREMENT_FILE)
-  execute_process(COMMAND python2
+  execute_process(COMMAND python
                           -m pip
                           install
                           -r "${PIP_REQUIREMENT_FILE}"
