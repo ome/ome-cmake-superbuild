@@ -2,12 +2,12 @@
 include("${EP_SCRIPT_CONFIG}")
 include("${GENERIC_CMAKE_ENVIRONMENT}")
 
-file(TO_NATIVE_PATH "${OME_EP_TOOL_DIR}" NATIVE_TOOL_DIR)
+file(TO_NATIVE_PATH "${OME_EP_TOOL_DIR}/python2-venv" PYTHON_TOOL_DIR)
 
 execute_process(COMMAND "${PYTHON_EXECUTABLE}"
                         -m virtualenv
                         -p "${PYTHON_EXECUTABLE}"
-                        "${NATIVE_TOOL_DIR}/python2-venv"
+                        "${PYTHON_TOOL_DIR}"
                 WORKING_DIRECTORY ${BUILD_DIR}
                 RESULT_VARIABLE virtualenvresult)
 
