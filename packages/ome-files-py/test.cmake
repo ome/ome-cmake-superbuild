@@ -4,7 +4,7 @@ include("${GENERIC_CMAKE_ENVIRONMENT}")
 
 file(TO_NATIVE_PATH "${SOURCE_DIR}/test" NATIVE_TEST_DIR)
 
-execute_process(COMMAND python all_tests.py
+execute_process(COMMAND python -m pytest
   WORKING_DIRECTORY "${NATIVE_TEST_DIR}"
   RESULT_VARIABLE test_result)
 
