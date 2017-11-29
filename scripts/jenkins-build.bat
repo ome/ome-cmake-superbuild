@@ -295,7 +295,7 @@ mkdir install\stage
 cd build
 
 if exist "%cachedir%\tree" (
-    set "CMAKE_PREREQS=-Dbuild-cache:PATH=%cachedir%\build -Dtool-build-cache:PATH=%cachedir%\tools-build -Dbuild-prerequisites:BOOL=OFF -Dome-cmake-superbuild_BUILD_gtest:BOOL=ON"
+    set "CMAKE_PREREQS=-Dbuild-prerequisites:BOOL=OFF -Dome-cmake-superbuild_BUILD_gtest:BOOL=ON"
 ) else (
     set "CMAKE_PREREQS=-Dbuild-prerequisites:BOOL=ON"
 )
@@ -357,7 +357,18 @@ if [%build_system%] == [MSBuild] (
       || exit /b
 
 REM Make and cache prerequisites if missing
-    if NOT exist "%cachedir%\tree" (
+    if exist "%cachedir%\tree" (
+        if exist "stage" (
+            rmdir /s /q "stage"
+        )
+        if exist "tools" (
+            rmdir /s /q "tools"
+        )
+        mkdir stage
+        mkdir tools
+        (robocopy "%cachedir%\build" stage  /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy "%cachedir%\tools-build" tools  /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+    ) else (
         cmake --build . --config %build_type% --target third-party-prerequisites -- %parallel% || exit /b
 
         if exist "%cachedir%\build" (
@@ -409,7 +420,18 @@ if [%build_system%] == [Ninja] (
       || exit /b
 
 REM Make and cache prerequisites if missing
-    if NOT exist "%cachedir%\tree" (
+    if exist "%cachedir%\tree" (
+        if exist "stage" (
+            rmdir /s /q "stage"
+        )
+        if exist "tools" (
+            rmdir /s /q "tools"
+        )
+        mkdir stage
+        mkdir tools
+        (robocopy "%cachedir%\build" stage  /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+        (robocopy "%cachedir%\tools-build" tools  /e >nul) ^& IF %ERRORLEVEL% GTR 3 exit /b
+    ) else (
         cmake --build . --config %build_type% --target third-party-prerequisites || exit /b
 
         if exist "%cachedir%\build" (

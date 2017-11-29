@@ -274,12 +274,6 @@ file(MAKE_DIRECTORY ${source-cache})
 set(tool-cache "${CMAKE_BINARY_DIR}/toolcache" CACHE FILEPATH "Directory for cached tool downloads (doxygen, sphinx etc.)")
 file(MAKE_DIRECTORY ${tool-cache})
 
-set(build-cache "" CACHE FILEPATH "Directory for cached builds (to avoid rebuilding already built dependencies)")
-set(OME_EP_BUILD_CACHE "${build-cache}")
-
-set(tool-build-cache "" CACHE FILEPATH "Directory for cached tool builds (to avoid rebuilding already built build dependencies)")
-set(OME_EP_TOOL_CACHE "${tool-build-cache}")
-
 set(OME_EP_INSTALL_DIR ${CMAKE_BINARY_DIR}/stage)
 set(OME_EP_INCLUDE_DIR ${CMAKE_BINARY_DIR}/stage/include)
 set(OME_EP_LIB_DIR ${CMAKE_BINARY_DIR}/stage/lib)
@@ -287,15 +281,6 @@ set(OME_EP_BIN_DIR ${CMAKE_BINARY_DIR}/stage/bin)
 set(OME_EP_TOOL_DIR ${CMAKE_BINARY_DIR}/tools)
 
 list(APPEND CMAKE_PREFIX_PATH "${OME_EP_INSTALL_DIR}" "${OME_EP_TOOL_DIR}")
-
-if(OME_EP_BUILD_CACHE)
-  list(APPEND CMAKE_PREFIX_PATH "${OME_EP_BUILD_CACHE}")
-  list(APPEND CMAKE_LIBRARY_PATH "${OME_EP_BUILD_CACHE}/lib")
-  list(APPEND CMAKE_PROGRAM_PATH "${OME_EP_BUILD_CACHE}/bin")
-endif()
-if(OME_EP_TOOL_CACHE)
-  list(APPEND CMAKE_PREFIX_PATH "${OME_EP_TOOL_CACHE}")
-endif()
 
 # Look in superbuild staging tree when building
 if(WIN32)
@@ -429,8 +414,6 @@ set(OME_EP_SCRIPT_ARGS
   "-DOME_EP_BIN_DIR:PATH=${OME_EP_BIN_DIR}"
   "-DOME_EP_INCLUDE_DIR:PATH=${OME_EP_INCLUDE_DIR}"
   "-DOME_EP_LIB_DIR:PATH=${OME_EP_LIB_DIR}"
-  "-DOME_EP_BUILD_CACHE:PATH=${OME_EP_BUILD_CACHE}"
-  "-DOME_EP_TOOL_CACHE:PATH=${OME_EP_TOOL_CACHE}"
   "-DOME_EP_BUILD_PARALLEL:BOOL=${parallel}"
   "-DGENERIC_CMAKE_ENVIRONMENT:PATH=${GENERIC_CMAKE_ENVIRONMENT}"
   "-DCMAKE_GENERATOR:PATH=${CMAKE_GENERATOR}"

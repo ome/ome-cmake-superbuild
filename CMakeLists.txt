@@ -95,13 +95,6 @@ foreach(package ${build-packages})
   ome_add_package("${package}")
 endforeach()
 
-# Install cached build if needed
-if(OME_EP_BUILD_CACHE)
-  install(DIRECTORY ${OME_EP_BUILD_CACHE}/
-          DESTINATION ${CMAKE_INSTALL_PREFIX}
-          USE_SOURCE_PERMISSIONS)
-endif()
-
 # Install superbuild
 install(DIRECTORY ${OME_EP_INSTALL_DIR}/
         DESTINATION ${CMAKE_INSTALL_PREFIX}
