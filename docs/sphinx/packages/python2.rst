@@ -1,7 +1,7 @@
 .. _pkg_python2:
 
-Python 2
---------
+Python2
+-------
 
 The Python language intepreter, version 2.
 

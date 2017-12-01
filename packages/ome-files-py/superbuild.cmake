@@ -12,7 +12,8 @@ ome_source_settings(ome-files-py
 # Set dependency list
 ome_add_dependencies(ome-files-py
                      DEPENDENCIES ome-files
-                     THIRD_PARTY_DEPENDENCIES boost py-numpy pybind11)
+                     THIRD_PARTY_DEPENDENCIES boost pybind11
+                     THIRD_PARTY_PYTHON2_DEPENDENCIES numpy)
 
 
 ExternalProject_Add(${EP_PROJECT}

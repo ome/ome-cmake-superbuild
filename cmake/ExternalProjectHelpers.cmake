@@ -36,6 +36,9 @@
 
 include(CMakeParseArguments)
 
+# Location of python2 virtualenv requirements
+set(OME_EP_PYTHON2_REQUIREMENTS_FILE "${PROJECT_BINARY_DIR}/python2-packages")
+
 # Single target to build all prerequisites
 add_custom_target(third-party-prerequisites)
 
@@ -91,7 +94,7 @@ endfunction()
 function(ome_add_dependencies target)
   set(options)
   set(oneValueArgs TYPE)
-  set(multiValueArgs DEPENDENCIES THIRD_PARTY_DEPENDENCIES)
+  set(multiValueArgs DEPENDENCIES THIRD_PARTY_DEPENDENCIES THIRD_PARTY_PYTHON2_DEPENDENCIES)
 
   cmake_parse_arguments(OAD "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
@@ -117,6 +120,23 @@ function(ome_add_dependencies target)
       if(targetname)
         list(APPEND ${target}_DEPENDENCIES "${targetname}")
       endif()
+    endforeach()
+    foreach(name ${OAD_THIRD_PARTY_PYTHON2_DEPENDENCIES})
+      # All python2 dependencies are installed into the virtualenv in
+      # a single step (due to pip not handling parallel install).
+      ome_add_package("python2-virtualenv" THIRD_PARTY TARGETVAR targetname)
+      if(targetname)
+        list(APPEND ${target}_DEPENDENCIES "${targetname}")
+      endif()
+      get_property(python2_dependencies_added GLOBAL PROPERTY PYTHON2_DEPENDENCIES SET)
+      if(python2_dependencies_added)
+        get_property(python2_dependencies GLOBAL PROPERTY PYTHON2_DEPENDENCIES)
+      endif()
+      list(APPEND python2_dependencies "${name}")
+      list(REMOVE_DUPLICATES python2_dependencies)
+      set_property(GLOBAL PROPERTY PYTHON2_DEPENDENCIES "${python2_dependencies}")
+      string(REPLACE ";" "\n" python2_dependencies "${python2_dependencies}")
+      file(WRITE "${OME_EP_PYTHON2_REQUIREMENTS_FILE}" "${python2_dependencies}\n")
     endforeach()
     if (${target}_DEPENDENCIES)
       list(REMOVE_DUPLICATES ${target}_DEPENDENCIES)
@@ -241,8 +261,6 @@ set(GENERIC_CMAKE_TEST "${PROJECT_SOURCE_DIR}/helpers/cmake_test.cmake")
 set(GENERIC_CMAKE_ENVIRONMENT "${PROJECT_SOURCE_DIR}/helpers/cmake_environment.cmake")
 set(GENERIC_PATCH "${PROJECT_SOURCE_DIR}/helpers/patch.cmake")
 
-set(GENERIC_PYTHON_INSTALL "${PROJECT_SOURCE_DIR}/helpers/python_install.cmake")
-
 # Compute -G arg for configuring external projects with the same CMake generator:
 if(CMAKE_EXTRA_GENERATOR)
   set(OME_EP_GENERATOR "${CMAKE_EXTRA_GENERATOR} - ${CMAKE_GENERATOR}")
@@ -256,12 +274,6 @@ file(MAKE_DIRECTORY ${source-cache})
 set(tool-cache "${CMAKE_BINARY_DIR}/toolcache" CACHE FILEPATH "Directory for cached tool downloads (doxygen, sphinx etc.)")
 file(MAKE_DIRECTORY ${tool-cache})
 
-set(build-cache "" CACHE FILEPATH "Directory for cached builds (to avoid rebuilding already built dependencies)")
-set(OME_EP_BUILD_CACHE "${build-cache}")
-
-set(tool-build-cache "" CACHE FILEPATH "Directory for cached tool builds (to avoid rebuilding already built build dependencies)")
-set(OME_EP_TOOL_CACHE "${tool-build-cache}")
-
 set(OME_EP_INSTALL_DIR ${CMAKE_BINARY_DIR}/stage)
 set(OME_EP_INCLUDE_DIR ${CMAKE_BINARY_DIR}/stage/include)
 set(OME_EP_LIB_DIR ${CMAKE_BINARY_DIR}/stage/lib)
@@ -269,15 +281,6 @@ set(OME_EP_BIN_DIR ${CMAKE_BINARY_DIR}/stage/bin)
 set(OME_EP_TOOL_DIR ${CMAKE_BINARY_DIR}/tools)
 
 list(APPEND CMAKE_PREFIX_PATH "${OME_EP_INSTALL_DIR}" "${OME_EP_TOOL_DIR}")
-
-if(OME_EP_BUILD_CACHE)
-  list(APPEND CMAKE_PREFIX_PATH "${OME_EP_BUILD_CACHE}")
-  list(APPEND CMAKE_LIBRARY_PATH "${OME_EP_BUILD_CACHE}/lib")
-  list(APPEND CMAKE_PROGRAM_PATH "${OME_EP_BUILD_CACHE}/bin")
-endif()
-if(OME_EP_TOOL_CACHE)
-  list(APPEND CMAKE_PREFIX_PATH "${OME_EP_TOOL_CACHE}")
-endif()
 
 # Look in superbuild staging tree when building
 if(WIN32)
@@ -411,8 +414,6 @@ set(OME_EP_SCRIPT_ARGS
   "-DOME_EP_BIN_DIR:PATH=${OME_EP_BIN_DIR}"
   "-DOME_EP_INCLUDE_DIR:PATH=${OME_EP_INCLUDE_DIR}"
   "-DOME_EP_LIB_DIR:PATH=${OME_EP_LIB_DIR}"
-  "-DOME_EP_BUILD_CACHE:PATH=${OME_EP_BUILD_CACHE}"
-  "-DOME_EP_TOOL_CACHE:PATH=${OME_EP_TOOL_CACHE}"
   "-DOME_EP_BUILD_PARALLEL:BOOL=${parallel}"
   "-DGENERIC_CMAKE_ENVIRONMENT:PATH=${GENERIC_CMAKE_ENVIRONMENT}"
   "-DCMAKE_GENERATOR:PATH=${CMAKE_GENERATOR}"

@@ -166,11 +166,6 @@ build-cache=directory
   prerequisites.  Useful to save time when rebuilding if the
   content of the :file:`stage` directory is placed here after
   building ``third-party-prerequisites``.
-python-cache=directory
-  Specify a directory from which to source pre-built third-party
-  python prerequisites.  Useful to save time when rebuilding if the
-  content of the :file:`python` directory is placed here after
-  building ``third-party-prerequisites``.
 ome-cmake-superbuild_USE_SYSTEM_${package}=(ON|OFF)
   Use when ``build-prerequisites`` is enabled.  This permits the
   selective disabling of the building of particular components, in

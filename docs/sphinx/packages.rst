@@ -23,9 +23,10 @@ packages.
     packages/hdf5
     packages/java8
     packages/png
-    packages/python2-genshi
     packages/python2
-    packages/python-sphinx
+    packages/python2-genshi
+    packages/python2-sphinx
+    packages/python2-virtualenv
     packages/qt5
     packages/tex
     packages/tiff
