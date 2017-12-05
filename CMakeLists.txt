@@ -67,7 +67,7 @@ if(NOT MSVC)
 endif()
 
 set(release-name "ome-cmake-superbuild")
-set(release-version "0.5.0")
+set(release-version "0.5.1")
 project("${release-name}"
   VERSION "${release-version}"
   LANGUAGES CXX)
