@@ -7,7 +7,7 @@ library, and other additional libraries.
 Links
 -----
 
-- [Documentation](http://www.openmicroscopy.org/site/support/ome-files-cpp/ome-cmake-superbuild/manual/html/index.html)
+- [Documentation](https://docs.openmicroscopy.org/latest/ome-files-cpp/ome-cmake-superbuild/manual/html/index.html)
 
 Purpose
 -------
@@ -32,5 +32,4 @@ Supported platforms
 More information
 ----------------
 
-For more information, see the [documentation]
-(http://www.openmicroscopy.org/site/support/ome-files-cpp/ome-cmake-superbuild/manual/html/index.html).
+For more information, see the [documentation](https://docs.openmicroscopy.org/latest/ome-files-cpp/ome-cmake-superbuild/manual/html/index.html).
