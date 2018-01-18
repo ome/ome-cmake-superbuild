@@ -1,0 +1,31 @@
+commit 00c5a9fc4f9cc7ecc90b43db3c152467e296f811
+Author: Allen Byrne <byrn@hdfgroup.org>
+Date:   Wed Jul 12 14:18:01 2017 -0500
+
+    HDFF-10254 - Copy test files with macro to avoid POST_BUILD failure
+
+diff --git a/hl/tools/h5watch/CMakeTests.cmake b/hl/tools/h5watch/CMakeTests.cmake
+index 35e78291e0..0b7b4d4bfb 100644
+--- a/hl/tools/h5watch/CMakeTests.cmake
++++ b/hl/tools/h5watch/CMakeTests.cmake
+@@ -56,18 +56,11 @@ set (H5WATCH_TEST_FILES
+ 
+ # make test dir
+ file (MAKE_DIRECTORY "${PROJECT_BINARY_DIR}/testfiles")
+-add_custom_target(h5watch-files ALL COMMENT "Copying files needed by h5watch tests")
+ 
+ foreach (h5watch_file ${H5WATCH_TEST_FILES})
+-  set (dest "${PROJECT_BINARY_DIR}/testfiles/${h5watch_file}")
+-  #message (STATUS " Copying ${h5watch_file}")
+-  add_custom_command (
+-      TARGET     h5watch-files
+-      POST_BUILD
+-      COMMAND    ${CMAKE_COMMAND}
+-      ARGS       -E copy_if_different ${HDF5_HL_TOOLS_DIR}/testfiles/${h5watch_file} ${dest}
+-  )
++  HDFTEST_COPY_FILE("${HDF5_HL_TOOLS_DIR}/testfiles/${h5watch_file}" "${PROJECT_BINARY_DIR}/testfiles/${h5watch_file}" "H5WATCH_files")
+ endforeach ()
++add_custom_target(H5WATCH_files ALL COMMENT "Copying files needed by H5WATCH tests" DEPENDS ${H5WATCH_files_list})
+ 
+ ##############################################################################
+ ##############################################################################

@@ -1,0 +1,21 @@
+diff -urN hdf5-1.10.1.orig/src/CMakeLists.txt hdf5-1.10.1/src/CMakeLists.txt
+--- hdf5-1.10.1.orig/src/CMakeLists.txt	2017-04-13 18:26:11.000000000 +0100
++++ hdf5-1.10.1/src/CMakeLists.txt	2017-12-04 16:39:11.428808794 +0000
+@@ -880,7 +880,7 @@
+ TARGET_C_PROPERTIES (${HDF5_LIB_TARGET} STATIC " " " ")
+ target_link_libraries (${HDF5_LIB_TARGET} ${LINK_LIBS})
+ if (NOT WIN32)
+-  target_link_libraries (${HDF5_LIB_TARGET} dl)
++  target_link_libraries (${HDF5_LIB_TARGET} ${CMAKE_DL_LIBS})
+ endif ()
+ if (H5_HAVE_PARALLEL AND MPI_C_FOUND)
+   target_link_libraries (${HDF5_LIB_TARGET} ${MPI_C_LIBRARIES})
+@@ -924,7 +924,7 @@
+   TARGET_C_PROPERTIES (${HDF5_LIBSH_TARGET} SHARED " " " ")
+   target_link_libraries (${HDF5_LIBSH_TARGET} ${LINK_SHARED_LIBS})
+   if (NOT WIN32)
+-    target_link_libraries (${HDF5_LIBSH_TARGET} dl)
++    target_link_libraries (${HDF5_LIBSH_TARGET} ${CMAKE_DL_LIBS})
+   endif ()
+   if (H5_HAVE_PARALLEL AND MPI_C_FOUND)
+     target_link_libraries (${HDF5_LIBSH_TARGET} ${MPI_C_LIBRARIES})
