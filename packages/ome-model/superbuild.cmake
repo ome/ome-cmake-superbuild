@@ -14,7 +14,7 @@ ome_add_dependencies(ome-model
                      DEPENDENCIES ome-common
                      THIRD_PARTY_DEPENDENCIES boost png tiff xerces
                                               xalan gtest
-                     THIRD_PARTY_PYTHON2_DEPENDENCIES genshi sphinx)
+                     THIRD_PARTY_PYTHON2_DEPENDENCIES genshi sphinx six)
 
 list(APPEND CONFIGURE_OPTIONS
      "-DBOOST_ROOT=${OME_EP_INSTALL_DIR}"
