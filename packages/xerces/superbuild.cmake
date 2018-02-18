@@ -8,8 +8,8 @@ string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "https://archive.apache.org/dist/xerces/c/3/sources/xerces-c-3.2.0.tar.xz"
-  URL_HASH "SHA512=ea86de63edca804e2da3f749d031cf551abede1a4dfb7836055da8052ac6939e50a39100cbb39f599a2381b137cccf46a6f2a57dcd59112deeb667e83733cf3c"
+  URL "https://dist.apache.org/repos/dist/dev/xerces/c/3/sources/xerces-c-3.2.1rc2.tar.xz"
+  URL_HASH "SHA512=3fd6d4033eb5411dfedd83629576c0a2acd2e2584722ac6cdfb1e8b4819b694b1aeb8749540e626bc9b3af6c4dfd40ea0bbf25f27d326ef043709f652ad229ec"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""
