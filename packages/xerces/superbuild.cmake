@@ -4,6 +4,7 @@
 ome_add_dependencies(xerces THIRD_PARTY_DEPENDENCIES patch icu)
 
 set(CONFIGURE_OPTIONS -Wno-dev --no-warn-unused-cli)
+list(APPEND CONFIGURE_OPTIONS "-Dxmlch-type=uint16_t")
 string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
