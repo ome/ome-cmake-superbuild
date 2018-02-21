@@ -9,8 +9,8 @@ string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "https://dist.apache.org/repos/dist/dev/xerces/c/3/sources/xerces-c-3.2.1rc3.tar.xz"
-  URL_HASH "SHA512=4f175c188b1eca5655fe324424f7bc07e9e1aa14e386bb05bfb4fa23ec5f33c832c08547cef3a4285c286e57aed2bec466827f368cc9ce2d736ae7468b38fe81"
+  URL "http://users.openmicroscopy.org.uk/~rleigh/xerces-c-3.2.1.tar.xz"
+  URL_HASH "SHA512=97f054d5ed5dadbb39630c1893944c6f18a275c8870e84487dec9ac463036f6bd71f8f5ee9592d87dd3db440e1c4036bc2cf2b1e44b262cc08c19292d721d90d"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""
