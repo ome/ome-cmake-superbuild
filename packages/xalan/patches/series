@@ -6,3 +6,4 @@ win-vc14.diff
 fix-ftbfs-ld-as-needed.diff
 fix-readme-typos
 fix-testxslt-segfault.diff
+xerces-char16_t.diff
