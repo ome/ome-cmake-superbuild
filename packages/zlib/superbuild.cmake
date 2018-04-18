@@ -8,8 +8,8 @@ string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "http://downloads.sourceforge.net/project/libpng/zlib/1.2.10/zlib-1.2.10.tar.xz"
-  URL_HASH "SHA512=6fdfe66f70a1f1aea9ac9645df04a6cb29558ced67efc9f4c01e7d6dfc2cb4239aa3ef9919af7ff12142f9751d2cd7b2cb7cd266e001d0b9b32349f5d58c0311"
+  URL "http://downloads.sourceforge.net/project/libpng/zlib/1.2.11/zlib-1.2.11.tar.xz"
+  URL_HASH "SHA512=b7f50ada138c7f93eb7eb1631efccd1d9f03a5e77b6c13c8b757017b2d462e19d2d3e01c50fad60a4ae1bc86d431f6f94c72c11ff410c25121e571953017cb67"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""
