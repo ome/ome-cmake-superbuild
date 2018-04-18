@@ -9,8 +9,8 @@ string(REPLACE ";" "^^" CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}")
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "https://github.com/pybind/pybind11/archive/v2.2.1.tar.gz"
-  URL_HASH "SHA512=1bc0646862fabef1111c05403a7238965ce5661a6f53945a1b7c4faad33f039d2ea278de64190099a8ae4fd66487a070de59334a7f32e187060bbbc7e0c3060e"
+  URL "https://github.com/pybind/pybind11/archive/v2.2.2.tar.gz"
+  URL_HASH "SHA512=abc7bd1b27945ab25cd818126454d073f6e6bacf73f733cc686ab2eb0ceedba028fc261803916af001d2c658a7097da1aa292759f311fbc7ab23f971f7b7231f"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   BINARY_DIR "${EP_BINARY_DIR}"
   INSTALL_DIR ""
