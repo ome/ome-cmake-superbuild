@@ -29,12 +29,11 @@ features, where applicable.
   ``xcode-select --install`` or the full :program:`Xcode` application
   from the `Mac App Store <https://itunes.apple.com/gb/app/xcode/id497799835>`__.
 ‡
-  Run ``yum groupinstall "Development Tools"``.  You might additionally
-  want to install `Devtoolset-4
-  <https://www.softwarecollections.org/en/scls/rhscl/devtoolset-4/>`__
-  to obtain a more recent compiler than provided by the system.  This
-  is mandatory for CentOS/RHEL 6, and optional for CentOS/RHEL7 for all
-  components except for ``ome-files-py``.
+  Run ``yum groupinstall "Development Tools"``.  You should additionally
+  install `Devtoolset-7
+  <https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/>`__
+  to obtain a more recent compiler than provided by the system if running
+  CentOS 6 or 7.
 §
   Install Visual Studio 2015 or 2013.  Any of the full versions or the
   free Community edition will work.  The Community edition may be
