@@ -116,6 +116,11 @@ build() {
         GIT_OPTIONS="-Dome-model-dir=${workspace}/ome-model -Dome-files-dir=${workspace}/ome-files -Dome-common-dir=${workspace}/ome-common  -Dome-files-performance-dir=${workspace}/ome-files-performance -Dome-qtwidgets-dir=${workspace}/ome-qtwidgets -Dome-files-py-dir=${workspace}/ome-files-py"
     fi
 
+    if [ -d /usr/local/opt/qt ]; then
+      CMAKE_PREFIX_PATH="/usr/local/opt/qt:$CMAKE_PREFIX_PATH"
+      PATH="/usr/local/opt/qt/bin:$PATH"
+    fi
+
     rm -rf "$builddir" "$installdir"
     mkdir -p "$builddir" "$installdir"
 
@@ -127,6 +132,7 @@ build() {
             -G "$build_system" \
             -DCMAKE_VERBOSE_MAKEFILE:BOOL="$verbose" \
             -DCMAKE_BUILD_TYPE="$build_type" \
+            -DCMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH" \
             -DCMAKE_INSTALL_PREFIX:PATH=${installdir}/stage \
             ${GIT_OPTIONS} \
             "-Ddoxygen:BOOL=$doxygen" \
