@@ -26,8 +26,8 @@ endif()
 
 ExternalProject_Add(${EP_PROJECT}
   ${OME_EP_COMMON_ARGS}
-  URL "http://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.bz2"
-  URL_HASH "SHA512=82bf33d7d2c3db109c9d1f12d40bc2d364c8c95262386f906ccd1a71cd71433bcc01829e968b4a13a5003cf0b50cbdf0b435a1d76530cea7bb05725c327411e8"
+  URL "http://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.bz2"
+  URL_HASH "SHA512=f5ca2e0425af40eca7722712b985b863c88780e5be5ac24c78bcfdc63651bb67a39605d4f84089d76cab344fd34113fcb7befaa9a90481b381f6c53e9612b5f9"
   SOURCE_DIR "${EP_SOURCE_DIR}"
   INSTALL_DIR ""
   PATCH_COMMAND
